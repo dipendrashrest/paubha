@@ -142,3 +142,7 @@ export function TabsInstall() {
 export function KbdInstall() {
   return <RegistryInstall name="kbd" />;
 }
+
+export function AccordionInstall() {
+  return <RegistryInstall name="accordion" />;
+}

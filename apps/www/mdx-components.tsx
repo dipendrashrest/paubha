@@ -43,6 +43,17 @@ import {
 } from "@/components/docs/_shared/foundation-scales";
 import { InputHero, InputSizes, InputStates, InputWithIcons } from "@/components/docs/input/input-demos";
 import { InputPropsTable } from "@/components/docs/input/input-props-table";
+import {
+  AccordionDisabled,
+  AccordionHero,
+  AccordionMultiple,
+} from "@/components/docs/accordion/accordion-demos";
+import {
+  AccordionContentPropsTable,
+  AccordionItemPropsTable,
+  AccordionPropsTable,
+  AccordionTriggerPropsTable,
+} from "@/components/docs/accordion/accordion-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
 import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
 import { KbdGroupPropsTable, KbdPropsTable } from "@/components/docs/kbd/kbd-props-table";
@@ -70,6 +81,7 @@ import {
   CheckboxInstall,
   DividerInstall,
   DropdownMenuInstall,
+  AccordionInstall,
   FieldInstall,
   InputInstall,
   KbdInstall,
@@ -290,6 +302,16 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     KbdPropsTable,
     KbdSingleKey,
     KbdThreeKeys,
+
+    // Accordion
+    AccordionContentPropsTable,
+    AccordionDisabled,
+    AccordionHero,
+    AccordionInstall,
+    AccordionItemPropsTable,
+    AccordionMultiple,
+    AccordionPropsTable,
+    AccordionTriggerPropsTable,
 
     ...components,
   };

@@ -1,0 +1,104 @@
+---
+title: Accordion
+description: A vertically stacked set of interactive headings that each reveal a section of content.
+---
+
+<AccordionHero />
+
+## Installation
+
+<AccordionInstall />
+
+## Usage
+
+```tsx
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+<Accordion type="single" collapsible defaultValue="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Accordion Item</AccordionTrigger>
+    <AccordionContent>Content goes here.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Examples
+
+### Multiple sections open
+
+<AccordionMultiple />
+
+### Disabled
+
+<AccordionDisabled />
+
+## API reference
+
+### Accordion
+
+<AccordionPropsTable />
+
+### AccordionItem
+
+<AccordionItemPropsTable />
+
+### AccordionTrigger
+
+<AccordionTriggerPropsTable />
+
+### AccordionContent
+
+<AccordionContentPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Headers.</strong> Each header is a real <code>&lt;button&gt;</code> (via
+      Radix) with <code>aria-expanded</code> reflecting open state.
+    </li>
+    <li>
+      <strong>Content panels.</strong> <code>role=&quot;region&quot;</code> with{" "}
+      <code>aria-labelledby</code> pointing back at its header.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Enter/Space toggles the focused section. Arrow keys move
+      between headers. Home/End jump to the first/last header.
+    </li>
+    <li>
+      <strong>Disabled items.</strong> Rendered as a native disabled button (plus{" "}
+      <code>data-disabled</code>), not just <code>aria-disabled</code> — removes it from
+      the tab order the way assistive tech expects.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for progressive disclosure — FAQ sections, settings panels, long forms. Reduces
+clutter while keeping content accessible.
+
+**Do:**
+- Keep headers concise
+- Allow multiple sections open when content is related
+- Use chevron icons to indicate expand/collapse
+
+**Don't:**
+- Nest accordions
+- Hide critical info behind them
+- Use for primary navigation
+
+## Related components
+
+- [Tabs](/docs/components/tabs) — for switching views
+- [Modal](/docs/components/modal) — for focused overlay content
+- [Popover](/docs/components/popover) — for contextual info

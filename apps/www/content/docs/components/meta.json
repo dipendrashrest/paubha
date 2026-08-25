@@ -25,6 +25,7 @@
     "toast",
     "pagination",
     "popover",
-    "kbd"
+    "kbd",
+    "accordion"
   ]
 }
