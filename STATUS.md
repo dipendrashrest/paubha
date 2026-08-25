@@ -1228,19 +1228,46 @@ from it independently?
 never batched. Final state unchanged from before this section: 306
 registry tests, 50 docs pages, all passing.
 
+## 2026-08-25 — Input density conflict resolved
+
+User confirmed: trust Figma over `CLAUDE.md`'s density table for
+Input. Pulled the real spec (`get_metadata` + `get_design_context` on
+node `6198:22642` and its four size symbols) and confirmed exact
+values: `sm`=36px/12px padding/16px icon, `md`=40px/12px/20px,
+`lg`=44px/14px/20px, `xl`=48px/16px/20px — gap is a constant 8px
+across all four. Switched `packages/registry/ui/input/input.tsx` from
+padding-derived sizing to explicit height + Figma's real per-size
+padding/icon-size (commit `cf27d22`). Also fixed two smaller bugs this
+surfaced: `md`'s icon was 16px instead of 20px, and `xl`'s gap was
+12px instead of the constant 8px every other size uses.
+
+Corrected `CLAUDE.md`'s density table: Button/Textarea/Select still
+follow the shared 32/40/48/56 scale; Input is now documented as the
+one exception with its own real values.
+
+Flagged, not fixed (outside this fix's scope): Figma's export shows
+Input's border-radius falling back to `--radius/sm,md,lg` (8/12/16)
+varying per size — doesn't match the component's current single
+`radius-sm` or `CLAUDE.md`'s own radius table. Also, Input's
+placeholder text in Figma uses `body/sm`/`body/md` text styles, not
+this project's own `ui-*` named scale. Both worth a separate look,
+not touched here.
+
+`pnpm lint && pnpm test && pnpm build` all green (306 registry tests,
+50 docs pages). 26 commits total on `feat/full-component-sync`,
+nothing pushed.
+
 ## Exact resume point
 
-**Phase A is now fully complete**: all 33 base components exist, and
-all 19 pre-existing components have been re-audited against real
-Figma specs (3 fixed: Alert, Button, Checkbox; 16 confirmed correct
-or already covered). One real spec conflict (Input's height scale) is
-flagged above and intentionally left for the user to resolve, not
-guessed.
+**Phase A is fully complete and its one open conflict (Input density)
+is now resolved.** All 33 base components exist, matched against real
+Figma specs, with no outstanding flagged conflicts.
 
-Do **not** start Phase B (the 27 application patterns) without a
-check-in first — several of those patterns (Charts, Calendars, Date
-pickers, Color pickers) need a real external library choice this plan
-deliberately left for a decision rather than guessing blind.
+Per an explicit scope-change instruction received mid-session, **Phase
+B (the 27 application patterns) was NOT started** in this pass, even
+though library choices for it (Recharts/react-day-picker/native color
+input) had been confirmed — do not begin Phase B until explicitly
+told to resume it. No Phase B files, commits, or partial work exist.
 
 Nothing has been pushed to any remote — all commits are local on
 `feat/full-component-sync`.
