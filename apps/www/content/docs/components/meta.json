@@ -30,6 +30,7 @@
     "card",
     "slider",
     "toggle-group",
-    "progress-circle"
+    "progress-circle",
+    "verification-code-input"
   ]
 }

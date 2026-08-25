@@ -58,6 +58,13 @@ import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
 import {
+  VerificationCodeInputDisabled,
+  VerificationCodeInputError,
+  VerificationCodeInputHero,
+  VerificationCodeInputLength,
+} from "@/components/docs/verification-code-input/verification-code-input-demos";
+import { VerificationCodeInputPropsTable } from "@/components/docs/verification-code-input/verification-code-input-props-table";
+import {
   ProgressCircleHero,
   ProgressCircleNoPercentage,
   ProgressCircleSizes,
@@ -107,6 +114,7 @@ import {
   ProgressCircleInstall,
   SliderInstall,
   ToggleGroupInstall,
+  VerificationCodeInputInstall,
   KbdInstall,
   ModalInstall,
   PaginationInstall,
@@ -364,6 +372,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ProgressCircleNoPercentage,
     ProgressCirclePropsTable,
     ProgressCircleSizes,
+
+    // Verification Code Input
+    VerificationCodeInputDisabled,
+    VerificationCodeInputError,
+    VerificationCodeInputHero,
+    VerificationCodeInputInstall,
+    VerificationCodeInputLength,
+    VerificationCodeInputPropsTable,
 
     ...components,
   };

@@ -162,3 +162,7 @@ export function ToggleGroupInstall() {
 export function ProgressCircleInstall() {
   return <RegistryInstall name="progress-circle" />;
 }
+
+export function VerificationCodeInputInstall() {
+  return <RegistryInstall name="verification-code-input" />;
+}

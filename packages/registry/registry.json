@@ -591,6 +591,27 @@
       ]
     },
     {
+      "name": "verification-code-input",
+      "type": "registry:ui",
+      "title": "Verification Code Input",
+      "description": "Segmented input for entering verification or OTP codes.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/verification-code-input/verification-code-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",

@@ -1,0 +1,86 @@
+---
+title: Verification Code Input
+description: Segmented input for entering verification or OTP codes.
+---
+
+<VerificationCodeInputHero />
+
+## Installation
+
+<VerificationCodeInputInstall />
+
+## Usage
+
+```tsx
+import { VerificationCodeInput } from "@/components/ui/verification-code-input";
+
+<VerificationCodeInput aria-label="6-digit verification code" />
+```
+
+## Examples
+
+### Custom length
+
+<VerificationCodeInputLength />
+
+### Error
+
+<VerificationCodeInputError />
+
+### Disabled
+
+<VerificationCodeInputDisabled />
+
+## API reference
+
+<VerificationCodeInputPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Group.</strong> Wrapped in <code>role=&quot;group&quot;</code> with a
+      required <code>aria-label</code> describing the whole code.
+    </li>
+    <li>
+      <strong>Cells.</strong> Each digit is its own input, labeled{" "}
+      <code>aria-label=&quot;Digit N of M&quot;</code>.
+    </li>
+    <li>
+      <strong>Auto-advance.</strong> Typing a digit moves focus to the next cell.
+      Backspace on an empty cell moves focus back to the previous one.
+    </li>
+    <li>
+      <strong>Paste.</strong> Pasting a full code fills every cell at once.
+    </li>
+    <li>
+      <strong>Error.</strong> Announced via <code>aria-invalid</code> on every cell.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for one-time passcodes (OTP) — SMS verification, 2FA, email confirmation. Each
+digit gets its own cell for clarity.
+
+**Do:**
+- Auto-focus the first cell
+- Auto-advance on input
+- Allow pasting the full code
+- Support backspace to the previous cell
+
+**Don't:**
+- Use for regular text entry
+- Hide the digits — these are temporary, not sensitive like a password
+- Make the cells too small on mobile
+
+## Related components
+
+- [Input](/docs/components/input) — for standard text entry
+- [Field](/docs/components/field) — wraps this with a label and helper text
+- [Button](/docs/components/button) — for submitting after code entry
