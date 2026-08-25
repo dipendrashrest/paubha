@@ -57,6 +57,8 @@ import { ToastHero, ToastImperative, ToastVariants } from "@/components/docs/toa
 import { ToastPropsTable } from "@/components/docs/toast/toast-props-table";
 import { PaginationHero, PaginationInteractive, PaginationSizes } from "@/components/docs/pagination/pagination-demos";
 import { PaginationPropsTable } from "@/components/docs/pagination/pagination-props-table";
+import { PopoverHero, PopoverSides, PopoverWithClose } from "@/components/docs/popover/popover-demos";
+import { PopoverPropsTable } from "@/components/docs/popover/popover-props-table";
 import {
   AlertInstall,
   AvatarInstall,
@@ -70,6 +72,7 @@ import {
   InputInstall,
   ModalInstall,
   PaginationInstall,
+  PopoverInstall,
   ProgressBarInstall,
   RadioGroupInstall,
   SelectInstall,
@@ -268,6 +271,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     PaginationInteractive,
     PaginationPropsTable,
     PaginationSizes,
+
+    // Popover
+    PopoverHero,
+    PopoverInstall,
+    PopoverPropsTable,
+    PopoverSides,
+    PopoverWithClose,
 
     ...components,
   };

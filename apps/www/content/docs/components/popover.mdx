@@ -1,0 +1,73 @@
+---
+title: Popover
+description: Floating content panel anchored to a trigger, built on Radix UI.
+---
+
+<PopoverHero />
+
+## Installation
+
+<PopoverInstall />
+
+## Usage
+
+```tsx
+import {
+  Popover,
+  PopoverContent,
+  PopoverDescription,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="secondary">Open popover</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverTitle>Popover Title</PopoverTitle>
+    <PopoverDescription>Contextual content goes here.</PopoverDescription>
+  </PopoverContent>
+</Popover>
+```
+
+## Examples
+
+### Sides
+
+<PopoverSides />
+
+### With a close button
+
+<PopoverWithClose />
+
+## API reference
+
+<PopoverPropsTable />
+
+## Related components
+
+- **Tooltip** — for simple hover hints
+- **Dropdown Menu** — for action lists
+- **Modal** — for complex interactions
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> Content has an implicit{" "}
+      <code>role=&quot;dialog&quot;</code>; the trigger gets{" "}
+      <code>aria-haspopup=&quot;dialog&quot;</code> and{" "}
+      <code>aria-expanded</code> automatically.
+    </li>
+    <li>
+      <strong>Focus.</strong> Focus moves to the first focusable element on
+      open and returns to the trigger on close; Tab traps focus within the
+      popover while open.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Escape closes the popover.
+    </li>
+  </ul>
+</A11yCallout>

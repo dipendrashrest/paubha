@@ -455,6 +455,28 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Floating content panel anchored to a trigger, built on Radix UI.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/popover/popover.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }

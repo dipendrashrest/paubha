@@ -63,6 +63,10 @@ export function PaginationInstall() {
   return <RegistryInstall name="pagination" />;
 }
 
+export function PopoverInstall() {
+  return <RegistryInstall name="popover" />;
+}
+
 export function ButtonInstall() {
   return <RegistryInstall name="button" />;
 }

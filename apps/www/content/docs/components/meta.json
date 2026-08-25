@@ -23,6 +23,7 @@
     "tabs",
     "select",
     "toast",
-    "pagination"
+    "pagination",
+    "popover"
   ]
 }
