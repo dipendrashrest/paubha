@@ -18,7 +18,7 @@ export interface AsteriaConfig {
 export const CONFIG_FILE = "components.json";
 
 export const DEFAULT_CONFIG: AsteriaConfig = {
-  $schema: "https://asteria-ui.com/schema.json",
+  $schema: "https://asteria-ui.vercel.app/schema.json",
   registry: DEFAULT_REGISTRY_URL,
   aliases: {
     components: "components/ui",

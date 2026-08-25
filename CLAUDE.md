@@ -10,9 +10,9 @@ This file is auto-loaded by Claude Code every session. Read it before doing any 
 
 - **Repo:** https://github.com/dipendra0514/asteria-ui
 - **Issues:** https://github.com/dipendra0514/asteria-ui/issues
-- **Docs:** https://docs.asteria-ui.com (matches the Figma footers; not live yet)
+- **Live site (docs + registry API):** https://asteria-ui.vercel.app
 
-Use these exactly — don't guess or reconstruct a repo URL from the package name. The registry/CLI's own marketing domain (`asteria-ui.com`, no `docs.` subdomain — used in `packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and the `asteria-ui.com/r/[name].json` registry-JSON endpoint convention) is a separate, deliberately distinct domain from the docs site above — don't conflate the two or "fix" one to match the other.
+Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-08-25 — no custom domain is owned yet, so `asteria-ui.com`/`docs.asteria-ui.com` (the earlier planned marketing/docs split) don't exist and don't resolve. Until a domain is bought, both the docs site and the `/r/[name].json` registry-JSON endpoints are served from the single Vercel deployment above (`packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` all point here). If a real domain is bought later, update all of those together — don't let them drift apart again.
 
 ## Brand identity — do not deviate without being told
 
@@ -109,7 +109,7 @@ asteria-ui/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.com/r`). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above).
+shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.vercel.app/r` — see "Project links" above for why). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). **Not yet published to npm** — `npx asteria-ui@latest` won't resolve to anything until it is.
 
 ## Where specs come from
 

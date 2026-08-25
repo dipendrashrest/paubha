@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "asteria-ui",
-  "homepage": "https://asteria-ui.com",
+  "homepage": "https://asteria-ui.vercel.app",
   "items": [
     {
       "name": "button",
