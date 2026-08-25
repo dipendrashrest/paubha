@@ -1419,3 +1419,61 @@ used elsewhere in this repo). Figma's Documentation section had real when-to-use
 dos-and-don'ts/related-components content, now pulled verbatim into the docs page (the
 earlier session's blocked "When to use" task — unblocked now that Figma access works).
 `pnpm lint && pnpm test && pnpm build` all green. Commit `7cf86a3`.
+
+**Phase A audit, remaining 16 pre-existing components** — real specs pulled via
+`get_metadata` + `get_screenshot` (`get_design_context` errors out in this session: "You
+currently have nothing selected" — it needs a live Figma Desktop selection, which isn't
+available here; metadata+screenshot is what the original brief specified as the fallback
+anyway). Per-component findings:
+
+- **Alert** (`bde16b0`) — fixed. All four variants (info/success/warning/error) use the
+  *same* info-circle icon in Figma, just recolored via the variant's text color — not four
+  distinct Lucide icons as previously coded. Confirmed by a focused screenshot of the
+  4 variant instances side by side; removed the `iconByVariant` lookup entirely.
+- **Button** (`d584f7d`) — fixed. Figma's own Demo Grid shows Leading/Trailing/Both/
+  Icon-Only icon-slot combinations per variant; `trailingIcon` was missing (only
+  `leadingIcon` existed). Added it as a straightforward mirror. Icon-only sizing (square
+  padding, dedicated aria-label requirement) isn't fully specced by a static screenshot —
+  logged as a gap rather than guessed, same treatment as the earlier-logged "no dedicated
+  icon-only button" gap.
+- **Checkbox** (`d0a87f6`) — fixed. The real published component set is Variant × Size ×
+  State (45 symbols total, `Size=sm|md|lg` explicit in the symbol names), but the
+  component was single-size only (fixed 20px, which happened to already equal `md`).
+  Added `sm` (16px) and `lg` (24px) via `cva()`, matching the 4px-step scale visible in the
+  Figma row heights (18/22/26). Checked Radio Group and Switch for the same latent gap
+  (both are structurally similar Radix-based "form control" siblings to Checkbox) —
+  confirmed neither has a Size axis in Figma (Radio Group: Unselected/Selected × 5 states;
+  Switch: Off/On × 5 states), so both correctly stayed single-size.
+- **Breadcrumbs, Divider, Dropdown Menu, Field, Modal, Radio Group, Skeleton, Spinner,
+  Switch, Tabs, Textarea, Tooltip** — audited, no code changes. All matched their real
+  Figma specs. Specific confirmations worth recording:
+  - Modal's sm/md/lg (400/560/720px) match exactly. Figma's own "Related components" note
+    on Modal explicitly lists "Dialog — for simple confirmations" as a separate item,
+    confirming Modal and Dialog are genuinely distinct components (see the earlier
+    Modal/Dialog/Modals overlap note above) — not something this pass needed to re-decide.
+  - Textarea's sm/md/lg/xl (80/96/112/128px) match exactly.
+  - Divider's description mentions "configurable thickness" but the actual component set
+    only defines a Horizontal/Vertical orientation axis — no thickness variant exists to
+    build from, so nothing was added.
+  - Dropdown Menu's Dos text recommends "group related actions with dividers" but no
+    Separator sub-component exists in the file to pull exact styling (height, color,
+    spacing) from — logged as a gap, not guessed.
+  - Skeleton's Dos text says "animate with subtle shimmer" but the existing implementation
+    uses `animate-pulse`; a static screenshot can't capture the actual shimmer
+    keyframes/gradient, so left unchanged rather than inventing an animation.
+
+**Real conflict found, intentionally not resolved:** Input's actual Figma component set
+uses fixed heights **36/40/44/48px** for sm/md/lg/xl (read directly off the published
+symbol names/dimensions — `Size=sm, State=default` etc.), which does not match
+`CLAUDE.md`'s locked density table (`sm=32 · md=40 · lg=48 · xl=56`, which explicitly
+claims Input "follows this exactly"). The current implementation's padding-driven sizing
+approximates the CLAUDE.md scale, not the actual Figma scale — for `sm` specifically, this
+is a real, measurable difference, not a rounding artifact. Per `CLAUDE.md`'s own rule to
+flag conflicts rather than silently pick a side, **Input's code was left unchanged**. This
+needs a human decision: has `CLAUDE.md`'s density table gone stale, or has the Figma file's
+Input spec drifted from it independently since that table was written?
+
+`pnpm lint && pnpm test && pnpm build` all green after every commit in this section, never
+batched. Phase A (all 33 base components built + all 19 pre-existing audited) is now fully
+complete. Phase B (27 application patterns) intentionally not started — needs a check-in
+on external library choices for Charts/Calendars/Date pickers/Color pickers first.

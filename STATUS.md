@@ -1157,28 +1157,90 @@ now.
 commit in this pass (never batched). Final state: **306 registry
 tests, 50 docs pages, all passing.**
 
+## 2026-08-25 (cont.) — Phase A audit completed: all 19 pre-existing components
+
+The remaining 16 pre-existing components were audited against real
+Figma specs (`get_metadata` + `get_screenshot` — `get_design_context`
+is unavailable in this session, it requires a live Figma Desktop
+selection; the metadata+screenshot combination is what the original
+brief itself specified as the fallback). Real, confirmed drift was
+fixed in three; the rest matched exactly and needed no changes:
+
+- **Alert — fixed.** Figma uses the *same* info-circle icon across
+  all four variants (info/success/warning/error), recolored via the
+  variant's text color — not four distinct icons
+  (Info/CheckCircle/AlertTriangle/XCircle) as previously implemented.
+  Confirmed visually via a focused screenshot of the four variant
+  instances side by side.
+- **Button — fixed.** Figma's own Demo Grid documents
+  Leading/Trailing/Both/Icon-Only icon-slot combinations for every
+  variant; only `leadingIcon` existed. Added `trailingIcon` (simple,
+  low-risk mirror of the existing prop). Icon-only sizing needs a real
+  design decision (dedicated aria-label enforcement, distinct square
+  padding) that a static screenshot can't fully specify — **logged as
+  a gap, not guessed**, consistent with the earlier-logged "no
+  dedicated icon-only button component" gap from a prior session.
+- **Checkbox — fixed.** The actual published component set is
+  Variant × Size × State (3 × 3 × 5 = 45 symbols: `Size=sm|md|lg`
+  clearly present in the symbol names), but the implementation was
+  single-size only. The existing fixed 20px box already matched `md`;
+  added `sm` (16px) / `lg` (24px) via CVA, scaling the indicator icon
+  proportionally. Checked Radio Group and Switch for the same gap
+  (structurally similar "form control" siblings) — both confirmed
+  **no** size axis in Figma (Radio Group: Unselected/Selected × 5
+  states only; Switch: Off/On × 5 states only), so left unchanged.
+- **Breadcrumbs, Divider, Dropdown Menu, Field, Modal, Radio Group,
+  Skeleton, Spinner, Switch, Tabs, Textarea, Tooltip — audited, no
+  changes needed.** All matched their real Figma specs exactly
+  (sizes, variants, states). Notable confirmations: Modal's sm/md/lg
+  (400/560/720px) match exactly, and Modal is confirmed **genuinely
+  distinct** from Dialog per Figma's own "Related components" note
+  ("Dialog — for simple confirmations") — resolves part of the
+  earlier Step-3 name-overlap question. Textarea's sm/md/lg/xl
+  (80/96/112/128px) also match exactly.
+- **Divider** — its description says "configurable thickness" but the
+  actual component set only defines a Horizontal/Vertical orientation
+  axis, no thickness variant — not invented.
+- **Dropdown Menu** — the Dos text recommends "group with dividers"
+  but no Separator/Divider sub-component exists in the file to spec
+  its exact styling from — logged as a gap, not guessed.
+- **Skeleton** — Dos text says "animate with subtle shimmer" but a
+  static screenshot can't capture motion/keyframes, so the existing
+  `animate-pulse` was left as-is rather than inventing a shimmer
+  gradient.
+
+**Real conflict found, deliberately NOT resolved — needs a decision:**
+**Input's actual Figma component set uses fixed heights
+36/40/44/48px** for sm/md/lg/xl (confirmed directly from the
+published symbol names/dimensions), which does **not** match
+`CLAUDE.md`'s locked density table (`sm=32 · md=40 · lg=48 · xl=56`)
+that Input is explicitly documented as following "exactly." The
+current implementation's padding-driven sizing approximates the
+CLAUDE.md scale (32/40/48/56), not the actual Figma scale. Per
+`CLAUDE.md`'s own rule ("if something in this file conflicts with a
+new instruction, flag the conflict and ask rather than silently
+picking one"), **Input's code was left unchanged** rather than
+picking a side unilaterally — this needs the user's call: is
+`CLAUDE.md`'s density table stale, or has Figma's Input spec drifted
+from it independently?
+
+`pnpm lint && pnpm test && pnpm build` all green after every commit,
+never batched. Final state unchanged from before this section: 306
+registry tests, 50 docs pages, all passing.
+
 ## Exact resume point
 
-**Phase A "build" is fully complete: all 33 base components exist**
-(19 pre-existing + 14 newly built). **Phase A "audit" is partially
-done**: Avatar, Badge, and ProgressBar were audited against Figma and
-fixed (see above). The remaining **16 of 19 pre-existing components
-have NOT yet been re-audited against Figma in this pass**: Alert,
-Breadcrumbs, Button, Checkbox, Divider, Dropdown Menu, Field, Input,
-Modal, Radio Group, Skeleton, Spinner, Switch, Tabs, Textarea,
-Tooltip. (A separate, earlier structural-conventions audit in this
-session — CVA/`cn()`/ref-forwarding/semantic-tokens/focus-state/axe-
-wiring — found all 19 clean with no anomalies, but that is not the
-same as a real Figma variant/pixel audit.)
+**Phase A is now fully complete**: all 33 base components exist, and
+all 19 pre-existing components have been re-audited against real
+Figma specs (3 fixed: Alert, Button, Checkbox; 16 confirmed correct
+or already covered). One real spec conflict (Input's height scale) is
+flagged above and intentionally left for the user to resolve, not
+guessed.
 
-Stopped here deliberately rather than rushing 16 more Figma audits
-superficially — this is a natural, coherent checkpoint (every new
-component built, one critical cross-cutting bug fixed, everything
-green) worth a check-in before continuing. Do **not** start Phase B
-(the 27 application patterns) without a check-in first — several of
-those patterns (Charts, Calendars, Date pickers, Color pickers) need a
-real external library choice this plan deliberately left for a
-decision rather than guessing blind.
+Do **not** start Phase B (the 27 application patterns) without a
+check-in first — several of those patterns (Charts, Calendars, Date
+pickers, Color pickers) need a real external library choice this plan
+deliberately left for a decision rather than guessing blind.
 
 Nothing has been pushed to any remote — all commits are local on
 `feat/full-component-sync`.
