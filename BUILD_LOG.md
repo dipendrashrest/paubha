@@ -1410,3 +1410,12 @@ call: wired `size` to actually resize the inner `Avatar` using our own real Avat
 scale (which does correctly vary) rather than copy Figma's apparent no-op, since a
 non-functional size prop would be a worse API. Text size stays fixed at ui-sm/ui-xs
 regardless of size, matching what Figma actually shows across all 3 sampled variants.
+
+**Kbd** (5/14 new) — built fresh from Figma node `2169:19985`/`2173:20035`. Simple
+component: `Kbd` (single `<kbd>` key) + `KbdGroup` (composes N keys with a decorative
+"+" separator, generalizing Figma's hardcoded 2-key `showSecondKey` prop into an
+arbitrary-length list — same Breadcrumbs-style children-with-separator pattern already
+used elsewhere in this repo). Figma's Documentation section had real when-to-use/
+dos-and-don'ts/related-components content, now pulled verbatim into the docs page (the
+earlier session's blocked "When to use" task — unblocked now that Figma access works).
+`pnpm lint && pnpm test && pnpm build` all green. Commit `7cf86a3`.
