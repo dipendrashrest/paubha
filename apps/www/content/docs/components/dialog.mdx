@@ -1,0 +1,117 @@
+---
+title: Dialog
+description: A focused confirmation overlay that requires user action before proceeding.
+---
+
+<DialogHero />
+
+## Installation
+
+<DialogInstall />
+
+## Usage
+
+```tsx
+import {
+  Dialog,
+  DialogAction,
+  DialogActions,
+  DialogBody,
+  DialogCancel,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Confirm Action</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogBody>
+      <DialogTitle>Confirm Action</DialogTitle>
+      <DialogDescription>
+        Are you sure you want to proceed? This action cannot be undone.
+      </DialogDescription>
+    </DialogBody>
+    <DialogActions>
+      <DialogCancel>Cancel</DialogCancel>
+      <DialogAction>Confirm</DialogAction>
+    </DialogActions>
+  </DialogContent>
+</Dialog>
+```
+
+## Examples
+
+### Destructive
+
+<DialogDestructive />
+
+### Info (single action)
+
+<DialogInfo />
+
+## API reference
+
+### Dialog
+
+<DialogPropsTable />
+
+### DialogContent
+
+<DialogContentPropsTable />
+
+### DialogAction
+
+<DialogActionPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> Built on Radix <strong>AlertDialog</strong> (not plain
+      Dialog) — <code>role=&quot;alertdialog&quot;</code>, with{" "}
+      <code>aria-describedby</code> pointing at <code>DialogDescription</code> and{" "}
+      <code>aria-labelledby</code> at <code>DialogTitle</code>.
+    </li>
+    <li>
+      <strong>Focus.</strong> Trapped within the dialog while open. Place{" "}
+      <code>DialogCancel</code> first (or add <code>autoFocus</code>) so the safest
+      action gets focus by default.
+    </li>
+    <li>
+      <strong>Escape</strong> closes the dialog. Unlike{" "}
+      <a href="/docs/components/modal">Modal</a>, clicking outside does{" "}
+      <strong>not</strong> close it — the user must make an explicit choice.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code> on
+      both actions.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for confirmations before destructive or irreversible actions — deleting items,
+discarding changes, revoking access. Requires an explicit user decision.
+
+**Do:**
+- Auto-focus the safest action (Cancel)
+- Write specific confirmation text
+- Use the error variant for destructive actions
+
+**Don't:**
+- Use for informational messages — use [Toast](/docs/components/toast) instead
+- Chain multiple dialogs
+- Default-focus the destructive action
+
+## Related components
+
+- [Modal](/docs/components/modal) — for non-confirmation overlays
+- [Toast](/docs/components/toast) — for non-blocking feedback
+- [Alert](/docs/components/alert) — for inline warnings

@@ -56,6 +56,12 @@ import {
 } from "@/components/docs/accordion/accordion-props-table";
 import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/card-demos";
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
+import { DialogDestructive, DialogHero, DialogInfo } from "@/components/docs/dialog/dialog-demos";
+import {
+  DialogActionPropsTable,
+  DialogContentPropsTable,
+  DialogPropsTable,
+} from "@/components/docs/dialog/dialog-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
 import {
   VerificationCodeInputDisabled,
@@ -109,6 +115,7 @@ import {
   DropdownMenuInstall,
   AccordionInstall,
   CardInstall,
+  DialogInstall,
   FieldInstall,
   InputInstall,
   ProgressCircleInstall,
@@ -380,6 +387,15 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     VerificationCodeInputInstall,
     VerificationCodeInputLength,
     VerificationCodeInputPropsTable,
+
+    // Dialog
+    DialogActionPropsTable,
+    DialogContentPropsTable,
+    DialogDestructive,
+    DialogHero,
+    DialogInfo,
+    DialogInstall,
+    DialogPropsTable,
 
     ...components,
   };

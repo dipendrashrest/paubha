@@ -166,3 +166,7 @@ export function ProgressCircleInstall() {
 export function VerificationCodeInputInstall() {
   return <RegistryInstall name="verification-code-input" />;
 }
+
+export function DialogInstall() {
+  return <RegistryInstall name="dialog" />;
+}
