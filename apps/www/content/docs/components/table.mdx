@@ -1,0 +1,92 @@
+---
+title: Table
+description: A structured data display component with rows and columns, supporting headers, body cells, and optional sorting or selection states.
+---
+
+<TableHero />
+
+## Installation
+
+<TableInstall />
+
+## Usage
+
+```tsx
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+<Table aria-label="Users">
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Alex Johnson</TableCell>
+      <TableCell>Active</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Examples
+
+### Striped
+
+<TableStriped />
+
+### Bordered
+
+<TableBordered />
+
+## API reference
+
+<TablePropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Native semantics.</strong> Renders a real <code>&lt;table&gt;</code>, not
+      div-based markup — every cell, row, and header is natively understood by assistive
+      tech without any extra ARIA.
+    </li>
+    <li>
+      <strong>Headers.</strong> <code>TableHead</code> renders <code>&lt;th
+      scope=&quot;col&quot;&gt;</code>, linking each header to its column.
+    </li>
+    <li>
+      <strong>Sortable columns</strong> (when you add sorting yourself) should set{" "}
+      <code>aria-sort</code> on the relevant <code>TableHead</code>.
+    </li>
+    <li>
+      <strong>Custom cell content</strong> (e.g. a row of custom widgets) can use{" "}
+      <code>role=&quot;row&quot;</code>/<code>role=&quot;cell&quot;</code> if you must
+      break from native table elements — prefer native elements whenever possible.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for structured data with multiple attributes — user lists, transactions, inventory.
+Best when users need to compare, sort, or scan data.
+
+**Do:**
+- Right-align numeric columns
+- Include sortable headers where it helps
+- Use the striped variant for dense data
+- Keep columns to 8 or fewer
+
+**Don't:**
+- Use a table for page layout
+- Show 20+ rows without pagination
+- Truncate critical data
+
+## Related components
+
+- [Pagination](/docs/components/pagination) — for table pages
+- [Card](/docs/components/card) — an alternative visual display
+- [Skeleton](/docs/components/skeleton) — for loading states

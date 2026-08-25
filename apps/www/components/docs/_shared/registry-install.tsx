@@ -170,3 +170,7 @@ export function VerificationCodeInputInstall() {
 export function DialogInstall() {
   return <RegistryInstall name="dialog" />;
 }
+
+export function TableInstall() {
+  return <RegistryInstall name="table" />;
+}

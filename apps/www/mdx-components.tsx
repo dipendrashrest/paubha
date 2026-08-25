@@ -63,6 +63,8 @@ import {
   DialogPropsTable,
 } from "@/components/docs/dialog/dialog-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
+import { TableBordered, TableHero, TableStriped } from "@/components/docs/table/table-demos";
+import { TablePropsTable } from "@/components/docs/table/table-props-table";
 import {
   VerificationCodeInputDisabled,
   VerificationCodeInputError,
@@ -120,6 +122,7 @@ import {
   InputInstall,
   ProgressCircleInstall,
   SliderInstall,
+  TableInstall,
   ToggleGroupInstall,
   VerificationCodeInputInstall,
   KbdInstall,
@@ -396,6 +399,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     DialogInfo,
     DialogInstall,
     DialogPropsTable,
+
+    // Table
+    TableBordered,
+    TableHero,
+    TableInstall,
+    TablePropsTable,
+    TableStriped,
 
     ...components,
   };

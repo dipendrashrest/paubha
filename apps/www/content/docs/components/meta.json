@@ -32,6 +32,7 @@
     "toggle-group",
     "progress-circle",
     "verification-code-input",
-    "dialog"
+    "dialog",
+    "table"
   ]
 }
