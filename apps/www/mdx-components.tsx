@@ -44,6 +44,8 @@ import {
 import { InputHero, InputSizes, InputStates, InputWithIcons } from "@/components/docs/input/input-demos";
 import { InputPropsTable } from "@/components/docs/input/input-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
+import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
+import { KbdGroupPropsTable, KbdPropsTable } from "@/components/docs/kbd/kbd-props-table";
 import { ModalHero } from "@/components/docs/modal/modal-demos";
 import { ModalPropsTable } from "@/components/docs/modal/modal-props-table";
 import { ProgressBarHero, ProgressBarSizes } from "@/components/docs/progress-bar/progress-bar-demos";
@@ -70,6 +72,7 @@ import {
   DropdownMenuInstall,
   FieldInstall,
   InputInstall,
+  KbdInstall,
   ModalInstall,
   PaginationInstall,
   PopoverInstall,
@@ -278,6 +281,15 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     PopoverPropsTable,
     PopoverSides,
     PopoverWithClose,
+
+    // Kbd
+    KbdGroupPropsTable,
+    KbdHero,
+    KbdInMenuItem,
+    KbdInstall,
+    KbdPropsTable,
+    KbdSingleKey,
+    KbdThreeKeys,
 
     ...components,
   };

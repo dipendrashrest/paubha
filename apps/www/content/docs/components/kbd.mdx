@@ -1,0 +1,90 @@
+---
+title: Kbd
+description: Keyboard shortcut indicator displaying key combinations.
+---
+
+<KbdHero />
+
+## Installation
+
+<KbdInstall />
+
+## Usage
+
+```tsx
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
+
+<KbdGroup>
+  <Kbd>⌘</Kbd>
+  <Kbd>K</Kbd>
+</KbdGroup>
+```
+
+## Examples
+
+### Single key
+
+<KbdSingleKey />
+
+### Three keys
+
+<KbdThreeKeys />
+
+### In a menu item
+
+<KbdInMenuItem />
+
+## API reference
+
+### Kbd
+
+<KbdPropsTable />
+
+### KbdGroup
+
+<KbdGroupPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Semantic element.</strong> Renders a native <code>&lt;kbd&gt;</code> element,
+      which screen readers announce as the key name.
+    </li>
+    <li>
+      <strong>Decorative usage.</strong> When shown next to a menu item or tooltip purely as
+      a hint (not the primary label), wrap the group in <code>aria-hidden</code> so it isn't
+      announced twice.
+    </li>
+    <li>
+      <strong>Separator.</strong> The "+" between keys in <code>KbdGroup</code> is
+      decorative and marked <code>aria-hidden</code>.
+    </li>
+    <li>
+      <strong>Contrast.</strong> Uses <code>fg-secondary</code> on <code>bg-secondary</code>,
+      which meets contrast requirements in both light and dark mode.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use to display keyboard shortcuts — in tooltips, docs, or menu items. Shows a visual
+representation of key combinations.
+
+**Do:**
+- Use platform-appropriate symbols (⌘ on Mac, Ctrl on Windows)
+- Place near the action it triggers
+- Keep combinations simple (3 keys or fewer)
+
+**Don't:**
+- Show shortcuts that don't actually work
+- Use `Kbd` purely decoratively with no real shortcut behind it
+- Conflict with existing browser or OS shortcuts
+
+## Related components
+
+- [Tooltip](/docs/components/tooltip) — shows shortcuts on hover
+- [Dropdown Menu](/docs/components/dropdown-menu) — displays shortcuts next to actions
+- [Badge](/docs/components/badge) — for non-keyboard indicators

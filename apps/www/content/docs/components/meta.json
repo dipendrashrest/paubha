@@ -24,6 +24,7 @@
     "select",
     "toast",
     "pagination",
-    "popover"
+    "popover",
+    "kbd"
   ]
 }

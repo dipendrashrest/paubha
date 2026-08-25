@@ -138,3 +138,7 @@ export function ModalInstall() {
 export function TabsInstall() {
   return <RegistryInstall name="tabs" />;
 }
+
+export function KbdInstall() {
+  return <RegistryInstall name="kbd" />;
+}
