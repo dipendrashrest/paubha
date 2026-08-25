@@ -29,6 +29,7 @@
     "accordion",
     "card",
     "slider",
-    "toggle-group"
+    "toggle-group",
+    "progress-circle"
   ]
 }

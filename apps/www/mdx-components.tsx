@@ -58,6 +58,12 @@ import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
 import {
+  ProgressCircleHero,
+  ProgressCircleNoPercentage,
+  ProgressCircleSizes,
+} from "@/components/docs/progress-circle/progress-circle-demos";
+import { ProgressCirclePropsTable } from "@/components/docs/progress-circle/progress-circle-props-table";
+import {
   ToggleGroupDisabled,
   ToggleGroupHero,
   ToggleGroupSizes,
@@ -98,6 +104,7 @@ import {
   CardInstall,
   FieldInstall,
   InputInstall,
+  ProgressCircleInstall,
   SliderInstall,
   ToggleGroupInstall,
   KbdInstall,
@@ -350,6 +357,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ToggleGroupItemPropsTable,
     ToggleGroupPropsTable,
     ToggleGroupSizes,
+
+    // Progress Circle
+    ProgressCircleHero,
+    ProgressCircleInstall,
+    ProgressCircleNoPercentage,
+    ProgressCirclePropsTable,
+    ProgressCircleSizes,
 
     ...components,
   };

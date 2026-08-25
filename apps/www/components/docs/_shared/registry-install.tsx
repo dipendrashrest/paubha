@@ -158,3 +158,7 @@ export function SliderInstall() {
 export function ToggleGroupInstall() {
   return <RegistryInstall name="toggle-group" />;
 }
+
+export function ProgressCircleInstall() {
+  return <RegistryInstall name="progress-circle" />;
+}

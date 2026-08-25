@@ -1,0 +1,70 @@
+---
+title: Progress Circle
+description: Circular progress indicator showing completion percentage.
+---
+
+<ProgressCircleHero />
+
+## Installation
+
+<ProgressCircleInstall />
+
+## Usage
+
+```tsx
+import { ProgressCircle } from "@/components/ui/progress-circle";
+
+<ProgressCircle value={75} aria-label="Upload progress" />
+```
+
+## Examples
+
+### Sizes
+
+<ProgressCircleSizes />
+
+### Without the percentage label
+
+<ProgressCircleNoPercentage />
+
+## API reference
+
+<ProgressCirclePropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> <code>role=&quot;progressbar&quot;</code> with{" "}
+      <code>aria-valuenow</code>, <code>aria-valuemin=&quot;0&quot;</code>, and{" "}
+      <code>aria-valuemax=&quot;100&quot;</code> (or your custom <code>max</code>).
+    </li>
+    <li>
+      <strong>Label.</strong> Always pass <code>aria-label</code> describing what is
+      loading — it's required, since the circular rendering itself is purely decorative
+      and conveys nothing to assistive tech on its own.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for circular progress — skill completion, dashboard metrics, timer countdowns.
+Works well in compact spaces where a linear bar would be too wide.
+
+**Do:**
+- Display the value in the center
+- Use consistent sizing
+- Animate smoothly as the value changes
+
+**Don't:**
+- Use below 32px — the percentage text becomes unreadable
+- Show multiple sizes in the same row
+- Use for indeterminate loading — use [Spinner](/docs/components/spinner) instead
+
+## Related components
+
+- [Progress Bar](/docs/components/progress-bar) — for linear progress
+- [Spinner](/docs/components/spinner) — for indeterminate loading
+- [Badge](/docs/components/badge) — for static metric display
