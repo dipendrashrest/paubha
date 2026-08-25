@@ -72,6 +72,32 @@ describe("Badge", () => {
     );
   });
 
+  it("applies the outline fill style with a colored border and no background fill", () => {
+    render(
+      <Badge variant="brand" fill="outline">
+        Outline
+      </Badge>,
+    );
+    const badge = screen.getByRole("status");
+    expect(badge).toHaveClass("border-border-brand", "text-fg-brand");
+    expect(badge).not.toHaveClass("bg-bg-brand-subtle");
+  });
+
+  it("applies the solid fill style with an on-color foreground", () => {
+    render(
+      <Badge variant="success" fill="solid">
+        Solid
+      </Badge>,
+    );
+    const badge = screen.getByRole("status");
+    expect(badge).toHaveClass("bg-bg-success-solid", "text-fg-on-success");
+  });
+
+  it("renders as a compact square when iconOnly is set", () => {
+    render(<Badge iconOnly aria-label="Notifications" />);
+    expect(screen.getByRole("status")).toHaveClass("aspect-square");
+  });
+
   it("has no axe violations across default, dot, and dismissible states", async () => {
     const { container, rerender } = render(<Badge>Default</Badge>);
     expect(await axe(container)).toHaveNoViolations();

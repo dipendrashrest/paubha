@@ -23,6 +23,26 @@ export function BadgeHero() {
   );
 }
 
+export function BadgeFillStyles() {
+  return (
+    <ComponentPlayground
+      code={`<Badge variant="brand" fill="subtle">Subtle</Badge>
+<Badge variant="brand" fill="outline">Outline</Badge>
+<Badge variant="brand" fill="solid">Solid</Badge>`}
+    >
+      <Badge variant="brand" fill="subtle">
+        Subtle
+      </Badge>
+      <Badge variant="brand" fill="outline">
+        Outline
+      </Badge>
+      <Badge variant="brand" fill="solid">
+        Solid
+      </Badge>
+    </ComponentPlayground>
+  );
+}
+
 export function BadgeSizes() {
   return (
     <ComponentPlayground

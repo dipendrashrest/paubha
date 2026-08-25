@@ -10,10 +10,22 @@ const badgeProps = definePropDefs<BadgeProps>()([
     description: "Color treatment.",
   },
   {
+    name: "fill",
+    type: '"subtle" | "outline" | "solid"',
+    defaultValue: '"subtle"',
+    description: "Fill style — tinted background, bordered/transparent, or solid on-color.",
+  },
+  {
     name: "size",
     type: '"sm" | "md"',
     defaultValue: '"sm"',
     description: "Padding and font size.",
+  },
+  {
+    name: "iconOnly",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Renders as a compact square icon-only badge instead of a text label.",
   },
   {
     name: "showDot",

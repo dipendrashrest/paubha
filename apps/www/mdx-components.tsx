@@ -11,7 +11,7 @@ import {
   AvatarStatus,
 } from "@/components/docs/avatar/avatar-demos";
 import { AvatarPropsTable } from "@/components/docs/avatar/avatar-props-table";
-import { BadgeDismissible, BadgeHero, BadgeSizes, BadgeWithDot } from "@/components/docs/badge/badge-demos";
+import { BadgeDismissible, BadgeFillStyles, BadgeHero, BadgeSizes, BadgeWithDot } from "@/components/docs/badge/badge-demos";
 import { BadgePropsTable } from "@/components/docs/badge/badge-props-table";
 import { BreadcrumbsHero } from "@/components/docs/breadcrumbs/breadcrumbs-demos";
 import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs/breadcrumbs-props-table";
@@ -131,6 +131,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     // Badge
     BadgeDismissible,
+    BadgeFillStyles,
     BadgeHero,
     BadgeInstall,
     BadgePropsTable,
