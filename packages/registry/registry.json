@@ -547,6 +547,29 @@
       ]
     },
     {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A set of two or more toggle buttons that allows users to choose one option from a group.",
+      "dependencies": [
+        "@radix-ui/react-radio-group",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/toggle-group/toggle-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",

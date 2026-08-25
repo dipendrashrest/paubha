@@ -154,3 +154,7 @@ export function CardInstall() {
 export function SliderInstall() {
   return <RegistryInstall name="slider" />;
 }
+
+export function ToggleGroupInstall() {
+  return <RegistryInstall name="toggle-group" />;
+}

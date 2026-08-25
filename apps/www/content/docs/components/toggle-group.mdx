@@ -1,0 +1,86 @@
+---
+title: Toggle Group
+description: A set of two or more toggle buttons that allows users to choose one option from a group.
+---
+
+<ToggleGroupHero />
+
+## Installation
+
+<ToggleGroupInstall />
+
+## Usage
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+<ToggleGroup defaultValue="day">
+  <ToggleGroupItem value="day">Day</ToggleGroupItem>
+  <ToggleGroupItem value="week">Week</ToggleGroupItem>
+  <ToggleGroupItem value="month">Month</ToggleGroupItem>
+</ToggleGroup>
+```
+
+## Examples
+
+### Sizes
+
+<ToggleGroupSizes />
+
+### Disabled item
+
+<ToggleGroupDisabled />
+
+## API reference
+
+### ToggleGroup
+
+<ToggleGroupPropsTable />
+
+### ToggleGroupItem
+
+<ToggleGroupItemPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Roles.</strong> Built on Radix RadioGroup underneath, so it gets the exact
+      contract a segmented control needs: <code>role=&quot;radiogroup&quot;</code> on the
+      group, <code>role=&quot;radio&quot;</code> with <code>aria-checked</code> on each
+      item.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Arrow keys move between items; the newly-focused item is
+      selected automatically (standard radio-group behavior).
+    </li>
+    <li>
+      <strong>Disabled items.</strong> Rendered as a native disabled button.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use as a segmented control for 2–4 mutually exclusive choices — view modes, time ranges,
+filter categories. Acts like styled radio buttons.
+
+**Do:**
+- Keep to 2–4 options
+- Use short labels
+- Make the active state visually clear
+
+**Don't:**
+- Use for 4+ options — use [Select](/docs/components/select) or [Tabs](/docs/components/tabs) instead
+- Mix with other form controls
+- Use for triggering actions — use [Button](/docs/components/button) instead
+
+## Related components
+
+- [Tabs](/docs/components/tabs) — for switching content views
+- [Radio Group](/docs/components/radio-group) — for form-style selection
+- [Button](/docs/components/button) — for triggering actions

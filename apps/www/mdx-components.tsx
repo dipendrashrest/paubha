@@ -57,6 +57,15 @@ import {
 import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/card-demos";
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
+import {
+  ToggleGroupDisabled,
+  ToggleGroupHero,
+  ToggleGroupSizes,
+} from "@/components/docs/toggle-group/toggle-group-demos";
+import {
+  ToggleGroupItemPropsTable,
+  ToggleGroupPropsTable,
+} from "@/components/docs/toggle-group/toggle-group-props-table";
 import { SliderHero, SliderSizes, SliderStates } from "@/components/docs/slider/slider-demos";
 import { SliderPropsTable } from "@/components/docs/slider/slider-props-table";
 import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
@@ -90,6 +99,7 @@ import {
   FieldInstall,
   InputInstall,
   SliderInstall,
+  ToggleGroupInstall,
   KbdInstall,
   ModalInstall,
   PaginationInstall,
@@ -332,6 +342,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     SliderPropsTable,
     SliderSizes,
     SliderStates,
+
+    // Toggle Group
+    ToggleGroupDisabled,
+    ToggleGroupHero,
+    ToggleGroupInstall,
+    ToggleGroupItemPropsTable,
+    ToggleGroupPropsTable,
+    ToggleGroupSizes,
 
     ...components,
   };

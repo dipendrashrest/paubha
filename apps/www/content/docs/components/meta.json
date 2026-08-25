@@ -28,6 +28,7 @@
     "kbd",
     "accordion",
     "card",
-    "slider"
+    "slider",
+    "toggle-group"
   ]
 }
