@@ -17,11 +17,13 @@ export function ProgressBarSizes() {
   return (
     <ComponentPlayground
       code={`<ProgressBar size="sm" value={40} label="Uploading file" />
-<ProgressBar size="md" value={70} label="Uploading file" />`}
+<ProgressBar size="md" value={70} label="Uploading file" />
+<ProgressBar size="lg" value={90} label="Uploading file" />`}
     >
       <div className="flex w-full max-w-xs flex-col gap-4">
         <ProgressBar size="sm" value={40} label="Uploading file" />
         <ProgressBar size="md" value={70} label="Uploading file" />
+        <ProgressBar size="lg" value={90} label="Uploading file" />
       </div>
     </ComponentPlayground>
   );

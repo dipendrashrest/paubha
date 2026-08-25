@@ -9,6 +9,7 @@ const trackVariants = cva(
       size: {
         sm: "h-1",
         md: "h-2",
+        lg: "h-3",
       },
     },
     defaultVariants: {

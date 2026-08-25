@@ -22,9 +22,9 @@ const progressBarProps = definePropDefs<ProgressBarProps>()([
   },
   {
     name: "size",
-    type: '"sm" | "md"',
+    type: '"sm" | "md" | "lg"',
     defaultValue: '"sm"',
-    description: "Track height — 4 / 8px.",
+    description: "Track height — 4 / 8 / 12px.",
   },
 ]);
 

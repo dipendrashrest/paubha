@@ -52,6 +52,11 @@ describe("ProgressBar", () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
+  it("applies the lg track height", () => {
+    render(<ProgressBar size="lg" value={50} label="Uploading file" />);
+    expect(screen.getByRole("progressbar")).toHaveClass("h-3");
+  });
+
   it("has no axe violations at 0%, partial, and 100% progress", async () => {
     const { container, rerender } = render(
       <ProgressBar value={0} label="Uploading file" />,
