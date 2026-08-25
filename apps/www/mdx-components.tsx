@@ -1,6 +1,6 @@
-import { A11yCallout } from "@/components/docs/a11y-callout";
-import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert-demos";
-import { AlertPropsTable } from "@/components/docs/alert-props-table";
+import { A11yCallout } from "@/components/docs/_shared/a11y-callout";
+import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert/alert-demos";
+import { AlertPropsTable } from "@/components/docs/alert/alert-props-table";
 import {
   AvatarAddButtonSizes,
   AvatarAddButtonWithGroup,
@@ -9,26 +9,26 @@ import {
   AvatarImageFallback,
   AvatarSizes,
   AvatarStatus,
-} from "@/components/docs/avatar-demos";
-import { AvatarPropsTable } from "@/components/docs/avatar-props-table";
-import { BadgeDismissible, BadgeHero, BadgeSizes, BadgeWithDot } from "@/components/docs/badge-demos";
-import { BadgePropsTable } from "@/components/docs/badge-props-table";
-import { BreadcrumbsHero } from "@/components/docs/breadcrumbs-demos";
-import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs-props-table";
-import { ButtonHero, ButtonSizes, ButtonStates, ButtonVariants, ButtonWithIcon } from "@/components/docs/button-demos";
-import { ButtonPropsTable } from "@/components/docs/button-props-table";
-import { CheckboxHero, CheckboxStates } from "@/components/docs/checkbox-demos";
-import { CheckboxPropsTable } from "@/components/docs/checkbox-props-table";
-import { ColorScale, ColorSwatch } from "@/components/docs/color-scale";
-import { ComingSoon } from "@/components/docs/coming-soon";
-import { ComponentPlayground } from "@/components/docs/component-playground";
-import { ComponentPreview } from "@/components/docs/component-preview";
-import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider-demos";
-import { DividerPropsTable } from "@/components/docs/divider-props-table";
-import { DropdownMenuHero } from "@/components/docs/dropdown-menu-demos";
-import { DropdownMenuPropsTable } from "@/components/docs/dropdown-menu-props-table";
-import { FieldError, FieldHero, FieldWithTextarea } from "@/components/docs/field-demos";
-import { FieldPropsTable } from "@/components/docs/field-props-table";
+} from "@/components/docs/avatar/avatar-demos";
+import { AvatarPropsTable } from "@/components/docs/avatar/avatar-props-table";
+import { BadgeDismissible, BadgeHero, BadgeSizes, BadgeWithDot } from "@/components/docs/badge/badge-demos";
+import { BadgePropsTable } from "@/components/docs/badge/badge-props-table";
+import { BreadcrumbsHero } from "@/components/docs/breadcrumbs/breadcrumbs-demos";
+import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs/breadcrumbs-props-table";
+import { ButtonHero, ButtonSizes, ButtonStates, ButtonVariants, ButtonWithIcon } from "@/components/docs/button/button-demos";
+import { ButtonPropsTable } from "@/components/docs/button/button-props-table";
+import { CheckboxHero, CheckboxStates } from "@/components/docs/checkbox/checkbox-demos";
+import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
+import { ColorScale, ColorSwatch } from "@/components/docs/_shared/color-scale";
+import { ComingSoon } from "@/components/docs/_shared/coming-soon";
+import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
+import { ComponentPreview } from "@/components/docs/_shared/component-preview";
+import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider/divider-demos";
+import { DividerPropsTable } from "@/components/docs/divider/divider-props-table";
+import { DropdownMenuHero } from "@/components/docs/dropdown-menu/dropdown-menu-demos";
+import { DropdownMenuPropsTable } from "@/components/docs/dropdown-menu/dropdown-menu-props-table";
+import { FieldError, FieldHero, FieldWithTextarea } from "@/components/docs/field/field-demos";
+import { FieldPropsTable } from "@/components/docs/field/field-props-table";
 import {
   BlurScale,
   BrandScale,
@@ -40,17 +40,17 @@ import {
   SuccessScale,
   TypeScale,
   WarningScale,
-} from "@/components/docs/foundation-scales";
-import { InputHero, InputSizes, InputStates, InputWithIcons } from "@/components/docs/input-demos";
-import { InputPropsTable } from "@/components/docs/input-props-table";
-import { InstallCommand } from "@/components/docs/install-command";
-import { ModalHero } from "@/components/docs/modal-demos";
-import { ModalPropsTable } from "@/components/docs/modal-props-table";
-import { ProgressBarHero, ProgressBarSizes } from "@/components/docs/progress-bar-demos";
-import { ProgressBarPropsTable } from "@/components/docs/progress-bar-props-table";
-import { PropsTable } from "@/components/docs/props-table";
-import { RadioGroupDisabled, RadioGroupHero } from "@/components/docs/radio-group-demos";
-import { RadioGroupPropsTable } from "@/components/docs/radio-group-props-table";
+} from "@/components/docs/_shared/foundation-scales";
+import { InputHero, InputSizes, InputStates, InputWithIcons } from "@/components/docs/input/input-demos";
+import { InputPropsTable } from "@/components/docs/input/input-props-table";
+import { InstallCommand } from "@/components/docs/_shared/install-command";
+import { ModalHero } from "@/components/docs/modal/modal-demos";
+import { ModalPropsTable } from "@/components/docs/modal/modal-props-table";
+import { ProgressBarHero, ProgressBarSizes } from "@/components/docs/progress-bar/progress-bar-demos";
+import { ProgressBarPropsTable } from "@/components/docs/progress-bar/progress-bar-props-table";
+import { PropsTable } from "@/components/docs/_shared/props-table";
+import { RadioGroupDisabled, RadioGroupHero } from "@/components/docs/radio-group/radio-group-demos";
+import { RadioGroupPropsTable } from "@/components/docs/radio-group/radio-group-props-table";
 import {
   AlertInstall,
   AvatarInstall,
@@ -71,19 +71,19 @@ import {
   TabsInstall,
   TextareaInstall,
   TooltipInstall,
-} from "@/components/docs/registry-install";
-import { SkeletonCard, SkeletonHero, SkeletonVariants } from "@/components/docs/skeleton-demos";
-import { SkeletonPropsTable } from "@/components/docs/skeleton-props-table";
-import { SpinnerHero, SpinnerSizes } from "@/components/docs/spinner-demos";
-import { SpinnerPropsTable } from "@/components/docs/spinner-props-table";
-import { SwitchHero, SwitchStates } from "@/components/docs/switch-demos";
-import { SwitchPropsTable } from "@/components/docs/switch-props-table";
-import { TabsHero, TabsPillVariant } from "@/components/docs/tabs-demos";
-import { TabsPropsTable } from "@/components/docs/tabs-props-table";
-import { TextareaHero, TextareaStates } from "@/components/docs/textarea-demos";
-import { TextareaPropsTable } from "@/components/docs/textarea-props-table";
-import { TooltipHero, TooltipSides } from "@/components/docs/tooltip-demos";
-import { TooltipPropsTable } from "@/components/docs/tooltip-props-table";
+} from "@/components/docs/_shared/registry-install";
+import { SkeletonCard, SkeletonHero, SkeletonVariants } from "@/components/docs/skeleton/skeleton-demos";
+import { SkeletonPropsTable } from "@/components/docs/skeleton/skeleton-props-table";
+import { SpinnerHero, SpinnerSizes } from "@/components/docs/spinner/spinner-demos";
+import { SpinnerPropsTable } from "@/components/docs/spinner/spinner-props-table";
+import { SwitchHero, SwitchStates } from "@/components/docs/switch/switch-demos";
+import { SwitchPropsTable } from "@/components/docs/switch/switch-props-table";
+import { TabsHero, TabsPillVariant } from "@/components/docs/tabs/tabs-demos";
+import { TabsPropsTable } from "@/components/docs/tabs/tabs-props-table";
+import { TextareaHero, TextareaStates } from "@/components/docs/textarea/textarea-demos";
+import { TextareaPropsTable } from "@/components/docs/textarea/textarea-props-table";
+import { TooltipHero, TooltipSides } from "@/components/docs/tooltip/tooltip-demos";
+import { TooltipPropsTable } from "@/components/docs/tooltip/tooltip-props-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 

@@ -1,4 +1,4 @@
-import { NewBadge } from "@/components/docs/new-badge";
+import { NewBadge } from "@/components/docs/_shared/new-badge";
 import { docs } from "@/.source";
 import { loader } from "fumadocs-core/source";
 import type { Node } from "fumadocs-core/page-tree";

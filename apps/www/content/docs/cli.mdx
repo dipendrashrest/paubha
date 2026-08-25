@@ -3,34 +3,46 @@ title: CLI
 description: init, add, and how the registry works.
 ---
 
-The CLI surface is the contract docs and tooling share — even while the published
-binary catches up.
+The CLI fetches component JSON from the registry URL and copies source into your
+project. Default registry: `https://asteria-ui.com/r`.
 
 ## Commands
 
 ```bash
 npx asteria-ui init            # write tokens, theme mapping, cn(), install deps
 npx asteria-ui add button      # copy one or more components into your project
-npx asteria-ui add button dialog tabs
+npx asteria-ui add button modal tabs
+
+# Local docs server during development:
+ASTERIA_REGISTRY_URL=http://localhost:3000/r npx asteria-ui add button
 ```
 
 ### `init`
 
-Writes the token CSS, Tailwind v4 `@theme` mapping, and `cn()` helper, then
-installs `clsx`, `tailwind-merge`, and `class-variance-authority`. Safe to re-run;
-it should not overwrite local edits without prompting.
+Fetches `styles.json` and `cn.json` from the registry, writes the token CSS,
+Tailwind v4 `@theme` mapping, and `cn()` helper, then installs `clsx`,
+`tailwind-merge`, and `class-variance-authority`. Safe to re-run; existing files
+are skipped unless you pass `--force`.
 
 ### `add`
 
-Copies component source from the registry into your configured components
-directory. Dependencies listed on the registry item are installed automatically.
-Multi-name adds resolve shared deps once.
+Fetches `{registry}/{name}.json`, resolves `registryDependencies`, and copies
+file contents into your configured components directory. Dependencies listed on
+the registry item are installed automatically. Multi-name adds resolve shared
+deps once.
 
 ## Registry
 
 Components are served as JSON from `asteria-ui.com/r/[name].json`, following the
 [shadcn registry schema](https://ui.shadcn.com/schema/registry.json). That means
 any shadcn-compatible tooling can consume Asteria components directly.
+
+`components.json` includes a `registry` field (overridable with
+`ASTERIA_REGISTRY_URL`). Rebuild the hosted JSON after changing components:
+
+```bash
+pnpm build:registry
+```
 
 ### `registry.json` shape
 
@@ -47,7 +59,7 @@ any shadcn-compatible tooling can consume Asteria components directly.
       "description": "Interactive button for actions and form submissions.",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "files": [
-        { "path": "ui/button.tsx", "type": "registry:ui" },
+        { "path": "ui/button/button.tsx", "type": "registry:ui" },
         { "path": "lib/cn.ts", "type": "registry:lib" }
       ]
     }

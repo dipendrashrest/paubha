@@ -53,7 +53,7 @@ Full 50–950 steps for error/warning/success exist in Figma "Foundations / Colo
 **Semantic tokens (components use ONLY these, never primitives directly):**
 `bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-brand`, `fg-error`, `fg-warning`, `fg-success`, `border-default`, `border-strong`, `border-brand`, `border-error`, `border-warning`, `border-success`, `focus-ring`.
 
-Both Light and Dark mode mappings exist in `tokens.css` at repo root (or wherever it's scaffolded) — always bind to the semantic layer, never hardcode a primitive hex inside a component.
+Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css` — always bind to the semantic layer, never hardcode a primitive hex inside a component.
 
 **Spacing:** 4px base scale, `space-0` through `space-10xl`, plus micro tier `space-px` (1px) and `space-2xs` (2px).
 **Radius:** `radius-xs` 6 (checkboxes, dropdown/menu items, tooltips) · `radius-sm` 8 (buttons, inputs, textareas, alerts) · `radius-md` 10 (dropdown/menu panels) · `radius-lg` 14 (modals) · `radius-xl` 20 (unused so far) · `radius-full` 9999 (pills, avatars, switches, radio/checkbox indicators). Corrected 2026-08-23 against the real Figma specs pulled while building all 19 free-tier components — the previous "(inputs/buttons)" on `radius-md` and "(modals)" on `radius-xl` didn't match what Figma actually specifies (buttons/inputs are `radius-sm`; modals are `radius-lg`).
@@ -82,21 +82,24 @@ Both Light and Dark mode mappings exist in `tokens.css` at repo root (or whereve
 asteria-ui/
 ├── apps/
 │   └── www/                 # docs site — Next.js + Fumadocs + MDX
+│       └── public/r/        # built registry JSON (from packages/registry#build)
 ├── packages/
-│   ├── cli/                 # npx asteria-ui (init, add)
+│   ├── cli/                 # npx asteria-ui (init, add) — fetches /r/*.json
 │   └── registry/
-│       ├── ui/               # component source of truth (button.tsx, etc.)
-│       ├── lib/               # cn(), shared hooks
-│       └── registry.json
+│       ├── ui/              # one folder per component (e.g. ui/avatar/avatar.tsx)
+│       ├── lib/             # cn(), shared hooks
+│       ├── styles/          # tokens.css + theme.css (SSOT)
+│       ├── registry.json
+│       └── scripts/build-registry.mjs
 ├── package.json
 ├── turbo.json
-└── CLAUDE.md                 # this file
+└── CLAUDE.md                # this file
 ```
 
 ## Tooling
 
 - **Package manager:** pnpm (never npm/yarn in this repo)
-- **Build:** Turborepo, tsup for the CLI
+- **Build:** Turborepo; `pnpm build:registry` emits `apps/www/public/r/*.json`; tsup for the CLI
 - **Lint/format:** Biome (not ESLint+Prettier — pick one, this is it)
 - **Testing:** Vitest + Testing Library + vitest-axe (accessibility checks are mandatory per component, not optional)
 - **TypeScript:** strict mode, always
@@ -104,7 +107,7 @@ asteria-ui/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. Public MIT-licensed repo. Paid tier (later) = separate commercial-EULA registry of complex patterns, same CLI.
+shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.com/r`). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo. Paid tier (later) = separate commercial-EULA registry of complex patterns, same CLI.
 
 ## Where specs come from
 
@@ -120,7 +123,7 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
 - Figma base components: all 19 free-tier components fully specced and built — Button, Avatar, Badge, Input, Field, Textarea, Checkbox, Radio Group, Switch, Alert, Spinner, Divider, Skeleton, Progress Bar, Breadcrumbs, Tooltip, Dropdown Menu, Modal, Tabs.
-- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file (187 tests total across registry + CLI, all green) and a `registry.json` entry. CLI (`packages/cli`) has working `init` and `add` commands — `init` writes tokens.css/theme.css/cn.ts and installs core deps; `add <name...>` resolves `registryDependencies` and dedupes files/deps across a multi-name add, reading from an embedded snapshot of the registry (regenerated via `pnpm run sync`, which must be re-run whenever `packages/registry` or the token CSS changes — it is NOT automatic file-watching, just a pre-build/pre-test step).
+- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://asteria-ui.com/r`; override with `ASTERIA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style

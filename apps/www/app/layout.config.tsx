@@ -1,4 +1,4 @@
-import { SearchTrigger } from "@/components/docs/search-trigger";
+import { SearchTrigger } from "@/components/docs/_shared/search-trigger";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
 export const baseOptions: BaseLayoutProps = {

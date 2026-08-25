@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:registry": "pnpm --filter @asteria-ui/registry build",
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check .",

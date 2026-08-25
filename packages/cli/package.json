@@ -9,15 +9,15 @@
   },
   "files": ["dist"],
   "scripts": {
-    "sync": "node scripts/sync-templates.mjs",
-    "build": "pnpm run sync && tsup",
-    "dev": "pnpm run sync && tsup --watch",
-    "test": "pnpm run sync && vitest run"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run"
   },
   "dependencies": {
     "commander": "^15.0.0"
   },
   "devDependencies": {
+    "@asteria-ui/registry": "workspace:*",
     "@types/node": "^22.10.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.0",

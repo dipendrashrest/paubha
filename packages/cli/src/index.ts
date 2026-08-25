@@ -2,11 +2,10 @@
 import { Command } from "commander";
 import { runAdd } from "./commands/add.js";
 import { runInit } from "./commands/init.js";
-import { listRegistryNames } from "./utils/registry.js";
 
-function runSafely(fn: () => void): void {
+async function runSafely(fn: () => void | Promise<void>): Promise<void> {
   try {
-    fn();
+    await fn();
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
@@ -27,21 +26,20 @@ program
   )
   .option("--cwd <path>", "target directory", process.cwd())
   .option("--force", "overwrite existing files", false)
-  .action((options: { cwd: string; force: boolean }) => {
-    runSafely(() => runInit(options));
+  .action(async (options: { cwd: string; force: boolean }) => {
+    await runSafely(() => runInit(options));
   });
 
 program
   .command("add")
   .description("copy one or more components into your project")
-  .argument(
-    "<components...>",
-    `component name(s), e.g. button. Available: ${listRegistryNames().join(", ")}`,
-  )
+  .argument("<components...>", "component name(s), e.g. button avatar")
   .option("--cwd <path>", "target directory", process.cwd())
   .option("--force", "overwrite existing files", false)
-  .action((components: string[], options: { cwd: string; force: boolean }) => {
-    runSafely(() => runAdd(components, options));
-  });
+  .action(
+    async (components: string[], options: { cwd: string; force: boolean }) => {
+      await runSafely(() => runAdd(components, options));
+    },
+  );
 
-program.parse();
+program.parseAsync(process.argv);

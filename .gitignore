@@ -5,4 +5,7 @@ node_modules
 dist
 .env*
 .DS_Store
-packages/cli/src/generated
+.pnpm-store
+*.tsbuildinfo
+apps/www/public/r/*.json
+!apps/www/public/r/.gitkeep

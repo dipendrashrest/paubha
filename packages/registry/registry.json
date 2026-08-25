@@ -12,7 +12,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/button.tsx",
+          "path": "ui/button/button.tsx",
           "type": "registry:ui"
         },
         {
@@ -34,7 +34,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/avatar.tsx",
+          "path": "ui/avatar/avatar.tsx",
           "type": "registry:ui"
         },
         {
@@ -57,7 +57,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/badge.tsx",
+          "path": "ui/badge/badge.tsx",
           "type": "registry:ui"
         },
         {
@@ -75,7 +75,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/input.tsx",
+          "path": "ui/input/input.tsx",
           "type": "registry:ui"
         },
         {
@@ -97,7 +97,7 @@
       "registryDependencies": ["input"],
       "files": [
         {
-          "path": "ui/field.tsx",
+          "path": "ui/field/field.tsx",
           "type": "registry:ui"
         },
         {
@@ -115,7 +115,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/textarea.tsx",
+          "path": "ui/textarea/textarea.tsx",
           "type": "registry:ui"
         },
         {
@@ -138,7 +138,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/checkbox.tsx",
+          "path": "ui/checkbox/checkbox.tsx",
           "type": "registry:ui"
         },
         {
@@ -156,7 +156,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/radio-group.tsx",
+          "path": "ui/radio-group/radio-group.tsx",
           "type": "registry:ui"
         },
         {
@@ -174,7 +174,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/switch.tsx",
+          "path": "ui/switch/switch.tsx",
           "type": "registry:ui"
         },
         {
@@ -197,7 +197,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/alert.tsx",
+          "path": "ui/alert/alert.tsx",
           "type": "registry:ui"
         },
         {
@@ -215,7 +215,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/spinner.tsx",
+          "path": "ui/spinner/spinner.tsx",
           "type": "registry:ui"
         },
         {
@@ -233,7 +233,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/divider.tsx",
+          "path": "ui/divider/divider.tsx",
           "type": "registry:ui"
         },
         {
@@ -251,7 +251,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/skeleton.tsx",
+          "path": "ui/skeleton/skeleton.tsx",
           "type": "registry:ui"
         },
         {
@@ -269,7 +269,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/progress-bar.tsx",
+          "path": "ui/progress-bar/progress-bar.tsx",
           "type": "registry:ui"
         },
         {
@@ -287,7 +287,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/breadcrumbs.tsx",
+          "path": "ui/breadcrumbs/breadcrumbs.tsx",
           "type": "registry:ui"
         },
         {
@@ -305,7 +305,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/tooltip.tsx",
+          "path": "ui/tooltip/tooltip.tsx",
           "type": "registry:ui"
         },
         {
@@ -327,7 +327,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/dropdown-menu.tsx",
+          "path": "ui/dropdown-menu/dropdown-menu.tsx",
           "type": "registry:ui"
         },
         {
@@ -354,7 +354,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/modal.tsx",
+          "path": "ui/modal/modal.tsx",
           "type": "registry:ui"
         },
         {
@@ -377,7 +377,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "ui/tabs.tsx",
+          "path": "ui/tabs/tabs.tsx",
           "type": "registry:ui"
         },
         {

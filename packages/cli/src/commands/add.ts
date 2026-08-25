@@ -7,7 +7,7 @@ import {
 } from "../utils/package-manager.js";
 import {
   type RegistryFile,
-  getComponentSource,
+  getRegistryBase,
   resolveComponents,
 } from "../utils/registry.js";
 import { writeFileSafe } from "../utils/write-file.js";
@@ -22,11 +22,20 @@ function destinationFor(
   cwd: string,
   aliases: { components: string; lib: string },
 ): string {
-  const dir = file.type === "registry:lib" ? aliases.lib : aliases.components;
-  return join(cwd, dir, basename(file.path));
+  if (file.type === "registry:lib") {
+    return join(cwd, aliases.lib, basename(file.path));
+  }
+  // ui/avatar/avatar.tsx → {components}/avatar/avatar.tsx
+  const rel = file.path.startsWith("ui/")
+    ? file.path.slice("ui/".length)
+    : basename(file.path);
+  return join(cwd, aliases.components, rel);
 }
 
-export function runAdd(names: string[], { cwd, force }: AddOptions): void {
+export async function runAdd(
+  names: string[],
+  { cwd, force }: AddOptions,
+): Promise<void> {
   const config = readConfig(cwd);
   if (!config) {
     console.error("No components.json found. Run `npx asteria-ui init` first.");
@@ -34,9 +43,12 @@ export function runAdd(names: string[], { cwd, force }: AddOptions): void {
     return;
   }
 
-  let resolved: ReturnType<typeof resolveComponents>;
+  const base = getRegistryBase(config.registry);
+  console.log(`Fetching from ${base}...`);
+
+  let resolved: Awaited<ReturnType<typeof resolveComponents>>;
   try {
-    resolved = resolveComponents(names);
+    resolved = await resolveComponents(names, base);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
@@ -55,7 +67,7 @@ export function runAdd(names: string[], { cwd, force }: AddOptions): void {
 
   for (const file of resolved.files) {
     const dest = destinationFor(file, cwd, config.aliases);
-    const result = writeFileSafe(dest, getComponentSource(file.path), force);
+    const result = writeFileSafe(dest, file.content, force);
     if (result.status === "skipped-exists") {
       console.log(
         `• ${result.path} already exists, skipping (use --force to overwrite)`,

@@ -1,12 +1,15 @@
 import { execSync } from "node:child_process";
 import { join } from "node:path";
-import { THEME_CSS, TOKENS_CSS } from "../generated/templates.js";
 import { DEFAULT_CONFIG, readConfig, writeConfig } from "../utils/config.js";
 import {
   detectPackageManager,
   installCommand,
 } from "../utils/package-manager.js";
-import { getComponentSource } from "../utils/registry.js";
+import {
+  fetchCnSource,
+  fetchStyles,
+  getRegistryBase,
+} from "../utils/registry.js";
 import { writeFileSafe } from "../utils/write-file.js";
 
 export interface InitOptions {
@@ -20,7 +23,7 @@ const INIT_DEPENDENCIES = [
   "class-variance-authority",
 ];
 
-export function runInit({ cwd, force }: InitOptions): void {
+export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   const existing = readConfig(cwd);
   const config = existing ?? DEFAULT_CONFIG;
 
@@ -31,14 +34,18 @@ export function runInit({ cwd, force }: InitOptions): void {
     console.log("• components.json already exists, reusing its paths");
   }
 
+  const base = getRegistryBase(config.registry);
+  console.log(`Fetching styles from ${base}...`);
+
+  const [{ tokensCss, themeCss }, cnSource] = await Promise.all([
+    fetchStyles(base),
+    fetchCnSource(base),
+  ]);
+
   const results = [
-    writeFileSafe(join(cwd, config.tailwind.tokens), TOKENS_CSS, force),
-    writeFileSafe(join(cwd, config.tailwind.theme), THEME_CSS, force),
-    writeFileSafe(
-      join(cwd, config.aliases.lib, "cn.ts"),
-      getComponentSource("lib/cn.ts"),
-      force,
-    ),
+    writeFileSafe(join(cwd, config.tailwind.tokens), tokensCss, force),
+    writeFileSafe(join(cwd, config.tailwind.theme), themeCss, force),
+    writeFileSafe(join(cwd, config.aliases.lib, "cn.ts"), cnSource, force),
   ];
 
   for (const result of results) {

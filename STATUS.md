@@ -1011,7 +1011,56 @@ curling actual routes for the real component classes, the search
 trigger's rendered markup, and the preview-toggle's `aria-pressed`
 state.
 
+## 2026-08-25 — lightweight audit-fix pass (scoped down from a full rebuild)
+
+A prompt asking for a full pre-flight-checked, 19-component Figma
+audit/build queue was checked against reality first. Everything it
+worried about was already true or already done — brand colors, the
+`--shadow-glow-focus` token, the typography scale, all 19 components'
+structural conformance (CVA/`cn()`/refs/semantic tokens/axe tests),
+and the docs site's live component wiring. So the pass was narrowed to
+the three real gaps that turned up:
+
+1. **Fixed** — `Modal`'s `size` prop used a hand-rolled
+   `Record<ModalSize, string>` lookup instead of `cva()`, unlike every
+   sibling component with a variant axis. Converted to
+   `modalContentVariants = cva(...)` in
+   `packages/registry/ui/modal/modal.tsx`; `ModalSize` is now derived
+   from `VariantProps`. No visual/behavioral change (same three
+   breakpoints). `pnpm lint && pnpm test && pnpm build` all pass.
+2. **Fixed** — `apps/www/components/docs/_shared/component-preview.tsx`
+   was dead code: registered in `mdx-components.tsx` but never used by
+   any `.mdx` page (`ComponentPlayground` supersedes it everywhere).
+   Deleted the file and its import/export in `mdx-components.tsx`.
+3. **Blocked, not done** — adding "When to use / Dos and Don'ts"
+   sections to the 19 component doc pages requires pulling each
+   component's Figma documentation block first (never invent this
+   content per `CLAUDE.md`). No authenticated Figma MCP connection was
+   available in this session (only an OAuth-kickoff tool, which needs
+   interactive browser approval) — left undone rather than guessed.
+   Needs a session with live Figma access.
+
+**Important discovery, unrelated to the above:** the repo has a large
+uncommitted change already sitting in the working tree since **Aug 24**
+— the full flat-file → per-folder migration for both
+`packages/registry/ui/*` and `apps/www/components/docs/*` (~44 new
+paths, 91 deletions, 21 modifications). The last actual git commit
+(`e11e661`) is from Aug 22 15:17, matching this file's own previous
+last-edit time — so that Aug 24 work postdates everything documented
+above and was never committed or pushed, despite passing the full
+lint/test/build gate cleanly. It was **not committed as part of this
+pass** — it's not something this session was asked to do, and bundling
+a full day of unreviewed prior work into small fix-pass commits would
+misattribute it. Fixes 1 and 2 above are layered on top of it in the
+same working tree and are also currently uncommitted for the same
+reason.
+
 ## Exact resume point
 
-**Both parts of the rebrand brief are complete, committed, and pushed.**
-No further autonomous work is queued; next steps are the user's call.
+Fixes 1 and 2 above are done and verified (lint/test/build all green)
+but **nothing has been committed** — the working tree currently holds
+both the Aug 24 folder-migration (pre-existing, not reviewed/authored
+by this pass) and this pass's two fixes on top of it. Next step is the
+user's call on how to commit/split that state. Task 3 (Figma-gated
+docs sections) needs a session with an authenticated Figma MCP
+connection.
