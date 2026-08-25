@@ -150,3 +150,7 @@ export function AccordionInstall() {
 export function CardInstall() {
   return <RegistryInstall name="card" />;
 }
+
+export function SliderInstall() {
+  return <RegistryInstall name="slider" />;
+}

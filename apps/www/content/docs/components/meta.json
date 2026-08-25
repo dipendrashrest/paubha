@@ -27,6 +27,7 @@
     "popover",
     "kbd",
     "accordion",
-    "card"
+    "card",
+    "slider"
   ]
 }

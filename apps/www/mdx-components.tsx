@@ -57,6 +57,8 @@ import {
 import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/card-demos";
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
+import { SliderHero, SliderSizes, SliderStates } from "@/components/docs/slider/slider-demos";
+import { SliderPropsTable } from "@/components/docs/slider/slider-props-table";
 import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
 import { KbdGroupPropsTable, KbdPropsTable } from "@/components/docs/kbd/kbd-props-table";
 import { ModalHero } from "@/components/docs/modal/modal-demos";
@@ -87,6 +89,7 @@ import {
   CardInstall,
   FieldInstall,
   InputInstall,
+  SliderInstall,
   KbdInstall,
   ModalInstall,
   PaginationInstall,
@@ -322,6 +325,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     CardInteractive,
     CardPropsTable,
     CardVariants,
+
+    // Slider
+    SliderHero,
+    SliderInstall,
+    SliderPropsTable,
+    SliderSizes,
+    SliderStates,
 
     ...components,
   };

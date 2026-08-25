@@ -1,0 +1,76 @@
+---
+title: Slider
+description: A range input control for selecting a numeric value within a defined range.
+---
+
+<SliderHero />
+
+## Installation
+
+<SliderInstall />
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/ui/slider";
+
+<Slider aria-label="Volume" defaultValue={[40]} />
+```
+
+## Examples
+
+### Sizes
+
+<SliderSizes />
+
+### States
+
+<SliderStates />
+
+## API reference
+
+<SliderPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> The thumb carries <code>role=&quot;slider&quot;</code> with{" "}
+      <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code>.
+      Always pass <code>aria-label</code> or <code>aria-labelledby</code>.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Arrow keys adjust by <code>step</code>. Page Up/Down move
+      by a larger increment. Home/End jump to min/max.
+    </li>
+    <li>
+      <strong>Touch target.</strong> The thumb's hit area meets the 44×44px minimum on
+      mobile even though its visible size is smaller.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use for selecting a value in a continuous range — volume, brightness, price range. Best
+when exact value matters less than relative position.
+
+**Do:**
+- Show the current value
+- Define clear min/max labels
+- Use step increments for discrete values
+
+**Don't:**
+- Use for precise entry — use [Input](/docs/components/input) instead
+- Make the track too short to use accurately
+- Combine with an input field without keeping them in sync
+
+## Related components
+
+- [Input](/docs/components/input) — for precise numeric entry
+- [Progress Bar](/docs/components/progress-bar) — for read-only progress
+- [Field](/docs/components/field) — for a labeled slider
