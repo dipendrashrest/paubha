@@ -1477,3 +1477,45 @@ Input spec drifted from it independently since that table was written?
 batched. Phase A (all 33 base components built + all 19 pre-existing audited) is now fully
 complete. Phase B (27 application patterns) intentionally not started — needs a check-in
 on external library choices for Charts/Calendars/Date pickers/Color pickers first.
+
+## 2026-08-25 — Input density conflict, resolved
+
+User confirmed: trust Figma over `CLAUDE.md`'s density table. Pulled exact values via
+`get_metadata` (all four size symbols' dimensions) and `get_design_context` (per-size
+padding/gap/icon-size/font, on nodes `6198:22418` sm, `6198:22474` md, `6198:22530` lg,
+`6198:22586` xl — parent frame `6198:22642`):
+
+| size | height | horizontal padding | icon size | gap |
+|------|--------|---------------------|-----------|-----|
+| sm   | 36px   | 12px                | 16px      | 8px |
+| md   | 40px   | 12px                | 20px      | 8px |
+| lg   | 44px   | 14px                | 20px      | 8px |
+| xl   | 48px   | 16px                | 20px      | 8px |
+
+Heights map exactly onto Tailwind's default spacing scale (h-9/h-10/h-11/h-12), so no
+arbitrary values were needed. Switched `input.tsx` from padding-derived sizing to explicit
+`h-*` + these real per-size values (commit `cf27d22`). This also surfaced two smaller
+pre-existing bugs in the same file, fixed in the same commit: `md`'s icon was coded at 16px
+instead of Figma's 20px, and `xl`'s gap was 12px instead of the constant 8px every other
+size uses (confirmed via `get_design_context` — gap is genuinely constant across all four
+sizes, not scaling).
+
+Corrected `CLAUDE.md`'s density table to document Input as the one exception — Button/
+Textarea/Select still follow the shared 32/40/48/56 scale.
+
+Two more inconsistencies surfaced by this same pull, deliberately not touched (outside this
+fix's scope, logged for a separate look): Figma's raw export shows Input's border-radius
+resolving to `--radius/sm,md,lg` (8/12/16px) varying per size — doesn't match the
+component's current single `radius-sm` or `CLAUDE.md`'s own radius table (`radius-sm`=8,
+`radius-md`=10, `radius-lg`=14 — close but not identical, and Input isn't supposed to vary
+radius by size per that table at all). Also, Input's placeholder text in Figma is styled
+with `body/sm` (sm/md sizes) and `body/md` (lg/xl sizes) text styles, not this project's own
+`ui-*` named type scale that the current code uses.
+
+`pnpm lint && pnpm test && pnpm build` all green (306 registry tests, 50 docs pages).
+
+**Per an explicit scope-change instruction, Phase B (application patterns) was NOT started
+in this pass**, even though this session had already confirmed library choices for it
+(Recharts, react-day-picker, native color input) before the scope change arrived. No Phase
+B files, commits, or partial work exist — verified clean before and after this section's
+work. 26 commits total on `feat/full-component-sync`, nothing pushed.
