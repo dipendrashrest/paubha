@@ -4,6 +4,7 @@ import {
   Avatar,
   AvatarAddButton,
   AvatarGroup,
+  AvatarLabelGroup,
 } from "@asteria-ui/registry/ui/avatar";
 import { ComponentPlayground } from "../_shared/component-playground";
 
@@ -96,6 +97,24 @@ export function AvatarGroupExample() {
         <Avatar src={ana} alt="Ana Silva" />
         <Avatar initials="JD" alt="Jordan Diaz" />
       </AvatarGroup>
+    </ComponentPlayground>
+  );
+}
+
+export function AvatarLabelGroupExample() {
+  return (
+    <ComponentPlayground
+      code={`<AvatarLabelGroup
+  avatar={<Avatar src="/maya.jpg" alt="Anastasia Upton" initials="AU" />}
+  name="Anastasia Upton"
+  secondaryText="anastasia@example.com"
+/>`}
+    >
+      <AvatarLabelGroup
+        avatar={<Avatar src={maya} alt="Anastasia Upton" initials="AU" />}
+        name="Anastasia Upton"
+        secondaryText="anastasia@example.com"
+      />
     </ComponentPlayground>
   );
 }

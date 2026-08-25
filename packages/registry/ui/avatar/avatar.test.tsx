@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { Avatar, AvatarAddButton, AvatarGroup } from "./avatar";
+import { Avatar, AvatarAddButton, AvatarGroup, AvatarLabelGroup } from "./avatar";
 
 describe("Avatar", () => {
   it("uses alt text as the accessible name when no status is set", () => {
@@ -140,6 +140,50 @@ describe("AvatarAddButton", () => {
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<AvatarAddButton size="xl" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe("AvatarLabelGroup", () => {
+  it("renders the name and secondary text next to the avatar", () => {
+    render(
+      <AvatarLabelGroup
+        avatar={<Avatar alt="Anastasia Upton" />}
+        name="Anastasia Upton"
+        secondaryText="anastasia@example.com"
+      />,
+    );
+    expect(screen.getByText("Anastasia Upton")).toBeInTheDocument();
+    expect(screen.getByText("anastasia@example.com")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Anastasia Upton" })).toBeInTheDocument();
+  });
+
+  it("omits the secondary text line when not provided", () => {
+    render(
+      <AvatarLabelGroup avatar={<Avatar alt="Jane" />} name="Jane" />,
+    );
+    expect(screen.queryByText("anastasia@example.com")).not.toBeInTheDocument();
+  });
+
+  it("passes its size down to the avatar", () => {
+    render(
+      <AvatarLabelGroup
+        avatar={<Avatar alt="Jane" />}
+        name="Jane"
+        size="lg"
+      />,
+    );
+    expect(screen.getByRole("img", { name: "Jane" })).toHaveClass("size-12");
+  });
+
+  it("has no axe violations", async () => {
+    const { container } = render(
+      <AvatarLabelGroup
+        avatar={<Avatar alt="Jane" />}
+        name="Jane"
+        secondaryText="jane@example.com"
+      />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

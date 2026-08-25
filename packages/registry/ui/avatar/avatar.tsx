@@ -235,4 +235,48 @@ export function AvatarAddButton({
 
 AvatarAddButton.displayName = "AvatarAddButton";
 
+export interface AvatarLabelGroupProps
+  extends React.ComponentPropsWithRef<"div"> {
+  avatar: React.ReactNode;
+  name: React.ReactNode;
+  secondaryText?: React.ReactNode;
+  size?: AvatarSize;
+}
+
+/**
+ * Non-interactive composition — no role of its own; the avatar keeps its own role=img.
+ * secondaryText is optional supporting text (email, role) below the name.
+ */
+export function AvatarLabelGroup({
+  ref,
+  className,
+  avatar,
+  name,
+  secondaryText,
+  size = "md",
+  ...props
+}: AvatarLabelGroupProps) {
+  return (
+    <div
+      ref={ref}
+      className={cn("flex items-center gap-3", className)}
+      {...props}
+    >
+      {React.isValidElement<AvatarProps>(avatar)
+        ? React.cloneElement(avatar, { size })
+        : avatar}
+      <div className="flex flex-col">
+        <p className="text-ui-sm font-medium text-fg-primary">{name}</p>
+        {secondaryText ? (
+          <p className="text-ui-xs font-medium text-fg-secondary">
+            {secondaryText}
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+AvatarLabelGroup.displayName = "AvatarLabelGroup";
+
 export { avatarVariants };

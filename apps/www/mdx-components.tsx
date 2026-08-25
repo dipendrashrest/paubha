@@ -7,6 +7,7 @@ import {
   AvatarGroupExample,
   AvatarHero,
   AvatarImageFallback,
+  AvatarLabelGroupExample,
   AvatarSizes,
   AvatarStatus,
 } from "@/components/docs/avatar/avatar-demos";
@@ -116,6 +117,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AvatarHero,
     AvatarImageFallback,
     AvatarInstall,
+    AvatarLabelGroupExample,
     AvatarPropsTable,
     AvatarSizes,
     AvatarStatus,

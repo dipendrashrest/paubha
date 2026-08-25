@@ -2,6 +2,7 @@ import { definePropDefs } from "@/lib/prop-defs";
 import type {
   AvatarAddButtonProps,
   AvatarGroupProps,
+  AvatarLabelGroupProps,
   AvatarProps,
 } from "@asteria-ui/registry/ui/avatar";
 import { PropsTable } from "../_shared/props-table";
@@ -74,6 +75,30 @@ const addButtonProps = definePropDefs<AvatarAddButtonProps>()([
   },
 ]);
 
+const labelGroupProps = definePropDefs<AvatarLabelGroupProps>()([
+  {
+    name: "avatar",
+    type: "ReactNode",
+    description: "An `<Avatar />` element — its `size` is overridden to match.",
+  },
+  {
+    name: "name",
+    type: "ReactNode",
+    description: "Primary line — `text-ui-sm` / `fg-primary`.",
+  },
+  {
+    name: "secondaryText",
+    type: "ReactNode",
+    description: "Optional supporting line (email, role) — `text-ui-xs` / `fg-secondary`.",
+  },
+  {
+    name: "size",
+    type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+    defaultValue: '"md"',
+    description: "Passed through to the avatar.",
+  },
+]);
+
 export function AvatarPropsTable() {
   return (
     <>
@@ -83,6 +108,8 @@ export function AvatarPropsTable() {
       <PropsTable rows={[...groupProps]} />
       <h3 className="text-[1.25em] font-semibold">AvatarAddButton</h3>
       <PropsTable rows={[...addButtonProps]} />
+      <h3 className="text-[1.25em] font-semibold">AvatarLabelGroup</h3>
+      <PropsTable rows={[...labelGroupProps]} />
     </>
   );
 }

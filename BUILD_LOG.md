@@ -1398,3 +1398,15 @@ Build both in every case, patterns composed from the primitives (Phase B, later)
   compositions (Confirmation Dialog, Form Modal, Full Screen Modal, Info Modal).
   So Phase A builds both Modal (exists) and Dialog (new, its own component);
   Phase B later builds the "Modals" pattern page composed from Modal.
+
+**Avatar audit** — found a real gap: Figma's `0:1` page publishes an "Avatar label group"
+component (avatar + name + optional secondary text, sizes sm/md/lg/xl) that was never
+built. Added `AvatarLabelGroup` to `packages/registry/ui/avatar/avatar.tsx`. Note: sampled
+3 of its 4 Figma "size" variants (sm/md/xl) via `get_design_context` — all three produced
+byte-identical output (avatar stays "sm"/32px, name text stays 13px, secondary text stays
+12px), meaning the size variant isn't actually implemented in the Figma file itself (a
+common incomplete-variant-set authoring gap, not something to blindly replicate). Judgment
+call: wired `size` to actually resize the inner `Avatar` using our own real Avatar size
+scale (which does correctly vary) rather than copy Figma's apparent no-op, since a
+non-functional size prop would be a worse API. Text size stays fixed at ui-sm/ui-xs
+regardless of size, matching what Figma actually shows across all 3 sampled variants.
