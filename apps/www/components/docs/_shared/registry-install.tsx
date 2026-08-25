@@ -59,6 +59,10 @@ export function ToastInstall() {
   return <RegistryInstall name="toast" />;
 }
 
+export function PaginationInstall() {
+  return <RegistryInstall name="pagination" />;
+}
+
 export function ButtonInstall() {
   return <RegistryInstall name="button" />;
 }

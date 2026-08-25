@@ -55,6 +55,8 @@ import { SelectHero, SelectSizes, SelectStates } from "@/components/docs/select/
 import { SelectPropsTable } from "@/components/docs/select/select-props-table";
 import { ToastHero, ToastImperative, ToastVariants } from "@/components/docs/toast/toast-demos";
 import { ToastPropsTable } from "@/components/docs/toast/toast-props-table";
+import { PaginationHero, PaginationInteractive, PaginationSizes } from "@/components/docs/pagination/pagination-demos";
+import { PaginationPropsTable } from "@/components/docs/pagination/pagination-props-table";
 import {
   AlertInstall,
   AvatarInstall,
@@ -67,6 +69,7 @@ import {
   FieldInstall,
   InputInstall,
   ModalInstall,
+  PaginationInstall,
   ProgressBarInstall,
   RadioGroupInstall,
   SelectInstall,
@@ -258,6 +261,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ToastInstall,
     ToastPropsTable,
     ToastVariants,
+
+    // Pagination
+    PaginationHero,
+    PaginationInstall,
+    PaginationInteractive,
+    PaginationPropsTable,
+    PaginationSizes,
 
     ...components,
   };

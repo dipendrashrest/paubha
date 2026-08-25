@@ -1,0 +1,89 @@
+---
+title: Pagination
+description: Page navigation control with sm/md/lg sizes, page links, and prev/next buttons.
+---
+
+<PaginationHero />
+
+## Installation
+
+<PaginationInstall />
+
+## Usage
+
+```tsx
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink isActive>1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink>2</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Examples
+
+### Sizes
+
+<PaginationSizes />
+
+### Interactive
+
+<PaginationInteractive />
+
+## API reference
+
+<PaginationPropsTable />
+
+## Related components
+
+- **Table** — often paired with pagination
+- **Spinner** — for loading between pages
+- **Breadcrumbs** — for hierarchical navigation
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Root.</strong> Renders as a <code>&lt;nav aria-label=&quot;Pagination&quot;&gt;</code>.
+    </li>
+    <li>
+      <strong>Current page.</strong> <code>PaginationLink</code>'s{" "}
+      <code>isActive</code> sets <code>aria-current=&quot;page&quot;</code>.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Every control is a native{" "}
+      <code>&lt;button&gt;</code> — Tab moves between them, Enter/Space
+      activates.
+    </li>
+    <li>
+      <strong>Ellipsis.</strong> Purely decorative icon, with a visually
+      hidden &quot;More pages&quot; label for screen readers.
+    </li>
+    <li>
+      <strong>Disabled.</strong> <code>PaginationPrevious</code>/
+      <code>PaginationNext</code> use the native <code>disabled</code>{" "}
+      attribute at the start/end of the range.
+    </li>
+  </ul>
+</A11yCallout>
