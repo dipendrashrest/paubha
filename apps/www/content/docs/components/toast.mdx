@@ -1,0 +1,86 @@
+---
+title: Toast
+description: Non-modal notification for brief action feedback, with info/success/warning/error variants and an imperative useToast() hook.
+---
+
+<ToastHero />
+
+## Installation
+
+<ToastInstall />
+
+## Usage
+
+Render `<Toast>` directly for a static/controlled toast, or wrap your app in
+`<ToastProvider>` once and call `useToast().toast(...)` from anywhere to show
+one imperatively:
+
+```tsx
+import { ToastProvider, useToast } from "@/components/ui/toast";
+
+function Save() {
+  const { toast } = useToast();
+  return (
+    <button
+      onClick={() =>
+        toast({ title: "Saved", description: "Your changes were saved." })
+      }
+    >
+      Save
+    </button>
+  );
+}
+
+export function App() {
+  return (
+    <ToastProvider>
+      <Save />
+    </ToastProvider>
+  );
+}
+```
+
+## Examples
+
+### Variants
+
+<ToastVariants />
+
+### Imperative usage
+
+<ToastImperative />
+
+## API reference
+
+<ToastPropsTable />
+
+## Related components
+
+- **Alert** — for persistent inline messages
+- **Dialog** — for messages needing confirmation
+- **Modal** — for blocking interactions
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> <code>role=&quot;alert&quot;</code>, so screen
+      readers announce the content immediately on mount.
+    </li>
+    <li>
+      <strong>Urgency.</strong> <code>aria-live</code> is{" "}
+      <code>&quot;assertive&quot;</code> for warning/error variants and{" "}
+      <code>&quot;polite&quot;</code> for info/success.
+    </li>
+    <li>
+      <strong>Dismiss.</strong> The close button has{" "}
+      <code>aria-label=&quot;Dismiss&quot;</code> and its own{" "}
+      <code>glow-focus</code> ring.
+    </li>
+    <li>
+      <strong>Auto-dismiss.</strong> Configurable via <code>duration</code>{" "}
+      (default 6s) — set to <code>0</code> to require manual dismissal.
+    </li>
+  </ul>
+</A11yCallout>

@@ -53,6 +53,8 @@ import { RadioGroupDisabled, RadioGroupHero } from "@/components/docs/radio-grou
 import { RadioGroupPropsTable } from "@/components/docs/radio-group/radio-group-props-table";
 import { SelectHero, SelectSizes, SelectStates } from "@/components/docs/select/select-demos";
 import { SelectPropsTable } from "@/components/docs/select/select-props-table";
+import { ToastHero, ToastImperative, ToastVariants } from "@/components/docs/toast/toast-demos";
+import { ToastPropsTable } from "@/components/docs/toast/toast-props-table";
 import {
   AlertInstall,
   AvatarInstall,
@@ -73,6 +75,7 @@ import {
   SwitchInstall,
   TabsInstall,
   TextareaInstall,
+  ToastInstall,
   TooltipInstall,
 } from "@/components/docs/_shared/registry-install";
 import { SkeletonCard, SkeletonHero, SkeletonVariants } from "@/components/docs/skeleton/skeleton-demos";
@@ -248,6 +251,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     SelectPropsTable,
     SelectSizes,
     SelectStates,
+
+    // Toast
+    ToastHero,
+    ToastImperative,
+    ToastInstall,
+    ToastPropsTable,
+    ToastVariants,
 
     ...components,
   };

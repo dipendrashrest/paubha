@@ -55,6 +55,10 @@ export function SelectInstall() {
   return <RegistryInstall name="select" />;
 }
 
+export function ToastInstall() {
+  return <RegistryInstall name="toast" />;
+}
+
 export function ButtonInstall() {
   return <RegistryInstall name="button" />;
 }

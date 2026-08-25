@@ -21,6 +21,7 @@
     "dropdown-menu",
     "modal",
     "tabs",
-    "select"
+    "select",
+    "toast"
   ]
 }
