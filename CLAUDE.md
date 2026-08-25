@@ -4,7 +4,7 @@ This file is auto-loaded by Claude Code every session. Read it before doing any 
 
 ## What this is
 
-**Asteria UI** — an open-source React + Tailwind component library, shadcn-style copy-paste distribution (not an npm-imported package). Free tier first (~28 foundational components), paid tier later (complex patterns: data tables, date pickers, dashboards, marketing sections). Design system lives in Figma; this repo is the code + docs site.
+**Asteria UI** — an open-source React + Tailwind component library, shadcn-style copy-paste distribution (not an npm-imported package). The full catalog ships free: 33 base components plus 27 application patterns (higher-level compositions built from the base components — activity feeds, tables, date pickers, calendars, dashboards, and more). Corrected 2026-08-25 — no paid tier; the earlier "free tier first (~28), paid tier later (complex patterns)" split was dropped. Design system lives in Figma; this repo is the code + docs site.
 
 ## Project links
 
@@ -51,9 +51,11 @@ Use these exactly — don't guess or reconstruct a repo URL from the package nam
 Full 50–950 steps for error/warning/success exist in Figma "Foundations / Colors" — pull exact intermediate values from there via the Figma MCP connection before hardcoding a step not listed above. **Never approximate a hex value. If it's not confirmed, stop and ask rather than guessing.**
 
 **Semantic tokens (components use ONLY these, never primitives directly):**
-`bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-brand`, `fg-error`, `fg-warning`, `fg-success`, `border-default`, `border-strong`, `border-brand`, `border-error`, `border-warning`, `border-success`, `focus-ring`.
+`bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-preview`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-brand`, `fg-error`, `fg-warning`, `fg-success`, `border-default`, `border-strong`, `border-brand`, `border-error`, `border-warning`, `border-success`, `focus-ring`.
 
 Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css` — always bind to the semantic layer, never hardcode a primitive hex inside a component.
+
+**Dark-mode `bg-*` overhaul (2026-08-25):** `bg-primary`/`bg-secondary`/`bg-tertiary`/`bg-elevated` in dark mode moved off the `--gray-950`-`--gray-800` primitive scale to warmer, elevated literal values — `#0A0A0B` / `#111113` / `#18181B` / `#1C1C1F` respectively — so components don't disappear into a flat dark page. A new `bg-preview` semantic token (`#F8F9FB` light / `#16161A` dark) exists specifically for component-preview frames (`ComponentPlayground`'s preview pane) so previewed components stay visually distinct from the page background in both modes. This decouples those four dark `bg-*` tokens from the Gray primitive scale — they're literal values now, not `var(--gray-950)` etc. `--gray-950` itself (`#0C111D`) is unchanged and still used elsewhere (dark `fg-disabled`, `bg-disabled`, etc.).
 
 **Spacing:** 4px base scale, `space-0` through `space-10xl`, plus micro tier `space-px` (1px) and `space-2xs` (2px).
 **Radius:** `radius-xs` 6 (checkboxes, dropdown/menu items, tooltips) · `radius-sm` 8 (buttons, inputs, textareas, alerts) · `radius-md` 10 (dropdown/menu panels) · `radius-lg` 14 (modals) · `radius-xl` 20 (unused so far) · `radius-full` 9999 (pills, avatars, switches, radio/checkbox indicators). Corrected 2026-08-23 against the real Figma specs pulled while building all 19 free-tier components — the previous "(inputs/buttons)" on `radius-md` and "(modals)" on `radius-xl` didn't match what Figma actually specifies (buttons/inputs are `radius-sm`; modals are `radius-lg`).
@@ -107,7 +109,7 @@ asteria-ui/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.com/r`). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo. Paid tier (later) = separate commercial-EULA registry of complex patterns, same CLI.
+shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.com/r`). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above).
 
 ## Where specs come from
 

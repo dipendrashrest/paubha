@@ -1365,3 +1365,36 @@ Button styling, the preview-theme toggle's `data-preview-theme` and
 and `role="tablist"` appears the expected number of times across a
 component doc page (one Tabs per `ComponentPlayground` demo + one for
 `InstallTabs`).
+
+## 2026-08-25 — Full component + application-pattern sync (Phase A start)
+
+**Step 3 — Base vs. Application Pattern name-overlap resolution (via Figma get_metadata):**
+
+All 5 pairs checked. None are duplicates — every Application Patterns node
+self-describes as "Higher-level compositions and patterns built with the base
+[X] component," with entirely distinct content/node IDs from the base page.
+Build both in every case, patterns composed from the primitives (Phase B, later):
+
+- **Breadcrumbs**: base `2120:15` (built) vs. pattern `6098:62` — 4 distinct
+  compositions (Simple, With Icons, Collapsed, With Dropdown).
+- **Pagination**: base `6033:30` (not yet built) vs. pattern `6098:44` — 4
+  distinct compositions (Numbered, Prev/Next, Load More, Cursor).
+- **Tabs**: base `2120:19` (built) vs. pattern `6098:38` — 4 distinct
+  compositions (Underline, Pill, Vertical, Tabs with Icons). Note: base Tabs
+  already has a `pill` TabsList variant (used in `component-playground.tsx`),
+  so "Pill Tabs" may just demo the existing variant rather than need new code.
+- **Table/Tables**: base `6089:36971` (not yet built) vs. pattern `6098:39` —
+  4 distinct compositions (Basic, Sortable, Selection, Table with Actions).
+- **Modal/Dialog/Modals**: THREE distinct things, not a 2-way overlap.
+  `2120:18` "Modal" (built) is the generic overlay primitive. `6089:36993`
+  "Dialog" is a **separate base component** — "A focused confirmation overlay
+  that requires user action... a specialized variant of Modal for destructive
+  actions or important decisions," with its own `Variant=Confirm|Destructive|Info`
+  published component, `role="alertdialog"` a11y note (needs
+  `@radix-ui/react-alert-dialog`, not the plain Dialog primitive Modal uses),
+  and its own Documentation section (when-to-use, dos/don'ts, related
+  components: Modal/Toast/Alert). `6098:46` "Modals" (application pattern) is
+  explicitly "built with the base **Modal** component" (not Dialog) — 4
+  compositions (Confirmation Dialog, Form Modal, Full Screen Modal, Info Modal).
+  So Phase A builds both Modal (exists) and Dialog (new, its own component);
+  Phase B later builds the "Modals" pattern page composed from Modal.

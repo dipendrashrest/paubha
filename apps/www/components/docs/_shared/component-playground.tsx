@@ -60,7 +60,7 @@ export function ComponentPlayground({
         <div
           data-preview-theme={previewTheme}
           style={{ colorScheme: previewTheme }}
-          className="flex min-h-40 flex-wrap items-center justify-center gap-3 bg-bg-primary p-8"
+          className="flex min-h-40 flex-wrap items-center justify-center gap-3 bg-bg-preview p-8"
         >
           {children}
         </div>

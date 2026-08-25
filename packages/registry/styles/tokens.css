@@ -117,6 +117,7 @@
   --bg-secondary: var(--gray-50);
   --bg-tertiary: var(--gray-100);
   --bg-elevated: var(--base-white);
+  --bg-preview: #f8f9fb;
   --bg-disabled: var(--gray-100);
   --bg-secondary-hover: var(--gray-100);
   --bg-tertiary-hover: var(--gray-200);
@@ -189,10 +190,11 @@
 
 .dark,
 [data-preview-theme="dark"] {
-  --bg-primary: var(--gray-950);
-  --bg-secondary: var(--gray-900);
-  --bg-tertiary: var(--gray-800);
-  --bg-elevated: var(--gray-900);
+  --bg-primary: #0a0a0b;
+  --bg-secondary: #111113;
+  --bg-tertiary: #18181b;
+  --bg-elevated: #1c1c1f;
+  --bg-preview: #16161a;
   --bg-disabled: var(--gray-800);
   --bg-secondary-hover: var(--gray-800);
   --bg-tertiary-hover: var(--gray-700);
