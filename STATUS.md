@@ -1055,12 +1055,130 @@ misattribute it. Fixes 1 and 2 above are layered on top of it in the
 same working tree and are also currently uncommitted for the same
 reason.
 
+The commit/split question above was resolved: the Aug 24 migration and
+the two fixes were each committed separately (see git log), followed
+by a much larger scope change — see the next entry.
+
+## 2026-08-25 — Full component + application-pattern sync: Phase A (base components) COMPLETE
+
+Figma access was authenticated (OAuth flow completed) and validated
+against a known node (`2120:2`, Button) before any other work started.
+Working on branch `feat/full-component-sync`, nothing pushed.
+
+**Step 3 — base vs. application-pattern name-overlap resolution:** all
+5 pairs checked via `get_metadata`/`get_design_context`. None are
+duplicates — every Application Patterns node is a distinct, separately
+authored composition built from the base primitive. Full findings in
+`BUILD_LOG.md`. One 3-way case: `Modal` (base, built), `Dialog` (base,
+**newly built this pass** — a separate component, not a Modal variant),
+and `Modals` (an application pattern built from Modal, for Phase B).
+
+**Pre-flight:** installed the remaining Radix deps
+(`@radix-ui/react-select`/`-accordion`/`-popover`/`-slot`/`-slider` —
+alert-dialog was already present). Applied the dark-mode color
+overhaul to `tokens.css` (`.dark` `bg-primary/secondary/tertiary/
+elevated` → literal `#0A0A0B/#111113/#18181B/#1C1C1F`, new `bg-preview`
+token both modes) and updated `CLAUDE.md`'s token docs + tier language
+(free/paid split dropped, per the user's explicit decision earlier in
+this session).
+
+**All 14 previously-missing base components built**, each following
+the same loop: pull real Figma spec (metadata + design-context per
+variant/state actually sampled, not assumed) → implement with CVA/
+`cn()`/ref-forwarding/semantic tokens/`shadow-glow-focus` → vitest-axe
+test → full docs page (hero, installation, examples, props table,
+accessibility, **When to use / Dos and Don'ts / Related components
+pulled verbatim from Figma** — now possible with live Figma access) →
+`pnpm lint && pnpm test && pnpm build` → commit. In order: **Select,
+Toast, Pagination, Popover** (built by the prior session before this
+one resumed — see git log for their commits), then this session:
+**Kbd, Accordion, Card, Slider, Toggle Group, Progress Circle,
+Verification Code Input, Dialog, Table, Tag Input**.
+
+Real judgment calls made along the way (each documented in its own
+commit message — summarized here for the resume record):
+- **Avatar, Badge, ProgressBar** (audited early in this pass, before
+  the 14-new queue): found and fixed real drift — missing
+  `AvatarLabelGroup`, missing Badge subtle/outline/solid fill styles,
+  missing ProgressBar `lg` size.
+- **Card**: Figma's Default vs. Outlined variants were byte-identical
+  across every sampled state (an incomplete-variant-set authoring
+  gap) — gave Outlined a real `border-strong` so the variant does
+  something. Elevated's hover state was also a no-op in Figma — used
+  `shadow-md` instead of copying the no-op.
+- **Slider**: Error state's Figma-exported class string was stale
+  (still said `brand-solid` despite the screenshot clearly showing
+  red) — trusted the screenshot over the glitched export.
+- **Toggle Group**: Figma's a11y note specifies `role="radiogroup"`/
+  `role="radio"` — that's Radix RadioGroup's contract, not
+  `@radix-ui/react-toggle-group`'s (toolbar/`aria-pressed` pattern).
+  Built on the already-installed RadioGroup primitive instead of
+  adding a new dependency for the wrong semantics.
+- **Dialog**: built on `@radix-ui/react-alert-dialog` (role=alertdialog,
+  no close-on-outside-click) — confirmed genuinely distinct from Modal
+  per Step 3. Title is 18px Semibold in Figma across all 3 variants,
+  consistently — doesn't match any confirmed named token (`ui-lg`=16,
+  `display-xs`=24); used `ui-lg` as the closer, proportionally sane
+  choice rather than guessing blind.
+- **Table**: built real semantic `<table>` markup (not Figma's raw
+  div-based export) per the explicit "native table semantics" a11y
+  note.
+- **Verification Code Input, Tag Input**: both needed
+  `role="group"` on a plain `<div>`; Biome suggested `<fieldset>` for
+  both — declined with a `biome-ignore` because `<fieldset>`'s
+  accessible name comes from a `<legend>`, not `aria-label` the same
+  way, and `role="group"` matches Figma's a11y spec exactly.
+
+**Critical, previously-undetected bug found and fixed** (not part of
+the planned scope — discovered while building Toggle Group, when its
+`size="lg"` variant silently rendered without its type-scale class):
+`packages/registry/lib/cn.ts` used plain `twMerge` with no knowledge
+of this repo's custom `text-ui-*`/`text-body-*`/`text-display-*`
+`@theme` tokens. `tailwind-merge`'s default config only recognizes
+Tailwind's built-in font-size scale, so it fell back to treating our
+named type-scale classes as arbitrary text-color classes — meaning
+**any component combining a type-scale class with a `text-fg-*` color
+class (the documented, required pattern for every component in this
+library) silently lost its font-size/line-height/letter-spacing at
+runtime.** Confirmed via direct repro
+(`twMerge('text-ui-sm text-fg-secondary')` → `'text-fg-secondary'`,
+the size class dropped) and found the pattern in at least 20 of the
+22 pre-existing components — essentially the whole catalog was
+affected. Fixed via `extendTailwindMerge` registering our 13 token
+names under tailwind-merge's `font-size` class group, so they now
+correctly coexist with color classes. Full registry test suite (262
+tests at the time, all pre-existing) stayed green — nothing was
+actually depending on the broken behavior, since no test asserted on
+the missing classes. This is arguably the single highest-value fix in
+this entire pass; it silently affected every shipped component before
+now.
+
+`pnpm lint && pnpm test && pnpm build` all green after every single
+commit in this pass (never batched). Final state: **306 registry
+tests, 50 docs pages, all passing.**
+
 ## Exact resume point
 
-Fixes 1 and 2 above are done and verified (lint/test/build all green)
-but **nothing has been committed** — the working tree currently holds
-both the Aug 24 folder-migration (pre-existing, not reviewed/authored
-by this pass) and this pass's two fixes on top of it. Next step is the
-user's call on how to commit/split that state. Task 3 (Figma-gated
-docs sections) needs a session with an authenticated Figma MCP
-connection.
+**Phase A "build" is fully complete: all 33 base components exist**
+(19 pre-existing + 14 newly built). **Phase A "audit" is partially
+done**: Avatar, Badge, and ProgressBar were audited against Figma and
+fixed (see above). The remaining **16 of 19 pre-existing components
+have NOT yet been re-audited against Figma in this pass**: Alert,
+Breadcrumbs, Button, Checkbox, Divider, Dropdown Menu, Field, Input,
+Modal, Radio Group, Skeleton, Spinner, Switch, Tabs, Textarea,
+Tooltip. (A separate, earlier structural-conventions audit in this
+session — CVA/`cn()`/ref-forwarding/semantic-tokens/focus-state/axe-
+wiring — found all 19 clean with no anomalies, but that is not the
+same as a real Figma variant/pixel audit.)
+
+Stopped here deliberately rather than rushing 16 more Figma audits
+superficially — this is a natural, coherent checkpoint (every new
+component built, one critical cross-cutting bug fixed, everything
+green) worth a check-in before continuing. Do **not** start Phase B
+(the 27 application patterns) without a check-in first — several of
+those patterns (Charts, Calendars, Date pickers, Color pickers) need a
+real external library choice this plan deliberately left for a
+decision rather than guessing blind.
+
+Nothing has been pushed to any remote — all commits are local on
+`feat/full-component-sync`.
