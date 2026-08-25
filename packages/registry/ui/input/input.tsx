@@ -13,10 +13,10 @@ const inputWrapperVariants = cva(
   {
     variants: {
       size: {
-        sm: "gap-2 px-3 py-1.5",
-        md: "gap-2 px-4 py-2",
-        lg: "gap-2 px-5 py-3",
-        xl: "gap-3 px-6 py-4",
+        sm: "h-9 gap-2 px-3 py-2",
+        md: "h-10 gap-2 px-3 py-2.5",
+        lg: "h-11 gap-2 px-3.5 py-2.5",
+        xl: "h-12 gap-2 px-4 py-3",
       },
     },
     defaultVariants: {
@@ -36,7 +36,7 @@ const textSizeClassName: Record<InputSize, string> = {
 
 const iconSizeClassName: Record<InputSize, string> = {
   sm: "size-4",
-  md: "size-4",
+  md: "size-5",
   lg: "size-5",
   xl: "size-5",
 };

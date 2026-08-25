@@ -59,7 +59,7 @@ Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css`
 
 **Spacing:** 4px base scale, `space-0` through `space-10xl`, plus micro tier `space-px` (1px) and `space-2xs` (2px).
 **Radius:** `radius-xs` 6 (checkboxes, dropdown/menu items, tooltips) · `radius-sm` 8 (buttons, inputs, textareas, alerts) · `radius-md` 10 (dropdown/menu panels) · `radius-lg` 14 (modals) · `radius-xl` 20 (unused so far) · `radius-full` 9999 (pills, avatars, switches, radio/checkbox indicators). Corrected 2026-08-23 against the real Figma specs pulled while building all 19 free-tier components — the previous "(inputs/buttons)" on `radius-md` and "(modals)" on `radius-xl` didn't match what Figma actually specifies (buttons/inputs are `radius-sm`; modals are `radius-lg`).
-**Density (form-row components must align):** `sm` = 32px height · `md` = 40px · `lg` = 48px · `xl` = 56px. Button, Input, Textarea (min-height), Select all follow this exactly.
+**Density (form-row components must align):** `sm` = 32px height · `md` = 40px · `lg` = 48px · `xl` = 56px. Button, Textarea (min-height), Select follow this exactly. **Input is the one exception** (corrected 2026-08-25 against the real Figma component set, which publishes its own fixed heights): `sm` = 36px · `md` = 40px · `lg` = 44px · `xl` = 48px — only `md` lines up with the shared scale. Horizontal padding and icon size scale alongside it (`sm`: 12px padding/16px icon · `md`: 12px/20px · `lg`: 14px/20px · `xl`: 16px/20px), all read directly off Figma's published symbols (node `6198:22642`), not derived from the shared density formula.
 
 ## Component API conventions — locked, follow exactly
 
