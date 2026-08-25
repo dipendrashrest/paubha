@@ -26,6 +26,7 @@
     "pagination",
     "popover",
     "kbd",
-    "accordion"
+    "accordion",
+    "card"
   ]
 }

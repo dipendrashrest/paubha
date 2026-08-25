@@ -1,0 +1,87 @@
+---
+title: Card
+description: A flexible content container with optional image, title, and description.
+---
+
+<CardHero />
+
+## Installation
+
+<CardInstall />
+
+## Usage
+
+```tsx
+import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@/components/ui/card";
+
+<Card>
+  <CardImage src="/photo.jpg" alt="" />
+  <CardContent>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>A brief description of the card content goes here.</CardDescription>
+  </CardContent>
+</Card>
+```
+
+## Examples
+
+### Variants
+
+<CardVariants />
+
+### Interactive
+
+<CardInteractive />
+
+## API reference
+
+<CardPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Static cards.</strong> Rendered with <code>role=&quot;article&quot;</code>.
+    </li>
+    <li>
+      <strong>Interactive cards.</strong> Passing <code>onClick</code> switches the card
+      to <code>role=&quot;button&quot;</code>, adds <code>tabIndex=0</code>, and wires
+      Enter/Space to activate it, matching a real button.
+    </li>
+    <li>
+      <strong>Tab order.</strong> Interactive elements nested inside a card (e.g. a
+      secondary link or button) remain independently focusable via Tab.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>, only
+      on interactive cards.
+    </li>
+    <li>
+      <strong>Contrast.</strong> Ensure sufficient color contrast between the card
+      background and its content text — all variants use semantic foreground/background
+      tokens that meet this by default.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use to group related content — product listings, user profiles, dashboard widgets,
+article previews. Cards work best in grids or lists.
+
+**Do:**
+- Keep a clear content hierarchy (image → title → description)
+- Make the entire card clickable when it represents one action
+- Use consistent sizes within the same grid
+
+**Don't:**
+- Overload a card with too many actions
+- Mix variants within the same grid
+- Nest cards inside cards
+
+## Related components
+
+- [Modal](/docs/components/modal) — for expanded card content
+- [Accordion](/docs/components/accordion) — for collapsible sections
+- [Table](/docs/components/table) — for structured data

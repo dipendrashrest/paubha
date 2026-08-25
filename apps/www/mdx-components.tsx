@@ -54,6 +54,8 @@ import {
   AccordionPropsTable,
   AccordionTriggerPropsTable,
 } from "@/components/docs/accordion/accordion-props-table";
+import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/card-demos";
+import { CardPropsTable } from "@/components/docs/card/card-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
 import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
 import { KbdGroupPropsTable, KbdPropsTable } from "@/components/docs/kbd/kbd-props-table";
@@ -82,6 +84,7 @@ import {
   DividerInstall,
   DropdownMenuInstall,
   AccordionInstall,
+  CardInstall,
   FieldInstall,
   InputInstall,
   KbdInstall,
@@ -312,6 +315,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AccordionMultiple,
     AccordionPropsTable,
     AccordionTriggerPropsTable,
+
+    // Card
+    CardHero,
+    CardInstall,
+    CardInteractive,
+    CardPropsTable,
+    CardVariants,
 
     ...components,
   };

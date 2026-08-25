@@ -146,3 +146,7 @@ export function KbdInstall() {
 export function AccordionInstall() {
   return <RegistryInstall name="accordion" />;
 }
+
+export function CardInstall() {
+  return <RegistryInstall name="card" />;
+}
