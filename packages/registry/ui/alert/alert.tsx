@@ -1,5 +1,5 @@
 import { type VariantProps, cva } from "class-variance-authority";
-import { AlertTriangle, CheckCircle, Info, X, XCircle } from "lucide-react";
+import { Info, X } from "lucide-react";
 import type * as React from "react";
 import { cn } from "../../lib/cn";
 
@@ -23,13 +23,6 @@ const alertVariants = cva(
 export type AlertVariant = NonNullable<
   VariantProps<typeof alertVariants>["variant"]
 >;
-
-const iconByVariant: Record<AlertVariant, typeof Info> = {
-  info: Info,
-  success: CheckCircle,
-  warning: AlertTriangle,
-  error: XCircle,
-};
 
 // error/warning interrupt (role=alert, assertive); info/success are ambient updates (role=status, polite)
 const roleByVariant: Record<AlertVariant, "alert" | "status"> = {
@@ -67,8 +60,6 @@ export function Alert({
   children,
   ...props
 }: AlertProps) {
-  const Icon = iconByVariant[variant];
-
   return (
     <div
       ref={ref}
@@ -76,7 +67,7 @@ export function Alert({
       className={cn(alertVariants({ variant }), className)}
       {...props}
     >
-      <Icon aria-hidden="true" className="size-5 shrink-0" />
+      <Info aria-hidden="true" className="size-5 shrink-0" />
       <div className="flex min-w-0 flex-1 flex-col items-start gap-1">
         {title ? (
           <p className="w-full text-ui-md font-medium">{title}</p>
