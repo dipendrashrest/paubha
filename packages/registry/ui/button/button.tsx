@@ -65,6 +65,8 @@ export interface ButtonProps
   loading?: boolean;
   /** Instance-swap icon slot rendered before the label. Sized to match the button's `size`. */
   leadingIcon?: React.ReactNode;
+  /** Instance-swap icon slot rendered after the label. Sized to match the button's `size`. */
+  trailingIcon?: React.ReactNode;
 }
 
 function Spinner({ className }: { className?: string }) {
@@ -104,6 +106,7 @@ export function Button({
   loading = false,
   disabled,
   leadingIcon,
+  trailingIcon,
   children,
   ...props
 }: ButtonProps) {
@@ -122,7 +125,11 @@ export function Button({
     >
       {leadingIcon ? withIconSize(leadingIcon, iconSizeClassName) : null}
       {children}
-      {loading ? <Spinner className={iconSizeClassName} /> : null}
+      {loading ? (
+        <Spinner className={iconSizeClassName} />
+      ) : trailingIcon ? (
+        withIconSize(trailingIcon, iconSizeClassName)
+      ) : null}
     </button>
   );
 }
