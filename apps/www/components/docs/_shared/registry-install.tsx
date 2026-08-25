@@ -51,6 +51,10 @@ export function AvatarInstall() {
   return <RegistryInstall name="avatar" />;
 }
 
+export function SelectInstall() {
+  return <RegistryInstall name="select" />;
+}
+
 export function ButtonInstall() {
   return <RegistryInstall name="button" />;
 }

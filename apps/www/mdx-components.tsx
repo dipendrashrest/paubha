@@ -51,6 +51,8 @@ import { ProgressBarPropsTable } from "@/components/docs/progress-bar/progress-b
 import { PropsTable } from "@/components/docs/_shared/props-table";
 import { RadioGroupDisabled, RadioGroupHero } from "@/components/docs/radio-group/radio-group-demos";
 import { RadioGroupPropsTable } from "@/components/docs/radio-group/radio-group-props-table";
+import { SelectHero, SelectSizes, SelectStates } from "@/components/docs/select/select-demos";
+import { SelectPropsTable } from "@/components/docs/select/select-props-table";
 import {
   AlertInstall,
   AvatarInstall,
@@ -65,6 +67,7 @@ import {
   ModalInstall,
   ProgressBarInstall,
   RadioGroupInstall,
+  SelectInstall,
   SkeletonInstall,
   SpinnerInstall,
   SwitchInstall,
@@ -238,6 +241,13 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TabsInstall,
     TabsPillVariant,
     TabsPropsTable,
+
+    // Select
+    SelectHero,
+    SelectInstall,
+    SelectPropsTable,
+    SelectSizes,
+    SelectStates,
 
     ...components,
   };

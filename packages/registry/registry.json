@@ -385,6 +385,30 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Dropdown selection input with sm/md/lg/xl sizes and an error state, built on Radix UI.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/select/select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }

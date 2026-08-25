@@ -20,6 +20,7 @@
     "tooltip",
     "dropdown-menu",
     "modal",
-    "tabs"
+    "tabs",
+    "select"
   ]
 }

@@ -1,0 +1,77 @@
+---
+title: Select
+description: Dropdown selection input with sm/md/lg/xl sizes and an error state, built on Radix UI.
+---
+
+<SelectHero />
+
+## Installation
+
+<SelectInstall />
+
+## Usage
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+<Select onValueChange={setFramework}>
+  <SelectTrigger aria-label="Framework">
+    <SelectValue placeholder="Select a framework" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="react">React</SelectItem>
+    <SelectItem value="vue">Vue</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+## Examples
+
+### Sizes
+
+<SelectSizes />
+
+### States
+
+<SelectStates />
+
+## API reference
+
+<SelectPropsTable />
+
+## Related components
+
+- **Dropdown Menu** — for actions, not selection
+- **Radio Group** — for small option sets
+- **Field** — wraps with label + helper
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Role.</strong> The trigger has an implicit{" "}
+      <code>role=&quot;combobox&quot;</code> with <code>aria-expanded</code>{" "}
+      reflecting the open state.
+    </li>
+    <li>
+      <strong>Listbox.</strong> <code>aria-controls</code> links the trigger
+      to the listbox; <code>aria-activedescendant</code> tracks the
+      highlighted option.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Arrow keys navigate options, Enter selects,
+      Escape closes, and type-ahead search jumps to a matching option.
+    </li>
+    <li>
+      <strong>Error.</strong> The <code>error</code> prop sets{" "}
+      <code>aria-invalid=&quot;true&quot;</code> on the trigger.
+    </li>
+  </ul>
+</A11yCallout>
