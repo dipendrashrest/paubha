@@ -66,7 +66,11 @@ export function ComponentPlayground({
         </div>
       </TabsContent>
       <TabsContent value="code" className="m-0">
-        <pre className="overflow-x-auto bg-bg-primary p-4 font-mono text-ui-sm text-fg-primary">
+        <pre
+          data-preview-theme={previewTheme}
+          style={{ colorScheme: previewTheme }}
+          className="overflow-x-auto bg-bg-primary p-4 font-mono text-ui-sm text-fg-primary"
+        >
           <code>{code}</code>
         </pre>
       </TabsContent>
