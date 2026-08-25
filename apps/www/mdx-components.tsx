@@ -22,7 +22,6 @@ import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-ta
 import { ColorScale, ColorSwatch } from "@/components/docs/_shared/color-scale";
 import { ComingSoon } from "@/components/docs/_shared/coming-soon";
 import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
-import { ComponentPreview } from "@/components/docs/_shared/component-preview";
 import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider/divider-demos";
 import { DividerPropsTable } from "@/components/docs/divider/divider-props-table";
 import { DropdownMenuHero } from "@/components/docs/dropdown-menu/dropdown-menu-demos";
@@ -93,7 +92,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     A11yCallout,
     ComingSoon,
     ComponentPlayground,
-    ComponentPreview,
     InstallCommand,
     PropsTable,
 
