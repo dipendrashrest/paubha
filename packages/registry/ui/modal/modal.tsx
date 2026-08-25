@@ -1,4 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
 import { cn } from "../../lib/cn";
@@ -6,18 +7,29 @@ import { cn } from "../../lib/cn";
 export const Modal = DialogPrimitive.Root;
 export const ModalTrigger = DialogPrimitive.Trigger;
 
-export type ModalSize = "sm" | "md" | "lg";
+const modalContentVariants = cva(
+  "fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border-default bg-bg-elevated shadow-xl",
+  {
+    variants: {
+      size: {
+        sm: "max-w-[400px]",
+        md: "max-w-[560px]",
+        lg: "max-w-[720px]",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  },
+);
 
-const sizeClassName: Record<ModalSize, string> = {
-  sm: "max-w-[400px]",
-  md: "max-w-[560px]",
-  lg: "max-w-[720px]",
-};
+export type ModalSize = NonNullable<
+  VariantProps<typeof modalContentVariants>["size"]
+>;
 
 export interface ModalContentProps
-  extends React.ComponentPropsWithRef<typeof DialogPrimitive.Content> {
-  size?: ModalSize;
-}
+  extends React.ComponentPropsWithRef<typeof DialogPrimitive.Content>,
+    VariantProps<typeof modalContentVariants> {}
 
 /**
  * role=dialog · aria-modal=true · focus trapped while open · Esc closes · aria-labelledby
@@ -26,7 +38,7 @@ export interface ModalContentProps
 export function ModalContent({
   ref,
   className,
-  size = "md",
+  size,
   children,
   ...props
 }: ModalContentProps) {
@@ -36,11 +48,7 @@ export function ModalContent({
       <DialogPrimitive.Content
         ref={ref}
         aria-modal="true"
-        className={cn(
-          "fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border-default bg-bg-elevated shadow-xl",
-          sizeClassName[size],
-          className,
-        )}
+        className={cn(modalContentVariants({ size }), className)}
         {...props}
       >
         {children}
