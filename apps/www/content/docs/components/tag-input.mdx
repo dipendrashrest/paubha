@@ -1,0 +1,86 @@
+---
+title: Tag Input
+description: A text input that converts entries into removable tags/chips.
+---
+
+<TagInputHero />
+
+## Installation
+
+<TagInputInstall />
+
+## Usage
+
+```tsx
+import { TagInput } from "@/components/ui/tag-input";
+
+const [tags, setTags] = useState(["React", "Figma"]);
+
+<TagInput tags={tags} onTagsChange={setTags} aria-label="Tags" />
+```
+
+## Examples
+
+### Sizes
+
+<TagInputSizes />
+
+### Error
+
+<TagInputError />
+
+### Disabled
+
+<TagInputDisabled />
+
+## API reference
+
+<TagInputPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>Group.</strong> The container is <code>role=&quot;group&quot;</code> —
+      always pass an <code>aria-label</code> describing the field.
+    </li>
+    <li>
+      <strong>Remove buttons.</strong> Each tag's remove button has{" "}
+      <code>aria-label=&quot;Remove [tag name]&quot;</code>.
+    </li>
+    <li>
+      <strong>Keyboard.</strong> Enter or comma creates a tag from the current text.
+      Backspace on an empty input removes the last tag.
+    </li>
+    <li>
+      <strong>Disabled.</strong> The group gets <code>aria-disabled</code>, and both the
+      text input and every remove button are natively disabled.
+    </li>
+    <li>
+      <strong>Focus ring.</strong> Visible on the container via{" "}
+      <code>shadow-glow-focus</code> when the inner input has focus.
+    </li>
+  </ul>
+</A11yCallout>
+
+## When to use
+
+Use when users enter multiple values as discrete tags — email recipients, categories,
+search filters, skills. Each entry becomes a removable chip.
+
+**Do:**
+- Allow Enter and comma to create tags
+- Show a clear remove button on every tag
+- Validate entries before creating a tag
+
+**Don't:**
+- Allow duplicate tags
+- Set an invisible limit with no feedback
+- Make tags too small to read or tap
+
+## Related components
+
+- [Badge](/docs/components/badge) — for display-only tags
+- [Input](/docs/components/input) — for single-value entry
+- [Select](/docs/components/select) — for predefined options

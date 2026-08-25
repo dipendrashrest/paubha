@@ -656,6 +656,29 @@
       ]
     },
     {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "title": "Tag Input",
+      "description": "A text input that converts entries into removable tags/chips.",
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/tag-input/tag-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",

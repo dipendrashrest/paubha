@@ -33,6 +33,7 @@
     "progress-circle",
     "verification-code-input",
     "dialog",
-    "table"
+    "table",
+    "tag-input"
   ]
 }

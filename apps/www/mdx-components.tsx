@@ -63,6 +63,13 @@ import {
   DialogPropsTable,
 } from "@/components/docs/dialog/dialog-props-table";
 import { InstallCommand } from "@/components/docs/_shared/install-command";
+import {
+  TagInputDisabled,
+  TagInputError,
+  TagInputHero,
+  TagInputSizes,
+} from "@/components/docs/tag-input/tag-input-demos";
+import { TagInputPropsTable } from "@/components/docs/tag-input/tag-input-props-table";
 import { TableBordered, TableHero, TableStriped } from "@/components/docs/table/table-demos";
 import { TablePropsTable } from "@/components/docs/table/table-props-table";
 import {
@@ -123,6 +130,7 @@ import {
   ProgressCircleInstall,
   SliderInstall,
   TableInstall,
+  TagInputInstall,
   ToggleGroupInstall,
   VerificationCodeInputInstall,
   KbdInstall,
@@ -406,6 +414,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TableInstall,
     TablePropsTable,
     TableStriped,
+
+    // Tag Input
+    TagInputDisabled,
+    TagInputError,
+    TagInputHero,
+    TagInputInstall,
+    TagInputPropsTable,
+    TagInputSizes,
 
     ...components,
   };

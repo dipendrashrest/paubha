@@ -174,3 +174,7 @@ export function DialogInstall() {
 export function TableInstall() {
   return <RegistryInstall name="table" />;
 }
+
+export function TagInputInstall() {
+  return <RegistryInstall name="tag-input" />;
+}
