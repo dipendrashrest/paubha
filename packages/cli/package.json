@@ -2,12 +2,23 @@
   "name": "asteria-ui",
   "version": "0.1.0",
   "private": false,
+  "description": "CLI for Asteria UI — a shadcn-style copy-paste registry of React + Tailwind components.",
+  "keywords": ["react", "tailwind", "ui", "components", "cli", "design-system", "shadcn"],
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipendra0514/asteria-ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://asteria-ui.vercel.app",
+  "bugs": {
+    "url": "https://github.com/dipendra0514/asteria-ui/issues"
+  },
   "bin": {
     "asteria-ui": "./dist/index.js"
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

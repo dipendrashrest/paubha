@@ -9,3 +9,4 @@ dist
 *.tsbuildinfo
 apps/www/public/r/*.json
 !apps/www/public/r/.gitkeep
+packages/cli/.npmrc
