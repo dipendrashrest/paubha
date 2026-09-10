@@ -22,9 +22,9 @@ describe("Skeleton", () => {
     expect(container.firstChild).toHaveClass("rounded-full", "size-12");
   });
 
-  it("renders a rect variant with rounded-sm", () => {
+  it("renders a rectangle variant with rounded-sm", () => {
     const { container } = render(
-      <Skeleton variant="rect" className="h-24 w-full" />,
+      <Skeleton variant="rectangle" className="h-24 w-full" />,
     );
     expect(container.firstChild).toHaveClass("rounded-sm");
   });
@@ -47,7 +47,7 @@ describe("Skeleton", () => {
     rerender(<Skeleton variant="circle" />);
     expect(await axe(container)).toHaveNoViolations();
 
-    rerender(<Skeleton variant="rect" />);
+    rerender(<Skeleton variant="rectangle" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

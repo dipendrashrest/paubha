@@ -7,7 +7,7 @@ const skeletonVariants = cva("animate-pulse bg-bg-tertiary", {
     variant: {
       text: "h-4 w-full rounded-xs",
       circle: "rounded-full",
-      rect: "rounded-sm",
+      rectangle: "rounded-sm",
     },
   },
   defaultVariants: {

@@ -5,10 +5,10 @@ import { PropsTable } from "../_shared/props-table";
 const skeletonProps = definePropDefs<SkeletonProps>()([
   {
     name: "variant",
-    type: '"text" | "circle" | "rect"',
+    type: '"text" | "circle" | "rectangle"',
     defaultValue: '"text"',
     description:
-      "Text gets a real default size (h-4 w-full, one line of text); circle and rect have no default size — size them via className.",
+      "Text gets a real default size (h-4 w-full, one line of text); circle and rectangle have no default size — size them via className.",
   },
 ]);
 
