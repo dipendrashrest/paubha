@@ -123,6 +123,13 @@
   --bg-tertiary-hover: var(--gray-200);
   --bg-switch-off: var(--gray-300);
 
+  /* overlay: gray/900 @ 60% opacity — Figma "Semantic Tokens — Background"
+     (bg/overlay, node 6180:9644) states "modal backgrounds at 60% opacity";
+     its swatch fill is #101828, which is exactly --gray-900. Figma shows no
+     separate dark-mode value for this token, so it's intentionally
+     mode-invariant (same rgb() in both the light and dark blocks below). */
+  --bg-overlay: rgb(16 24 40 / 0.6);
+
   --bg-brand-solid: var(--brand-600);
   --bg-brand-solid-hover: var(--brand-700);
   --bg-brand-solid-active: var(--brand-800);
@@ -187,6 +194,15 @@
 
   /* glow-focus: brand/500 @ 24%, 4px spread, zero blur/offset */
   --shadow-glow-focus: 0 0 0 4px rgb(59 99 245 / 0.24);
+  /* glow-focus-error: same shape as --shadow-glow-focus (4px spread, 24%
+     opacity, zero blur/offset), swapped to error/500 (#f04438 = rgb(240 68
+     56)) instead of brand/500. Figma's file has no dedicated error-tinted
+     focus-ring effect style to read directly (confirmed absent via
+     search_design_system on this file) — this value is derived by applying
+     the exact structural formula CLAUDE.md already documents for the brand
+     glow, to the already-locked --error-500 primitive. For error-state
+     interactive components in Phase 2. */
+  --shadow-glow-focus-error: 0 0 0 4px rgb(240 68 56 / 0.24);
 
   --blur-sm: 8px;
   --blur-md: 16px;
@@ -208,6 +224,10 @@
   --bg-secondary-hover: var(--gray-800);
   --bg-tertiary-hover: var(--gray-700);
   --bg-switch-off: var(--gray-600);
+
+  /* overlay: no dark-mode override in Figma — same rgb() as light, see light
+     block comment. */
+  --bg-overlay: rgb(16 24 40 / 0.6);
 
   --bg-brand-solid: var(--brand-600);
   --bg-brand-solid-hover: var(--brand-500);

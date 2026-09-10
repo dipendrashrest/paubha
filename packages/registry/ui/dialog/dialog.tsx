@@ -17,7 +17,7 @@ export interface DialogContentProps
 export function DialogContent({ ref, className, ...props }: DialogContentProps) {
   return (
     <AlertDialogPrimitive.Portal>
-      <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[var(--brand-900)]/60" />
+      <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-bg-overlay" />
       <AlertDialogPrimitive.Content
         ref={ref}
         className={cn(

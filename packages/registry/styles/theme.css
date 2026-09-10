@@ -11,6 +11,7 @@
   --color-bg-tertiary: var(--bg-tertiary);
   --color-bg-elevated: var(--bg-elevated);
   --color-bg-preview: var(--bg-preview);
+  --color-bg-overlay: var(--bg-overlay);
   --color-bg-disabled: var(--bg-disabled);
   --color-bg-secondary-hover: var(--bg-secondary-hover);
   --color-bg-tertiary-hover: var(--bg-tertiary-hover);
@@ -76,6 +77,7 @@
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
   --shadow-glow-focus: var(--shadow-glow-focus);
+  --shadow-glow-focus-error: var(--shadow-glow-focus-error);
 }
 
 @theme {

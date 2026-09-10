@@ -44,7 +44,7 @@ export function ModalContent({
 }: ModalContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[var(--brand-900)]/60" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-bg-overlay" />
       <DialogPrimitive.Content
         ref={ref}
         aria-modal="true"
