@@ -17,29 +17,38 @@
   --base-white: #ffffff;
   --base-black: #000000;
 
-  /* brand — true blue; brand/600 is primary */
-  --brand-50: #eff4ff;
-  --brand-100: #dbe5fe;
-  --brand-200: #bfd0fe;
-  --brand-300: #93b0fd;
-  --brand-400: #6187f9;
-  --brand-500: #3b63f5;
-  --brand-600: #2450ea;
-  --brand-700: #1c3fd1;
-  --brand-800: #1e37a9;
-  --brand-900: #1e3485;
-  --brand-950: #172152;
+  /* brand — true blue; brand/600 is primary
+     Corrected 2026-09-11 — full ramp re-synced against Figma's current
+     "Brand Palette" frame (Foundations / Colors, node 2066:14533 ->
+     6180:1277), which now generates the ramp from brand/500 = #4469E5 as
+     keystone. Confirmed via two independent, mutually-consistent swatches
+     on that same canonical page (Brand Palette ramp + Status Colors "Info"
+     panel, both #4469E5) — see SYNC_LOG.md Phase 1 entry. */
+  --brand-50: #f0f4fe;
+  --brand-100: #dde5fc;
+  --brand-200: #c2d1f9;
+  --brand-300: #98b3f4;
+  --brand-400: #678bec;
+  --brand-500: #4469e5;
+  --brand-600: #2e4dd9;
+  --brand-700: #273ec7;
+  --brand-800: #2535a2;
+  --brand-900: #243380;
+  --brand-950: #1a2150;
 
-  /* gray — cool bias to harmonize with brand */
+  /* gray — cool bias to harmonize with brand
+     Corrected 2026-09-11 — gray-200 and gray-800 re-synced against Figma's
+     "Neutral Palette" frame (Foundations / Colors, node 6180:1325); the
+     other 9 steps already matched exactly. */
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
-  --gray-200: #e4e7ec;
+  --gray-200: #eaecf0;
   --gray-300: #d0d5dd;
   --gray-400: #98a2b3;
   --gray-500: #667085;
   --gray-600: #475467;
   --gray-700: #344054;
-  --gray-800: #1d2939;
+  --gray-800: #182230;
   --gray-900: #101828;
   --gray-950: #0c111d;
 
@@ -69,14 +78,17 @@
   --warning-900: #7a2e0e;
   --warning-950: #4e1d09;
 
-  /* success */
+  /* success
+     Corrected 2026-09-11 — success-600 re-synced against Figma's "Success
+     Palette" frame (Foundations / Colors, node 6428:27293); the other 10
+     steps already matched exactly. */
   --success-50: #ecfdf3;
   --success-100: #d1fadf;
   --success-200: #a6f4c5;
   --success-300: #6ce9a6;
   --success-400: #32d583;
   --success-500: #12b76a;
-  --success-600: #079455;
+  --success-600: #058550;
   --success-700: #067647;
   --success-800: #085d3a;
   --success-900: #074d31;
@@ -198,18 +210,22 @@
      EFFECTS — brand-tinted shadows (never flat black)
      ============================================================ */
 
-  --shadow-xs: 0 1px 2px rgb(30 52 133 / 0.06);
-  --shadow-sm: 0 1px 3px rgb(30 52 133 / 0.1), 0 1px 2px rgb(30 52 133 / 0.06);
-  --shadow-md: 0 4px 6px -1px rgb(30 52 133 / 0.1), 0 2px 4px -2px
-    rgb(30 52 133 / 0.06);
-  --shadow-lg: 0 10px 15px -3px rgb(30 52 133 / 0.1), 0 4px 6px -4px
-    rgb(30 52 133 / 0.05);
-  --shadow-xl: 0 20px 25px -5px rgb(30 52 133 / 0.1), 0 8px 10px -6px
-    rgb(30 52 133 / 0.05);
-  --shadow-2xl: 0 25px 50px -12px rgb(30 52 133 / 0.22);
+  /* rgb(36 51 128 / ...) = brand-900 (#243380), decomposed since plain CSS
+     can't derive rgb components from a hex custom property. Recomputed
+     2026-09-11 alongside the brand ramp correction above. */
+  --shadow-xs: 0 1px 2px rgb(36 51 128 / 0.06);
+  --shadow-sm: 0 1px 3px rgb(36 51 128 / 0.1), 0 1px 2px rgb(36 51 128 / 0.06);
+  --shadow-md: 0 4px 6px -1px rgb(36 51 128 / 0.1), 0 2px 4px -2px
+    rgb(36 51 128 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(36 51 128 / 0.1), 0 4px 6px -4px
+    rgb(36 51 128 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(36 51 128 / 0.1), 0 8px 10px -6px
+    rgb(36 51 128 / 0.05);
+  --shadow-2xl: 0 25px 50px -12px rgb(36 51 128 / 0.22);
 
-  /* glow-focus: brand/500 @ 24%, 4px spread, zero blur/offset */
-  --shadow-glow-focus: 0 0 0 4px rgb(59 99 245 / 0.24);
+  /* glow-focus: brand/500 @ 24%, 4px spread, zero blur/offset.
+     rgb(68 105 229 / ...) = brand-500 (#4469e5), recomputed 2026-09-11. */
+  --shadow-glow-focus: 0 0 0 4px rgb(68 105 229 / 0.24);
   /* glow-focus-error: same shape as --shadow-glow-focus (4px spread, 24%
      opacity, zero blur/offset), swapped to error/500 (#f04438 = rgb(240 68
      56)) instead of brand/500. Figma's file has no dedicated error-tinted
