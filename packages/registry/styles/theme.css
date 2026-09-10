@@ -120,6 +120,24 @@
   --text-display-2xl--line-height: 5.5rem;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Figma "Foundations / Grid Layouts" (2066:16952) — "Container Widths"
+     section confirms exactly 4 breakpoints: sm/md/lg/xl at 640/768/1024/1280px
+     (byte-identical to Tailwind v4's own built-in defaults). Codified
+     explicitly here — per CLAUDE.md's "never approximate, confirm in
+     Figma" rule — rather than left as an implicit framework default, so
+     they read as an intentional token. No `2xl` breakpoint exists anywhere
+     in this Figma file (checked "Container Widths" and the 3 responsive
+     breakpoint frames — Desktop/Tablet/Mobile — directly; see SYNC_LOG.md);
+     not fabricated. `--breakpoint-*` is Tailwind v4's real CSS-first
+     namespace for custom `sm:`/`md:`/etc. prefixes (verified against
+     Tailwind v4 docs) — plain px values are used here (not rem, unlike
+     Tailwind's own defaults) to match this file's existing convention of
+     literal px for spacing/radius; a valid CSS length works either way. */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 }
 
 @utility focus-glow {

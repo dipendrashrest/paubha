@@ -109,6 +109,22 @@
   --radius-xl: 20px;
   --radius-full: 9999px;
 
+  /* grid — Figma "Foundations / Grid Layouts" (2066:16952). Layout-level
+     values (column count, margin), not colors/spacing reused broadly —
+     documented here for consistency with the rest of the token system.
+     No current consumer: no grid-layout component/pattern exists yet in
+     this codebase (confirmed by an earlier phase of this sync run — zero
+     application patterns are built). Desktop's own margin (32px) and all
+     3 breakpoints' gutters (24/16/12px) are also visible in the same
+     Figma frame but weren't requested by this unit's scope (only
+     mobile/tablet margins) — left out here, not fabricated as "missing."
+     See SYNC_LOG.md. */
+  --grid-columns-mobile: 4;
+  --grid-columns-tablet: 8;
+  --grid-columns-desktop: 12;
+  --grid-margin-mobile: 16px;
+  --grid-margin-tablet: 24px;
+
   /* ============================================================
      SEMANTIC — LIGHT
      ============================================================ */
