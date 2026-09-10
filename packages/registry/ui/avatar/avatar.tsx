@@ -97,7 +97,7 @@ export function Avatar({
       aria-label={accessibleName}
       {...props}
     >
-      <span className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-full">
+      <span className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-full border border-border-default">
         {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
