@@ -26,6 +26,8 @@
   --color-bg-warning-subtle: var(--bg-warning-subtle);
   --color-bg-success-solid: var(--bg-success-solid);
   --color-bg-success-subtle: var(--bg-success-subtle);
+  --color-bg-info-solid: var(--bg-info-solid);
+  --color-bg-info-subtle: var(--bg-info-subtle);
 
   --color-brand: var(--bg-brand);
   --color-brand-hover: var(--bg-brand-hover);
@@ -42,6 +44,8 @@
   --color-fg-error: var(--fg-error);
   --color-fg-warning: var(--fg-warning);
   --color-fg-success: var(--fg-success);
+  --color-fg-info: var(--fg-info);
+  --color-fg-on-info: var(--fg-on-info);
 
   --color-border-default: var(--border-default);
   --color-border-strong: var(--border-strong);
@@ -49,6 +53,7 @@
   --color-border-error: var(--border-error);
   --color-border-warning: var(--border-warning);
   --color-border-success: var(--border-success);
+  --color-border-info: var(--border-info);
   --color-focus-ring: var(--focus-ring);
 
   --color-error: var(--error-600);

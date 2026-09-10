@@ -8,7 +8,7 @@ import { cn } from "../../lib/cn";
 const accentVariants = cva("w-1 shrink-0 self-stretch", {
   variants: {
     variant: {
-      info: "bg-bg-brand-solid",
+      info: "bg-bg-info-solid",
       success: "bg-bg-success-solid",
       warning: "bg-bg-warning-solid",
       error: "bg-bg-error-solid",

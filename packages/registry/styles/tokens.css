@@ -135,6 +135,12 @@
   --bg-warning-subtle: var(--warning-50);
   --bg-success-solid: var(--success-600);
   --bg-success-subtle: var(--success-50);
+  /* info has no dedicated primitive ramp in Figma — its Status Colors swatches
+     (fg/info, bg/info, border/info) resolve to the exact same hex values as
+     brand/500 and brand/50, so info intentionally aliases the brand ramp
+     rather than getting its own. See SYNC_LOG.md OPEN QUESTIONS. */
+  --bg-info-solid: var(--brand-600);
+  --bg-info-subtle: var(--brand-50);
 
   /* short aliases (landing / legacy utilities) */
   --bg-brand: var(--bg-brand-solid);
@@ -152,6 +158,8 @@
   --fg-error: var(--error-600);
   --fg-warning: var(--warning-600);
   --fg-success: var(--success-600);
+  --fg-info: var(--brand-600);
+  --fg-on-info: var(--base-white);
 
   --border-default: var(--gray-200);
   --border-strong: var(--gray-300);
@@ -159,6 +167,7 @@
   --border-error: var(--error-600);
   --border-warning: var(--warning-600);
   --border-success: var(--success-600);
+  --border-info: var(--brand-600);
 
   --focus-ring: var(--brand-500);
 
@@ -212,6 +221,8 @@
   --bg-warning-subtle: var(--warning-950);
   --bg-success-solid: var(--success-600);
   --bg-success-subtle: var(--success-950);
+  --bg-info-solid: var(--brand-600);
+  --bg-info-subtle: var(--brand-950);
 
   --bg-brand: var(--bg-brand-solid);
   --bg-brand-hover: var(--bg-brand-solid-hover);
@@ -228,6 +239,8 @@
   --fg-error: var(--error-400);
   --fg-warning: var(--warning-400);
   --fg-success: var(--success-400);
+  --fg-info: var(--brand-400);
+  --fg-on-info: var(--base-white);
 
   --border-default: var(--gray-800);
   --border-strong: var(--gray-700);
@@ -235,6 +248,7 @@
   --border-error: var(--error-400);
   --border-warning: var(--warning-400);
   --border-success: var(--success-400);
+  --border-info: var(--brand-400);
 
   --focus-ring: var(--brand-400);
 }

@@ -8,7 +8,7 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        info: "border-border-brand bg-bg-brand-subtle text-fg-brand",
+        info: "border-border-info bg-bg-info-subtle text-fg-info",
         success: "border-border-success bg-bg-success-subtle text-fg-success",
         warning: "border-border-warning bg-bg-warning-subtle text-fg-warning",
         error: "border-border-error bg-bg-error-subtle text-fg-error",
