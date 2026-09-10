@@ -4,7 +4,11 @@ Autonomous overnight sync of `packages/registry` against the Figma source of tru
 
 _Summary block will be filled in at the top of this file once the final pass completes._
 
-**⚠️ One item needs your decision before anything else in this log matters: see the 🔴 PRIORITY entry at the top of OPEN QUESTIONS below (a locked brand color vs. what Figma currently shows). Everything built tonight uses the current, locked color — nothing is blocked on this, but color tokens won't be touched again until you decide.**
+**⚠️ Two items need your decision before anything else in this log fully matters — both marked 🔴 in OPEN QUESTIONS below:**
+1. **Brand/Gray/Success primitives** — Figma currently shows different values than the locked brand identity (a change was made, then reverted).
+2. **Radius usage guidelines** — Figma's "Foundations / Radius" frame currently shows the exact buttons/inputs→md, modals→xl mapping that was deliberately corrected away from on 2026-08-23 (to sm/lg). Either Figma drifted back, or that correction misread the frame at the time.
+
+Both are "Figma currently disagrees with a value CLAUDE.md documents as deliberately locked/corrected" situations — nothing tonight was built against the disputed values in either case (color tokens stayed on the locked palette; no component radius classes were touched), so nothing is blocked, but neither will be touched again autonomously until you decide which side is right.
 
 ## Noted for later (not tonight)
 
