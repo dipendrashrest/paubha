@@ -64,6 +64,8 @@ Both are "Figma currently disagrees with a value CLAUDE.md documents as delibera
 
 ## Phase 2 — Components
 
+- **Icon: sizing conventions confirmed, no wrapper component built (see rationale) — no commit.** Task explicitly warned against building a `name`-prop Icon wrapper unprompted (would mean refactoring every existing `lucide-react` consumer). No dedicated "Icon" component or a standalone "Foundations / Icon sizing" frame was found in Figma (consistent with every prior unit's finding that this file's Icons foundation, per CLAUDE.md's status line, lives as symbol-level sizing baked into each component's own spec, not a separate sizing-convention page). Instead, spot-checked the sizing convention already recorded in this repo's own build history (`BUILD_LOG.md`) against the current code: Button's confirmed Figma spec is 16px icon at sm/md, 20px at lg/xl (`packages/registry/ui/button/button.tsx` — `iconSizeClassName = size === "lg" || size === "xl" ? "size-5" : "size-4"`, matches exactly); Input's confirmed Figma spec (re-pulled 2026-08-25, node `6198:22642`) is 16px at sm, 20px at md/lg/xl (`packages/registry/ui/input/input.tsx`'s `iconSizeClassName` record — `sm: "size-4", md/lg/xl: "size-5"`, matches exactly). Spot-checked two more for the same 16/20px convention: Alert's icon (no size variants, single `size-5`/20px, correct for a non-density component) and Breadcrumbs' separator chevron (`size-4`/16px, correct for a compact inline glyph). All four confirm the same underlying convention (16px for compact/inline icons, 20px for standard interactive-control icon slots) with zero drift. No code changes; no commit.
+
 ## Phase 3 — Application Patterns
 
 ## Phase 4 — Final Pass
