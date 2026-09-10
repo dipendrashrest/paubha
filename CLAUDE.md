@@ -17,9 +17,9 @@ Use these exactly — don't guess or reconstruct a repo URL from the package nam
 ## Brand identity — do not deviate without being told
 
 - **Name:** Paubha · **Tagline:** "Open-source components for React & Tailwind"
-- **Brand color:** true blue, `brand-600 = #2E4DD9`. Corrected 2026-09-11 — full ramp re-synced against Figma's current "Brand Palette" frame (Foundations / Colors, node 2066:14533 -> 6180:1277), which now generates the ramp from `brand/500 = #4469E5` as keystone; the prior 2026-08-22 correction to `#2450EA` (from an earlier indigo-leaning `#4658DE`) is superseded — see SYNC_LOG.md Phase 1 entry for verification detail.
+- **Brand color:** true blue, `brand-600 = #2450EA`. Corrected 2026-08-22 from an earlier indigo-leaning blue (`#4658DE`) that read too purple — see BUILD_LOG.md for the full before/after scale and contrast verification.
 - **Signature visual language** (what makes this NOT a generic Tailwind kit):
-  1. **Brand-tinted shadows** — shadows use `brand-900` (`#243380`) instead of black, low opacity
+  1. **Brand-tinted shadows** — shadows use `brand-900` (`#1E3485`) instead of black, low opacity
   2. **`glow-focus`** — signature focus ring: 4px spread, `brand-500` @ 24%, zero blur/offset. Every interactive component's focus state uses this. Not a hard 2px outline. This is non-negotiable — it's the whole point of the brand.
   3. **Squircle-leaning radius** — softer/larger than typical: 6/8/10/14/20px steps
   4. Role-based type naming: `ui-*`, `body-*`, `display-*` (not generic sm/md/lg for type)
@@ -28,29 +28,27 @@ Use these exactly — don't guess or reconstruct a repo URL from the package nam
 ## Design tokens — confirmed real values, do not invent or approximate
 
 ```css
-/* Brand — corrected 2026-09-11, see brand color note above */
---brand-50: #F0F4FE;  --brand-100: #DDE5FC; --brand-200: #C2D1F9;
---brand-300: #98B3F4; --brand-400: #678BEC; --brand-500: #4469E5;
---brand-600: #2E4DD9; --brand-700: #273EC7; --brand-800: #2535A2;
---brand-900: #243380; --brand-950: #1A2150;
+/* Brand */
+--brand-50: #EFF4FF;  --brand-100: #DBE5FE; --brand-200: #BFD0FE;
+--brand-300: #93B0FD; --brand-400: #6187F9; --brand-500: #3B63F5;
+--brand-600: #2450EA; --brand-700: #1C3FD1; --brand-800: #1E37A9;
+--brand-900: #1E3485; --brand-950: #172152;
 
-/* Gray — gray-200 and gray-800 corrected 2026-09-11 against Figma's
-   "Neutral Palette" frame; the other 9 steps already matched exactly. */
---gray-50: #F9FAFB;  --gray-100: #F2F4F7; --gray-200: #EAECF0;
+/* Gray */
+--gray-50: #F9FAFB;  --gray-100: #F2F4F7; --gray-200: #E4E7EC;
 --gray-300: #D0D5DD; --gray-400: #98A2B3; --gray-500: #667085;
---gray-600: #475467; --gray-700: #344054; --gray-800: #182230;
+--gray-600: #475467; --gray-700: #344054; --gray-800: #1D2939;
 --gray-900: #101828; --gray-950: #0C111D;
 
 /* Error */
 --error-50: #FEF3F2;  --error-600: #D92D20; --error-950: #55160C;
 /* Warning */
 --warning-50: #FFFAEB; --warning-600: #DC6803; --warning-950: #4E1D09;
-/* Success — success-600 corrected 2026-09-11 against Figma's "Success
-   Palette" frame; the other 10 steps already matched exactly. */
---success-50: #ECFDF3; --success-600: #058550; --success-950: #053321;
+/* Success */
+--success-50: #ECFDF3; --success-600: #079455; --success-950: #053321;
 ```
 
-Full 50–950 steps for error and warning do **not** currently exist in Figma "Foundations / Colors" as a primitive ramp (only Brand, Neutral/Gray, and Success have dedicated ramp frames there as of 2026-09-11) — the only Error/Warning color data in Figma is a single semantic "Status Colors" swatch each (fg/error, fg/warning), which doesn't map cleanly onto any specific ramp step and isn't treated as authoritative for the full scale. Until Figma publishes real Error/Warning primitive ramps, treat the `error-*`/`warning-*` steps above (beyond 50/600/950) as unverified holdovers — pull exact intermediate values from Figma via the MCP connection once a ramp frame exists, and see SYNC_LOG.md OPEN QUESTIONS. **Never approximate a hex value. If it's not confirmed, stop and ask rather than guessing.**
+Full 50–950 steps for error/warning/success exist in Figma "Foundations / Colors" — pull exact intermediate values from there via the Figma MCP connection before hardcoding a step not listed above. **Never approximate a hex value. If it's not confirmed, stop and ask rather than guessing.**
 
 **Semantic tokens (components use ONLY these, never primitives directly):**
 `bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-preview`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-brand`, `fg-error`, `fg-warning`, `fg-success`, `border-default`, `border-strong`, `border-brand`, `border-error`, `border-warning`, `border-success`, `focus-ring`.
