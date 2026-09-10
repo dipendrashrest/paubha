@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { InputProps } from "@asteria-ui/registry/ui/input";
+import type { InputProps } from "@paubha/registry/ui/input";
 import { PropsTable } from "../_shared/props-table";
 
 const inputProps = definePropDefs<InputProps>()([

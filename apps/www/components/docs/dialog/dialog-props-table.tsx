@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { DialogActionProps, DialogContentProps } from "@asteria-ui/registry/ui/dialog";
+import type { DialogActionProps, DialogContentProps } from "@paubha/registry/ui/dialog";
 import { PropsTable } from "../_shared/props-table";
 
 const dialogProps = definePropDefs<{

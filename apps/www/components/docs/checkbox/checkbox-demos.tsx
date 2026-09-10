@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox } from "@asteria-ui/registry/ui/checkbox";
+import { Checkbox } from "@paubha/registry/ui/checkbox";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function CheckboxHero() {

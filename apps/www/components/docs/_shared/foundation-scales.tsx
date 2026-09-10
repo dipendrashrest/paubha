@@ -168,7 +168,7 @@ export function TypeScale() {
             </p>
             <p>{row.weight}</p>
           </div>
-          <p className={`${row.className} truncate text-fg-primary`}>Asteria UI</p>
+          <p className={`${row.className} truncate text-fg-primary`}>Paubha</p>
         </div>
       ))}
     </div>

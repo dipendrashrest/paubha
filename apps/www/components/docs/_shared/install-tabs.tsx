@@ -5,7 +5,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@asteria-ui/registry/ui/tabs";
+} from "@paubha/registry/ui/tabs";
 
 export function InstallTabs({
   name,
@@ -22,7 +22,7 @@ export function InstallTabs({
       </TabsList>
       <TabsContent value="cli" className="mt-3">
         <pre className="overflow-x-auto rounded-lg border border-border-default bg-bg-secondary p-4 font-mono text-ui-sm text-fg-primary">
-          <code>{`npx asteria-ui add ${name}`}</code>
+          <code>{`npx paubha add ${name}`}</code>
         </pre>
       </TabsContent>
       <TabsContent value="manual" className="mt-3">

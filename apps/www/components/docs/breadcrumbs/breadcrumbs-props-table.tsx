@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { BreadcrumbItemProps } from "@asteria-ui/registry/ui/breadcrumbs";
+import type { BreadcrumbItemProps } from "@paubha/registry/ui/breadcrumbs";
 import { PropsTable } from "../_shared/props-table";
 
 const breadcrumbItemProps = definePropDefs<BreadcrumbItemProps>()([

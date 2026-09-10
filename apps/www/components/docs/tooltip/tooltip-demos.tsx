@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@asteria-ui/registry/ui/tooltip";
+} from "@paubha/registry/ui/tooltip";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function TooltipHero() {

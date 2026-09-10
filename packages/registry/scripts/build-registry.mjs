@@ -91,7 +91,7 @@ const stylesPayload = {
   name: "styles",
   type: "registry:style",
   title: "Styles",
-  description: "Asteria UI design tokens and Tailwind v4 theme mapping.",
+  description: "Paubha design tokens and Tailwind v4 theme mapping.",
   files: [
     {
       path: "styles/tokens.css",

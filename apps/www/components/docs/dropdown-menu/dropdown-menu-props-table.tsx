@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { DropdownMenuItemProps } from "@asteria-ui/registry/ui/dropdown-menu";
+import type { DropdownMenuItemProps } from "@paubha/registry/ui/dropdown-menu";
 import { PropsTable } from "../_shared/props-table";
 
 const dropdownMenuItemProps = definePropDefs<DropdownMenuItemProps>()([

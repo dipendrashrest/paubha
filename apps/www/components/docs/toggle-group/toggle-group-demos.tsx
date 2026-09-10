@@ -1,6 +1,6 @@
 "use client";
 
-import { ToggleGroup, ToggleGroupItem } from "@asteria-ui/registry/ui/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "@paubha/registry/ui/toggle-group";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ToggleGroupHero() {

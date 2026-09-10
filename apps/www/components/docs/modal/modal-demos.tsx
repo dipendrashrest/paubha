@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import {
   Modal,
   ModalBody,
@@ -11,7 +11,7 @@ import {
   ModalHeader,
   ModalTitle,
   ModalTrigger,
-} from "@asteria-ui/registry/ui/modal";
+} from "@paubha/registry/ui/modal";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ModalHero() {

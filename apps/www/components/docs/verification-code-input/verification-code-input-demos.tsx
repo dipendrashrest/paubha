@@ -1,6 +1,6 @@
 "use client";
 
-import { VerificationCodeInput } from "@asteria-ui/registry/ui/verification-code-input";
+import { VerificationCodeInput } from "@paubha/registry/ui/verification-code-input";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function VerificationCodeInputHero() {

@@ -5,7 +5,7 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  transpilePackages: ["@asteria-ui/registry"],
+  transpilePackages: ["@paubha/registry"],
 };
 
 export default withMDX(config);

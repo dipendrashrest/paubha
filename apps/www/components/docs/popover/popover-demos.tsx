@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import {
   Popover,
   PopoverClose,
@@ -8,7 +8,7 @@ import {
   PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
-} from "@asteria-ui/registry/ui/popover";
+} from "@paubha/registry/ui/popover";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function PopoverHero() {

@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ProgressCircleProps } from "@asteria-ui/registry/ui/progress-circle";
+import type { ProgressCircleProps } from "@paubha/registry/ui/progress-circle";
 import { PropsTable } from "../_shared/props-table";
 
 const progressCircleProps = definePropDefs<ProgressCircleProps>()([

@@ -1,6 +1,6 @@
 "use client";
 
-import { BreadcrumbItem, Breadcrumbs } from "@asteria-ui/registry/ui/breadcrumbs";
+import { BreadcrumbItem, Breadcrumbs } from "@paubha/registry/ui/breadcrumbs";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function BreadcrumbsHero() {

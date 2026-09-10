@@ -1,6 +1,6 @@
 "use client";
 
-import { Switch } from "@asteria-ui/registry/ui/switch";
+import { Switch } from "@paubha/registry/ui/switch";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function SwitchHero() {

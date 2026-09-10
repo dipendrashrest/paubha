@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@asteria-ui/registry/ui/card";
+import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@paubha/registry/ui/card";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function CardHero() {

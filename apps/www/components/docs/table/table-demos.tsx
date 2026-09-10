@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@asteria-ui/registry/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@paubha/registry/ui/table";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const rows = [

@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@asteria-ui/registry/ui/tabs";
+} from "@paubha/registry/ui/tabs";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 

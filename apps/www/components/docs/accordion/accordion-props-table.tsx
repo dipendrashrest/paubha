@@ -3,7 +3,7 @@ import type {
   AccordionContentProps,
   AccordionItemProps,
   AccordionTriggerProps,
-} from "@asteria-ui/registry/ui/accordion";
+} from "@paubha/registry/ui/accordion";
 import { PropsTable } from "../_shared/props-table";
 
 const accordionProps = definePropDefs<{

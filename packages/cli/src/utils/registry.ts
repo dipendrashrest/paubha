@@ -38,12 +38,12 @@ export interface ResolvedComponents {
   dependencies: string[];
 }
 
-export const DEFAULT_REGISTRY_URL = "https://asteria-ui.vercel.app/r";
+export const DEFAULT_REGISTRY_URL = "https://paubha.vercel.app/r";
 
 /** Resolves the registry base URL (no trailing slash). Env overrides config. */
 export function getRegistryBase(configured?: string): string {
   const raw =
-    process.env.ASTERIA_REGISTRY_URL?.trim() ||
+    process.env.PAUBHA_REGISTRY_URL?.trim() ||
     configured?.trim() ||
     DEFAULT_REGISTRY_URL;
   return raw.replace(/\/$/, "");

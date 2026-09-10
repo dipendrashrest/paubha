@@ -20,7 +20,7 @@ importers:
 
   apps/www:
     dependencies:
-      '@asteria-ui/registry':
+      '@paubha/registry':
         specifier: workspace:*
         version: link:../../packages/registry
       class-variance-authority:
@@ -85,7 +85,7 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0
     devDependencies:
-      '@asteria-ui/registry':
+      '@paubha/registry':
         specifier: workspace:*
         version: link:../registry
       '@types/node':

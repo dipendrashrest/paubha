@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@asteria-ui/registry/ui/select";
+} from "@paubha/registry/ui/select";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const sizes = ["sm", "md", "lg", "xl"] as const;

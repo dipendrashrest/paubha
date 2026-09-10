@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { DEFAULT_REGISTRY_URL } from "./registry.js";
 
-export interface AsteriaConfig {
+export interface PaubhaConfig {
   $schema: string;
   registry: string;
   aliases: {
@@ -17,8 +17,8 @@ export interface AsteriaConfig {
 
 export const CONFIG_FILE = "components.json";
 
-export const DEFAULT_CONFIG: AsteriaConfig = {
-  $schema: "https://asteria-ui.vercel.app/schema.json",
+export const DEFAULT_CONFIG: PaubhaConfig = {
+  $schema: "https://paubha.vercel.app/schema.json",
   registry: DEFAULT_REGISTRY_URL,
   aliases: {
     components: "components/ui",
@@ -34,12 +34,12 @@ export function configPath(cwd: string): string {
   return join(cwd, CONFIG_FILE);
 }
 
-export function readConfig(cwd: string): AsteriaConfig | null {
+export function readConfig(cwd: string): PaubhaConfig | null {
   const path = configPath(cwd);
   if (!existsSync(path)) return null;
   const parsed = JSON.parse(
     readFileSync(path, "utf8"),
-  ) as Partial<AsteriaConfig>;
+  ) as Partial<PaubhaConfig>;
   return {
     ...DEFAULT_CONFIG,
     ...parsed,
@@ -48,6 +48,6 @@ export function readConfig(cwd: string): AsteriaConfig | null {
   };
 }
 
-export function writeConfig(cwd: string, config: AsteriaConfig): void {
+export function writeConfig(cwd: string, config: PaubhaConfig): void {
   writeFileSync(configPath(cwd), `${JSON.stringify(config, null, 2)}\n`);
 }

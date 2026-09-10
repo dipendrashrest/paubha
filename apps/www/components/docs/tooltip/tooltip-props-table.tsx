@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { TooltipContentProps } from "@asteria-ui/registry/ui/tooltip";
+import type { TooltipContentProps } from "@paubha/registry/ui/tooltip";
 import { PropsTable } from "../_shared/props-table";
 
 const tooltipContentProps = definePropDefs<TooltipContentProps>()([

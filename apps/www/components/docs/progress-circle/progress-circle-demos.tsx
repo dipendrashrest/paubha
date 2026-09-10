@@ -1,6 +1,6 @@
 "use client";
 
-import { ProgressCircle } from "@asteria-ui/registry/ui/progress-circle";
+import { ProgressCircle } from "@paubha/registry/ui/progress-circle";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ProgressCircleHero() {

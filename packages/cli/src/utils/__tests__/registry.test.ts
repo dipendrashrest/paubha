@@ -24,7 +24,7 @@ const REGISTRY_DIR = join(
 
 describe("registry", () => {
   beforeAll(() => {
-    process.env.ASTERIA_REGISTRY_URL = REGISTRY_DIR;
+    process.env.PAUBHA_REGISTRY_URL = REGISTRY_DIR;
   });
 
   it("lists every registry item by name", async () => {

@@ -1,5 +1,5 @@
 /*
- * Asteria UI — Tailwind v4 theme (CSS-first, no tailwind.config.js)
+ * Paubha — Tailwind v4 theme (CSS-first, no tailwind.config.js)
  * Maps semantic tokens -> Tailwind utilities. `@theme inline` makes
  * utilities reference the runtime CSS variable, so light/dark theming
  * works without recompiling.

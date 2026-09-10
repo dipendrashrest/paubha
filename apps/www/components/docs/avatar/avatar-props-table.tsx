@@ -4,7 +4,7 @@ import type {
   AvatarGroupProps,
   AvatarLabelGroupProps,
   AvatarProps,
-} from "@asteria-ui/registry/ui/avatar";
+} from "@paubha/registry/ui/avatar";
 import { PropsTable } from "../_shared/props-table";
 
 const avatarProps = definePropDefs<AvatarProps>()([

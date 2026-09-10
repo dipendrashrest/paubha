@@ -1,4 +1,4 @@
-# Asteria UI — Autonomous Build Status
+# Paubha — Autonomous Build Status
 
 Read this file first on every resume. It is the single source of truth for
 where the overnight queue stands. Update it after every component (see
@@ -803,7 +803,7 @@ prompting.
   current `packages/registry` source + `registry.json` + token CSS into
   a gitignored `src/generated/templates.ts`, regenerated via `pnpm run
   sync` (wired as a prerequisite of both `build` and `test`). The CLI
-  needs no live registry endpoint to work — `asteria-ui.com/r/[name].json`
+  needs no live registry endpoint to work — `paubha.com/r/[name].json`
   from the pre-existing docs page isn't real yet, so this is what makes
   `add` actually functional today rather than a stub.
 - **Verified end-to-end**, not just unit-tested: ran the real built
@@ -901,7 +901,7 @@ gaps — two of the six items turned out to already work out of the box:
   including all docs pages) and did **not** re-attempt the dynamic
   per-page version — logging this as a real, verified tooling limitation
   rather than quietly downgrading scope. Also set `metadataBase` on the
-  root layout's metadata (`https://asteria-ui.com`, matching the domain
+  root layout's metadata (`https://paubha.com`, matching the domain
   already assumed elsewhere in the repo, e.g. `packages/cli`'s
   `components.json` schema URL) since OG image resolution needs an
   absolute base and Next was warning about its absence.

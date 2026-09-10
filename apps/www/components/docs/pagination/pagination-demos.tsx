@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@asteria-ui/registry/ui/pagination";
+} from "@paubha/registry/ui/pagination";
 import * as React from "react";
 import { ComponentPlayground } from "../_shared/component-playground";
 

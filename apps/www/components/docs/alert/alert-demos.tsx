@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert } from "@asteria-ui/registry/ui/alert";
+import { Alert } from "@paubha/registry/ui/alert";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const variants = ["info", "success", "warning", "error"] as const;

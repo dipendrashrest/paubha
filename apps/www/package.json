@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@asteria-ui/registry": "workspace:*",
+    "@paubha/registry": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fumadocs-core": "^15.0.0",

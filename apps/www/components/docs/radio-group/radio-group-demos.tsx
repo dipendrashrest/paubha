@@ -1,6 +1,6 @@
 "use client";
 
-import { RadioGroup, RadioGroupItem } from "@asteria-ui/registry/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@paubha/registry/ui/radio-group";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function RadioGroupHero() {

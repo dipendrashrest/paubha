@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { DividerProps } from "@asteria-ui/registry/ui/divider";
+import type { DividerProps } from "@paubha/registry/ui/divider";
 import { PropsTable } from "../_shared/props-table";
 
 const dividerProps = definePropDefs<DividerProps>()([

@@ -1,6 +1,6 @@
 "use client";
 
-import { Spinner } from "@asteria-ui/registry/ui/spinner";
+import { Spinner } from "@paubha/registry/ui/spinner";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const sizes = ["sm", "md", "lg"] as const;

@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ToastOptions, ToastProps } from "@asteria-ui/registry/ui/toast";
+import type { ToastOptions, ToastProps } from "@paubha/registry/ui/toast";
 import { PropsTable } from "../_shared/props-table";
 
 const toastProps = definePropDefs<ToastProps>()([

@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { SliderProps } from "@asteria-ui/registry/ui/slider";
+import type { SliderProps } from "@paubha/registry/ui/slider";
 import { PropsTable } from "../_shared/props-table";
 
 const sliderProps = definePropDefs<SliderProps>()([

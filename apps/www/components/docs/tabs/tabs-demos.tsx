@@ -1,6 +1,6 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@asteria-ui/registry/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@paubha/registry/ui/tabs";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function TabsHero() {

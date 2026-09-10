@@ -8,7 +8,7 @@ describe("config", () => {
   let dir: string;
 
   beforeEach(() => {
-    dir = mkdtempSync(join(tmpdir(), "asteria-cli-config-test-"));
+    dir = mkdtempSync(join(tmpdir(), "paubha-cli-config-test-"));
   });
 
   afterEach(() => {

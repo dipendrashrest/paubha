@@ -1,22 +1,22 @@
 {
-  "name": "asteria-ui",
+  "name": "paubha",
   "version": "0.1.0",
   "private": false,
-  "description": "CLI for Asteria UI — a shadcn-style copy-paste registry of React + Tailwind components.",
+  "description": "CLI for Paubha — a shadcn-style copy-paste registry of React + Tailwind components.",
   "keywords": ["react", "tailwind", "ui", "components", "cli", "design-system", "shadcn"],
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dipendra0514/asteria-ui.git",
+    "url": "git+https://github.com/dipendra0514/paubha.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://asteria-ui.vercel.app",
+  "homepage": "https://paubha.vercel.app",
   "bugs": {
-    "url": "https://github.com/dipendra0514/asteria-ui/issues"
+    "url": "https://github.com/dipendra0514/paubha/issues"
   },
   "bin": {
-    "asteria-ui": "./dist/index.js"
+    "paubha": "./dist/index.js"
   },
   "files": ["dist", "README.md"],
   "scripts": {
@@ -28,7 +28,7 @@
     "commander": "^15.0.0"
   },
   "devDependencies": {
-    "@asteria-ui/registry": "workspace:*",
+    "@paubha/registry": "workspace:*",
     "@types/node": "^22.10.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.0",

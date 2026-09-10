@@ -8,7 +8,7 @@ describe("writeFileSafe", () => {
   let dir: string;
 
   beforeEach(() => {
-    dir = mkdtempSync(join(tmpdir(), "asteria-cli-test-"));
+    dir = mkdtempSync(join(tmpdir(), "paubha-cli-test-"));
   });
 
   afterEach(() => {

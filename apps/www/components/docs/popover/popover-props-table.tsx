@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { PopoverContentProps } from "@asteria-ui/registry/ui/popover";
+import type { PopoverContentProps } from "@paubha/registry/ui/popover";
 import { PropsTable } from "../_shared/props-table";
 
 const contentProps = definePropDefs<PopoverContentProps>()([

@@ -1,4 +1,4 @@
-# Asteria UI
+# Paubha
 
 Open-source components for React & Tailwind.
 
@@ -6,7 +6,7 @@ Open-source components for React & Tailwind.
 
 - `apps/www` — docs site + landing (Next.js + Fumadocs). Serves the public registry at `/r/*.json`.
 - `packages/registry` — component source of truth (`ui/{name}/{name}.tsx`, `lib/`, `styles/`), `registry.json`, and the `build` script that emits `apps/www/public/r/*.json`.
-- `packages/cli` — `npx asteria-ui init|add`. Fetches components from the registry URL (default `https://asteria-ui.com/r`).
+- `packages/cli` — `npx paubha init|add`. Fetches components from the registry URL (default `https://paubha.com/r`).
 
 ## Getting started
 
@@ -21,14 +21,14 @@ Docs at http://localhost:3000/docs (or the next free port).
 ## CLI
 
 ```bash
-npx asteria-ui init
-npx asteria-ui add button
+npx paubha init
+npx paubha add button
 
 # Point at a local docs server during development:
-ASTERIA_REGISTRY_URL=http://localhost:3000/r npx asteria-ui add button
+PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha add button
 ```
 
-`components.json` includes a `registry` field (default `https://asteria-ui.com/r`).
+`components.json` includes a `registry` field (default `https://paubha.com/r`).
 
 ## Notes
 

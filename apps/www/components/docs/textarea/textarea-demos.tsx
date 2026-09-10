@@ -1,6 +1,6 @@
 "use client";
 
-import { Textarea } from "@asteria-ui/registry/ui/textarea";
+import { Textarea } from "@paubha/registry/ui/textarea";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function TextareaHero() {

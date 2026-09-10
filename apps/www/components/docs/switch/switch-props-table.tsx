@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { SwitchProps } from "@asteria-ui/registry/ui/switch";
+import type { SwitchProps } from "@paubha/registry/ui/switch";
 import { PropsTable } from "../_shared/props-table";
 
 const switchProps = definePropDefs<SwitchProps>()([

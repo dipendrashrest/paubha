@@ -8,7 +8,7 @@ describe("detectPackageManager", () => {
   let dir: string;
 
   beforeEach(() => {
-    dir = mkdtempSync(join(tmpdir(), "asteria-cli-pm-test-"));
+    dir = mkdtempSync(join(tmpdir(), "paubha-cli-pm-test-"));
   });
 
   afterEach(() => {

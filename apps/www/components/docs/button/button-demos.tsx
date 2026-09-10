@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import { Plus } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 

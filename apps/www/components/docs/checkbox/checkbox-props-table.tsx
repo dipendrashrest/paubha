@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { CheckboxProps } from "@asteria-ui/registry/ui/checkbox";
+import type { CheckboxProps } from "@paubha/registry/ui/checkbox";
 import { PropsTable } from "../_shared/props-table";
 
 const checkboxProps = definePropDefs<CheckboxProps>()([

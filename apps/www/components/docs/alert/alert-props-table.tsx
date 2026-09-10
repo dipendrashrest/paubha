@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { AlertProps } from "@asteria-ui/registry/ui/alert";
+import type { AlertProps } from "@paubha/registry/ui/alert";
 import { PropsTable } from "../_shared/props-table";
 
 const alertProps = definePropDefs<AlertProps>()([

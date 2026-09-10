@@ -10,8 +10,8 @@ import {
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@asteria-ui/registry/ui/dialog";
-import { Button } from "@asteria-ui/registry/ui/button";
+} from "@paubha/registry/ui/dialog";
+import { Button } from "@paubha/registry/ui/button";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function DialogHero() {

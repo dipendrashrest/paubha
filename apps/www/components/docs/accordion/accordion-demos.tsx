@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@asteria-ui/registry/ui/accordion";
+} from "@paubha/registry/ui/accordion";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function AccordionHero() {

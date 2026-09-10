@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { VerificationCodeInputProps } from "@asteria-ui/registry/ui/verification-code-input";
+import type { VerificationCodeInputProps } from "@paubha/registry/ui/verification-code-input";
 import { PropsTable } from "../_shared/props-table";
 
 const verificationCodeInputProps = definePropDefs<VerificationCodeInputProps>()([

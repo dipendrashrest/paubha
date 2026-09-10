@@ -1,10 +1,10 @@
 {
-  "name": "asteria-ui-monorepo",
+  "name": "paubha-monorepo",
   "private": true,
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "build:registry": "pnpm --filter @asteria-ui/registry build",
+    "build:registry": "pnpm --filter @paubha/registry build",
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check .",

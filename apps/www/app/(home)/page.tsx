@@ -1,5 +1,5 @@
-import { Badge } from "@asteria-ui/registry/ui/badge";
-import { buttonVariants } from "@asteria-ui/registry/ui/button";
+import { Badge } from "@paubha/registry/ui/badge";
+import { buttonVariants } from "@paubha/registry/ui/button";
 import Link from "next/link";
 
 /**
@@ -36,13 +36,13 @@ export default function HomePage() {
         </Link>
         {/* Command block — the glow-focus shadow doubles as the hero accent */}
         <code className="rounded-md border border-border-default bg-bg-secondary px-5 py-2.5 font-mono text-ui-sm text-fg-primary shadow-[var(--shadow-glow-focus)]">
-          npx asteria-ui init
+          npx paubha init
         </code>
       </div>
 
       <p className="mt-16 text-ui-xs text-fg-tertiary">
-        Asteria UI — Open-source components for React &amp; Tailwind ·
-        ©&nbsp;2026 Asteria UI
+        Paubha — Open-source components for React &amp; Tailwind ·
+        ©&nbsp;2026 Paubha
       </p>
     </main>
   );

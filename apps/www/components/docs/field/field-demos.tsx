@@ -1,8 +1,8 @@
 "use client";
 
-import { Field } from "@asteria-ui/registry/ui/field";
-import { Input } from "@asteria-ui/registry/ui/input";
-import { Textarea } from "@asteria-ui/registry/ui/textarea";
+import { Field } from "@paubha/registry/ui/field";
+import { Input } from "@paubha/registry/ui/input";
+import { Textarea } from "@paubha/registry/ui/textarea";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function FieldHero() {

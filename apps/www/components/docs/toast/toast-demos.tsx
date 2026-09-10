@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
-import { Toast, ToastProvider, useToast } from "@asteria-ui/registry/ui/toast";
+import { Button } from "@paubha/registry/ui/button";
+import { Toast, ToastProvider, useToast } from "@paubha/registry/ui/toast";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const variants = ["info", "success", "warning", "error"] as const;

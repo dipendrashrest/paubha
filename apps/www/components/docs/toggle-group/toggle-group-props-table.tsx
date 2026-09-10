@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ToggleGroupItemProps, ToggleGroupProps } from "@asteria-ui/registry/ui/toggle-group";
+import type { ToggleGroupItemProps, ToggleGroupProps } from "@paubha/registry/ui/toggle-group";
 import { PropsTable } from "../_shared/props-table";
 
 const toggleGroupProps = definePropDefs<ToggleGroupProps>()([

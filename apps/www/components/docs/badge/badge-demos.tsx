@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge } from "@asteria-ui/registry/ui/badge";
+import { Badge } from "@paubha/registry/ui/badge";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const variants = ["gray", "brand", "success", "warning", "error"] as const;

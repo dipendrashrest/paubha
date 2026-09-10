@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { SelectTriggerProps } from "@asteria-ui/registry/ui/select";
+import type { SelectTriggerProps } from "@paubha/registry/ui/select";
 import { PropsTable } from "../_shared/props-table";
 
 const selectTriggerProps = definePropDefs<SelectTriggerProps>()([

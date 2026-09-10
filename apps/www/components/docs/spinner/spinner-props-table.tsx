@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { SpinnerProps } from "@asteria-ui/registry/ui/spinner";
+import type { SpinnerProps } from "@paubha/registry/ui/spinner";
 import { PropsTable } from "../_shared/props-table";
 
 const spinnerProps = definePropDefs<SpinnerProps>()([

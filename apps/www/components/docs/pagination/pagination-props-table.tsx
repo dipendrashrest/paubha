@@ -2,7 +2,7 @@ import { definePropDefs } from "@/lib/prop-defs";
 import type {
   PaginationContentProps,
   PaginationLinkProps,
-} from "@asteria-ui/registry/ui/pagination";
+} from "@paubha/registry/ui/pagination";
 import { PropsTable } from "../_shared/props-table";
 
 const contentProps = definePropDefs<PaginationContentProps>()([

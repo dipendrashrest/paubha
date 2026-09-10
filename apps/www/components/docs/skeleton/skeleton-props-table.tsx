@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { SkeletonProps } from "@asteria-ui/registry/ui/skeleton";
+import type { SkeletonProps } from "@paubha/registry/ui/skeleton";
 import { PropsTable } from "../_shared/props-table";
 
 const skeletonProps = definePropDefs<SkeletonProps>()([

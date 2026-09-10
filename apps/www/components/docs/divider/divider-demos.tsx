@@ -1,6 +1,6 @@
 "use client";
 
-import { Divider } from "@asteria-ui/registry/ui/divider";
+import { Divider } from "@paubha/registry/ui/divider";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function DividerHero() {

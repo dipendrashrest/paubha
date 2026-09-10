@@ -4,17 +4,17 @@ description: init, add, and how the registry works.
 ---
 
 The CLI fetches component JSON from the registry URL and copies source into your
-project. Default registry: `https://asteria-ui.com/r`.
+project. Default registry: `https://paubha.com/r`.
 
 ## Commands
 
 ```bash
-npx asteria-ui init            # write tokens, theme mapping, cn(), install deps
-npx asteria-ui add button      # copy one or more components into your project
-npx asteria-ui add button modal tabs
+npx paubha init            # write tokens, theme mapping, cn(), install deps
+npx paubha add button      # copy one or more components into your project
+npx paubha add button modal tabs
 
 # Local docs server during development:
-ASTERIA_REGISTRY_URL=http://localhost:3000/r npx asteria-ui add button
+PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha add button
 ```
 
 ### `init`
@@ -33,12 +33,12 @@ deps once.
 
 ## Registry
 
-Components are served as JSON from `asteria-ui.com/r/[name].json`, following the
+Components are served as JSON from `paubha.com/r/[name].json`, following the
 [shadcn registry schema](https://ui.shadcn.com/schema/registry.json). That means
-any shadcn-compatible tooling can consume Asteria components directly.
+any shadcn-compatible tooling can consume Paubha components directly.
 
 `components.json` includes a `registry` field (overridable with
-`ASTERIA_REGISTRY_URL`). Rebuild the hosted JSON after changing components:
+`PAUBHA_REGISTRY_URL`). Rebuild the hosted JSON after changing components:
 
 ```bash
 pnpm build:registry
@@ -49,8 +49,8 @@ pnpm build:registry
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "asteria-ui",
-  "homepage": "https://asteria-ui.com",
+  "name": "paubha",
+  "homepage": "https://paubha.com",
   "items": [
     {
       "name": "button",

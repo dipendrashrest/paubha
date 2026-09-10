@@ -6,10 +6,10 @@ import type { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL("https://docs.asteria-ui.com"),
+  metadataBase: new URL("https://docs.paubha.com"),
   title: {
-    template: "%s — Asteria UI",
-    default: "Asteria UI — Open-source components for React & Tailwind",
+    template: "%s — Paubha",
+    default: "Paubha — Open-source components for React & Tailwind",
   },
   description:
     "An open-source component library for React and Tailwind CSS, with a matching Figma design system.",

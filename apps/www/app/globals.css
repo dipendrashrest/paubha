@@ -7,7 +7,7 @@
 /* Registry components live outside the Next app; scan them so CVA classes emit. */
 @source "../../../packages/registry";
 
-/* Asteria accent for Fumadocs' active-nav/TOC/primary accents. Fumadocs only
+/* Paubha accent for Fumadocs' active-nav/TOC/primary accents. Fumadocs only
    ever uses --color-fd-primary as text color or a 1px accent line (sidebar
    active item, TOC active item + thumb, RootToggle check) — never as a large
    solid fill — so this mirrors our own fg-brand convention exactly:

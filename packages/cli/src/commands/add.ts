@@ -38,7 +38,7 @@ export async function runAdd(
 ): Promise<void> {
   const config = readConfig(cwd);
   if (!config) {
-    console.error("No components.json found. Run `npx asteria-ui init` first.");
+    console.error("No components.json found. Run `npx paubha init` first.");
     process.exitCode = 1;
     return;
   }

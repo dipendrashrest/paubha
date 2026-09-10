@@ -70,6 +70,6 @@ export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   });
 
   console.log(
-    "\nDone. Add your first component with:\n  npx asteria-ui add button",
+    "\nDone. Add your first component with:\n  npx paubha add button",
   );
 }

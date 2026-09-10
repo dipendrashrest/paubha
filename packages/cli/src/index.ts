@@ -15,8 +15,8 @@ async function runSafely(fn: () => void | Promise<void>): Promise<void> {
 const program = new Command();
 
 program
-  .name("asteria-ui")
-  .description("shadcn-style copy-paste CLI for Asteria UI")
+  .name("paubha")
+  .description("shadcn-style copy-paste CLI for Paubha")
   .version("0.0.0");
 
 program

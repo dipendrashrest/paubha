@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { BadgeProps } from "@asteria-ui/registry/ui/badge";
+import type { BadgeProps } from "@paubha/registry/ui/badge";
 import { PropsTable } from "../_shared/props-table";
 
 const badgeProps = definePropDefs<BadgeProps>()([

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProgressBar } from "@asteria-ui/registry/ui/progress-bar";
+import { ProgressBar } from "@paubha/registry/ui/progress-bar";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ProgressBarHero() {

@@ -1,4 +1,4 @@
-import { Badge } from "@asteria-ui/registry/ui/badge";
+import { Badge } from "@paubha/registry/ui/badge";
 
 export function NewBadge() {
   return (

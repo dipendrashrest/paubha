@@ -2,7 +2,7 @@ import { definePropDefs } from "@/lib/prop-defs";
 import type {
   RadioGroupItemProps,
   RadioGroupProps,
-} from "@asteria-ui/registry/ui/radio-group";
+} from "@paubha/registry/ui/radio-group";
 import { PropsTable } from "../_shared/props-table";
 
 const radioGroupProps = definePropDefs<RadioGroupProps>()([

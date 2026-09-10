@@ -3,7 +3,7 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: "✦ Asteria UI",
+    title: "✦ Paubha",
   },
   searchToggle: {
     components: {
@@ -20,7 +20,7 @@ export const baseOptions: BaseLayoutProps = {
     },
     {
       text: "GitHub",
-      url: "https://github.com/dipendra0514/asteria-ui",
+      url: "https://github.com/dipendra0514/paubha",
       external: true,
     },
   ],

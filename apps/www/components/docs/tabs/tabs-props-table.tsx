@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { TabsListProps } from "@asteria-ui/registry/ui/tabs";
+import type { TabsListProps } from "@paubha/registry/ui/tabs";
 import { PropsTable } from "../_shared/props-table";
 
 const tabsListProps = definePropDefs<TabsListProps>()([

@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { TagInputProps } from "@asteria-ui/registry/ui/tag-input";
+import type { TagInputProps } from "@paubha/registry/ui/tag-input";
 import { PropsTable } from "../_shared/props-table";
 
 const tagInputProps = definePropDefs<TagInputProps>()([

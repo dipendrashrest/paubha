@@ -1,4 +1,4 @@
-# Asteria UI — Build Log
+# Paubha — Build Log
 
 ## Phase 0 — Monorepo scaffold
 
@@ -31,7 +31,7 @@ implementations). This pass audited that state and filled the remaining gaps:
   tsconfig, placeholder `src/index.ts`). Full `init`/`add` command logic is
   Phase 3 — this pass only wires the build tooling per Phase 0's scope.
 - **Verified**: `pnpm install` resolves clean across all 4 workspace projects
-  (root, `www`, `@asteria-ui/registry`, `asteria-ui` CLI). `biome check .` passes
+  (root, `www`, `@paubha/registry`, `paubha` CLI). `biome check .` passes
   with zero errors. `turbo test` runs registry's Vitest correctly (currently
   exits 1 with "no test files found" — expected, since it fails until Phase 1
   adds real Button tests).
@@ -745,7 +745,7 @@ waiting for further direction.
 
 **Design decision: bundle the registry, don't fetch it.** The docs page
 (`apps/www/content/docs/cli.mdx`, pre-written in an earlier session)
-describes components being served from `asteria-ui.com/r/[name].json` —
+describes components being served from `paubha.com/r/[name].json` —
 but that domain isn't live, so a CLI that only fetches from it would be
 non-functional today. Instead, `packages/cli/scripts/sync-templates.mjs`
 embeds the current `packages/registry` source files, `registry.json`,
@@ -761,7 +761,7 @@ would just change where they source data from; the CLI's public behavior
 doesn't need to change.
 
 Built a small `components.json` config (shadcn's own pattern, scoped to
-what Asteria actually needs): `aliases.components`/`aliases.lib` for
+what Paubha actually needs): `aliases.components`/`aliases.lib` for
 where files land, `tailwind.tokens`/`tailwind.theme` for where the CSS
 goes. `init` creates it with defaults if absent, reuses it if present
 (satisfies the docs' "safe to re-run" requirement without needing an
@@ -877,7 +877,7 @@ caught while individual files were being written:**
    itself had ever imported them by package-subpath before. The first
    `pnpm run build` in `apps/www` failed on `Module not found: Package
    path ./ui/alert is not exported...` (and 4 others) the moment the new
-   demo files tried `import { Alert } from "@asteria-ui/registry/ui/alert"`.
+   demo files tried `import { Alert } from "@paubha/registry/ui/alert"`.
    Fixed by adding all 16 missing `./ui/*` entries plus
    `./lib/with-icon-size`, matching the same one-line-per-file pattern as
    the two that already existed.
@@ -986,9 +986,9 @@ deliberately walked back.** First pass added two files: a static root
    the same way Figma-gap decisions were logged earlier in this project
    — not silently downgraded without a trace.
 
-   Also set `metadataBase: new URL("https://asteria-ui.com")` on the
+   Also set `metadataBase: new URL("https://paubha.com")` on the
    root layout's metadata while here — Next was warning that OG/Twitter
-   image resolution needs an absolute base, and `asteria-ui.com` is
+   image resolution needs an absolute base, and `paubha.com` is
    already the assumed domain used elsewhere in this repo (the CLI's
    `components.json` `$schema` URL, the registry JSON install command
    shown in `installation.mdx`), so this isn't a new invented fact.
@@ -1290,7 +1290,7 @@ CSS to fight Fumadocs' generated utility classes.
   rather than assumed; no changes needed.
 
 **2d. Dogfooding — every interactive docs-site element now uses a real
-Asteria component, with gaps logged rather than worked around:**
+Paubha component, with gaps logged rather than worked around:**
 
 - `component-playground.tsx`: the hand-rolled `TabButton` pair
   (Preview/Code) is now the real `Tabs`/`TabsList` (pill)/`TabsTrigger`/

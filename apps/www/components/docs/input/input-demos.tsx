@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@asteria-ui/registry/ui/input";
+import { Input } from "@paubha/registry/ui/input";
 import { Mail, Search } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 

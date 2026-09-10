@@ -1,6 +1,6 @@
 "use client";
 
-import { Slider } from "@asteria-ui/registry/ui/slider";
+import { Slider } from "@paubha/registry/ui/slider";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function SliderHero() {

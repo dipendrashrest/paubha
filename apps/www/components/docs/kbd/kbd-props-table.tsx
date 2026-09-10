@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { KbdGroupProps, KbdProps } from "@asteria-ui/registry/ui/kbd";
+import type { KbdGroupProps, KbdProps } from "@paubha/registry/ui/kbd";
 import { PropsTable } from "../_shared/props-table";
 
 const kbdProps = definePropDefs<KbdProps>()([

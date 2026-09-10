@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ModalContentProps } from "@asteria-ui/registry/ui/modal";
+import type { ModalContentProps } from "@paubha/registry/ui/modal";
 import { PropsTable } from "../_shared/props-table";
 
 const modalContentProps = definePropDefs<ModalContentProps>()([

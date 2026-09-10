@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ButtonProps } from "@asteria-ui/registry/ui/button";
+import type { ButtonProps } from "@paubha/registry/ui/button";
 import { PropsTable } from "../_shared/props-table";
 
 const buttonProps = definePropDefs<ButtonProps>()([

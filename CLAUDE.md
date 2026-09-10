@@ -1,22 +1,22 @@
-# Asteria UI — CLAUDE.md
+# Paubha — CLAUDE.md
 
 This file is auto-loaded by Claude Code every session. Read it before doing any work in this repo.
 
 ## What this is
 
-**Asteria UI** — an open-source React + Tailwind component library, shadcn-style copy-paste distribution (not an npm-imported package). The full catalog ships free: 33 base components plus 27 application patterns (higher-level compositions built from the base components — activity feeds, tables, date pickers, calendars, dashboards, and more). Corrected 2026-08-25 — no paid tier; the earlier "free tier first (~28), paid tier later (complex patterns)" split was dropped. Design system lives in Figma; this repo is the code + docs site.
+**Paubha** — an open-source React + Tailwind component library, shadcn-style copy-paste distribution (not an npm-imported package). The full catalog ships free: 33 base components plus 27 application patterns (higher-level compositions built from the base components — activity feeds, tables, date pickers, calendars, dashboards, and more). Corrected 2026-08-25 — no paid tier; the earlier "free tier first (~28), paid tier later (complex patterns)" split was dropped. Design system lives in Figma; this repo is the code + docs site.
 
 ## Project links
 
-- **Repo:** https://github.com/dipendra0514/asteria-ui
-- **Issues:** https://github.com/dipendra0514/asteria-ui/issues
-- **Live site (docs + registry API):** https://asteria-ui.vercel.app
+- **Repo:** https://github.com/dipendra0514/paubha
+- **Issues:** https://github.com/dipendra0514/paubha/issues
+- **Live site (docs + registry API):** https://paubha.vercel.app
 
-Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-08-25 — no custom domain is owned yet, so `asteria-ui.com`/`docs.asteria-ui.com` (the earlier planned marketing/docs split) don't exist and don't resolve. Until a domain is bought, both the docs site and the `/r/[name].json` registry-JSON endpoints are served from the single Vercel deployment above (`packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` all point here). If a real domain is bought later, update all of those together — don't let them drift apart again.
+Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-08-25 — no custom domain is owned yet, so `paubha.com`/`docs.paubha.com` (the earlier planned marketing/docs split) don't exist and don't resolve. Until a domain is bought, both the docs site and the `/r/[name].json` registry-JSON endpoints are served from the single Vercel deployment above (`packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` all point here). If a real domain is bought later, update all of those together — don't let them drift apart again.
 
 ## Brand identity — do not deviate without being told
 
-- **Name:** Asteria UI · **Tagline:** "Open-source components for React & Tailwind"
+- **Name:** Paubha · **Tagline:** "Open-source components for React & Tailwind"
 - **Brand color:** true blue, `brand-600 = #2450EA`. Corrected 2026-08-22 from an earlier indigo-leaning blue (`#4658DE`) that read too purple — see BUILD_LOG.md for the full before/after scale and contrast verification.
 - **Signature visual language** (what makes this NOT a generic Tailwind kit):
   1. **Brand-tinted shadows** — shadows use `brand-900` (`#1E3485`) instead of black, low opacity
@@ -81,12 +81,12 @@ Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css`
 ## Repo structure (pnpm + Turborepo monorepo)
 
 ```
-asteria-ui/
+paubha/
 ├── apps/
 │   └── www/                 # docs site — Next.js + Fumadocs + MDX
 │       └── public/r/        # built registry JSON (from packages/registry#build)
 ├── packages/
-│   ├── cli/                 # npx asteria-ui (init, add) — fetches /r/*.json
+│   ├── cli/                 # npx paubha (init, add) — fetches /r/*.json
 │   └── registry/
 │       ├── ui/              # one folder per component (e.g. ui/avatar/avatar.tsx)
 │       ├── lib/             # cn(), shared hooks
@@ -109,7 +109,7 @@ asteria-ui/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx asteria-ui add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://asteria-ui.vercel.app/r` — see "Project links" above for why). Local/dev override: `ASTERIA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). **Not yet published to npm** — `npx asteria-ui@latest` won't resolve to anything until it is.
+shadcn-style copy-paste registry (`npx paubha add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://paubha.vercel.app/r` — see "Project links" above for why). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). **Not yet published to npm** — `npx paubha@latest` won't resolve to anything until it is.
 
 ## Where specs come from
 
@@ -125,7 +125,7 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
 - Figma base components: all 19 free-tier components fully specced and built — Button, Avatar, Badge, Input, Field, Textarea, Checkbox, Radio Group, Switch, Alert, Spinner, Divider, Skeleton, Progress Bar, Breadcrumbs, Tooltip, Dropdown Menu, Modal, Tabs.
-- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://asteria-ui.com/r`; override with `ASTERIA_REGISTRY_URL` or `components.json` `registry`).
+- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.com/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style

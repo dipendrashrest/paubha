@@ -1,6 +1,6 @@
 "use client";
 
-import { Skeleton } from "@asteria-ui/registry/ui/skeleton";
+import { Skeleton } from "@paubha/registry/ui/skeleton";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function SkeletonHero() {

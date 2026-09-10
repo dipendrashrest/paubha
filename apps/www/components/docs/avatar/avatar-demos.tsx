@@ -5,7 +5,7 @@ import {
   AvatarAddButton,
   AvatarGroup,
   AvatarLabelGroup,
-} from "@asteria-ui/registry/ui/avatar";
+} from "@paubha/registry/ui/avatar";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const sizes = ["xs", "sm", "md", "lg", "xl", "2xl"] as const;

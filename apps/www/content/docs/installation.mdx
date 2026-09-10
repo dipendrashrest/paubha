@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Set up Asteria UI in a Next.js, Vite, or Remix project.
+description: Set up Paubha in a Next.js, Vite, or Remix project.
 ---
 
 ## Prerequisites
@@ -12,7 +12,7 @@ description: Set up Asteria UI in a Next.js, Vite, or Remix project.
 ## Quick start
 
 ```bash
-npx asteria-ui@latest init
+npx paubha@latest init
 ```
 
 `init` does three things:
@@ -26,15 +26,15 @@ npx asteria-ui@latest init
 Then add components as you need them:
 
 ```bash
-npx asteria-ui add button
+npx paubha add button
 ```
 
 Each `add` copies the component source into your project. You own the file — no
-runtime dependency on Asteria.
+runtime dependency on Paubha.
 
 ## Next.js (App Router)
 
-1. Run `npx asteria-ui@latest init` from the app root.
+1. Run `npx paubha@latest init` from the app root.
 2. Import tokens in your global CSS **after** Tailwind:
 
 ```css
@@ -46,7 +46,7 @@ runtime dependency on Asteria.
 3. Add components:
 
 ```bash
-npx asteria-ui add button
+npx paubha add button
 ```
 
 4. Use them from `@/components/ui/button` (or whatever path `init` configured).
@@ -78,9 +78,9 @@ export function cn(...inputs: ClassValue[]) {
 
 ## shadcn registry compatibility
 
-Asteria's registry follows the open shadcn schema, so components are also
+Paubha's registry follows the open shadcn schema, so components are also
 installable with:
 
 ```bash
-npx shadcn add https://asteria-ui.com/r/button.json
+npx shadcn add https://paubha.com/r/button.json
 ```

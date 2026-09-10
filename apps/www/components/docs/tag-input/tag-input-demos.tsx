@@ -1,6 +1,6 @@
 "use client";
 
-import { TagInput } from "@asteria-ui/registry/ui/tag-input";
+import { TagInput } from "@paubha/registry/ui/tag-input";
 import * as React from "react";
 import { ComponentPlayground } from "../_shared/component-playground";
 

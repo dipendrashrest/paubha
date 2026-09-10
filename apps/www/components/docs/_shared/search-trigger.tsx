@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@asteria-ui/registry/ui/button";
+import { Button } from "@paubha/registry/ui/button";
 import { useSearchContext } from "fumadocs-ui/contexts/search";
 import { Search } from "lucide-react";
 

@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { CardProps } from "@asteria-ui/registry/ui/card";
+import type { CardProps } from "@paubha/registry/ui/card";
 import { PropsTable } from "../_shared/props-table";
 
 const cardProps = definePropDefs<CardProps>()([

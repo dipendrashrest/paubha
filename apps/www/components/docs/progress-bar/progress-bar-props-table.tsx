@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ProgressBarProps } from "@asteria-ui/registry/ui/progress-bar";
+import type { ProgressBarProps } from "@paubha/registry/ui/progress-bar";
 import { PropsTable } from "../_shared/props-table";
 
 const progressBarProps = definePropDefs<ProgressBarProps>()([

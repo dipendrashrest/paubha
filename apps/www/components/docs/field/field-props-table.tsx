@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { FieldProps } from "@asteria-ui/registry/ui/field";
+import type { FieldProps } from "@paubha/registry/ui/field";
 import { PropsTable } from "../_shared/props-table";
 
 const fieldProps = definePropDefs<FieldProps>()([

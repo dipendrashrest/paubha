@@ -1,6 +1,6 @@
 "use client";
 
-import { Kbd, KbdGroup } from "@asteria-ui/registry/ui/kbd";
+import { Kbd, KbdGroup } from "@paubha/registry/ui/kbd";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function KbdHero() {

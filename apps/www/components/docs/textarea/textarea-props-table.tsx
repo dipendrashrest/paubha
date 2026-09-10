@@ -1,5 +1,5 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { TextareaProps } from "@asteria-ui/registry/ui/textarea";
+import type { TextareaProps } from "@paubha/registry/ui/textarea";
 import { PropsTable } from "../_shared/props-table";
 
 const textareaProps = definePropDefs<TextareaProps>()([
