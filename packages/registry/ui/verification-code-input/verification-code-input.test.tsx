@@ -66,6 +66,15 @@ describe("VerificationCodeInput", () => {
     );
   });
 
+  it("applies the error-focus ring class alongside the normal focus ring when error is set", () => {
+    render(<VerificationCodeInput length={3} aria-label="Code" error />);
+    const cell = screen.getByRole("textbox", { name: "Digit 1 of 3" });
+    expect(cell.className).toContain("focus-visible:shadow-[var(--shadow-glow-focus)]");
+    expect(cell.className).toContain(
+      "aria-invalid:focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+    );
+  });
+
   it("disables every cell when disabled is set", () => {
     render(<VerificationCodeInput length={3} aria-label="Code" disabled />);
     for (const cell of screen.getAllByRole("textbox")) {

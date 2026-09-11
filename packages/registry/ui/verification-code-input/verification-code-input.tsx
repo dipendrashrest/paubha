@@ -22,7 +22,10 @@ export interface VerificationCodeInputProps
  * aria-label="Digit N of M" · typing a digit auto-advances to the next cell · Backspace
  * on an empty cell moves focus to the previous one · pasting a full code fills every
  * cell at once · error state is announced via aria-invalid on each cell · focus ring
- * visible via shadow-glow-focus
+ * visible via shadow-glow-focus, or shadow-glow-focus-error when a cell is focused while
+ * `error` is set, matching Input/Select/Slider/Tag Input's established pattern · no
+ * distinct "filled" (has a value, not focused) visual treatment was found confirmable in
+ * Figma for this component — see SYNC_LOG.md OPEN QUESTIONS before adding one
  */
 export function VerificationCodeInput({
   ref,
@@ -107,6 +110,11 @@ export function VerificationCodeInput({
             error
               ? "border-2 border-border-error text-fg-error"
               : "border-border-default",
+            // Matches Input/Select/Slider/Tag Input's established error-focus pattern: the
+            // aria-invalid-scoped selector out-specifies the plain focus-visible rule above,
+            // so a focused digit in error mode keeps the red border/text and swaps to the
+            // error focus ring instead of incorrectly flashing brand blue on focus.
+            "aria-invalid:focus-visible:border-border-error aria-invalid:focus-visible:text-fg-error aria-invalid:focus-visible:shadow-[var(--shadow-glow-focus-error)]",
             "disabled:cursor-not-allowed disabled:bg-bg-secondary disabled:text-fg-disabled",
           )}
         />
