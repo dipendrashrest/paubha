@@ -104,4 +104,27 @@ describe("DropdownMenu", () => {
     await screen.findByRole("menu");
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("gives the panel the confirmed radius/lg token, not radius/md", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    expect(await screen.findByRole("menu")).toHaveClass("rounded-lg");
+  });
+
+  it("gives a default item the brand-tinted active (pressed) treatment", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    const item = await screen.findByRole("menuitem", { name: "Edit" });
+    expect(item).toHaveClass("active:bg-bg-brand-subtle", "active:text-fg-brand");
+  });
+
+  it("gives a destructive item error-tinted active treatment instead of brand", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    const item = await screen.findByRole("menuitem", { name: "Delete" });
+    expect(item).toHaveClass("active:bg-bg-error-subtle", "active:text-fg-error");
+  });
 });
