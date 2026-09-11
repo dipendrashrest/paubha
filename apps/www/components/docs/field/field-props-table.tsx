@@ -20,10 +20,22 @@ const fieldProps = definePropDefs<FieldProps>()([
       "Error message. When present, sets aria-invalid on the control and adds its id to aria-describedby alongside the description.",
   },
   {
+    name: "required",
+    type: "boolean",
+    description:
+      "Appends a literal \" *\" to the label (aria-hidden) and sets the control's native required attribute.",
+  },
+  {
+    name: "success",
+    type: "ReactNode",
+    description:
+      "Success message shown in place of the description, in fg-success. Ignored while error is set.",
+  },
+  {
     name: "children",
     type: "ReactElement",
     description:
-      "A single form control (Input, Textarea, ...) — receives id, aria-describedby, aria-invalid, and error automatically via cloneElement.",
+      "A single form control (Input, Textarea, ...) — receives id, aria-describedby, aria-invalid, error, and required automatically via cloneElement.",
   },
 ]);
 

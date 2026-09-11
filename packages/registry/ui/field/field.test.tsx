@@ -67,6 +67,49 @@ describe("Field", () => {
     expect(describedBy).toContain(screen.getByText("Error text").id);
   });
 
+  it("appends a literal ' *' to the label and sets required on the control when required is true", () => {
+    render(
+      <Field label="Email" required>
+        <Input />
+      </Field>,
+    );
+    const input = screen.getByLabelText("Email *");
+    expect(input).toBeRequired();
+  });
+
+  it("does not append an asterisk or set required when required is not given", () => {
+    render(
+      <Field label="Email">
+        <Input />
+      </Field>,
+    );
+    expect(screen.getByLabelText("Email")).not.toBeRequired();
+  });
+
+  it("shows the success message in place of the description, wired into aria-describedby", () => {
+    render(
+      <Field label="Email" description="Helper text" success="Looks good!">
+        <Input />
+      </Field>,
+    );
+    const input = screen.getByLabelText("Email");
+    expect(screen.queryByText("Helper text")).not.toBeInTheDocument();
+    const successMessage = screen.getByText("Looks good!");
+    expect(successMessage).toHaveClass("text-fg-success");
+    const describedBy = input.getAttribute("aria-describedby") ?? "";
+    expect(describedBy.split(" ")).toContain(successMessage.id);
+  });
+
+  it("ignores success while error is set (error takes priority)", () => {
+    render(
+      <Field label="Email" success="Looks good!" error="Email is required">
+        <Input />
+      </Field>,
+    );
+    expect(screen.queryByText("Looks good!")).not.toBeInTheDocument();
+    expect(screen.getByText("Email is required")).toBeInTheDocument();
+  });
+
   it("does not render an error message when no error is given", () => {
     render(
       <Field label="Email">
@@ -114,6 +157,20 @@ describe("Field", () => {
 
     rerender(
       <Field label="Email" error="Email is required">
+        <Input />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(
+      <Field label="Email" required>
+        <Input />
+      </Field>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(
+      <Field label="Email" success="Looks good!">
         <Input />
       </Field>,
     );
