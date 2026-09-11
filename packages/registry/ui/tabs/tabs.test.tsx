@@ -88,6 +88,18 @@ describe("Tabs", () => {
     );
   });
 
+  it("gives pill tabs a hover background only while inactive (Figma: pill hover = bg-secondary, no underline hover treatment)", () => {
+    const { rerender } = render(<BasicTabs variant="pill" />);
+    expect(screen.getByRole("tab", { name: "Billing" })).toHaveClass(
+      "data-[state=inactive]:hover:bg-bg-secondary",
+    );
+
+    rerender(<BasicTabs variant="underline" />);
+    expect(screen.getByRole("tab", { name: "Billing" })).not.toHaveClass(
+      "data-[state=inactive]:hover:bg-bg-secondary",
+    );
+  });
+
   it("forwards a ref to the underlying trigger", () => {
     const ref = React.createRef<HTMLButtonElement>();
     render(

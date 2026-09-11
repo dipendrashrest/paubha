@@ -67,7 +67,7 @@ export function TabsTrigger({ ref, className, ...props }: TabsTriggerProps) {
         "disabled:pointer-events-none disabled:text-fg-disabled",
         variant === "underline"
           ? "border-b-2 border-transparent px-1 py-2 data-[state=active]:border-border-brand data-[state=active]:text-fg-brand"
-          : "rounded-full px-3 py-1.5 data-[state=active]:bg-bg-brand-subtle data-[state=active]:text-fg-brand",
+          : "rounded-full px-3 py-1.5 data-[state=inactive]:hover:bg-bg-secondary data-[state=active]:bg-bg-brand-subtle data-[state=active]:text-fg-brand",
         className,
       )}
       {...props}
