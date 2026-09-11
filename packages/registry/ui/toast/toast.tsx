@@ -1,17 +1,19 @@
 "use client";
 
 import { type VariantProps, cva } from "class-variance-authority";
-import { X } from "lucide-react";
+import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../../lib/cn";
 
-const accentVariants = cva("w-1 shrink-0 self-stretch", {
+// Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle)
+// with a status icon — there is no separate accent bar in the real spec.
+const toastVariants = cva("flex w-90 items-start gap-3 rounded-xl p-4 shadow-sm", {
   variants: {
     variant: {
-      info: "bg-bg-info-solid",
-      success: "bg-bg-success-solid",
-      warning: "bg-bg-warning-solid",
-      error: "bg-bg-error-solid",
+      info: "bg-bg-info-subtle text-fg-info",
+      success: "bg-bg-success-subtle text-fg-success",
+      warning: "bg-bg-warning-subtle text-fg-warning",
+      error: "bg-bg-error-subtle text-fg-error",
     },
   },
   defaultVariants: {
@@ -20,12 +22,20 @@ const accentVariants = cva("w-1 shrink-0 self-stretch", {
 });
 
 export type ToastVariant = NonNullable<
-  VariantProps<typeof accentVariants>["variant"]
+  VariantProps<typeof toastVariants>["variant"]
 >;
+
+// Same per-variant glyph mapping as Alert (Figma ships a distinct status icon per variant).
+const iconByVariant: Record<ToastVariant, typeof Info> = {
+  info: Info,
+  success: CircleCheck,
+  warning: TriangleAlert,
+  error: CircleAlert,
+};
 
 export interface ToastProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title">,
-    VariantProps<typeof accentVariants> {
+    VariantProps<typeof toastVariants> {
   title: React.ReactNode;
   description?: React.ReactNode;
   /** Called when the close button is activated. Omit to hide the close button. */
@@ -46,6 +56,7 @@ export function Toast({
   onDismiss,
   ...props
 }: ToastProps) {
+  const VariantIcon = iconByVariant[variant ?? "info"];
   return (
     <div
       ref={ref}
@@ -53,14 +64,11 @@ export function Toast({
       aria-live={
         variant === "error" || variant === "warning" ? "assertive" : "polite"
       }
-      className={cn(
-        "flex w-90 items-stretch overflow-hidden rounded-lg border border-border-default bg-bg-primary shadow-lg",
-        className,
-      )}
+      className={cn(toastVariants({ variant }), className)}
       {...props}
     >
-      <div className={accentVariants({ variant })} aria-hidden="true" />
-      <div className="flex flex-1 items-start justify-between gap-3 px-4 py-3">
+      <VariantIcon aria-hidden="true" className="size-5 shrink-0" />
+      <div className="flex flex-1 items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
           <p className="text-ui-md font-semibold text-fg-primary">{title}</p>
           {description ? (
