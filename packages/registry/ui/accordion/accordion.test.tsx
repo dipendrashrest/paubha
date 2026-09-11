@@ -3,7 +3,16 @@ import userEvent from "@testing-library/user-event";
 import * as React from "react";
 import { describe, expect, it } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionContentV2,
+  AccordionItem,
+  AccordionItemV2,
+  AccordionTrigger,
+  AccordionTriggerV2,
+  AccordionV2,
+} from "./accordion";
 
 function BasicAccordion(props: { type?: "single" | "multiple" }) {
   return (
@@ -84,6 +93,62 @@ describe("Accordion", () => {
 
   it("has no axe violations", async () => {
     const { container } = render(<BasicAccordion />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+function BasicAccordionV2(props: { type?: "single" | "multiple" }) {
+  return (
+    <AccordionV2 type={props.type ?? "single"} collapsible defaultValue="item-1">
+      <AccordionItemV2 value="item-1">
+        <AccordionTriggerV2>First section</AccordionTriggerV2>
+        <AccordionContentV2>First content</AccordionContentV2>
+      </AccordionItemV2>
+      <AccordionItemV2 value="item-2">
+        <AccordionTriggerV2>Second section</AccordionTriggerV2>
+        <AccordionContentV2>Second content</AccordionContentV2>
+      </AccordionItemV2>
+      <AccordionItemV2 value="item-3" disabled>
+        <AccordionTriggerV2>Disabled section</AccordionTriggerV2>
+        <AccordionContentV2>Disabled content</AccordionContentV2>
+      </AccordionItemV2>
+    </AccordionV2>
+  );
+}
+
+describe("AccordionV2", () => {
+  it("toggles a section open on click and shows the panel as a region", async () => {
+    const user = userEvent.setup();
+    render(<BasicAccordionV2 />);
+    expect(screen.getByRole("region")).toHaveTextContent("First content");
+    await user.click(screen.getByRole("button", { name: "Second section" }));
+    expect(
+      screen.getByRole("button", { name: "Second section" }),
+    ).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("binds a real hover state not present in v1", () => {
+    render(<BasicAccordionV2 />);
+    const trigger = screen.getByRole("button", { name: "First section" });
+    expect(trigger).toHaveClass("hover:bg-bg-secondary-hover");
+  });
+
+  it("shows the focus-visible glow-focus shadow class on triggers", () => {
+    render(<BasicAccordionV2 />);
+    expect(screen.getByRole("button", { name: "First section" })).toHaveClass(
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("natively disables a disabled item's header button", () => {
+    render(<BasicAccordionV2 />);
+    expect(
+      screen.getByRole("button", { name: "Disabled section" }),
+    ).toBeDisabled();
+  });
+
+  it("has no axe violations", async () => {
+    const { container } = render(<BasicAccordionV2 />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });
