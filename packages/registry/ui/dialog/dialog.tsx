@@ -105,7 +105,7 @@ export function DialogCancel({ ref, className, ...props }: DialogCancelProps) {
     <AlertDialogPrimitive.Cancel
       ref={ref}
       className={cn(
-        "inline-flex h-10 shrink-0 items-center justify-center rounded-sm border border-border-default bg-bg-primary px-4 text-ui-md font-medium text-fg-primary outline-none transition-colors",
+        "inline-flex h-10 shrink-0 items-center justify-center rounded-md border border-border-default bg-bg-primary px-4 text-ui-md font-medium text-fg-primary outline-none transition-colors",
         "hover:bg-bg-secondary-hover",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
         className,
@@ -119,7 +119,16 @@ DialogCancel.displayName = "DialogCancel";
 
 export interface DialogActionProps
   extends React.ComponentPropsWithRef<typeof AlertDialogPrimitive.Action> {
-  /** Colors the action to match the dialog's intent — brand for Confirm/Info, error for Destructive. */
+  /**
+   * Colors the action to match the dialog's intent — brand for Confirm/Info, error for
+   * Destructive. Figma's real published Dialog component (node `6089:37431`, file
+   * `CDgfoMkj7lP3pXWJ3aOgkH`) publishes three `Variant` values — Confirm, Destructive,
+   * Info — but Info's primary action renders with the exact same `bg/brand-solid` fill
+   * as Confirm's (confirmed via live `get_design_context` on `6089:37423`), so it needs
+   * no distinct color value here; "Info" is a composition difference (single action, no
+   * DialogCancel), not a third color. This 2-value enum already covers all 3 real
+   * variants correctly.
+   */
   variant?: "brand" | "error";
 }
 
@@ -133,7 +142,7 @@ export function DialogAction({
     <AlertDialogPrimitive.Action
       ref={ref}
       className={cn(
-        "inline-flex h-10 shrink-0 items-center justify-center rounded-sm px-4 text-ui-md font-medium outline-none transition-colors",
+        "inline-flex h-10 shrink-0 items-center justify-center rounded-md px-4 text-ui-md font-medium outline-none transition-colors",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
         variant === "error"
           ? "bg-bg-error-solid text-fg-on-error hover:bg-bg-error-solid-hover"
