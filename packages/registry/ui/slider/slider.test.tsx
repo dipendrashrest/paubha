@@ -63,9 +63,12 @@ describe("Slider", () => {
     );
   });
 
-  it("applies error color classes when error is set", () => {
+  it("applies error color and error-focus-glow classes when error is set", () => {
     render(<Slider aria-label="Volume" defaultValue={[40]} error />);
-    expect(screen.getByRole("slider")).toHaveClass("border-border-error");
+    const slider = screen.getByRole("slider");
+    expect(slider).toHaveClass("border-border-error");
+    expect(slider).toHaveClass("focus-visible:shadow-[var(--shadow-glow-focus-error)]");
+    expect(slider).not.toHaveClass("focus-visible:shadow-[var(--shadow-glow-focus)]");
   });
 
   it("forwards a ref to the root element", () => {

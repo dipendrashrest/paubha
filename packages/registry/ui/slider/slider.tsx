@@ -35,7 +35,8 @@ export interface SliderProps
  * role="slider" (via Radix) with aria-valuenow/aria-valuemin/aria-valuemax · label it via
  * aria-label or aria-labelledby · Arrow keys adjust by step · Page Up/Down for larger
  * steps · Home/End jump to min/max · thumb meets the 44×44px touch target via its hit
- * area, not just its visible size · focus ring visible on Tab
+ * area, not just its visible size · focus ring visible on Tab, using `--shadow-glow-focus`
+ * (or `--shadow-glow-focus-error` when `error` is set, matching Input/Select's pattern)
  */
 export function Slider({
   ref,
@@ -69,10 +70,11 @@ export function Slider({
         aria-labelledby={ariaLabelledBy}
         className={cn(
           "block shrink-0 rounded-full border-2 bg-bg-primary shadow-sm outline-none transition-[width,height]",
-          "focus-visible:shadow-[var(--shadow-glow-focus)]",
           "disabled:pointer-events-none disabled:opacity-50",
           thumbSizeClassName[size ?? "md"],
-          error ? "border-border-error" : "border-border-brand",
+          error
+            ? "border-border-error focus-visible:shadow-[var(--shadow-glow-focus-error)]"
+            : "border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
         )}
       />
     </SliderPrimitive.Root>
