@@ -122,3 +122,85 @@ export function PopoverClose({ ref, className, ...props }: PopoverCloseProps) {
 }
 
 PopoverClose.displayName = "PopoverClose";
+
+/**
+ * PopoverV2 — "restrained" variant (additive only; does not alter `Popover`/
+ * `PopoverTrigger`/`PopoverAnchor`/`PopoverClose`/`PopoverContent`/`PopoverTitle`/
+ * `PopoverDescription` above).
+ *
+ * 🆕 v2 built from a REAL, confirmed "Popover / v2 — restrained" Figma frame — unlike
+ * SelectV2/AccordionV2, this one did NOT need the Pagination-based interpretation
+ * fallback. Found via `get_metadata` on canvas `6033:35565` (the same canvas as v1,
+ * discovered via the "add Popover" build commit's recorded node id after the usual
+ * `2120:*`/`6033:*`/`6089:*`/`6098:*`/`6100:*`/`6126:*`/`6318:*` range crawl and
+ * `search_design_system` both came up empty, matching every prior unit's finding that
+ * neither tool surfaces this file's own local pages directly): sibling frame
+ * `6318:23417`, "Popover / v2 — restrained", publishing 16 symbols — `Side` (Top/Bottom/
+ * Left/Right) × `State` (default/focus/hover/**disabled**) — confirmed via
+ * `get_design_context` + direct screenshots of all 4 states on the Top side.
+ *
+ * The real, confirmed distinction from v1 is NOT a quieter default chrome (unlike
+ * Select/Accordion's restrained pattern) — v2's `default` state renders with the exact
+ * same `bg/primary` + `border/default` + `radius/lg` + `shadow/md` panel as v1. What v2
+ * actually adds, confirmed pixel-for-pixel via screenshot comparison: a real `hover`
+ * state v1's symbol set never had (`bg/secondary` fill + `border/strong`), and a real
+ * `disabled` state v1 never had (identical chrome, `opacity: 50%`). `focus` is again
+ * byte-identical to `default` here too (same as v1) — no invented ring added, same
+ * reasoning as PopoverContent above. Sides, tokens, radius, shadow, and title/description
+ * typography are otherwise identical to v1, so `PopoverV2` reuses `PopoverTitle` and
+ * `PopoverDescription` directly rather than forking them — no visual difference exists
+ * between v1/v2 for either.
+ */
+export const PopoverV2 = PopoverPrimitive.Root;
+
+export interface PopoverContentV2Props
+  extends React.ComponentPropsWithRef<typeof PopoverPrimitive.Content> {
+  /**
+   * Dims the panel to match a disabled trigger — confirmed real Figma state
+   * (`opacity: 50%`, same chrome as default) with no native Radix/HTML equivalent for a
+   * content panel, so it's exposed as an explicit prop rather than derived automatically.
+   */
+  disabled?: boolean;
+}
+
+/**
+ * Same roles/keyboard behavior as PopoverContent (role="dialog", Escape closes, focus
+ * trapped while open) · adds a real `hover` state and a `disabled` (dimmed) state v1
+ * doesn't have, both confirmed via Figma's real v2 frame · `focus` intentionally has no
+ * distinct visual, matching v1 and matching Figma's own symbols
+ */
+export function PopoverContentV2({
+  ref,
+  className,
+  side = "bottom",
+  sideOffset = 8,
+  disabled,
+  children,
+  ...props
+}: PopoverContentV2Props) {
+  return (
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        ref={ref}
+        side={side}
+        sideOffset={sideOffset}
+        data-disabled={disabled || undefined}
+        className={cn(
+          "z-50 w-65 rounded-lg border border-border-default bg-bg-primary p-4 shadow-md outline-none transition-colors",
+          "hover:border-border-strong hover:bg-bg-secondary",
+          "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </PopoverPrimitive.Content>
+    </PopoverPrimitive.Portal>
+  );
+}
+
+PopoverContentV2.displayName = "PopoverContentV2";
+
+// PopoverV2 reuses PopoverTrigger, PopoverAnchor, PopoverClose, PopoverTitle, and
+// PopoverDescription from v1 above — Figma's real v2 frame shows no difference in any of
+// these, so forking them would just be duplicated code on an unconfirmed basis.

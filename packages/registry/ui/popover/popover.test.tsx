@@ -7,9 +7,11 @@ import {
   Popover,
   PopoverClose,
   PopoverContent,
+  PopoverContentV2,
   PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
+  PopoverV2,
 } from "./popover";
 
 function BasicPopover() {
@@ -123,5 +125,57 @@ describe("Popover", () => {
       "data-side",
       "left",
     );
+  });
+});
+
+function BasicPopoverV2(props: { disabled?: boolean }) {
+  return (
+    <PopoverV2>
+      <PopoverTrigger>Open popover</PopoverTrigger>
+      <PopoverContentV2 disabled={props.disabled}>
+        <PopoverTitle>Popover Title</PopoverTitle>
+        <PopoverDescription>
+          This is a popover content area.
+        </PopoverDescription>
+        <PopoverClose>Close</PopoverClose>
+      </PopoverContentV2>
+    </PopoverV2>
+  );
+}
+
+describe("PopoverV2 (restrained)", () => {
+  it("opens on trigger click and shows its content", async () => {
+    const user = userEvent.setup();
+    render(<BasicPopoverV2 />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    expect(await screen.findByRole("dialog")).toHaveTextContent(
+      "Popover Title",
+    );
+  });
+
+  it("marks the panel data-disabled to match Figma's confirmed dimmed disabled state", async () => {
+    const user = userEvent.setup();
+    render(<BasicPopoverV2 disabled />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog).toHaveAttribute("data-disabled");
+    expect(dialog.className).toContain("data-[disabled]:opacity-50");
+  });
+
+  it("does not set data-disabled by default", async () => {
+    const user = userEvent.setup();
+    render(<BasicPopoverV2 />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    expect(await screen.findByRole("dialog")).not.toHaveAttribute(
+      "data-disabled",
+    );
+  });
+
+  it("has no axe violations while open", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<BasicPopoverV2 />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    await screen.findByRole("dialog");
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

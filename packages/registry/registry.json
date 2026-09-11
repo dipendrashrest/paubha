@@ -503,6 +503,28 @@
       ]
     },
     {
+      "name": "popover-v2",
+      "type": "registry:ui",
+      "title": "Popover V2 (Restrained)",
+      "description": "Additive Popover variant built from Figma's real 'v2 — restrained' frame — same default chrome as Popover, plus a real hover state and a dimmed disabled state v1 doesn't have. Same Radix UI primitive as Popover; does not replace it.",
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/popover/popover.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
