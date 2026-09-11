@@ -4,11 +4,13 @@ Autonomous overnight sync of `packages/registry` against the Figma source of tru
 
 _Summary block will be filled in at the top of this file once the final pass completes._
 
-**⚠️ Two items need your decision before anything else in this log fully matters — both marked 🔴 in OPEN QUESTIONS below:**
+**⚠️ Four items need your decision — all marked 🔴 in OPEN QUESTIONS below, in the order they appear in this file:**
 1. **Brand/Gray/Success primitives** — Figma currently shows different values than the locked brand identity (a change was made, then reverted).
 2. **Radius usage guidelines** — Figma's "Foundations / Radius" frame currently shows the exact buttons/inputs→md, modals→xl mapping that was deliberately corrected away from on 2026-08-23 (to sm/lg). Either Figma drifted back, or that correction misread the frame at the time.
+3. **Avatar's `AvatarGroup`/`AvatarAddButton` exports** — Figma marks their source pieces internal-only, but code exports both publicly and the docs site depends on them. Needs a product call: keep as intentional public API, or deprecate toward a real composed pattern.
+4. **Textarea's min-height** — current code is 2–3× Figma's confirmed real per-size minimum. Could be a one-line bug fix, or the current taller default could be the actual intended product decision (in which case CLAUDE.md's own claim that Textarea follows the shared height scale is what's wrong).
 
-Both are "Figma currently disagrees with a value CLAUDE.md documents as deliberately locked/corrected" situations — nothing tonight was built against the disputed values in either case (color tokens stayed on the locked palette; no component radius classes were touched), so nothing is blocked, but neither will be touched again autonomously until you decide which side is right.
+The first two are "Figma disagrees with a value CLAUDE.md documents as deliberately locked/corrected"; the last two are real spec-vs-code conflicts found while auditing components. Nothing tonight was built on the disputed side of any of these four — everything used the current, locked/existing behavior — so nothing is blocked, but none of the four will be resolved autonomously.
 
 ## Noted for later (not tonight)
 
