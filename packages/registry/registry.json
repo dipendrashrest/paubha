@@ -526,6 +526,29 @@
       ]
     },
     {
+      "name": "accordion-v2",
+      "type": "registry:ui",
+      "title": "Accordion V2 (Restrained)",
+      "description": "Additive, visually-quieter Accordion variant — a borderless list with a single divider between items instead of per-item boxes, tighter padding, and a real hover state v1 doesn't have. Same Radix UI primitive as Accordion; does not replace it.",
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/accordion/accordion.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
