@@ -81,6 +81,16 @@ describe("Switch", () => {
     );
   });
 
+  it("binds hover and disabled states to the confirmed Figma tokens", () => {
+    render(<Switch label="Notifications" checked={false} disabled />);
+    const switchEl = screen.getByRole("switch");
+    expect(switchEl).toHaveClass(
+      "data-[state=unchecked]:hover:bg-bg-secondary",
+      "data-[state=unchecked]:disabled:bg-bg-disabled",
+      "data-[state=checked]:disabled:bg-bg-disabled",
+    );
+  });
+
   it("has no axe violations off, on, and disabled", async () => {
     const { container, rerender } = render(
       <Switch label="Notifications" checked={false} />,
