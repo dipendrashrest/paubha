@@ -136,6 +136,12 @@ The first two are "Figma disagrees with a value CLAUDE.md documents as deliberat
 
 ## Phase 3 — Application Patterns
 
+**All patterns logged as spec'd-but-unused, skipped — no code written.** Confirmed exhaustively before Phase 2 even started (repo-wide grep across `apps/www` and `packages/registry`, cross-checked against `BUILD_LOG.md`'s own "Phase B" notes): zero application-pattern implementations exist anywhere in this app today — only the 34 base components (all now audited above) and a single placeholder landing page. Per the standing rule ("only build/update patterns that already have a corresponding page or usage in the app today"), every pattern below is skipped rather than scaffolded:
+
+Activity feeds · Application navigation (sidebar, topbar, mobile bottom nav) · Calendars (month/week/mini/date-range) · Card headers · Charts · Code snippets · Color pickers · Command menus · Content dividers · Date pickers · Empty states · File upload · Filters · Inline CTAs · Loading indicators · Messaging · Metrics · Modals (pattern-level composition, distinct from the already-audited base Modal component) · Page headers · Pagination (pattern-level composition, distinct from the already-audited base Pagination/PaginationV2 components) · Progress steps · Section headers/footers · Slideout menus · Tables / Selection Table (pattern-level composition, distinct from the already-audited base Table component) · Tabs (pattern-level composition, distinct from the already-audited base Tabs component) · Tree views
+
+`BUILD_LOG.md` already documented three concrete library choices for when this phase eventually gets built (Recharts for charts, `react-day-picker` for calendars/date pickers, native `<input type="color">` for color pickers) — noted here for continuity, not acted on. No commit needed for this phase (log-only, no files changed besides this entry).
+
 ## Phase 4 — Final Pass
 
 ## OPEN QUESTIONS
