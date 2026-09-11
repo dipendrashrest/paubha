@@ -11,7 +11,11 @@ const wrapperVariants = cva("w-full overflow-x-auto", {
     variant: {
       default: "",
       striped: "",
-      bordered: "rounded-md border border-border-default",
+      // Figma's bordered variant wraps the table in `overflow-clip` so the header's
+      // solid background doesn't square off past the rounded corners. `overflow-x-auto`
+      // (base) only clips horizontally, so pair it with `overflow-y-hidden` here rather
+      // than `overflow-hidden`, which would also kill the horizontal scroll behavior.
+      bordered: "overflow-y-hidden rounded-md border border-border-default",
     },
   },
   defaultVariants: {

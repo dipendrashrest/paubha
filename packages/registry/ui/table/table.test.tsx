@@ -58,6 +58,11 @@ describe("Table", () => {
     expect(container.firstChild).toHaveClass("rounded-md", "border");
   });
 
+  it("clips vertical overflow on the bordered wrapper so the header background can't square off past the rounded corners", () => {
+    const { container } = render(<BasicTable variant="bordered" />);
+    expect(container.firstChild).toHaveClass("overflow-y-hidden");
+  });
+
   it("forwards a ref to the underlying table element", () => {
     const ref = React.createRef<HTMLTableElement>();
     render(
