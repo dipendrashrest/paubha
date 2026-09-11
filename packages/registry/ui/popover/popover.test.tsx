@@ -97,4 +97,31 @@ describe("Popover", () => {
     await screen.findByRole("dialog");
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("PopoverClose has a focus-visible ring class (real, confirmed gap fixed)", async () => {
+    const user = userEvent.setup();
+    render(<BasicPopover />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    const closeButton = await screen.findByRole("button", { name: "Close" });
+    expect(closeButton.className).toContain(
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("supports the documented side prop via Radix pass-through", async () => {
+    const user = userEvent.setup();
+    render(
+      <Popover>
+        <PopoverTrigger>Open popover</PopoverTrigger>
+        <PopoverContent side="left">
+          <PopoverTitle>Left-side content</PopoverTitle>
+        </PopoverContent>
+      </Popover>,
+    );
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    expect(await screen.findByRole("dialog")).toHaveAttribute(
+      "data-side",
+      "left",
+    );
+  });
 });
