@@ -89,6 +89,26 @@ describe("Button", () => {
     expect(screen.getByTestId("icon")).toHaveClass("size-5");
   });
 
+  it("scales the icon slot per size — sm 16px, md/lg 20px, xl 24px (Figma canvas 2120:2)", () => {
+    const expectations: Array<
+      [NonNullable<React.ComponentProps<typeof Button>["size"]>, string]
+    > = [
+      ["sm", "size-4"],
+      ["md", "size-5"],
+      ["lg", "size-5"],
+      ["xl", "size-6"],
+    ];
+    for (const [size, expectedClass] of expectations) {
+      const { unmount } = render(
+        <Button leadingIcon={<svg data-testid="icon" />} size={size}>
+          Continue
+        </Button>,
+      );
+      expect(screen.getByTestId("icon")).toHaveClass(expectedClass);
+      unmount();
+    }
+  });
+
   it("secondary variant darkens its border on hover/active and switches to border-brand on focus", () => {
     render(<Button variant="secondary">Click</Button>);
     const button = screen.getByRole("button");

@@ -111,8 +111,10 @@ export function Button({
   ...props
 }: ButtonProps) {
   const isDisabled = disabled || loading;
+  // Icon sizes per Figma (canvas 2120:2, node 2121:38/2121:74/2121:110):
+  // sm -> 16px, md/lg -> 20px, xl -> 24px. Not a flat sm/md=16, lg/xl=20 split.
   const iconSizeClassName =
-    size === "lg" || size === "xl" ? "size-5" : "size-4";
+    size === "xl" ? "size-6" : size === "sm" ? "size-4" : "size-5";
 
   return (
     <button

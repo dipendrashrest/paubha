@@ -19,7 +19,7 @@ const buttonProps = definePropDefs<ButtonProps>()([
     name: "leadingIcon",
     type: "ReactNode",
     description:
-      "Instance-swap icon slot rendered before the label, auto-sized to match the button's size (16px sm/md, 20px lg/xl).",
+      "Instance-swap icon slot rendered before the label, auto-sized to match the button's size (16px sm, 20px md/lg, 24px xl).",
   },
   {
     name: "loading",
