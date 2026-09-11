@@ -6,6 +6,7 @@ import { withIconSize } from "../../lib/with-icon-size";
 const inputWrapperVariants = cva(
   [
     "flex w-full items-center rounded-sm border border-border-default bg-bg-primary transition-colors",
+    "hover:border-border-strong",
     "focus-within:border-border-brand focus-within:shadow-[var(--shadow-glow-focus)]",
     "has-[:disabled]:bg-bg-secondary",
     "has-[[aria-invalid=true]]:border-border-error",

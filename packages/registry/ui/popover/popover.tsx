@@ -38,12 +38,9 @@ export interface PopoverContentProps
  * rule, independent of what Figma's static demo (title/description only, no close
  * button) does or doesn't show. Fixed by wrapping it exactly like the sibling components.
  *
- * Left open (see SYNC_LOG.md): the confirmed base symbol width is 124px (consistent
- * across all 8 `Side × State` instances), not this component's current `w-65` (260px)
- * default — but 260px predates this audit, isn't a color/spacing *token* this repo
- * defines, and changing it would be a visible layout change for every existing consumer
- * well beyond this unit's scoped side/focus/token check. Flagged rather than silently
- * changed.
+ * Default width corrected 2026-09-11: Figma's confirmed base symbol width is 124px
+ * (consistent across all 8 `Side × State` v1 instances and all 16 v2 instances) —
+ * was `w-65` (260px), a pre-audit developer default not backed by any Figma data.
  */
 export function PopoverContent({
   ref,
@@ -60,7 +57,7 @@ export function PopoverContent({
         side={side}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 w-65 rounded-md border border-border-default bg-bg-primary p-4 shadow-md outline-none",
+          "z-50 w-[124px] rounded-md border border-border-default bg-bg-primary p-4 shadow-md outline-none",
           className,
         )}
         {...props}
@@ -186,7 +183,7 @@ export function PopoverContentV2({
         sideOffset={sideOffset}
         data-disabled={disabled || undefined}
         className={cn(
-          "z-50 w-65 rounded-lg border border-border-default bg-bg-primary p-4 shadow-md outline-none transition-colors",
+          "z-50 w-[124px] rounded-lg border border-border-default bg-bg-primary p-4 shadow-md outline-none transition-colors",
           "hover:border-border-strong hover:bg-bg-secondary",
           "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
           className,

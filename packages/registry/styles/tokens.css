@@ -176,8 +176,9 @@
   /* info has no dedicated primitive ramp in Figma — its Status Colors swatches
      (fg/info, bg/info, border/info) resolve to the exact same hex values as
      brand/500 and brand/50, so info intentionally aliases the brand ramp
-     rather than getting its own. See SYNC_LOG.md OPEN QUESTIONS. */
-  --bg-info-solid: var(--brand-600);
+     rather than getting its own. Repointed 2026-09-11 from brand-600 to
+     brand-500 to match the confirmed swatch exactly. */
+  --bg-info-solid: var(--brand-500);
   --bg-info-subtle: var(--brand-50);
 
   /* short aliases (landing / legacy utilities) */
@@ -196,7 +197,7 @@
   --fg-error: var(--error-600);
   --fg-warning: var(--warning-600);
   --fg-success: var(--success-600);
-  --fg-info: var(--brand-600);
+  --fg-info: var(--brand-500);
   --fg-on-info: var(--base-white);
 
   --border-default: var(--gray-200);
@@ -205,7 +206,7 @@
   --border-error: var(--error-600);
   --border-warning: var(--warning-600);
   --border-success: var(--success-600);
-  --border-info: var(--brand-600);
+  --border-info: var(--brand-500);
 
   --focus-ring: var(--brand-500);
 
@@ -218,7 +219,11 @@
      2026-09-11 alongside the brand ramp correction above. */
   --shadow-xs: 0 1px 2px rgb(36 51 128 / 0.06);
   --shadow-sm: 0 1px 3px rgb(36 51 128 / 0.1), 0 1px 2px rgb(36 51 128 / 0.06);
-  --shadow-md: 0 4px 6px -1px rgb(36 51 128 / 0.1), 0 2px 4px -2px
+  /* shadow-md corrected 2026-09-11 to Figma's real tooltip-body effect
+     (DROP_SHADOW #1E348514 offset(0,4) radius8 spread-2 + DROP_SHADOW
+     #1E34850F offset(0,2) radius4 spread-2) — was a Tailwind-derived
+     approximation, off by a few px/alpha on the first layer. */
+  --shadow-md: 0 4px 8px -2px rgb(36 51 128 / 0.08), 0 2px 4px -2px
     rgb(36 51 128 / 0.06);
   --shadow-lg: 0 10px 15px -3px rgb(36 51 128 / 0.1), 0 4px 6px -4px
     rgb(36 51 128 / 0.05);
@@ -276,7 +281,7 @@
   --bg-warning-subtle: var(--warning-950);
   --bg-success-solid: var(--success-600);
   --bg-success-subtle: var(--success-950);
-  --bg-info-solid: var(--brand-600);
+  --bg-info-solid: var(--brand-500);
   --bg-info-subtle: var(--brand-950);
 
   --bg-brand: var(--bg-brand-solid);

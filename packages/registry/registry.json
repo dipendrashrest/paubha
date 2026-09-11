@@ -508,11 +508,7 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Floating content panel anchored to a trigger, built on Radix UI.",
-      "dependencies": [
-        "@radix-ui/react-popover",
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["@radix-ui/react-popover", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -530,11 +526,7 @@
       "type": "registry:ui",
       "title": "Popover V2 (Restrained)",
       "description": "Additive Popover variant built from Figma's real 'v2 — restrained' frame — same default chrome as Popover, plus a real hover state and a dimmed disabled state v1 doesn't have. Same Radix UI primitive as Popover; does not replace it.",
-      "dependencies": [
-        "@radix-ui/react-popover",
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["@radix-ui/react-popover", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -598,11 +590,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Flexible content container with optional image, title, and description.",
-      "dependencies": [
-        "class-variance-authority",
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -666,10 +654,7 @@
       "type": "registry:ui",
       "title": "Progress Circle",
       "description": "Circular progress indicator showing completion percentage.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -687,10 +672,7 @@
       "type": "registry:ui",
       "title": "Verification Code Input",
       "description": "Segmented input for entering verification or OTP codes.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -730,11 +712,7 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A structured data display component with rows and columns.",
-      "dependencies": [
-        "class-variance-authority",
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -798,10 +776,7 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Keyboard shortcut indicator displaying key combinations.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
@@ -819,10 +794,7 @@
       "type": "registry:ui",
       "title": "Logo",
       "description": "Brand logo with icon, wordmark, combined, and combined-dark variants.",
-      "dependencies": [
-        "clsx",
-        "tailwind-merge"
-      ],
+      "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {

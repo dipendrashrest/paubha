@@ -38,6 +38,11 @@ describe("Input", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
 
+  it("has a hover treatment on the wrapper", () => {
+    render(<Input aria-label="Email" />);
+    expect(screen.getByRole("textbox").parentElement).toHaveClass("hover:border-border-strong");
+  });
+
   it("does not set aria-invalid by default", () => {
     render(<Input aria-label="Email" />);
     expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-invalid");
