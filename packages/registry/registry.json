@@ -411,6 +411,30 @@
       ]
     },
     {
+      "name": "select-v2",
+      "type": "registry:ui",
+      "title": "Select V2 (Restrained)",
+      "description": "Additive, visually-quieter Select variant — ghost/transparent trigger chrome by default, gaining a border only on hover, open, focus, or error. Same sm/md/lg/xl sizes and Radix UI primitive as Select; does not replace it.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/select/select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
