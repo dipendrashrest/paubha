@@ -13,16 +13,13 @@ const textareaVariants = cva(
   {
     variants: {
       size: {
-        // NOTE: Figma's real published Textarea (node 2121:15056) shows all
-        // 4 sizes at much smaller literal heights (sm/md/lg/xl = 34/42/50/58px,
-        // a single-line "minimum height" collapsed symbol) — these existing
-        // min-h-20..32 values are a deliberate larger multi-row default and
-        // were NOT changed this pass; see SYNC_LOG.md for the full comparison
-        // and why this was logged rather than acted on autonomously.
-        sm: "min-h-20 px-3 py-1.5 text-ui-md",
-        md: "min-h-24 px-4 py-2 text-ui-lg",
-        lg: "min-h-28 px-5 py-3 text-ui-lg",
-        xl: "min-h-32 px-6 py-4 text-ui-lg",
+        // Min-heights match Figma's published Textarea (node 2121:15056)
+        // exactly: sm/md/lg/xl = 34/42/50/58px, derived from each size's own
+        // padding + line-height on the shared 32/40/48/56 density scale.
+        sm: "min-h-[34px] px-3 py-1.5 text-ui-md",
+        md: "min-h-[42px] px-4 py-2 text-ui-lg",
+        lg: "min-h-[50px] px-5 py-3 text-ui-lg",
+        xl: "min-h-[58px] px-6 py-4 text-ui-lg",
       },
     },
     defaultVariants: {
