@@ -37,7 +37,9 @@ export interface TagInputProps
  * Container role="group" · each tag's remove button has aria-label="Remove [tag]" ·
  * Enter or Comma creates a tag from the current input text · Backspace on an empty input
  * removes the last tag · disabled state uses aria-disabled · focus ring visible via
- * shadow-glow-focus
+ * shadow-glow-focus, or shadow-glow-focus-error when focused while `error` is set —
+ * matching Input/Select/Slider's established error-focus pattern (audit fix: the focus
+ * ring previously stayed brand-tinted even while `error` was true).
  */
 export function TagInput({
   ref,
@@ -87,7 +89,9 @@ export function TagInput({
       className={cn(
         containerVariants({ size }),
         error ? "border-2 border-border-error" : "border-border-default",
-        "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-brand has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
+        error
+          ? "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-error has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]"
+          : "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-brand has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
         disabled && "cursor-not-allowed bg-bg-secondary",
         className,
       )}
@@ -129,3 +133,4 @@ export function TagInput({
 }
 
 TagInput.displayName = "TagInput";
+

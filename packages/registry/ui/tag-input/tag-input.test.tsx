@@ -94,4 +94,21 @@ describe("TagInput", () => {
     rerender(<ControlledTagInput initial={["React"]} error />);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("switches the focus-visible ring to the error-tinted glow when error is set (audit fix)", () => {
+    const { container, rerender } = render(<ControlledTagInput initial={["React"]} />);
+    const group = screen.getByRole("group");
+    expect(group).toHaveClass("has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]");
+    expect(group).not.toHaveClass(
+      "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]",
+    );
+
+    rerender(<ControlledTagInput initial={["React"]} error />);
+    expect(container.querySelector('[role="group"]')).toHaveClass(
+      "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]",
+    );
+    expect(container.querySelector('[role="group"]')).not.toHaveClass(
+      "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
 });
