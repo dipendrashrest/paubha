@@ -56,6 +56,19 @@ export interface ToggleGroupItemProps
   children?: React.ReactNode;
 }
 
+/**
+ * No Figma page for Toggle Group was discoverable this session (same dead-end pattern as
+ * Card/Select/Progress Circle/Slider — no canvas found by ID-crawl, and the "add Toggle
+ * Group" commit (`b83c470`) records no node id to recover it from, unlike Toast/Table/
+ * Dialog). Audited against this repo's own cross-component convention instead: unchecked
+ * items had no hover/active feedback at all (checked-only styling), unlike every sibling
+ * form-control/segmented-control component (RadioGroupItem's unselected hover, Button's
+ * ghost/ Tabs pill hover+active pairs) — added `data-[state=unchecked]:hover:bg-bg-secondary-hover`
+ * / `:active:bg-bg-tertiary-hover`, the same one-step-darker-than-track pairing those
+ * components already use. Focus ring (`shadow-glow-focus`) and disabled treatment were
+ * already correct and unchanged.
+ */
+
 export function ToggleGroupItem({
   ref,
   className,
@@ -71,6 +84,8 @@ export function ToggleGroupItem({
       className={cn(
         toggleGroupItemVariants({ size: size ?? contextSize }),
         "text-fg-secondary",
+        "data-[state=unchecked]:hover:bg-bg-secondary-hover",
+        "data-[state=unchecked]:active:bg-bg-tertiary-hover",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
         "data-[state=checked]:bg-bg-primary data-[state=checked]:text-fg-primary data-[state=checked]:shadow-xs",
         "disabled:cursor-not-allowed disabled:opacity-50",

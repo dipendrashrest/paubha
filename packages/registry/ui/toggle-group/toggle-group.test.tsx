@@ -64,6 +64,14 @@ describe("ToggleGroup", () => {
     );
   });
 
+  it("has hover/active feedback classes on unchecked items", () => {
+    render(<BasicToggleGroup />);
+    expect(screen.getByRole("radio", { name: "Week" })).toHaveClass(
+      "data-[state=unchecked]:hover:bg-bg-secondary-hover",
+      "data-[state=unchecked]:active:bg-bg-tertiary-hover",
+    );
+  });
+
   it("propagates size from the group to items via context", () => {
     render(
       <ToggleGroup defaultValue="a" size="lg">
