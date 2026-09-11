@@ -481,6 +481,29 @@
       ]
     },
     {
+      "name": "pagination-v2",
+      "type": "registry:ui",
+      "title": "Pagination V2 (Restrained)",
+      "description": "Additive Pagination variant built from Figma's real 'v2 — restrained' frame — confirmed token-for-token identical to Pagination (same radius/md chrome, same per-size gap scale), with the same hover affordance v1 already uses since the extra hover state Figma publishes for v2 renders pixel-identical to default. Same sm/md/lg sizes as Pagination; does not replace it.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/pagination/pagination.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
