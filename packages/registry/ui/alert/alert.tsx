@@ -1,24 +1,23 @@
 import { type VariantProps, cva } from "class-variance-authority";
-import { Info, X } from "lucide-react";
+import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import type * as React from "react";
 import { cn } from "../../lib/cn";
 
-const alertVariants = cva(
-  "flex w-full items-start gap-3 rounded-sm border p-4",
-  {
-    variants: {
-      variant: {
-        info: "border-border-info bg-bg-info-subtle text-fg-info",
-        success: "border-border-success bg-bg-success-subtle text-fg-success",
-        warning: "border-border-warning bg-bg-warning-subtle text-fg-warning",
-        error: "border-border-error bg-bg-error-subtle text-fg-error",
-      },
-    },
-    defaultVariants: {
-      variant: "info",
+// Figma (node 2121:15306): no border — a brand-tinted shadow/sm instead; radius/xl
+// (not radius/sm, which is reserved for controls like buttons/inputs).
+const alertVariants = cva("flex w-full items-start gap-3 rounded-xl p-4 shadow-sm", {
+  variants: {
+    variant: {
+      info: "bg-bg-info-subtle text-fg-info",
+      success: "bg-bg-success-subtle text-fg-success",
+      warning: "bg-bg-warning-subtle text-fg-warning",
+      error: "bg-bg-error-subtle text-fg-error",
     },
   },
-);
+  defaultVariants: {
+    variant: "info",
+  },
+});
 
 export type AlertVariant = NonNullable<
   VariantProps<typeof alertVariants>["variant"]
@@ -30,6 +29,15 @@ const roleByVariant: Record<AlertVariant, "alert" | "status"> = {
   success: "status",
   warning: "alert",
   error: "alert",
+};
+
+// Figma's 4 published symbols each ship a distinct status glyph — info uses a plain
+// info icon, success a check, warning a triangle, error a circle-alert.
+const iconByVariant: Record<AlertVariant, typeof Info> = {
+  info: Info,
+  success: CircleCheck,
+  warning: TriangleAlert,
+  error: CircleAlert,
 };
 
 export interface AlertProps
@@ -60,6 +68,7 @@ export function Alert({
   children,
   ...props
 }: AlertProps) {
+  const VariantIcon = iconByVariant[variant];
   return (
     <div
       ref={ref}
@@ -67,7 +76,7 @@ export function Alert({
       className={cn(alertVariants({ variant }), className)}
       {...props}
     >
-      <Info aria-hidden="true" className="size-5 shrink-0" />
+      <VariantIcon aria-hidden="true" className="size-5 shrink-0" />
       <div className="flex min-w-0 flex-1 flex-col items-start gap-1">
         {title ? (
           <p className="w-full text-ui-md font-medium">{title}</p>
