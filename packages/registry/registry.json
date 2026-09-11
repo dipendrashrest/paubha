@@ -771,6 +771,29 @@
       ]
     },
     {
+      "name": "tag-input-v2",
+      "type": "registry:ui",
+      "title": "Tag Input V2 (Restrained)",
+      "description": "Additive Tag Input variant — no confirmable Figma 'v2 — restrained' frame exists for Tag Input, so this was built structurally from Popover's real v2 frame (an added hover state and an added disabled/dimmed state, chrome otherwise identical to v1): adds a hover border treatment TagInput never had, and dims the whole control when disabled instead of only tinting its background. Same sm/md/lg sizes as Tag Input; does not replace it.",
+      "dependencies": [
+        "lucide-react",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "ui/tag-input/tag-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import * as React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { TagInput } from "./tag-input";
+import { TagInput, TagInputV2 } from "./tag-input";
 
 function ControlledTagInput(props: {
   initial?: string[];
@@ -110,5 +110,64 @@ describe("TagInput", () => {
     expect(container.querySelector('[role="group"]')).not.toHaveClass(
       "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
     );
+  });
+});
+
+function ControlledTagInputV2(props: {
+  initial?: string[];
+  onTagsChange?: (tags: string[]) => void;
+  error?: boolean;
+  disabled?: boolean;
+}) {
+  const [tags, setTags] = React.useState(props.initial ?? []);
+  return (
+    <TagInputV2
+      tags={tags}
+      onTagsChange={(next) => {
+        setTags(next);
+        props.onTagsChange?.(next);
+      }}
+      error={props.error}
+      disabled={props.disabled}
+      aria-label="Tags"
+    />
+  );
+}
+
+describe("TagInputV2", () => {
+  it("renders tags and adds a new one on Enter, same as TagInput", async () => {
+    const user = userEvent.setup();
+    const onTagsChange = vi.fn();
+    render(<ControlledTagInputV2 initial={["React"]} onTagsChange={onTagsChange} />);
+    expect(screen.getByText("React")).toBeInTheDocument();
+    await user.type(screen.getByPlaceholderText("Add tag..."), "Figma{Enter}");
+    expect(onTagsChange).toHaveBeenLastCalledWith(["React", "Figma"]);
+  });
+
+  it("adds a real hover treatment that v1 doesn't have", () => {
+    render(<ControlledTagInputV2 initial={["React"]} />);
+    expect(screen.getByRole("group")).toHaveClass("hover:border-border-strong");
+  });
+
+  it("dims the whole control when disabled, matching Popover v2's confirmed disabled treatment", () => {
+    render(<ControlledTagInputV2 initial={["React"]} disabled />);
+    const group = screen.getByRole("group");
+    expect(group).toHaveAttribute("aria-disabled", "true");
+    expect(group).toHaveClass("opacity-50");
+  });
+
+  it("also switches the focus-visible ring to the error glow when error is set", () => {
+    render(<ControlledTagInputV2 initial={["React"]} error />);
+    expect(screen.getByRole("group")).toHaveClass(
+      "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]",
+    );
+  });
+
+  it("has no axe violations for default, hover-eligible, and disabled states", async () => {
+    const { container, rerender } = render(<ControlledTagInputV2 initial={["React"]} />);
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(<ControlledTagInputV2 initial={["React"]} disabled />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
