@@ -105,11 +105,11 @@ describe("DropdownMenu", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it("gives the panel the confirmed radius/lg token, not radius/md", async () => {
+  it("gives the panel the confirmed radius/md token", async () => {
     const user = userEvent.setup();
     render(<BasicMenu />);
     await user.click(screen.getByRole("button", { name: "Open menu" }));
-    expect(await screen.findByRole("menu")).toHaveClass("rounded-lg");
+    expect(await screen.findByRole("menu")).toHaveClass("rounded-md");
   });
 
   it("gives a default item the brand-tinted active (pressed) treatment", async () => {

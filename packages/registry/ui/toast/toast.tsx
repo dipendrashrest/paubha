@@ -7,7 +7,7 @@ import { cn } from "../../lib/cn";
 
 // Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle)
 // with a status icon — there is no separate accent bar in the real spec.
-const toastVariants = cva("flex w-90 items-start gap-3 rounded-xl p-4 shadow-sm", {
+const toastVariants = cva("flex w-90 items-start gap-3 rounded-lg p-4 shadow-sm", {
   variants: {
     variant: {
       info: "bg-bg-info-subtle text-fg-info",

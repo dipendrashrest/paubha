@@ -5,7 +5,7 @@ import { cn } from "../../lib/cn";
 
 // Figma (node 2121:15306): no border — a brand-tinted shadow/sm instead; radius/xl
 // (not radius/sm, which is reserved for controls like buttons/inputs).
-const alertVariants = cva("flex w-full items-start gap-3 rounded-xl p-4 shadow-sm", {
+const alertVariants = cva("flex w-full items-start gap-3 rounded-lg p-4 shadow-sm", {
   variants: {
     variant: {
       info: "bg-bg-info-subtle text-fg-info",

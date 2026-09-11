@@ -21,7 +21,7 @@ export function DialogContent({ ref, className, ...props }: DialogContentProps) 
       <AlertDialogPrimitive.Content
         ref={ref}
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 w-[420px] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border-default bg-bg-primary shadow-lg",
+          "fixed top-1/2 left-1/2 z-50 w-[420px] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md border border-border-default bg-bg-primary shadow-lg",
           className,
         )}
         {...props}

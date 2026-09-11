@@ -2,7 +2,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
 import { cn } from "../../lib/cn";
 
-const cardVariants = cva("flex flex-col overflow-hidden rounded-lg text-left outline-none", {
+const cardVariants = cva("flex flex-col overflow-hidden rounded-md text-left outline-none", {
   variants: {
     variant: {
       default: "border border-border-default bg-bg-primary hover:bg-bg-secondary hover:shadow-sm",

@@ -18,9 +18,10 @@ export interface DropdownMenuContentProps
  * own recorded id — `BUILD_LOG.md` — the same trick that resolved Toast/Popover in earlier
  * units). Published panel symbol (`2121:15472`): `bg/elevated`, `border/default`,
  * `p/xs`+`gap/xs` (4px), `shadow/lg` (already correctly bound — this project's `shadow-lg`
- * utility is remapped in `theme.css` to the brand-tinted token, not raw Tailwind). One
- * real, confirmed drift fixed here: the panel radius token is `radius/lg`, not
- * `radius/md` — code had `rounded-md`, corrected to `rounded-lg`.
+ * utility is remapped in `theme.css` to the brand-tinted token, not raw Tailwind). Panel
+ * radius is `radius/md` (12px) — re-confirmed 2026-09-11 after Figma's duplicate "Radius"
+ * variable collections were consolidated; the earlier `rounded-md` → `rounded-lg` change
+ * was based on the since-deleted, orphaned collection and has been reverted.
  */
 export function DropdownMenuContent({
   ref,
@@ -35,7 +36,7 @@ export function DropdownMenuContent({
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 flex min-w-32 flex-col gap-1 rounded-lg border border-border-default bg-bg-elevated p-1 shadow-lg",
+          "z-50 flex min-w-32 flex-col gap-1 rounded-md border border-border-default bg-bg-elevated p-1 shadow-lg",
           className,
         )}
         {...props}

@@ -10,7 +10,7 @@ export const SelectValue = SelectPrimitive.Value;
 
 const selectTriggerVariants = cva(
   [
-    "flex w-full items-center justify-between gap-2 rounded-md border border-border-default bg-bg-primary text-fg-primary transition-colors outline-none",
+    "flex w-full items-center justify-between gap-2 rounded-sm border border-border-default bg-bg-primary text-fg-primary transition-colors outline-none",
     "data-[placeholder]:text-fg-tertiary",
     "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
     "disabled:cursor-not-allowed disabled:bg-bg-secondary disabled:text-fg-disabled",
