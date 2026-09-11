@@ -81,6 +81,17 @@ describe("Input", () => {
     );
   });
 
+  it("uses the error-tinted glow-focus-error shadow (not the brand glow) when focused while invalid", () => {
+    render(<Input error aria-label="Email" />);
+    const wrapper = screen.getByRole("textbox").parentElement;
+    expect(wrapper).toHaveClass(
+      "has-[[aria-invalid=true]]:focus-within:shadow-[var(--shadow-glow-focus-error)]",
+    );
+    expect(wrapper).toHaveClass(
+      "has-[[aria-invalid=true]]:focus-within:border-border-error",
+    );
+  });
+
   it("has no axe violations across default, error, and disabled states", async () => {
     const { container, rerender } = render(<Input aria-label="Email" />);
     expect(await axe(container)).toHaveNoViolations();

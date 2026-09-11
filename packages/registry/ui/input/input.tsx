@@ -9,6 +9,7 @@ const inputWrapperVariants = cva(
     "focus-within:border-border-brand focus-within:shadow-[var(--shadow-glow-focus)]",
     "has-[:disabled]:bg-bg-secondary",
     "has-[[aria-invalid=true]]:border-border-error",
+    "has-[[aria-invalid=true]]:focus-within:border-border-error has-[[aria-invalid=true]]:focus-within:shadow-[var(--shadow-glow-focus-error)]",
   ].join(" "),
   {
     variants: {
@@ -56,7 +57,13 @@ export interface InputProps
 
 /**
  * role=textbox · requires an associated label via Field · aria-invalid=true on error ·
- * aria-describedby links to the error/helper message (wired by Field)
+ * aria-describedby links to the error/helper message (wired by Field) · focus ring uses
+ * shadow-glow-focus, or shadow-glow-focus-error when focused while invalid (Figma's
+ * error-focus state, node 6198:22642) · "filled" (Figma's node 6198:22642 density spec)
+ * needs no separate prop — entered text renders fg-primary while the placeholder renders
+ * fg-tertiary natively, matching Figma's filled-vs-empty distinction · Figma's real state
+ * axis is default/hover/focus/filled/disabled/error/error-focus — there is no distinct
+ * "readonly" state, so none was added
  */
 export function Input({
   ref,
