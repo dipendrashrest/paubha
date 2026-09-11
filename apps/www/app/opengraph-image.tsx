@@ -16,9 +16,9 @@ export default function Image() {
           alignItems: "center",
           justifyContent: "center",
           gap: "28px",
-          backgroundColor: "#172152",
+          backgroundColor: "#1A2150",
           backgroundImage:
-            "radial-gradient(circle at 50% 0%, rgba(59,99,245,0.4), transparent 60%)",
+            "radial-gradient(circle at 50% 0%, rgba(68,105,229,0.4), transparent 60%)",
         }}
       >
         <div
@@ -33,7 +33,7 @@ export default function Image() {
               width: "48px",
               height: "48px",
               borderRadius: "14px",
-              backgroundColor: "#3B63F5",
+              backgroundColor: "#4469E5",
             }}
           />
           <span
@@ -51,7 +51,7 @@ export default function Image() {
           style={{
             fontSize: "34px",
             fontWeight: 400,
-            color: "#BFD0FE",
+            color: "#C2D1F9",
             textAlign: "center",
             maxWidth: "760px",
           }}
