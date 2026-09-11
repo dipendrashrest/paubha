@@ -82,6 +82,33 @@ describe("Checkbox", () => {
     );
   });
 
+  it("binds hover/active/disabled states to the confirmed Figma tokens", () => {
+    const { rerender } = render(<Checkbox label="Accept terms" checked={false} />);
+    let checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass("hover:border-border-strong");
+    expect(checkbox).toHaveClass(
+      "data-[state=unchecked]:active:border-border-brand",
+      "data-[state=unchecked]:active:bg-bg-brand-subtle",
+    );
+
+    rerender(<Checkbox label="Accept terms" checked />);
+    checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass(
+      "data-[state=checked]:border-bg-brand-solid",
+      "data-[state=checked]:hover:border-bg-brand-solid-hover",
+      "data-[state=checked]:hover:bg-bg-brand-solid-hover",
+      "data-[state=checked]:active:border-bg-brand-solid-active",
+      "data-[state=checked]:active:bg-bg-brand-solid-active",
+    );
+
+    rerender(<Checkbox label="Accept terms" checked={false} disabled />);
+    checkbox = screen.getByRole("checkbox");
+    expect(checkbox).toHaveClass(
+      "disabled:border-border-default",
+      "disabled:bg-bg-disabled",
+    );
+  });
+
   it("has no axe violations across unchecked, checked, indeterminate, and disabled", async () => {
     const { container, rerender } = render(
       <Checkbox label="Accept terms" checked={false} />,
