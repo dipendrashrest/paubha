@@ -37,6 +37,13 @@ describe("Textarea", () => {
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true");
   });
 
+  it("applies the error border and text-color classes when error is true", () => {
+    render(<Textarea error aria-label="Bio" />);
+    const textarea = screen.getByRole("textbox");
+    expect(textarea).toHaveClass("aria-invalid:border-border-error");
+    expect(textarea).toHaveClass("aria-invalid:text-fg-error");
+  });
+
   it("does not set aria-invalid by default", () => {
     render(<Textarea aria-label="Bio" />);
     expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-invalid");
