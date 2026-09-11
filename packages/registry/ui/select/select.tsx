@@ -15,6 +15,7 @@ const selectTriggerVariants = cva(
     "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
     "disabled:cursor-not-allowed disabled:bg-bg-secondary disabled:text-fg-disabled",
     "aria-invalid:border-border-error",
+    "aria-invalid:focus-visible:border-border-error aria-invalid:focus-visible:shadow-[var(--shadow-glow-focus-error)]",
   ].join(" "),
   {
     variants: {
@@ -44,7 +45,8 @@ export interface SelectTriggerProps
 
 /**
  * role=combobox · aria-expanded reflects open state · aria-invalid on error · Arrow keys
- * navigate options · Enter selects · Escape closes · type-ahead search supported
+ * navigate options · Enter selects · Escape closes · type-ahead search supported · focus
+ * ring uses shadow-glow-focus, or shadow-glow-focus-error when focused while invalid
  */
 export function SelectTrigger({
   ref,

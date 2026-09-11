@@ -87,6 +87,17 @@ describe("Select", () => {
     ).toHaveAttribute("aria-invalid", "true");
   });
 
+  it("binds the error-focus glow ring class when error and focused together", async () => {
+    const user = userEvent.setup();
+    render(<BasicSelect error />);
+    const trigger = screen.getByRole("combobox", { name: "Framework" });
+    await user.tab();
+    expect(trigger).toHaveFocus();
+    expect(trigger.className).toContain(
+      "aria-invalid:focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+    );
+  });
+
   it("closes the listbox on Escape", async () => {
     const user = userEvent.setup();
     render(<BasicSelect />);
