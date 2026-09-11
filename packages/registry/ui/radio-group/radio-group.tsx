@@ -29,6 +29,20 @@ export interface RadioGroupItemProps
   label?: React.ReactNode;
 }
 
+/**
+ * State bindings confirmed against Figma's real `_Radio Item` symbol set (node
+ * 2121:15180, 10 symbols: Unselected/Selected x default/hover/focus/active/disabled —
+ * single size only, confirmed no size axis exists in this file, unlike several other
+ * components audited tonight). Unselected hover -> border/strong (added). Unselected
+ * active and Selected hover/active render identical to their own default state in
+ * Figma, so no extra CSS was needed for those. Selected disabled -> bg/tertiary +
+ * border/default + a fg/disabled dot (all three were previously wrong/missing — code
+ * inherited the unselected-disabled bg and never overrode the checked border or dot
+ * color). Figma's focus state additionally tints the circle's own border to
+ * brand/100 (#dbe5fe) on top of the glow-focus shadow; there is no semantic token for
+ * that primitive alone, so it was deliberately left unbound rather than invented —
+ * see SYNC_LOG.md OPEN QUESTIONS.
+ */
 export function RadioGroupItem({
   ref,
   className,
@@ -45,15 +59,17 @@ export function RadioGroupItem({
         ref={ref}
         id={controlId}
         className={cn(
-          "peer flex size-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border-default bg-bg-primary",
+          "group peer flex size-5 shrink-0 items-center justify-center rounded-full border-[1.5px] border-border-default bg-bg-primary",
+          "data-[state=unchecked]:hover:border-border-strong",
           "focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]",
           "data-[state=checked]:border-border-brand data-[state=checked]:bg-bg-brand-solid",
-          "disabled:cursor-not-allowed disabled:bg-bg-secondary data-[state=checked]:disabled:bg-bg-disabled",
+          "disabled:cursor-not-allowed disabled:bg-bg-secondary",
+          "data-[state=checked]:disabled:border-border-default data-[state=checked]:disabled:bg-bg-tertiary",
           className,
         )}
         {...props}
       >
-        <RadioGroupPrimitive.Indicator className="size-2 rounded-full bg-fg-on-brand" />
+        <RadioGroupPrimitive.Indicator className="size-2 rounded-full bg-fg-on-brand group-disabled:bg-fg-disabled" />
       </RadioGroupPrimitive.Item>
       {label ? (
         <label
