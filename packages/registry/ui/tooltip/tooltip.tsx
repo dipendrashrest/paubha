@@ -11,7 +11,16 @@ export interface TooltipContentProps
 
 /**
  * role=tooltip (set by Radix) · shows on hover/focus · Esc dismisses · linked to its
- * trigger via aria-describedby · not interactive/not focusable
+ * trigger via aria-describedby · not interactive/not focusable · no independent focus
+ * ring on the content — the wrapped trigger element keeps its own normal
+ * focus-visible treatment undisturbed
+ *
+ * Figma (node 2121:15434, "Variant: Top | Bottom | Left | Right") has no size/state
+ * axis and no visual difference between placements beyond arrow rotation — Radix's
+ * native `side`/`align` props on TooltipContent already cover all 4 placements, so no
+ * custom placement prop is added here. Body: bg-fg-primary, text-bg-primary (inverted
+ * scheme), rounded-xs, px-2 py-1 (space/md, space/xs), text-ui-xs font-medium, arrow
+ * 6x5 fill-fg-primary — all confirmed against the published symbols.
  */
 export function TooltipContent({
   ref,
@@ -32,8 +41,8 @@ export function TooltipContent({
     >
       {children}
       <TooltipPrimitive.Arrow
-        width={8}
-        height={4}
+        width={6}
+        height={5}
         className="fill-fg-primary"
       />
     </TooltipPrimitive.Content>

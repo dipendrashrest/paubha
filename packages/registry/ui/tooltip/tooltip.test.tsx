@@ -87,4 +87,14 @@ describe("Tooltip", () => {
     await screen.findByRole("tooltip");
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders the arrow at the confirmed Figma dimensions (6x5)", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<BasicTooltip />);
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
+    const arrowSvg = container.querySelector("svg");
+    expect(arrowSvg).toHaveAttribute("width", "6");
+    expect(arrowSvg).toHaveAttribute("height", "5");
+  });
 });
