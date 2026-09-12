@@ -23,7 +23,7 @@ export default async function Page(props: {
       full={page.data.full}
       article={{ className: "mx-auto w-full max-w-[760px]" }}
     >
-      <DocsTitle className="!text-display-sm !font-semibold">
+      <DocsTitle className="!text-display-sm !font-bold !tracking-[-1.5%]">
         {page.data.title}
       </DocsTitle>
       <DocsDescription className="!text-body-lg !text-fg-secondary">

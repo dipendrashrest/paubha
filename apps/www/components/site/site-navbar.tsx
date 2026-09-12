@@ -57,7 +57,7 @@ export function SiteNavbar({
             variant="gray"
             fill="subtle"
             size="sm"
-            className="font-mono uppercase"
+            className="font-mono uppercase tracking-[3%]"
           >
             Docs
           </Badge>
@@ -70,7 +70,7 @@ export function SiteNavbar({
                 key={link.url}
                 href={link.url}
                 className={cn(
-                  "transition-colors",
+                  "font-medium transition-colors",
                   active
                     ? "text-fg-primary"
                     : "text-fg-tertiary hover:text-fg-primary",

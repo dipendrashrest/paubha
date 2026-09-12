@@ -121,6 +121,12 @@
   --text-display-2xl--line-height: 5.5rem;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Utility font for code/data/tags only — never a second brand typeface.
+     var(--font-jetbrains-mono) is set by consumers that load the real
+     webfont (e.g. apps/www via next/font/google); falls back to the system
+     mono stack otherwise, same portable pattern as --font-sans above. */
+  --font-mono: var(--font-jetbrains-mono, "JetBrains Mono"), ui-monospace,
+    SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Figma "Foundations / Grid Layouts" (2066:16952) — "Container Widths"
      section confirms exactly 4 breakpoints: sm/md/lg/xl at 640/768/1024/1280px

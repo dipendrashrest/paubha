@@ -16,7 +16,10 @@ const SiteSidebarItem: SidebarComponents["Item"] = ({ item }) => {
       href={item.url}
       external={item.external}
       className={cn(
-        "flex h-9 items-center rounded-md border-l-2 border-transparent px-3 text-ui-sm transition-colors",
+        // Square left edge (not rounded-md all around) so the active
+        // border-l reads as a flat accent bar instead of curving into the
+        // corner.
+        "flex h-9 items-center rounded-l-none rounded-r-md border-l-2 border-transparent px-3 text-ui-sm transition-colors",
         active
           ? "border-border-brand bg-bg-tertiary text-fg-primary"
           : "text-fg-tertiary hover:bg-bg-tertiary-hover hover:text-fg-primary",
@@ -28,7 +31,7 @@ const SiteSidebarItem: SidebarComponents["Item"] = ({ item }) => {
 };
 
 const SiteSidebarSeparator: SidebarComponents["Separator"] = ({ item }) => (
-  <p className="mt-6 mb-1.5 px-3 font-mono text-[11px] tracking-[0.06em] text-fg-tertiary uppercase first:mt-0">
+  <p className="mt-6 mb-1.5 px-3 font-mono text-[11px] tracking-[3%] text-fg-tertiary uppercase first:mt-0">
     {item.name}
   </p>
 );
@@ -45,7 +48,7 @@ const SiteSidebarFolder: SidebarComponents["Folder"] = ({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="mt-6 mb-1.5 flex w-full items-center gap-1.5 px-3 font-mono text-[11px] tracking-[0.06em] text-fg-tertiary uppercase first:mt-0"
+        className="mt-6 mb-1.5 flex w-full items-center gap-1.5 px-3 font-mono text-[11px] tracking-[3%] text-fg-tertiary uppercase first:mt-0"
       >
         {item.name}
         <ChevronDown

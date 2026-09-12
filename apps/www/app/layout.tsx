@@ -1,9 +1,15 @@
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+// Utility mono font only (code, data, tags) — never a second brand typeface.
+// Exposed as --font-jetbrains-mono and consumed by theme.css's --font-mono.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
 
 export const metadata = {
   metadataBase: new URL("https://docs.paubha.com"),
@@ -17,7 +23,11 @@ export const metadata = {
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.className} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-screen flex-col">
         <RootProvider theme={{ defaultTheme: "system", enabled: true }}>
           {children}

@@ -16,7 +16,7 @@ export default function HomePage() {
         Building in public — foundations complete, components in progress
       </Badge>
 
-      <h1 className="max-w-3xl text-balance text-display-lg font-semibold tracking-tight text-fg-primary">
+      <h1 className="max-w-3xl text-balance text-display-lg font-bold tracking-[-1.5%] text-fg-primary">
         Open-source components for React &amp; Tailwind
       </h1>
 
