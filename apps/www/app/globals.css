@@ -7,6 +7,14 @@
 /* Registry components live outside the Next app; scan them so CVA classes emit. */
 @source "../../../packages/registry";
 
+/* <SiteNavbar/> replaces Fumadocs' own <Navbar>, which is what normally sets
+   --fd-nav-height (used by the sidebar/content/TOC to offset below the nav).
+   Without this, it stays at Fumadocs' 0px default and the sidebar/content
+   render underneath our sticky nav instead of below it. */
+:root {
+  --fd-nav-height: 72px;
+}
+
 /* Paubha accent for Fumadocs' active-nav/TOC/primary accents. Fumadocs only
    ever uses --color-fd-primary as text color or a 1px accent line (sidebar
    active item, TOC active item + thumb, RootToggle check) — never as a large
@@ -22,4 +30,21 @@
 .dark {
   --color-fd-primary: var(--brand-400);
   --color-fd-primary-foreground: #ffffff;
+
+  /* Docs-site chrome (nav/sidebar/TOC/cards) re-skinned to Paubha's own
+     dark-mode component tokens — true near-black, not a separate palette. */
+  --color-fd-background: var(--bg-primary);
+  --color-fd-foreground: var(--fg-primary);
+  --color-fd-muted: var(--bg-tertiary);
+  --color-fd-muted-foreground: var(--fg-tertiary);
+  --color-fd-popover: var(--bg-elevated);
+  --color-fd-popover-foreground: var(--fg-primary);
+  --color-fd-card: var(--bg-elevated);
+  --color-fd-card-foreground: var(--fg-primary);
+  --color-fd-border: var(--border-default);
+  --color-fd-secondary: var(--bg-secondary);
+  --color-fd-secondary-foreground: var(--fg-primary);
+  --color-fd-accent: var(--bg-tertiary-hover);
+  --color-fd-accent-foreground: var(--fg-primary);
+  --color-fd-ring: var(--focus-ring);
 }

@@ -5,7 +5,7 @@
   "type": "module",
   "exports": {
     "./ui/*": "./ui/*/index.ts",
-    "./lib/*": "./lib/*",
+    "./lib/*": "./lib/*.ts",
     "./styles/*": "./styles/*.css",
     "./registry.json": "./registry.json"
   },
