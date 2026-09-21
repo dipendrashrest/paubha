@@ -17,10 +17,12 @@ import { Spinner } from "@/components/ui/spinner";
 {isLoading ? <Spinner /> : <Content />}
 ```
 
-A static ring with one accent dot at a fixed corner, rotating as a whole via
-`animate-spin`. Distinct from Button's own internal loading spinner, which is
-a two-tone SVG arc sized to match Button's icon slots — two different
-components for two different jobs, not the same thing built twice.
+A light track ring plus a highlighted arc, rotating as a whole via
+`animate-spin`. The arc uses `currentColor`, so it inherits whatever text
+color its context sets — wrap it in a `text-*` class to recolor it, no prop
+needed. Button has its own separate internal loading spinner sized to its
+icon slots, not this component reused — two independent implementations of
+the same idea, not the same thing built twice.
 
 ## Examples
 
@@ -41,11 +43,13 @@ components for two different jobs, not the same thing built twice.
       implicit role is <code>status</code>.
     </li>
     <li>
-      <strong>Accessible name.</strong> <code>aria-label=&quot;Loading&quot;</code>.
+      <strong>Accessible name.</strong> <code>aria-label=&quot;Loading&quot;</code>,
+      announced via <code>aria-live=&quot;polite&quot;</code>.
     </li>
     <li>
-      <strong>Busy state.</strong> <code>aria-busy=&quot;true&quot;</code> on the
-      container.
+      <strong>Busy state.</strong> Spinner doesn't set <code>aria-busy</code> itself —
+      add <code>aria-busy=&quot;true&quot;</code> to whichever element is actually
+      loading (a section, a button, a form).
     </li>
     <li>
       <strong>Unmounting.</strong> Spinner has no "done" state of its own — swap it out

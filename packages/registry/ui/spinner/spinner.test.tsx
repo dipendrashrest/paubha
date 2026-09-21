@@ -10,9 +10,9 @@ describe("Spinner", () => {
     expect(screen.getByRole("status", { name: "Loading" })).toBeInTheDocument();
   });
 
-  it("sets aria-busy=true on the container", () => {
+  it("announces via aria-live=polite", () => {
     render(<Spinner />);
-    expect(screen.getByRole("status")).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByRole("status")).toHaveAttribute("aria-live", "polite");
   });
 
   it("defaults to the md size", () => {
@@ -30,11 +30,19 @@ describe("Spinner", () => {
     expect(screen.getByRole("status")).toHaveClass("animate-spin");
   });
 
+  it("inherits its color from context via currentColor, not a fixed brand color", () => {
+    render(<Spinner />);
+    // The <mask> also contains a <path> (with no class) one level deeper —
+    // select the visible arc, a direct child of the <svg>, not that one.
+    const arc = screen.getByRole("status").querySelector("svg > path");
+    expect(arc).toHaveClass("stroke-current");
+  });
+
   it("merges a custom className without dropping variant classes", () => {
     render(<Spinner className="mt-4" />);
     const spinner = screen.getByRole("status");
     expect(spinner).toHaveClass("mt-4");
-    expect(spinner).toHaveClass("border-border-default");
+    expect(spinner).toHaveClass("animate-spin");
   });
 
   it("forwards a ref to the underlying element", () => {
