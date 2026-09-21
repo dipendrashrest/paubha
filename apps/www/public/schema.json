@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paubha.vercel.app/schema.json",
+  "title": "Paubha components.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry", "aliases", "tailwind"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "registry": {
+      "type": "string",
+      "format": "uri",
+      "description": "Base URL for registry JSON (no trailing slash required)."
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["components", "lib"],
+      "properties": {
+        "components": { "type": "string" },
+        "lib": { "type": "string" }
+      }
+    },
+    "tailwind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tokens", "theme"],
+      "properties": {
+        "tokens": { "type": "string" },
+        "theme": { "type": "string" }
+      }
+    }
+  }
+}
