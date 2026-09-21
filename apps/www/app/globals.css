@@ -12,7 +12,40 @@
    Without this, it stays at Fumadocs' 0px default and the sidebar/content
    render underneath our sticky nav instead of below it. */
 :root {
-  --fd-nav-height: 72px;
+  --fd-nav-height: 64px;
+  /* Fumadocs light preset is hsl(0 0% 96%) — dim vs Figma's white canvas. */
+  --color-fd-background: #ffffff;
+}
+
+/* Figma Sidebar/Documentation (node 6598:650): 249× padding 24/20/12, no
+   Fumadocs title/collapse/theme-switch chrome — those live in SiteNavbar. */
+aside#nd-sidebar {
+  background: var(--bg-primary);
+  border-color: var(--border-default);
+}
+
+aside#nd-sidebar > div.flex.flex-col.gap-3.p-4.pb-2 {
+  display: none;
+}
+
+aside#nd-sidebar [class*="overscroll-contain"] {
+  padding: 24px 20px 12px;
+}
+
+/* SiteNavbar is position:fixed. Restore the nav offset so page/sidebar/TOC
+   sit below the 64px bar instead of sliding under it. */
+#nd-home-layout,
+#nd-docs-layout {
+  padding-top: var(--fd-nav-height);
+}
+
+/* Fumadocs also forces md:[&_#nd-page_article]:pt-12 and TOC pt-12. */
+#nd-docs-layout #nd-page article {
+  padding-top: 16px;
+}
+
+#nd-toc {
+  padding-top: 16px;
 }
 
 /* Paubha accent for Fumadocs' active-nav/TOC/primary accents. Fumadocs only

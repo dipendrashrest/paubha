@@ -6,6 +6,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@paubha/registry/ui/tabs";
+import { CodeSnippet } from "./docs-icon-button";
 
 export function InstallTabs({
   name,
@@ -21,14 +22,10 @@ export function InstallTabs({
         <TabsTrigger value="manual">Manual</TabsTrigger>
       </TabsList>
       <TabsContent value="cli" className="mt-3">
-        <pre className="overflow-x-auto rounded-lg border border-border-default bg-bg-secondary p-4 font-mono text-ui-sm text-fg-primary">
-          <code>{`npx paubha add ${name}`}</code>
-        </pre>
+        <CodeSnippet code={`npx paubha add ${name}`} />
       </TabsContent>
       <TabsContent value="manual" className="mt-3">
-        <pre className="overflow-x-auto rounded-lg border border-border-default bg-bg-secondary p-4 font-mono text-ui-sm text-fg-primary">
-          <code>{manual}</code>
-        </pre>
+        <CodeSnippet code={manual} />
       </TabsContent>
     </Tabs>
   );

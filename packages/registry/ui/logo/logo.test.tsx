@@ -10,31 +10,37 @@ describe("Logo", () => {
     expect(screen.getByRole("img", { name: "Paubha" })).toBeInTheDocument();
   });
 
-  it("defaults to the combined variant (icon + wordmark)", () => {
+  it("defaults to the combined variant (light + dark lockup images)", () => {
     render(<Logo />);
     const logo = screen.getByRole("img", { name: "Paubha" });
-    expect(logo).toHaveTextContent("A");
-    expect(logo).toHaveTextContent("Paubha");
+    const images = logo.querySelectorAll("img");
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveAttribute("src", "/logo/combined.png");
+    expect(images[1]).toHaveAttribute("src", "/logo/combined-dark.png");
   });
 
-  it("renders only the icon glyph for variant=icon", () => {
+  it("renders only the icon mark for variant=icon", () => {
     render(<Logo variant="icon" />);
     const logo = screen.getByRole("img", { name: "Paubha" });
-    expect(logo).toHaveTextContent("A");
-    expect(logo).not.toHaveTextContent("Paubha");
+    const images = logo.querySelectorAll("img");
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute("src", "/logo/icon.png");
   });
 
-  it("renders only the wordmark text for variant=wordmark", () => {
+  it("renders only the wordmark for variant=wordmark", () => {
     render(<Logo variant="wordmark" />);
     const logo = screen.getByRole("img", { name: "Paubha" });
-    expect(logo.textContent).toBe("Paubha");
+    const images = logo.querySelectorAll("img");
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute("src", "/logo/wordmark.png");
   });
 
-  it("uses a fixed on-brand (white) wordmark color for variant=combined-dark, not the theme-aware default", () => {
+  it("uses the dark lockup for variant=combined-dark, regardless of theme", () => {
     render(<Logo variant="combined-dark" />);
-    const wordmark = screen.getByText("Paubha");
-    expect(wordmark).toHaveClass("text-fg-on-brand");
-    expect(wordmark).not.toHaveClass("text-fg-primary");
+    const logo = screen.getByRole("img", { name: "Paubha" });
+    const images = logo.querySelectorAll("img");
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute("src", "/logo/combined-dark.png");
   });
 
   it("merges a custom className without dropping layout classes", () => {

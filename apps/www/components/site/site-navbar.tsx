@@ -2,13 +2,14 @@
 
 import { cn } from "@paubha/registry/lib/cn";
 import { Badge } from "@paubha/registry/ui/badge";
-import { buttonVariants } from "@paubha/registry/ui/button";
 import { Logo } from "@paubha/registry/ui/logo";
+import { ToggleGroup, ToggleGroupItem } from "@paubha/registry/ui/toggle-group";
 import Link from "fumadocs-core/link";
-import { ThemeToggle } from "fumadocs-ui/components/layout/theme-toggle";
 import { SidebarTrigger } from "fumadocs-ui/layouts/docs";
-import { ArrowRight, Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import { useLayoutEffect, useState } from "react";
 import { SiteSearchTrigger } from "./site-search-trigger";
 
 const NAV_LINKS = [
@@ -35,13 +36,66 @@ function activeNavLink(pathname: string) {
   ).sort((a, b) => b.section.length - a.section.length)[0];
 }
 
+/** Lucide v1 dropped brand marks; this is the GitHub glyph for the repo link only. */
+function GithubMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.294 2.748-1.025 2.748-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.936.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10Z" />
+    </svg>
+  );
+}
+
+function SiteThemeToggle() {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const value =
+    !mounted || resolvedTheme !== "light" ? "dark" : "light";
+
+  return (
+    <ToggleGroup
+      value={value}
+      onValueChange={(next) => {
+        if (next) setTheme(next);
+      }}
+      aria-label="Color theme"
+      size="sm"
+      className="h-9 gap-0.5 rounded-sm border border-border-default bg-bg-primary p-1 lg:h-10"
+    >
+      <ToggleGroupItem
+        value="light"
+        aria-label="Light theme"
+        className="h-full rounded-xs px-3 data-[state=checked]:bg-bg-tertiary data-[state=checked]:shadow-xs"
+      >
+        <Sun className="size-4" aria-hidden="true" />
+      </ToggleGroupItem>
+      <ToggleGroupItem
+        value="dark"
+        aria-label="Dark theme"
+        className="h-full rounded-xs px-3 data-[state=checked]:bg-bg-tertiary data-[state=checked]:shadow-xs"
+      >
+        <Moon className="size-4" aria-hidden="true" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+}
+
 export function SiteNavbar({
   showSidebarTrigger = false,
 }: { showSidebarTrigger?: boolean }) {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-30 flex h-[72px] shrink-0 items-center justify-between border-b border-border-default bg-bg-elevated px-8">
+    <header className="fixed inset-x-0 top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-border-default bg-bg-primary px-6">
       <div className="flex items-center gap-8">
         {showSidebarTrigger ? (
           // SidebarTrigger hardcodes its own aria-label ("Open Sidebar").
@@ -49,20 +103,15 @@ export function SiteNavbar({
             <Menu className="size-5" aria-hidden="true" />
           </SidebarTrigger>
         ) : null}
-        <div className="flex items-center gap-2.5">
-          <Link href="/" className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
+          <Link href="/" aria-label="Paubha" className="flex items-center">
             <Logo variant="combined" />
           </Link>
-          <Badge
-            variant="gray"
-            fill="subtle"
-            size="sm"
-            className="font-mono uppercase tracking-[3%]"
-          >
-            Docs
+          <Badge variant="gray" fill="subtle" size="sm">
+            v 0.1.0
           </Badge>
         </div>
-        <nav className="hidden items-center gap-6 text-ui-sm md:flex">
+        <nav className="hidden items-center gap-4 text-ui-md md:flex">
           {NAV_LINKS.map((link) => {
             const active = activeNavLink(pathname)?.url === link.url;
             return (
@@ -72,8 +121,8 @@ export function SiteNavbar({
                 className={cn(
                   "font-medium transition-colors",
                   active
-                    ? "text-fg-primary"
-                    : "text-fg-tertiary hover:text-fg-primary",
+                    ? "text-fg-brand"
+                    : "text-fg-secondary hover:text-fg-primary",
                 )}
               >
                 {link.label}
@@ -82,30 +131,24 @@ export function SiteNavbar({
           })}
         </nav>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <SiteSearchTrigger />
-        <ThemeToggle mode="light-dark" className="text-fg-secondary" />
+        <SiteThemeToggle />
         <a
           href="https://github.com/dipendra0514/paubha"
           target="_blank"
           rel="noreferrer"
+          aria-label="GitHub"
           className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "hidden sm:inline-flex",
+            "hidden h-9 items-center gap-2 rounded-sm border border-border-default bg-bg-primary px-3 sm:inline-flex lg:h-10",
+            "text-ui-md text-fg-tertiary transition-colors",
+            "hover:border-border-strong",
+            "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
           )}
         >
+          <GithubMark className="size-4 shrink-0" />
           GitHub
         </a>
-        <Link
-          href="/docs"
-          className={cn(
-            buttonVariants({ variant: "primary", size: "sm" }),
-            "hidden sm:inline-flex",
-          )}
-        >
-          Get started
-          <ArrowRight className="size-4" aria-hidden="true" />
-        </Link>
       </div>
     </header>
   );
