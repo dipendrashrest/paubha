@@ -24,11 +24,6 @@ const NAV_LINKS = [
     url: "/docs/components/avatar",
     section: "/docs/components",
   },
-  {
-    label: "Coming soon",
-    url: "/docs/coming-soon",
-    section: "/docs/coming-soon",
-  },
 ];
 
 // Only the deepest-matching section is active — otherwise "Docs" (whose

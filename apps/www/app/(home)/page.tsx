@@ -1,4 +1,3 @@
-import { LandingComingSoon } from "@/components/home/landing-coming-soon";
 import { LandingHero } from "@/components/home/landing-hero";
 import { LandingMosaic } from "@/components/home/landing-mosaic";
 
@@ -7,7 +6,6 @@ export default function HomePage() {
     <div className="flex flex-1 flex-col bg-bg-primary">
       <LandingHero />
       <LandingMosaic />
-      <LandingComingSoon />
       <p className="pb-10 text-center text-ui-sm font-medium text-fg-brand">
         Built by Dipendra Shrestha.
       </p>
