@@ -12,7 +12,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://docs.paubha.com"),
+  metadataBase: new URL("https://paubha.vercel.app"),
   title: {
     template: "%s — Paubha",
     default: "Paubha — Open-source components for React & Tailwind",
@@ -25,11 +25,18 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${inter.className} ${jetbrainsMono.variable}`}
+      className={`${inter.className} ${jetbrainsMono.variable} dark`}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
-        <RootProvider theme={{ defaultTheme: "system", enabled: true }}>
+        <RootProvider
+          theme={{
+            defaultTheme: "dark",
+            enableSystem: false,
+            storageKey: "paubha-theme",
+            enabled: true,
+          }}
+        >
           {children}
         </RootProvider>
       </body>

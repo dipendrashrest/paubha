@@ -6,7 +6,7 @@ Open-source components for React & Tailwind.
 
 - `apps/www` — docs site + landing (Next.js + Fumadocs). Serves the public registry at `/r/*.json`.
 - `packages/registry` — component source of truth (`ui/{name}/{name}.tsx`, `lib/`, `styles/`), `registry.json`, and the `build` script that emits `apps/www/public/r/*.json`.
-- `packages/cli` — `npx paubha init|add`. Fetches components from the registry URL (default `https://paubha.com/r`).
+- `packages/cli` — `npx paubha init|add`. Fetches components from the registry URL (default `https://paubha.vercel.app/r`).
 
 ## Getting started
 
@@ -28,7 +28,7 @@ npx paubha add button
 PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha add button
 ```
 
-`components.json` includes a `registry` field (default `https://paubha.com/r`).
+`components.json` includes a `registry` field (default `https://paubha.vercel.app/r`).
 
 ## Notes
 

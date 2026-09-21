@@ -4,7 +4,7 @@ description: init, add, and how the registry works.
 ---
 
 The CLI fetches component JSON from the registry URL and copies source into your
-project. Default registry: `https://paubha.com/r`.
+project. Default registry: `https://paubha.vercel.app/r`.
 
 ## Commands
 
@@ -33,7 +33,7 @@ deps once.
 
 ## Registry
 
-Components are served as JSON from `paubha.com/r/[name].json`, following the
+Components are served as JSON from `https://paubha.vercel.app/r/[name].json`, following the
 [shadcn registry schema](https://ui.shadcn.com/schema/registry.json). That means
 any shadcn-compatible tooling can consume Paubha components directly.
 
@@ -50,7 +50,7 @@ pnpm build:registry
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "paubha",
-  "homepage": "https://paubha.com",
+  "homepage": "https://paubha.vercel.app",
   "items": [
     {
       "name": "button",
