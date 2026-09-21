@@ -30,12 +30,21 @@ describe("Spinner", () => {
     expect(screen.getByRole("status")).toHaveClass("animate-spin");
   });
 
-  it("inherits its color from context via currentColor, not a fixed brand color", () => {
+  it("defaults to brand color via currentColor", () => {
     render(<Spinner />);
+    const status = screen.getByRole("status");
+    expect(status).toHaveClass("text-fg-brand");
     // The <mask> also contains a <path> (with no class) one level deeper —
     // select the visible arc, a direct child of the <svg>, not that one.
-    const arc = screen.getByRole("status").querySelector("svg > path");
+    const arc = status.querySelector("svg > path");
     expect(arc).toHaveClass("stroke-current");
+  });
+
+  it("lets a passed text-* className override the default brand color", () => {
+    render(<Spinner className="text-fg-on-brand" />);
+    const status = screen.getByRole("status");
+    expect(status).toHaveClass("text-fg-on-brand");
+    expect(status).not.toHaveClass("text-fg-brand");
   });
 
   it("merges a custom className without dropping variant classes", () => {

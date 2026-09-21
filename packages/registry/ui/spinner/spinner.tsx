@@ -2,7 +2,10 @@ import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
 import { cn } from "../../lib/cn";
 
-const spinnerVariants = cva("inline-block shrink-0 animate-spin", {
+// text-fg-brand is just the default — the arc still reads currentColor, so
+// wrapping in a different text-* class (e.g. inside a Button) or passing a
+// className still overrides it.
+const spinnerVariants = cva("inline-block shrink-0 animate-spin text-fg-brand", {
   variants: {
     size: {
       sm: "size-4",
