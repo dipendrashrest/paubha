@@ -26,6 +26,14 @@ PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha@latest add button
 
 Full docs: [ui.paubha.tech/docs](https://ui.paubha.tech/docs)
 
+### Using an AI coding agent?
+
+Drop **[ui.paubha.tech/skill.md](https://ui.paubha.tech/skill.md)** into your
+project (e.g. `.claude/skills/paubha/SKILL.md` for Claude Code, or just paste
+it into your agent's context) and it'll know how to install components, use
+the design tokens correctly, and follow the real component API conventions —
+without you re-explaining any of it per session.
+
 ## Local development
 
 ```bash
