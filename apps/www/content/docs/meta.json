@@ -1,13 +1,16 @@
 {
   "title": "Documentation",
   "pages": [
-    "---Getting Started---",
+    "---Documentation---",
     "index",
     "installation",
     "theming",
     "cli",
+    "changelog",
+    "---Resources---",
+    "figma",
+    "icons",
     "foundations",
-    "components",
-    "changelog"
+    "components"
   ]
 }

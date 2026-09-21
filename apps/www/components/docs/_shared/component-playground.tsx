@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@paubha/registry/ui/button";
 import {
   Tabs,
   TabsContent,
@@ -9,6 +8,7 @@ import {
 } from "@paubha/registry/ui/tabs";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
+import { CodeCopyButton, DocsIconButton } from "./docs-icon-button";
 
 export function ComponentPlayground({
   code,
@@ -32,28 +32,21 @@ export function ComponentPlayground({
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="sm"
+          <DocsIconButton
             aria-label="Light preview"
             aria-pressed={previewTheme === "light"}
             onClick={() => setPreviewTheme("light")}
-            className={
-              previewTheme === "light" ? "bg-bg-tertiary" : undefined
-            }
           >
             <Sun className="size-4" aria-hidden="true" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
+          </DocsIconButton>
+          <DocsIconButton
             aria-label="Dark preview"
             aria-pressed={previewTheme === "dark"}
             onClick={() => setPreviewTheme("dark")}
-            className={previewTheme === "dark" ? "bg-bg-tertiary" : undefined}
           >
             <Moon className="size-4" aria-hidden="true" />
-          </Button>
+          </DocsIconButton>
+          <CodeCopyButton getText={() => code} />
         </div>
       </div>
       <TabsContent value="preview" className="m-0">

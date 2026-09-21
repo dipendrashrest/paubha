@@ -21,12 +21,13 @@ export default async function Page(props: {
     <DocsPage
       toc={page.data.toc}
       full={page.data.full}
-      article={{ className: "mx-auto w-full max-w-[760px]" }}
+      breadcrumb={{ enabled: false }}
+      article={{ className: "mx-0 w-full max-w-[760px] md:mx-0" }}
     >
-      <DocsTitle className="!text-display-sm !font-bold !tracking-[-1.5%]">
+      <DocsTitle className="!text-display-md !font-semibold !tracking-[-0.5px]">
         {page.data.title}
       </DocsTitle>
-      <DocsDescription className="!text-body-lg !text-fg-secondary">
+      <DocsDescription className="!mt-4 !mb-0 !text-body-md !text-fg-secondary">
         {page.data.description}
       </DocsDescription>
       <DocsBody>

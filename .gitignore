@@ -10,3 +10,7 @@ dist
 apps/www/public/r/*.json
 !apps/www/public/r/.gitkeep
 packages/cli/.npmrc
+
+# Source dump of brand marks (spaces in filenames); served copies live in
+# apps/www/public/logo/ and packages/registry/ui/logo/assets/.
+/logo/

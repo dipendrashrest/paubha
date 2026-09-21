@@ -1,4 +1,6 @@
 import { A11yCallout } from "@/components/docs/_shared/a11y-callout";
+import { DocsPre } from "@/components/docs/_shared/docs-pre";
+import { IntroPositioningAlert, SkillMdCard } from "@/components/docs/introduction/intro-blocks";
 import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert/alert-demos";
 import { AlertPropsTable } from "@/components/docs/alert/alert-props-table";
 import {
@@ -166,11 +168,14 @@ import type { MDXComponents } from "mdx/types";
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
+    pre: DocsPre,
     A11yCallout,
     ComingSoon,
     ComponentPlayground,
     InstallCommand,
+    IntroPositioningAlert,
     PropsTable,
+    SkillMdCard,
 
     // Foundations
     BlurScale,

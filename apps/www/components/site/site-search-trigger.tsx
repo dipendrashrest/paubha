@@ -26,13 +26,13 @@ export function SiteSearchTrigger({ className }: { className?: string }) {
         "flex items-center gap-2 rounded-sm border border-border-default bg-bg-primary transition-colors",
         "hover:border-border-strong",
         "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
-        "size-9 justify-center p-0 lg:w-70 lg:justify-start lg:px-3 lg:py-2",
+        "size-9 justify-center p-0 lg:h-10 lg:w-[327px] lg:justify-start lg:px-3 lg:py-2",
         className,
       )}
     >
       <Search className="size-4 shrink-0 text-fg-tertiary" aria-hidden="true" />
       <span className="hidden text-ui-md text-fg-tertiary lg:inline">
-        Search documentation…
+        Search documentation...
       </span>
     </button>
   );

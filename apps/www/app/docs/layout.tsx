@@ -10,8 +10,19 @@ export default function Layout({ children }: { children: ReactNode }) {
     <DocsLayout
       tree={source.pageTree}
       {...baseOptions}
-      nav={{ ...baseOptions.nav, component: <SiteNavbar showSidebarTrigger /> }}
-      sidebar={{ components: siteSidebarComponents }}
+      nav={{
+        ...baseOptions.nav,
+        component: <SiteNavbar showSidebarTrigger />,
+        title: null,
+      }}
+      themeSwitch={{ enabled: false }}
+      sidebar={{
+        components: siteSidebarComponents,
+        collapsible: false,
+        tabs: false,
+        className:
+          "bg-bg-primary md:[--fd-sidebar-width:249px] lg:[--fd-sidebar-width:249px]",
+      }}
     >
       {children}
     </DocsLayout>

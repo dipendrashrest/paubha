@@ -8,17 +8,24 @@ export interface LogoProps
   /**
    * `icon` — brand mark only, for favicons/app icons/compact placements.
    * `wordmark` — text-only lockup, for headers/footers/docs.
-   * `combined` — icon + wordmark, theme-aware (wordmark uses fg-primary).
+   * `combined` — icon + wordmark, theme-aware (swaps to the dark lockup in dark mode).
    * `combined-dark` — icon + wordmark for placement on a dark or brand-colored
-   * surface regardless of the app's active theme (wordmark is fixed on-brand white,
-   * not theme-aware) — e.g. a dark footer band on an otherwise light marketing page.
+   * surface regardless of the app's active theme — e.g. a dark footer band on an
+   * otherwise light marketing page.
    */
   variant?: LogoVariant;
 }
 
+const LOGO_SRC = {
+  icon: "/logo/icon.png",
+  wordmark: "/logo/wordmark.png",
+  combined: "/logo/combined.png",
+  "combined-dark": "/logo/combined-dark.png",
+} as const;
+
 /**
- * role=img · accessible name is the brand name ("Paubha"), the icon glyph and wordmark
- * text are aria-hidden since the wrapper already carries the name · non-interactive,
+ * role=img · accessible name is the brand name ("Paubha"), the bitmap is
+ * aria-hidden since the wrapper already carries the name · non-interactive,
  * no focus state · purely decorative/branding content, not a control
  */
 export function Logo({
@@ -27,37 +34,53 @@ export function Logo({
   variant = "combined",
   ...props
 }: LogoProps) {
-  const showIcon = variant !== "wordmark";
-  const showWordmark = variant !== "icon";
-
   return (
     <div
       ref={ref}
       role="img"
       aria-label="Paubha"
-      className={cn("inline-flex shrink-0 items-center gap-2.5", className)}
+      className={cn("inline-flex shrink-0 items-center", className)}
       {...props}
     >
-      {showIcon ? (
-        <span
+      {variant === "icon" ? (
+        <img
+          src={LOGO_SRC.icon}
+          alt=""
           aria-hidden="true"
-          className="flex size-10 shrink-0 items-center justify-center rounded-md bg-bg-brand-solid text-[22px] leading-8 font-bold text-fg-on-brand"
-        >
-          A
-        </span>
+          className="size-8"
+        />
       ) : null}
-      {showWordmark ? (
-        <span
+      {variant === "wordmark" ? (
+        <img
+          src={LOGO_SRC.wordmark}
+          alt=""
           aria-hidden="true"
-          className={cn(
-            "text-[20px] leading-7 font-semibold whitespace-nowrap",
-            variant === "combined-dark"
-              ? "text-fg-on-brand"
-              : "text-fg-primary",
-          )}
-        >
-          Paubha
-        </span>
+          className="h-8 w-auto dark:brightness-0 dark:invert"
+        />
+      ) : null}
+      {variant === "combined" ? (
+        <>
+          <img
+            src={LOGO_SRC.combined}
+            alt=""
+            aria-hidden="true"
+            className="h-8 w-auto dark:hidden"
+          />
+          <img
+            src={LOGO_SRC["combined-dark"]}
+            alt=""
+            aria-hidden="true"
+            className="hidden h-8 w-auto dark:block"
+          />
+        </>
+      ) : null}
+      {variant === "combined-dark" ? (
+        <img
+          src={LOGO_SRC["combined-dark"]}
+          alt=""
+          aria-hidden="true"
+          className="h-8 w-auto"
+        />
       ) : null}
     </div>
   );

@@ -1,42 +1,69 @@
 ---
 title: Introduction
-description: What Paubha is, how it works, and the principles behind it.
+description: Paubha is a set of beautifully designed, accessible components and an open code distribution approach. Built to work with your favorite frameworks and AI models. Open source. Open code.
 ---
 
-Paubha is an open-source library of React components styled with Tailwind CSS,
-paired with a Figma design system built on the exact same design tokens. You don't
-install it as a package — you copy the source into your project and own it.
+<IntroPositioningAlert />
 
-## How it works
+<div className="not-prose mt-10 mb-6">
+  <p className="text-display-xs font-semibold text-fg-primary">
+    Built on five principles
+  </p>
+  <p className="mt-2 text-body-sm text-fg-secondary">
+    Paubha is organized around five ideas that we believe should be true of
+    every design system your team ships.
+  </p>
+</div>
 
-- **Copy, don't import.** `npx paubha add button` writes the component's source
-  file into your codebase. There's no runtime dependency on Paubha, no version to
-  fight, and nothing you can't change.
-- **Two-layer tokens.** Raw primitive scales (color 50–950, spacing, radius) feed a
-  semantic layer (`bg-primary`, `fg-secondary`, `border-default`). Components only
-  ever touch the semantic layer, so dark mode and re-branding are a token remap —
-  never a component edit.
-- **Design and code stay in sync.** The Figma variables and the CSS custom
-  properties are the same system with the same names. What you design is what ships.
+## Open Code
 
-## Principles
+The top layer of every Paubha component is open for modification. When you add
+a component to your project you receive the full source — not a minified
+bundle, not a black box. Read it, understand it, and adapt it to your product
+without any workarounds.
 
-- **Accessible by default.** Every interactive component follows the relevant
-  WAI-ARIA Authoring Practices pattern — keyboard support, focus management, and
-  ARIA wiring included, with the pattern linked from each component's docs.
-- **Own your code.** MIT-licensed source in your repo. Fork it, restyle it, delete
-  the parts you don't need.
-- **A visible point of view.** Brand-tinted shadows instead of flat black, a
-  signature glow focus ring instead of hard outlines, and softer squircle-leaning
-  radii. Small choices, consistently applied.
+## Composition
 
-## Stack
+Every component uses a common, composable interface. Primitives combine
+predictably, props are consistent across the system, and every layout decision
+is intentional. You compose features — you don't fight the framework.
 
-React 19 · Tailwind CSS v4 (CSS-first tokens) · CVA for variants ·
-Radix UI primitives for complex overlays · TypeScript throughout.
+## Distribution
 
-## Next steps
+A flat-file schema and command-line tool make it trivially easy to distribute
+components across projects and teams. Publish once; consume anywhere — with
+full control over versioning and change management.
 
-Head to [Installation](/docs/installation) to set up your project, or jump straight
-to [Avatar](/docs/components/avatar) — the first complete component page, and the
-template every other component will follow.
+## Beautiful Defaults
+
+Carefully chosen typography, spacing, color semantics, and motion defaults mean
+you get great-looking interfaces out of the box. Defaults are a starting
+point, not a constraint — override any token or variant without losing
+coherence across the rest of the system.
+
+## AI-Compatible
+
+Paubha is designed to be read and understood by large language models. The
+open-code approach means AI tools can inspect, reason about, and generate
+components that are immediately compatible with your existing design system —
+no special plugins or integrations required.
+
+A `skill.md` file is available to download from our landing page. Drop it into
+your AI tool's context window and it will understand Paubha's conventions well
+enough to generate new components and layouts that fit your product perfectly
+from day one.
+
+<SkillMdCard />
+
+## Staying up to date
+
+Teams that maintain a dedicated design-system branch find this pattern simple:
+merge upstream changes into the branch, resolve conflicts with full visibility,
+then promote to your main codebase on your own schedule.
+
+## Deploy your app
+
+Paubha works with any deployment target. Export to React, Vue, Svelte, or use
+our Figma-native JSX format to hand off pixel-perfect designs. The same
+semantic token layer drives both design and code, so there is never a gap
+between what the designer specified and what the engineer ships.
