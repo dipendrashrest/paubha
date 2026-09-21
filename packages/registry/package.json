@@ -2,6 +2,7 @@
   "name": "@paubha/registry",
   "version": "0.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "exports": {
     "./ui/*": "./ui/*/index.ts",
