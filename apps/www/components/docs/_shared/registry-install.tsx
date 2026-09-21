@@ -178,3 +178,7 @@ export function TableInstall() {
 export function TagInputInstall() {
   return <RegistryInstall name="tag-input" />;
 }
+
+export function ActivityFeedInstall() {
+  return <RegistryInstall name="activity-feed" />;
+}

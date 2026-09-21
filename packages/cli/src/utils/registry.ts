@@ -38,7 +38,7 @@ export interface ResolvedComponents {
   dependencies: string[];
 }
 
-export const DEFAULT_REGISTRY_URL = "https://paubha.vercel.app/r";
+export const DEFAULT_REGISTRY_URL = "https://ui.paubha.tech/r";
 
 /** Resolves the registry base URL (no trailing slash). Env overrides config. */
 export function getRegistryBase(configured?: string): string {

@@ -8,11 +8,11 @@ This file is auto-loaded by Claude Code every session. Read it before doing any 
 
 ## Project links
 
-- **Repo:** https://github.com/dipendra0514/paubha
-- **Issues:** https://github.com/dipendra0514/paubha/issues
-- **Live site (docs + registry API):** https://paubha.vercel.app
+- **Repo:** https://github.com/dipendrashrest/paubha
+- **Issues:** https://github.com/dipendrashrest/paubha/issues
+- **Live site (docs + registry API):** https://ui.paubha.tech
 
-Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-08-25 — no custom domain is owned yet, so `paubha.com`/`docs.paubha.com` (the earlier planned marketing/docs split) don't exist and don't resolve. Until a domain is bought, both the docs site and the `/r/[name].json` registry-JSON endpoints are served from the single Vercel deployment above (`packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` all point here). If a real domain is bought later, update all of those together — don't let them drift apart again.
+Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-09-21 — custom domain is `ui.paubha.tech` (docs + `/r/[name].json` registry endpoints). Keep `packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` pointed here together — don't let them drift apart.
 
 ## Brand identity — do not deviate without being told
 
@@ -112,7 +112,7 @@ paubha/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx paubha add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://paubha.vercel.app/r` — see "Project links" above for why). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). **Not yet published to npm** — `npx paubha@latest` won't resolve to anything until it is.
+shadcn-style copy-paste registry (`npx paubha@latest add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://ui.paubha.tech/r` — see "Project links" above). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). Published to npm as `paubha` — use `npx paubha@latest`.
 
 ## Where specs come from
 
@@ -128,7 +128,7 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
 - Figma base components: all 19 free-tier components fully specced and built — Button, Avatar, Badge, Input, Field, Textarea, Checkbox, Radio Group, Switch, Alert, Spinner, Divider, Skeleton, Progress Bar, Breadcrumbs, Tooltip, Dropdown Menu, Modal, Tabs.
-- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.vercel.app/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
+- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://ui.paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style

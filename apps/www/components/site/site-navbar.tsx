@@ -24,6 +24,11 @@ const NAV_LINKS = [
     url: "/docs/components/avatar",
     section: "/docs/components",
   },
+  {
+    label: "Coming soon",
+    url: "/docs/coming-soon",
+    section: "/docs/coming-soon",
+  },
 ];
 
 // Only the deepest-matching section is active — otherwise "Docs" (whose
@@ -108,7 +113,7 @@ export function SiteNavbar({
             <Logo variant="combined" />
           </Link>
           <Badge variant="gray" fill="subtle" size="sm">
-            v 0.1.0
+            v0.1.1
           </Badge>
         </div>
         <nav className="hidden items-center gap-4 text-ui-md md:flex">
@@ -135,7 +140,7 @@ export function SiteNavbar({
         <SiteSearchTrigger />
         <SiteThemeToggle />
         <a
-          href="https://github.com/dipendra0514/paubha"
+          href="https://github.com/dipendrashrest/paubha"
           target="_blank"
           rel="noreferrer"
           aria-label="GitHub"

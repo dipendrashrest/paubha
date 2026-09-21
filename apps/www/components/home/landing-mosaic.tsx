@@ -367,13 +367,13 @@ function SettingsCard() {
       <div className="flex flex-col gap-4">
         <p className="text-ui-lg font-medium text-fg-primary">Profile</p>
         <Field label="Display name">
-          <Input placeholder="Placeholder text" />
+          <Input placeholder="Alex Rivera" />
         </Field>
         <Field label="Email address">
-          <Input type="email" placeholder="Placeholder text" />
+          <Input type="email" placeholder="alex@example.com" />
         </Field>
         <Field label="Bio">
-          <Input placeholder="Placeholder text" />
+          <Input placeholder="Product designer based in Toronto" />
         </Field>
       </div>
       <Divider />

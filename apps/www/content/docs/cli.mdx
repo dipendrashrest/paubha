@@ -1,71 +1,163 @@
 ---
 title: CLI
-description: init, add, and how the registry works.
+description: Use the Paubha CLI to init a project and add components.
 ---
 
-The CLI fetches component JSON from the registry URL and copies source into your
-project. Default registry: `https://paubha.vercel.app/r`.
-
-## Commands
+The Paubha CLI fetches source from the registry on
+[ui.paubha.tech](https://ui.paubha.tech) and copies it into your codebase —
+no runtime package.
 
 ```bash
-npx paubha init            # write tokens, theme mapping, cn(), install deps
-npx paubha add button      # copy one or more components into your project
-npx paubha add button modal tabs
-
-# Local docs server during development:
-PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha add button
+npx paubha@latest [command]
 ```
 
-### `init`
+## init
 
-Fetches `styles.json` and `cn.json` from the registry, writes the token CSS,
-Tailwind v4 `@theme` mapping, and `cn()` helper, then installs `clsx`,
-`tailwind-merge`, and `class-variance-authority`. Safe to re-run; existing files
-are skipped unless you pass `--force`.
+Use the `init` command to set up configuration and shared dependencies for an
+existing project.
 
-### `add`
+`init` creates `components.json`, writes the design tokens and Tailwind v4
+`@theme` mapping, adds the `cn()` helper, and installs `clsx`,
+`tailwind-merge`, and `class-variance-authority`.
 
-Fetches `{registry}/{name}.json`, resolves `registryDependencies`, and copies
-file contents into your configured components directory. Dependencies listed on
-the registry item are installed automatically. Multi-name adds resolve shared
-deps once.
+```bash
+npx paubha@latest init
+```
+
+What it writes (defaults from `components.json`):
+
+- `styles/tokens.css` — primitives + semantic tokens (light and dark)
+- `styles/theme.css` — Tailwind v4 `@theme` mapping
+- `lib/cn.ts` — `cn()` helper
+- `components.json` — registry URL and path aliases
+
+Existing files are skipped unless you pass `--force`. Safe to re-run.
+
+Then import the generated CSS after Tailwind — see
+[Installation](/docs/installation).
+
+### Options
+
+```
+Usage: paubha init [options]
+
+write tokens.css, theme.css, cn(), and install core dependencies
+
+Options:
+  --cwd <path>  the working directory. defaults to the current directory.
+  --force       overwrite existing files. (default: false)
+  -h, --help    display help for command
+```
+
+| Option | Description |
+| --- | --- |
+| `--cwd <path>` | Run against another project root |
+| `--force` | Overwrite existing files |
+
+## add
+
+Use the `add` command to copy components (and their dependencies) into your
+project.
+
+Requires `components.json` — run `init` first.
+
+```bash
+npx paubha@latest add button
+```
+
+Add multiple components at once:
+
+```bash
+npx paubha@latest add button avatar tabs
+```
+
+`add` fetches `{registry}/{name}.json`, walks `registryDependencies`
+recursively, dedupes shared files, and installs any npm packages listed on
+those items. Example: `add field` also pulls in `input`.
+
+Unknown names fail with the list of components the registry currently
+publishes.
+
+### Options
+
+```
+Usage: paubha add [options] <components...>
+
+copy one or more components into your project
+
+Arguments:
+  components    component name(s), e.g. button avatar
+
+Options:
+  --cwd <path>  the working directory. defaults to the current directory.
+  --force       overwrite existing files. (default: false)
+  -h, --help    display help for command
+```
+
+| Option | Description |
+| --- | --- |
+| `--cwd <path>` | Run against another project root |
+| `--force` | Overwrite existing files |
+
+```bash
+# Overwrite a component you already customized
+npx paubha@latest add button --force
+
+# Target another project root
+npx paubha@latest add button --cwd ./apps/web
+```
+
+## components.json
+
+`init` writes this at the project root. `add` reads it on every run.
+
+```json
+{
+  "$schema": "https://ui.paubha.tech/schema.json",
+  "registry": "https://ui.paubha.tech/r",
+  "aliases": {
+    "components": "components/ui",
+    "lib": "lib"
+  },
+  "tailwind": {
+    "tokens": "styles/tokens.css",
+    "theme": "styles/theme.css"
+  }
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `registry` | Base URL for registry JSON (`/r/{name}.json`) |
+| `aliases.components` | Where UI files land |
+| `aliases.lib` | Where helpers like `cn.ts` land |
+| `tailwind.tokens` / `tailwind.theme` | Paths `init` uses for the CSS files |
+
+Override the registry for a single command without editing the file:
+
+```bash
+PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha@latest add button
+```
+
+`PAUBHA_REGISTRY_URL` wins over `components.json`.
 
 ## Registry
 
-Components are served as JSON from `https://paubha.vercel.app/r/[name].json`, following the
-[shadcn registry schema](https://ui.shadcn.com/schema/registry.json). That means
-any shadcn-compatible tooling can consume Paubha components directly.
+Components are served from `https://ui.paubha.tech/r/{name}.json`, following
+the [shadcn registry schema](https://ui.shadcn.com/schema/registry.json). You
+can also install with the shadcn CLI:
 
-`components.json` includes a `registry` field (overridable with
-`PAUBHA_REGISTRY_URL`). Rebuild the hosted JSON after changing components:
+```bash
+npx shadcn@latest add https://ui.paubha.tech/r/button.json
+```
+
+### Building the registry (contributors)
+
+The monorepo source of truth is `packages/registry`. After changing a
+component:
 
 ```bash
 pnpm build:registry
 ```
 
-### `registry.json` shape
-
-```json
-{
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "paubha",
-  "homepage": "https://paubha.vercel.app",
-  "items": [
-    {
-      "name": "button",
-      "type": "registry:ui",
-      "title": "Button",
-      "description": "Interactive button for actions and form submissions.",
-      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
-      "files": [
-        { "path": "ui/button/button.tsx", "type": "registry:ui" },
-        { "path": "lib/cn.ts", "type": "registry:lib" }
-      ]
-    }
-  ]
-}
-```
-
-Each item names the files to copy and the npm packages they need. The monorepo
-source of truth lives in `packages/registry`.
+That emits `apps/www/public/r/*.json` for the docs site to serve.

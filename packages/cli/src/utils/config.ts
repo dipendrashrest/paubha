@@ -18,7 +18,7 @@ export interface PaubhaConfig {
 export const CONFIG_FILE = "components.json";
 
 export const DEFAULT_CONFIG: PaubhaConfig = {
-  $schema: "https://paubha.vercel.app/schema.json",
+  $schema: "https://ui.paubha.tech/schema.json",
   registry: DEFAULT_REGISTRY_URL,
   aliases: {
     components: "components/ui",

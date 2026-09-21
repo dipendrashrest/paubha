@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "paubha",
-  "homepage": "https://paubha.vercel.app",
+  "homepage": "https://ui.paubha.tech",
   "items": [
     {
       "name": "button",
@@ -799,6 +799,24 @@
       "files": [
         {
           "path": "ui/logo/logo.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "activity-feed",
+      "type": "registry:ui",
+      "title": "Activity Feed",
+      "description": "Chronological list of user actions and system events — simple, timeline, grouped, or as a notification panel.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["avatar", "badge"],
+      "files": [
+        {
+          "path": "ui/activity-feed/activity-feed.tsx",
           "type": "registry:ui"
         },
         {

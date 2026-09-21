@@ -22,7 +22,7 @@ export function InstallTabs({
         <TabsTrigger value="manual">Manual</TabsTrigger>
       </TabsList>
       <TabsContent value="cli" className="mt-3">
-        <CodeSnippet code={`npx paubha add ${name}`} />
+        <CodeSnippet code={`npx paubha@latest add ${name}`} />
       </TabsContent>
       <TabsContent value="manual" className="mt-3">
         <CodeSnippet code={manual} />

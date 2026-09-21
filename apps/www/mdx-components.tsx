@@ -1,6 +1,20 @@
 import { A11yCallout } from "@/components/docs/_shared/a11y-callout";
 import { DocsPre } from "@/components/docs/_shared/docs-pre";
 import { IntroPositioningAlert, SkillMdCard } from "@/components/docs/introduction/intro-blocks";
+import {
+  ActivityFeedGrouped,
+  ActivityFeedHero,
+  ActivityFeedNotifications,
+  ActivityFeedSimple,
+  ActivityFeedTimeline,
+} from "@/components/docs/activity-feed/activity-feed-demos";
+import {
+  ActivityFeedGroupPropsTable,
+  ActivityFeedItemPropsTable,
+  ActivityFeedPanelPropsTable,
+  ActivityFeedPropsTable,
+  ActivityFeedTimelineItemPropsTable,
+} from "@/components/docs/activity-feed/activity-feed-props-table";
 import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert/alert-demos";
 import { AlertPropsTable } from "@/components/docs/alert/alert-props-table";
 import {
@@ -117,6 +131,7 @@ import { PopoverHero, PopoverSides, PopoverWithClose } from "@/components/docs/p
 import { PopoverPropsTable } from "@/components/docs/popover/popover-props-table";
 import {
   AlertInstall,
+  ActivityFeedInstall,
   AvatarInstall,
   BadgeInstall,
   BreadcrumbsInstall,
@@ -427,6 +442,19 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TagInputInstall,
     TagInputPropsTable,
     TagInputSizes,
+
+    // Activity Feed (application pattern)
+    ActivityFeedGrouped,
+    ActivityFeedGroupPropsTable,
+    ActivityFeedHero,
+    ActivityFeedInstall,
+    ActivityFeedItemPropsTable,
+    ActivityFeedNotifications,
+    ActivityFeedPanelPropsTable,
+    ActivityFeedPropsTable,
+    ActivityFeedSimple,
+    ActivityFeedTimeline,
+    ActivityFeedTimelineItemPropsTable,
 
     ...components,
   };

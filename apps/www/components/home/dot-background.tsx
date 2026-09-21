@@ -17,8 +17,8 @@ export function DotBackground({ className }: { className?: string }) {
       <div
         className={cn(
           "absolute inset-0",
-          "[background-size:20px_20px]",
-          "[background-image:radial-gradient(var(--gray-200)_1px,transparent_1px)]",
+          "[background-size:32px_32px]",
+          "[background-image:radial-gradient(var(--gray-300)_1px,transparent_1px)]",
           "dark:[background-image:radial-gradient(var(--gray-800)_1px,transparent_1px)]",
           "[mask-image:linear-gradient(to_bottom,black_0%,black_93%,transparent_100%)]",
           "[-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_93%,transparent_100%)]",

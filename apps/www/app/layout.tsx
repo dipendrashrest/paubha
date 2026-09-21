@@ -12,7 +12,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://paubha.vercel.app"),
+  metadataBase: new URL("https://ui.paubha.tech"),
   title: {
     template: "%s — Paubha",
     default: "Paubha — Open-source components for React & Tailwind",

@@ -13,9 +13,9 @@ export function AccordionHero() {
     <ComponentPlayground
       code={`<Accordion type="single" collapsible defaultValue="item-1">
   <AccordionItem value="item-1">
-    <AccordionTrigger>Accordion Item</AccordionTrigger>
+    <AccordionTrigger>Is Paubha free to use?</AccordionTrigger>
     <AccordionContent>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Yes — every component is free and MIT-licensed, copy-paste into your own project.
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
@@ -23,10 +23,10 @@ export function AccordionHero() {
       <div className="w-full max-w-sm">
         <Accordion type="single" collapsible defaultValue="item-1">
           <AccordionItem value="item-1">
-            <AccordionTrigger>Accordion Item</AccordionTrigger>
+            <AccordionTrigger>Is Paubha free to use?</AccordionTrigger>
             <AccordionContent>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore.
+              Yes — every component is free and MIT-licensed. Copy the source
+              into your own project and own it, no runtime dependency.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

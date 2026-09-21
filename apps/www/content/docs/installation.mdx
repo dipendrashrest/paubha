@@ -17,51 +17,53 @@ npx paubha@latest init
 
 `init` does three things:
 
-1. Writes `tokens.css` (primitives + semantic layer, light and dark) into your styles.
-2. Adds the Tailwind v4 `@theme` mapping so token utilities work (`bg-bg-primary`,
-   `text-fg-secondary`, `shadow-glow-focus`, …).
-3. Installs shared deps: `clsx`, `tailwind-merge`, `class-variance-authority`, and
-   drops in the `cn()` helper.
+1. Writes `styles/tokens.css` (primitives + semantic layer, light and dark).
+2. Adds the Tailwind v4 `@theme` mapping in `styles/theme.css` so token
+   utilities work (`bg-bg-primary`, `text-fg-secondary`, `shadow-glow-focus`, …).
+3. Installs shared deps: `clsx`, `tailwind-merge`, `class-variance-authority`,
+   and drops in the `cn()` helper at `lib/cn.ts`.
 
 Then add components as you need them:
 
 ```bash
-npx paubha add button
+npx paubha@latest add button
 ```
 
-Each `add` copies the component source into your project. You own the file — no
-runtime dependency on Paubha.
+Each `add` copies the component source into your project. You own the file —
+no runtime dependency on Paubha.
 
 ## Next.js (App Router)
 
 1. Run `npx paubha@latest init` from the app root.
-2. Import tokens in your global CSS **after** Tailwind:
+2. Import tokens in your global CSS **after** Tailwind. With the default
+   `components.json` paths and `app/globals.css`:
 
 ```css
 @import "tailwindcss";
-@import "./tokens.css";
-@import "./theme.css";
+@import "../styles/tokens.css";
+@import "../styles/theme.css";
 ```
 
 3. Add components:
 
 ```bash
-npx paubha add button
+npx paubha@latest add button
 ```
 
 4. Use them from `@/components/ui/button` (or whatever path `init` configured).
 
 ## Vite
 
-Same flow. Point your main CSS at the generated `tokens.css` / `theme.css`, ensure
-Tailwind v4 is wired through `@tailwindcss/vite` or PostCSS, then `add` components
-into `src/components/ui`.
+Same flow. Point your main CSS at the generated `styles/tokens.css` /
+`styles/theme.css`, ensure Tailwind v4 is wired through `@tailwindcss/vite` or
+PostCSS, then `add` components into `src/components/ui` (update
+`aliases.components` in `components.json` if needed).
 
 ## Manual copy-paste
 
 If you skip the CLI:
 
-1. Copy `tokens.css` and the `@theme` block from the docs repo into your styles.
+1. Copy `tokens.css` and `theme.css` from the docs repo into your styles.
 2. Add `cn()`:
 
 ```ts
@@ -82,5 +84,7 @@ Paubha's registry follows the open shadcn schema, so components are also
 installable with:
 
 ```bash
-npx shadcn add https://paubha.vercel.app/r/button.json
+npx shadcn@latest add https://ui.paubha.tech/r/button.json
 ```
+
+For the full command reference, see [CLI](/docs/cli).

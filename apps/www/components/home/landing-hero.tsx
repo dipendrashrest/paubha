@@ -59,7 +59,7 @@ export function LandingHero() {
           >
             View Components
           </Link>
-          <a
+          {/* <a
             href={FIGMA_FILE}
             target="_blank"
             rel="noreferrer"
@@ -67,7 +67,7 @@ export function LandingHero() {
           >
             <FigmaMark className="size-4 shrink-0" />
             Paubha UI Figma
-          </a>
+          </a> */}
         </div>
       </div>
     </section>

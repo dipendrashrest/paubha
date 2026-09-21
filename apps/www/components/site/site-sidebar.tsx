@@ -20,6 +20,7 @@ const ITEM_ICONS: Record<string, LucideIcon> = {
   "/docs/installation": Terminal,
   "/docs/theming": RefreshCcw,
   "/docs/cli": Terminal,
+  "/docs/coming-soon": Sparkles,
   "/docs/figma": FileText,
   "/docs/icons": Sparkles,
 };

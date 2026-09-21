@@ -1,6 +1,6 @@
 {
   "name": "paubha",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "CLI for Paubha — a shadcn-style copy-paste registry of React + Tailwind components.",
   "keywords": ["react", "tailwind", "ui", "components", "cli", "design-system", "shadcn"],
@@ -8,15 +8,14 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dipendra0514/paubha.git",
-    "directory": "packages/cli"
+    "url": "git+https://github.com/dipendrashrest/paubha.git"
   },
-  "homepage": "https://paubha.vercel.app",
+  "homepage": "https://ui.paubha.tech",
   "bugs": {
-    "url": "https://github.com/dipendra0514/paubha/issues"
+    "url": "https://github.com/dipendrashrest/paubha/issues"
   },
   "bin": {
-    "paubha": "./dist/index.js"
+    "paubha": "dist/index.js"
   },
   "files": ["dist", "README.md"],
   "scripts": {

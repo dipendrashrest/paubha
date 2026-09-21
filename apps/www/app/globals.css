@@ -44,6 +44,12 @@ aside#nd-sidebar [class*="overscroll-contain"] {
   padding-top: 16px;
 }
 
+/* Prev/next footer cards — more room under the row so they don't sit flush
+   against the bottom of the viewport. */
+#nd-docs-layout #nd-page article > div:last-child {
+  padding-bottom: 5rem;
+}
+
 #nd-toc {
   padding-top: 16px;
 }

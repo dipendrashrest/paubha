@@ -1,0 +1,103 @@
+---
+title: Activity Feed
+description: Chronological list of user actions and system events — simple, timeline, grouped, or as a notification panel.
+---
+
+<ActivityFeedHero />
+
+## Installation
+
+<ActivityFeedInstall />
+
+## Usage
+
+```tsx
+import {
+  ActivityFeed,
+  ActivityFeedItem,
+} from "@/components/ui/activity-feed";
+import { Avatar } from "@/components/ui/avatar";
+
+<ActivityFeed>
+  <ActivityFeedItem
+    avatar={<Avatar initials="AC" alt="Anna Chen" size="sm" />}
+    title={
+      <>
+        <span className="font-semibold">Anna Chen</span> commented on Project
+        Atlas
+      </>
+    }
+    timestamp="2h ago"
+  />
+</ActivityFeed>
+```
+
+## Examples
+
+### Simple activity list
+
+<ActivityFeedSimple />
+
+### Timeline feed
+
+<ActivityFeedTimeline />
+
+### Grouped activity feed
+
+<ActivityFeedGrouped />
+
+### Notification panel
+
+<ActivityFeedNotifications />
+
+## API reference
+
+### ActivityFeed
+
+<ActivityFeedPropsTable />
+
+### ActivityFeedItem
+
+<ActivityFeedItemPropsTable />
+
+### ActivityFeedGroup
+
+<ActivityFeedGroupPropsTable />
+
+### ActivityFeedTimelineItem
+
+<ActivityFeedTimelineItemPropsTable />
+
+### ActivityFeedPanel
+
+<ActivityFeedPanelPropsTable />
+
+## Accessibility
+
+<A11yCallout>
+  <ul>
+    <li>
+      <strong>List.</strong> <code>ActivityFeed</code> is a native{" "}
+      <code>&lt;ul&gt;</code>; each item is a native{" "}
+      <code>&lt;li&gt;</code>.
+    </li>
+    <li>
+      <strong>Timestamps.</strong> Plain text; prefer relative strings that
+      stay readable without needing live updates.
+    </li>
+    <li>
+      <strong>Unread.</strong> The unread dot is decorative (
+      <code>aria-hidden</code>); convey unread state in the item text or{" "}
+      <code>aria-label</code> when needed.
+    </li>
+    <li>
+      <strong>Mark all read.</strong> Real{" "}
+      <code>role=&quot;button&quot;</code> with visible focus via{" "}
+      <code>shadow-glow-focus</code>.
+    </li>
+    <li>
+      <strong>Timeline rail.</strong> Decorative;{" "}
+      <code>aria-hidden</code> on the connector.
+    </li>
+  </ul>
+</A11yCallout>
