@@ -1271,3 +1271,11 @@ told to resume it. No Phase B files, commits, or partial work exist.
 
 Nothing has been pushed to any remote — all commits are local on
 `feat/full-component-sync`.
+
+## V1 cleanup (2026-09-21)
+
+Work continues on **`feat/v1-cleanup`**. Do **not** push component work
+straight to `origin main`. Canonical public host is
+`https://paubha.vercel.app` until a real domain is bought. Overnight
+“push after every component” protocol above is superseded for launch.
+

@@ -1519,3 +1519,27 @@ in this pass**, even though this session had already confirmed library choices f
 (Recharts, react-day-picker, native color input) before the scope change arrived. No Phase
 B files, commits, or partial work exist — verified clean before and after this section's
 work. 26 commits total on `feat/full-component-sync`, nothing pushed.
+
+## V1 repo cleanup (2026-09-21)
+
+Launch hygiene on `feat/v1-cleanup` (not `main`):
+
+- Asteria rename was already complete in `4b47f6e`; live docs still pointed at
+  `paubha.com` / `docs.paubha.com`. User-facing URLs now use
+  `https://paubha.vercel.app`. Historical mentions in this file and STATUS.md
+  that describe *past* work are left as-is.
+- Default site theme is dark. CLI `--version` is `0.1.0`.
+- Root README rewritten for GitHub; `packages/registry/README.md` added;
+  `/schema.json` served for `components.json` `$schema`.
+- Root `logo/` dump gitignored (copies live in `apps/www/public/logo/` and
+  registry assets). Colocated `{name}.test.tsx` files kept (no `__tests__/` move).
+- Vitest: `fileParallelism: false` + 15s timeout so vitest-axe does not race.
+- Next www build: `outputFileTracingRoot` + `experimental.cpus: 1` (15.5.x
+  workers were missing chunks / phantom `_document` during page-data collect).
+- Next patched `15.5.20` → `15.5.25` (CVE patch, same 15.5 line). Vitest 2.x
+  critical/high items **not** auto-bumped (would be a major).
+- Do not push every component to `origin main`. Review via PR on this branch.
+
+**Go/no-go for the v1 push:** go for a **PR into main**, not a direct push.
+The CLI is still unpublished on npm. Custom domain is still unowned.
+
