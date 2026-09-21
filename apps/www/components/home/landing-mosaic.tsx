@@ -255,8 +255,8 @@ function BarChartCard() {
               className="pointer-events-none absolute inset-0 flex flex-col justify-between"
               aria-hidden="true"
             >
-              {Array.from({ length: 5 }).map((_, index) => (
-                <div key={index} className="h-px w-full bg-border-default" />
+              {["top", "upper", "mid", "lower", "bottom"].map((line) => (
+                <div key={line} className="h-px w-full bg-border-default" />
               ))}
             </div>
             {BARS.map((bar) => (
