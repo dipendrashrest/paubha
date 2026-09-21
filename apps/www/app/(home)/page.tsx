@@ -8,7 +8,7 @@ export default function HomePage() {
       <LandingHero />
       <LandingMosaic />
       <LandingComingSoon />
-      <p className="pb-10 text-center text-ui-lg font-medium text-fg-primary">
+      <p className="pb-10 text-center text-ui-sm font-medium text-fg-brand">
         Built by Dipendra Shrestha.
       </p>
     </div>
