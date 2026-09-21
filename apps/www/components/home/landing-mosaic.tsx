@@ -148,7 +148,7 @@ function SparklineCard() {
       <div className="flex items-center justify-between gap-2">
         <p className="text-ui-sm text-fg-tertiary">Conversion Rate</p>
         <Badge variant="success" size="sm">
-          Badge
+          +12.5%
           <ArrowUpRight className="size-3" aria-hidden="true" />
         </Badge>
       </div>
@@ -214,7 +214,7 @@ function StatCards() {
         </p>
         <div className="mt-3 flex items-center gap-1.5">
           <Badge variant="success" size="sm">
-            Badge
+            +18.2%
             <ArrowUpRight className="size-3" aria-hidden="true" />
           </Badge>
           <span className="text-ui-xs text-fg-tertiary">vs last month</span>

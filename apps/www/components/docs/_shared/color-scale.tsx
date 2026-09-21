@@ -38,6 +38,15 @@ export function ColorScale({
   );
 }
 
+/** Even grid for semantic ColorSwatch cards — keeps row/column gaps consistent. */
+export function ColorSwatchGroup({ children }: { children: ReactNode }) {
+  return (
+    <div className="not-prose my-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {children}
+    </div>
+  );
+}
+
 export function ColorSwatch({
   token,
   hex,
@@ -48,7 +57,7 @@ export function ColorSwatch({
   children?: ReactNode;
 }) {
   return (
-    <div className="not-prose inline-flex items-center gap-3 rounded-md border border-border-default bg-bg-secondary p-3">
+    <div className="flex w-full items-center gap-3 rounded-md border border-border-default bg-bg-secondary p-3">
       <div
         className="size-10 shrink-0 rounded-md border border-border-default"
         style={{ backgroundColor: hex }}

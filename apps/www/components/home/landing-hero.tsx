@@ -29,7 +29,7 @@ export function LandingHero() {
       <DotBackground />
       <div className="relative z-10">
         <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-border-default bg-bg-primary px-3 py-1 text-ui-sm text-fg-tertiary">
-          Paubha v1.0 is here
+          Paubha v0.1.2 is here
           <Link
             href="/docs"
             className="inline-flex items-center gap-0.5 font-medium text-fg-brand"

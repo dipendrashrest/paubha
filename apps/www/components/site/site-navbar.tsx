@@ -113,7 +113,7 @@ export function SiteNavbar({
             <Logo variant="combined" />
           </Link>
           <Badge variant="gray" fill="subtle" size="sm">
-            v0.1.1
+            v0.1.2
           </Badge>
         </div>
         <nav className="hidden items-center gap-4 text-ui-md md:flex">

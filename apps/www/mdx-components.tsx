@@ -36,7 +36,7 @@ import { ButtonHero, ButtonSizes, ButtonStates, ButtonVariants, ButtonWithIcon }
 import { ButtonPropsTable } from "@/components/docs/button/button-props-table";
 import { CheckboxHero, CheckboxStates } from "@/components/docs/checkbox/checkbox-demos";
 import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
-import { ColorScale, ColorSwatch } from "@/components/docs/_shared/color-scale";
+import { ColorScale, ColorSwatch, ColorSwatchGroup } from "@/components/docs/_shared/color-scale";
 import { ComingSoon } from "@/components/docs/_shared/coming-soon";
 import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
 import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider/divider-demos";
@@ -197,6 +197,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     BrandScale,
     ColorScale,
     ColorSwatch,
+    ColorSwatchGroup,
     ErrorScale,
     GrayScale,
     RadiusScale,
