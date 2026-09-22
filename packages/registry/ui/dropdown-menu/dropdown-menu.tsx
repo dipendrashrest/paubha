@@ -1,7 +1,7 @@
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
 import { withIconSize } from "@paubha/registry/lib/with-icon-size";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import type * as React from "react";
 
 export const DropdownMenu = DropdownMenuPrimitive.Root;
 export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
@@ -15,11 +15,11 @@ export interface DropdownMenuContentProps
  *
  * Real spec confirmed via `get_metadata`/`get_design_context` on node `2120:17` (file
  * `CDgfoMkj7lP3pXWJ3aOgkH`, node id recovered from the "add Dropdown Menu" build commit's
- * own recorded id — `BUILD_LOG.md` — the same trick that resolved Toast/Popover in earlier
+ * own recorded id (`BUILD_LOG.md`), the same trick that resolved Toast/Popover in earlier
  * units). Published panel symbol (`2121:15472`): `bg/elevated`, `border/default`,
- * `p/xs`+`gap/xs` (4px), `shadow/lg` (already correctly bound — this project's `shadow-lg`
+ * `p/xs`+`gap/xs` (4px), `shadow/lg` (already correctly bound; this project's `shadow-lg`
  * utility is remapped in `theme.css` to the brand-tinted token, not raw Tailwind). Panel
- * radius is `radius/md` (12px) — re-confirmed 2026-09-11 after Figma's duplicate "Radius"
+ * radius is `radius/md` (12px), re-confirmed 2026-09-11 after Figma's duplicate "Radius"
  * variable collections were consolidated; the earlier `rounded-md` → `rounded-lg` change
  * was based on the since-deleted, orphaned collection and has been reverted.
  */
@@ -64,20 +64,20 @@ export interface DropdownMenuItemProps
 /**
  * Real per-state spec confirmed via `get_design_context` on the "_Menu Item" base
  * component (`2121:15471`, sibling to the panel above, same node-id-from-commit-message
- * recovery): 5 published states — default (`fg-primary`, no fill), hover
+ * recovery): 5 published states. Default (`fg-primary`, no fill), hover
  * (`bg-secondary-hover`), focus (`bg-secondary` + `shadow-glow-focus`), active
- * (`bg-brand-subtle` fill + `fg-brand` text — a real, distinct pressed state Figma
+ * (`bg-brand-subtle` fill + `fg-brand` text, a real, distinct pressed state Figma
  * publishes that the code had NO treatment for at all before this fix), disabled
  * (`fg-disabled`, no fill change). Radix's single-moving-highlight menu architecture
  * (`data-highlighted` fires for both pointer hover and keyboard arrow-nav) still means
  * hover/focus share one background via `data-[highlighted]:bg-bg-secondary-hover` plus a
- * separate `focus-visible:shadow-glow-focus` ring for real keyboard focus — an
+ * separate `focus-visible:shadow-glow-focus` ring for real keyboard focus, an
  * already-documented, deliberate compromise from this component's original build (see
  * `BUILD_LOG.md`), reconfirmed here, not re-litigated. The native `:active` (press) state
  * is a real browser pseudo-class independent of Radix's data attributes, so it maps
  * directly to `active:` with no reinvention needed. `destructive` items now get the same
  * error-tinted treatment across hover/focus (already covered by the shared
- * `data-[highlighted]` rule) AND the new active state — previously `destructive` only
+ * `data-[highlighted]` rule) AND the new active state; previously `destructive` only
  * recolored the default text and the hover/focus background, leaving a destructive item's
  * pressed state incorrectly falling through to the brand-tinted active styles.
  */

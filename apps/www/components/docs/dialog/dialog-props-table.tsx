@@ -1,5 +1,8 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { DialogActionProps, DialogContentProps } from "@paubha/registry/ui/dialog";
+import type {
+  DialogActionProps,
+  DialogContentProps,
+} from "@paubha/registry/ui/dialog";
 import { PropsTable } from "../_shared/props-table";
 
 const dialogProps = definePropDefs<{
@@ -10,7 +13,7 @@ const dialogProps = definePropDefs<{
   {
     name: "open",
     type: "boolean",
-    description: "Controlled open state — pair with onOpenChange.",
+    description: "Controlled open state, pair with onOpenChange.",
   },
   {
     name: "defaultOpen",
@@ -37,7 +40,8 @@ const dialogActionProps = definePropDefs<DialogActionProps>()([
     name: "variant",
     type: '"brand" | "error"',
     defaultValue: '"brand"',
-    description: "Colors the action — brand for Confirm/Info, error for Destructive.",
+    description:
+      "Colors the action: brand for Confirm/Info, error for Destructive.",
   },
 ]);
 

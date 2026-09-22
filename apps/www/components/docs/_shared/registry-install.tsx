@@ -29,7 +29,7 @@ function readManifest(root: string): RegistryManifest {
   return JSON.parse(readFileSync(join(root, "registry.json"), "utf8"));
 }
 
-/** Install tabs for a registry item — files come from registry.json. */
+/** Install tabs for a registry item; files come from registry.json. */
 export function RegistryInstall({ name }: { name: string }) {
   const root = resolveRegistryRoot();
   const item = readManifest(root).items.find((entry) => entry.name === name);

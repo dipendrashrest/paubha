@@ -1,23 +1,26 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
-// Figma (node 2121:15306): no border — a brand-tinted shadow/sm instead; radius/xl
+// Figma (node 2121:15306): no border, a brand-tinted shadow/sm instead; radius/xl
 // (not radius/sm, which is reserved for controls like buttons/inputs).
-const alertVariants = cva("flex w-full items-start gap-3 rounded-lg p-4 shadow-sm", {
-  variants: {
-    variant: {
-      info: "bg-bg-info-subtle text-fg-info",
-      success: "bg-bg-success-subtle text-fg-success",
-      warning: "bg-bg-warning-subtle text-fg-warning",
-      error: "bg-bg-error-subtle text-fg-error",
+const alertVariants = cva(
+  "flex w-full items-start gap-3 rounded-lg p-4 shadow-sm",
+  {
+    variants: {
+      variant: {
+        info: "bg-bg-info-subtle text-fg-info",
+        success: "bg-bg-success-subtle text-fg-success",
+        warning: "bg-bg-warning-subtle text-fg-warning",
+        error: "bg-bg-error-subtle text-fg-error",
+      },
+    },
+    defaultVariants: {
+      variant: "info",
     },
   },
-  defaultVariants: {
-    variant: "info",
-  },
-});
+);
 
 export type AlertVariant = NonNullable<
   VariantProps<typeof alertVariants>["variant"]
@@ -31,7 +34,7 @@ const roleByVariant: Record<AlertVariant, "alert" | "status"> = {
   error: "alert",
 };
 
-// Figma's 4 published symbols each ship a distinct status glyph — info uses a plain
+// Figma's 4 published symbols each ship a distinct status glyph. Info uses a plain
 // info icon, success a check, warning a triangle, error a circle-alert.
 const iconByVariant: Record<AlertVariant, typeof Info> = {
   info: Info,

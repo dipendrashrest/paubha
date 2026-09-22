@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export type TableVariant = "default" | "striped" | "bordered";
 
@@ -29,9 +29,14 @@ export interface TableProps
 
 /**
  * Native table semantics · TableHead renders th scope="col" · keyboard navigation is the
- * browser's native table/cell tabbing — no custom handling needed for a static table
+ * browser's native table/cell tabbing, no custom handling needed for a static table
  */
-export function Table({ ref, className, variant = "default", ...props }: TableProps) {
+export function Table({
+  ref,
+  className,
+  variant = "default",
+  ...props
+}: TableProps) {
   return (
     <div className={cn(wrapperVariants({ variant }))}>
       <TableVariantContext.Provider value={variant ?? "default"}>
@@ -61,7 +66,10 @@ export function TableBody({
   ...props
 }: React.ComponentPropsWithRef<"tbody">) {
   return (
-    <tbody className={cn("[&>tr:last-child]:border-b-0", className)} {...props} />
+    <tbody
+      className={cn("[&>tr:last-child]:border-b-0", className)}
+      {...props}
+    />
   );
 }
 

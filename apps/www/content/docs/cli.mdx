@@ -4,7 +4,7 @@ description: Use the Paubha CLI to init a project and add components.
 ---
 
 The Paubha CLI fetches source from the registry on
-[paubha.tech](https://paubha.tech) and copies it into your codebase —
+[paubha.tech](https://paubha.tech) and copies it into your codebase, with
 no runtime package.
 
 ```bash
@@ -26,14 +26,14 @@ npx paubha@latest init
 
 What it writes (defaults from `components.json`):
 
-- `styles/tokens.css` — primitives + semantic tokens (light and dark)
-- `styles/theme.css` — Tailwind v4 `@theme` mapping
-- `lib/cn.ts` — `cn()` helper
-- `components.json` — registry URL and path aliases
+- `styles/tokens.css`: primitives + semantic tokens (light and dark)
+- `styles/theme.css`: Tailwind v4 `@theme` mapping
+- `lib/cn.ts`: `cn()` helper
+- `components.json`: registry URL and path aliases
 
 Existing files are skipped unless you pass `--force`. Safe to re-run.
 
-Then import the generated CSS after Tailwind — see
+Then import the generated CSS after Tailwind. See
 [Installation](/docs/installation).
 
 ### Options
@@ -59,7 +59,7 @@ Options:
 Use the `add` command to copy components (and their dependencies) into your
 project.
 
-Requires `components.json` — run `init` first.
+Requires `components.json`; run `init` first.
 
 ```bash
 npx paubha@latest add button

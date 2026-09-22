@@ -1,22 +1,25 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
-// text-fg-brand is just the default — the arc still reads currentColor, so
+// text-fg-brand is just the default. The arc still reads currentColor, so
 // wrapping in a different text-* class (e.g. inside a Button) or passing a
 // className still overrides it.
-const spinnerVariants = cva("inline-block shrink-0 animate-spin text-fg-brand", {
-  variants: {
-    size: {
-      sm: "size-4",
-      md: "size-6",
-      lg: "size-8",
+const spinnerVariants = cva(
+  "inline-block shrink-0 animate-spin text-fg-brand",
+  {
+    variants: {
+      size: {
+        sm: "size-4",
+        md: "size-6",
+        lg: "size-8",
+      },
+    },
+    defaultVariants: {
+      size: "md",
     },
   },
-  defaultVariants: {
-    size: "md",
-  },
-});
+);
 
 export type SpinnerSize = NonNullable<
   VariantProps<typeof spinnerVariants>["size"]
@@ -24,7 +27,7 @@ export type SpinnerSize = NonNullable<
 
 // Figma (node 6087:36803): a light track ring plus a ~270° highlighted arc,
 // not the ring+orbiting-dot this component used to render. Geometry below is
-// transcribed exactly from the real per-size SVG exports — only the arc's
+// transcribed exactly from the real per-size SVG exports; only the arc's
 // hardcoded fill (#2450EA) is swapped for currentColor, since Figma's own
 // spec says the spinner "inherits foreground color from parent context."
 const SIZE_CONFIG: Record<
@@ -78,8 +81,8 @@ export interface SpinnerProps extends React.ComponentPropsWithRef<"output"> {
 /**
  * role=status (native to <output>) · aria-label="Loading" · aria-live="polite"
  * announces the loading state · aria-busy="true" belongs on the container being
- * loaded, not the spinner itself · has no "done" state — unmount or swap it out once
- * loading completes · inherits its color from context (currentColor) — wrap in a
+ * loaded, not the spinner itself · has no "done" state, unmount or swap it out once
+ * loading completes · inherits its color from context (currentColor), wrap in a
  * text-color class to recolor
  */
 export function Spinner({

@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 /**
  * Visually matches Input's box/icon/placeholder styling (border-default,
  * bg-primary, rounded-sm, fg-tertiary placeholder text) but is a real
- * <button> — it only opens Fumadocs' search modal, it doesn't accept typed
+ * <button>. It only opens Fumadocs' search modal, it doesn't accept typed
  * text itself, so using the real Input component here would misrepresent
  * its semantics.
  */

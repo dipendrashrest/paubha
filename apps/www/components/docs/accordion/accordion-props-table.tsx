@@ -22,17 +22,19 @@ const accordionProps = definePropDefs<{
     name: "collapsible",
     type: "boolean",
     defaultValue: "false",
-    description: "When type=\"single\", allows closing the open section by clicking it again.",
+    description:
+      'When type="single", allows closing the open section by clicking it again.',
   },
   {
     name: "defaultValue",
     type: "string | string[]",
-    description: "Uncontrolled initial open item(s) — string for single, string[] for multiple.",
+    description:
+      "Uncontrolled initial open item(s): string for single, string[] for multiple.",
   },
   {
     name: "value",
     type: "string | string[]",
-    description: "Controlled open item(s) — pair with onValueChange.",
+    description: "Controlled open item(s), pair with onValueChange.",
   },
   {
     name: "onValueChange",

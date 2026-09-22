@@ -1,19 +1,24 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
-const cardVariants = cva("flex flex-col overflow-hidden rounded-md text-left outline-none", {
-  variants: {
-    variant: {
-      default: "border border-border-default bg-bg-primary hover:bg-bg-secondary hover:shadow-sm",
-      outlined: "border border-border-strong bg-bg-primary hover:bg-bg-secondary hover:shadow-sm",
-      elevated: "bg-bg-primary shadow-sm hover:shadow-md",
+const cardVariants = cva(
+  "flex flex-col overflow-hidden rounded-md text-left outline-none",
+  {
+    variants: {
+      variant: {
+        default:
+          "border border-border-default bg-bg-primary hover:bg-bg-secondary hover:shadow-sm",
+        outlined:
+          "border border-border-strong bg-bg-primary hover:bg-bg-secondary hover:shadow-sm",
+        elevated: "bg-bg-primary shadow-sm hover:shadow-md",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+);
 
 export interface CardProps
   extends Omit<React.ComponentPropsWithRef<"div">, "onClick">,
@@ -56,7 +61,8 @@ export function Card({
       }
       className={cn(
         cardVariants({ variant }),
-        interactive && "cursor-pointer focus-visible:shadow-[var(--shadow-glow-focus)]",
+        interactive &&
+          "cursor-pointer focus-visible:shadow-[var(--shadow-glow-focus)]",
         className,
       )}
       {...props}
@@ -69,14 +75,17 @@ export function Card({
 Card.displayName = "Card";
 
 export interface CardImageProps extends React.ComponentPropsWithRef<"img"> {
-  /** Required — pass "" for a purely decorative image. */
+  /** Required; pass "" for a purely decorative image. */
   alt: string;
 }
 
 export function CardImage({ className, alt, ...props }: CardImageProps) {
   return (
     <img
-      className={cn("h-40 w-full shrink-0 bg-bg-tertiary object-cover", className)}
+      className={cn(
+        "h-40 w-full shrink-0 bg-bg-tertiary object-cover",
+        className,
+      )}
       {...props}
       alt={alt}
     />
@@ -89,12 +98,17 @@ export function CardContent({
   className,
   ...props
 }: React.ComponentPropsWithRef<"div">) {
-  return <div className={cn("flex flex-col gap-2 p-4", className)} {...props} />;
+  return (
+    <div className={cn("flex flex-col gap-2 p-4", className)} {...props} />
+  );
 }
 
 CardContent.displayName = "CardContent";
 
-export function CardTitle({ className, ...props }: React.ComponentPropsWithRef<"p">) {
+export function CardTitle({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<"p">) {
   return (
     <p
       className={cn("text-body-md font-semibold text-fg-primary", className)}
@@ -109,7 +123,9 @@ export function CardDescription({
   className,
   ...props
 }: React.ComponentPropsWithRef<"p">) {
-  return <p className={cn("text-body-sm text-fg-secondary", className)} {...props} />;
+  return (
+    <p className={cn("text-body-sm text-fg-secondary", className)} {...props} />
+  );
 }
 
 CardDescription.displayName = "CardDescription";

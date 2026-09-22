@@ -1,7 +1,7 @@
-import { cva } from "class-variance-authority";
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
 import { withIconSize } from "@paubha/registry/lib/with-icon-size";
+import { cva } from "class-variance-authority";
+import type * as React from "react";
 
 const inputWrapperVariants = cva(
   [
@@ -46,7 +46,7 @@ const iconSizeClassName: Record<InputSize, string> = {
 export interface InputProps
   extends Omit<React.ComponentPropsWithRef<"input">, "size"> {
   size?: InputSize;
-  /** Marks the input as invalid — sets aria-invalid and the error border color. */
+  /** Marks the input as invalid; sets aria-invalid and the error border color. */
   error?: boolean;
   /** Instance-swap icon slot rendered before the input text. */
   leadingIcon?: React.ReactNode;
@@ -61,9 +61,9 @@ export interface InputProps
  * aria-describedby links to the error/helper message (wired by Field) · focus ring uses
  * shadow-glow-focus, or shadow-glow-focus-error when focused while invalid (Figma's
  * error-focus state, node 6198:22642) · "filled" (Figma's node 6198:22642 density spec)
- * needs no separate prop — entered text renders fg-primary while the placeholder renders
+ * needs no separate prop. Entered text renders fg-primary while the placeholder renders
  * fg-tertiary natively, matching Figma's filled-vs-empty distinction · Figma's real state
- * axis is default/hover/focus/filled/disabled/error/error-focus — there is no distinct
+ * axis is default/hover/focus/filled/disabled/error/error-focus; there is no distinct
  * "readonly" state, so none was added
  */
 export function Input({

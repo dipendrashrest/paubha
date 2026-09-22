@@ -27,7 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 The underline variant renders a 2px bottom border on every trigger
 (transparent when inactive, `border-brand` when active) rather than only on
-the selected one — that keeps the tab bar's height constant when selection
+the selected one. That keeps the tab bar's height constant when selection
 changes, instead of jumping by 2px the way a literal reading of the static
 mockup would.
 
@@ -51,7 +51,7 @@ mockup would.
       <code>role=&quot;tabpanel&quot;</code>.
     </li>
     <li>
-      <strong>Keyboard.</strong> Arrow keys navigate between tabs — and, in this
+      <strong>Keyboard.</strong> Arrow keys navigate between tabs, and, in this
       Radix version, auto-select the newly-focused tab (verified directly; this
       is genuinely different from Radio Group's arrow-key behavior in the same
       install, which only moves focus without selecting).

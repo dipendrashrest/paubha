@@ -1,13 +1,13 @@
 ---
 title: Theming
-description: The token system — primitives, semantic layer, dark mode, and brand overrides.
+description: The token system, primitives, semantic layer, dark mode, and brand overrides.
 ---
 
 Paubha's theming is a two-layer CSS custom property system, mirrored 1:1 from the
 Figma Foundations / Colors page. Components never touch raw hex or primitive
-scales — only semantic tokens.
+scales, only semantic tokens.
 
-## Layer 1 — Primitives
+## Layer 1: Primitives
 
 Raw scales with no meaning attached: `--brand-50` through `--brand-950`, the same
 for `gray`, `error`, `warning`, `success`, plus spacing and radius. One mode.
@@ -23,11 +23,11 @@ You rarely reference these in components.
 
 <SuccessScale />
 
-## Layer 2 — Semantic
+## Layer 2: Semantic
 
 Meaning-based aliases onto primitives: `--bg-primary`, `--fg-secondary`,
 `--border-default`, `--focus-ring`. **Components only ever reference semantic
-tokens.** Dark mode is a `.dark` block that remaps semantic → primitive — no
+tokens.** Dark mode is a `.dark` block that remaps semantic → primitive; no
 component contains a `dark:` variant for themed colors.
 
 ### Light → Dark remap
@@ -60,9 +60,9 @@ their `*/600` step in both modes; subtles flip `*/50` → `*/950`.
 Two things make Paubha look like Paubha:
 
 - **Brand-tinted shadows.** Every shadow uses `brand/900` at low opacity instead of
-  flat black — depth stays in the brand's color world.
+  flat black, so depth stays in the brand's color world.
 - **Glow focus ring.** `--shadow-glow-focus`: a 4px spread of `brand/500` at 24%,
-  zero blur, zero offset. Applied via the `focus-glow` utility. Always brand-colored —
+  zero blur, zero offset. Applied via the `focus-glow` utility. Always brand-colored,
   no error or neutral variants.
 
 ## Changing the brand color

@@ -13,7 +13,7 @@ export function IntroPositioningAlert() {
           Traditional component libraries ask you to install a package, import
           components, and accept their constraints. The moment you need to
           customize beyond what the library exposes, you find yourself fighting
-          the abstraction — wrapping components, overriding styles, or mixing
+          the abstraction: wrapping components, overriding styles, or mixing
           incompatible APIs from multiple libraries.
         </p>
         <p>
@@ -29,9 +29,7 @@ export function IntroPositioningAlert() {
 export function SkillMdCard() {
   return (
     <div className="not-prose rounded-sm border border-border-default bg-bg-secondary p-4">
-      <p className="text-ui-md font-semibold text-fg-primary">
-        skill.md
-      </p>
+      <p className="text-ui-md font-semibold text-fg-primary">skill.md</p>
       <p className="mt-1 text-ui-sm text-fg-secondary">
         A machine-readable description of Paubha&apos;s component conventions,
         token structure, and composition patterns. Available on our{" "}

@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const trackVariants = cva(
   "w-full overflow-hidden rounded-full bg-bg-tertiary",
@@ -24,7 +24,7 @@ export interface ProgressBarProps
   /** Current progress value, from 0 to `max`. */
   value: number;
   max?: number;
-  /** Describes what is loading, e.g. "Uploading file" — required for a meaningful accessible name. */
+  /** Describes what is loading, e.g. "Uploading file"; required for a meaningful accessible name. */
   label: string;
 }
 

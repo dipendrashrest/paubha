@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const containerVariants = cva(
   "flex flex-wrap items-center gap-1.5 rounded-sm border bg-bg-primary px-3 outline-none",
@@ -37,7 +37,7 @@ export interface TagInputProps
  * Container role="group" · each tag's remove button has aria-label="Remove [tag]" ·
  * Enter or Comma creates a tag from the current input text · Backspace on an empty input
  * removes the last tag · disabled state uses aria-disabled · focus ring visible via
- * shadow-glow-focus, or shadow-glow-focus-error when focused while `error` is set —
+ * shadow-glow-focus, or shadow-glow-focus-error when focused while `error` is set,
  * matching Input/Select/Slider's established error-focus pattern (audit fix: the focus
  * ring previously stayed brand-tinted even while `error` was true).
  */
@@ -59,7 +59,10 @@ export function TagInput({
   function addTag(raw: string) {
     const value = raw.trim();
     if (!value) return;
-    if (preventDuplicates && tags.some((tag) => tag.toLowerCase() === value.toLowerCase())) {
+    if (
+      preventDuplicates &&
+      tags.some((tag) => tag.toLowerCase() === value.toLowerCase())
+    ) {
       setInputValue("");
       return;
     }
@@ -75,7 +78,11 @@ export function TagInput({
     if (event.key === "Enter" || event.key === ",") {
       event.preventDefault();
       addTag(inputValue);
-    } else if (event.key === "Backspace" && inputValue === "" && tags.length > 0) {
+    } else if (
+      event.key === "Backspace" &&
+      inputValue === "" &&
+      tags.length > 0
+    ) {
       removeTag(tags.length - 1);
     }
   }
@@ -135,37 +142,37 @@ export function TagInput({
 TagInput.displayName = "TagInput";
 
 /**
- * TagInputV2 — additive only; does not alter `TagInput` above.
+ * TagInputV2, additive only; does not alter `TagInput` above.
  *
- * No real "Tag Input / v2 — restrained" Figma frame could be located this session despite a
- * time-boxed, documented search: the standard `2120:2`–`2120:19` range (Tag Input isn't one
- * of the original 19 — it's component 14/14 of the separate 2026-08-25 "14 missing base
+ * No real "Tag Input / v2 - restrained" Figma frame could be located this session despite a
+ * time-boxed, documented search: the standard `2120:2`-`2120:19` range (Tag Input isn't one
+ * of the original 19, it's component 14/14 of the separate 2026-08-25 "14 missing base
  * components" batch per its own build commit `4e24886`, "New base component (14/14)"), `0:1`,
  * and every `6033:*`/`6089:*`/`6098:*`/`6100:*`/`6126:*`/`6318:*` canvas this run's ground
- * rules name all came back empty for a Tag Input frame specifically — direct `get_metadata`
+ * rules name all came back empty for a Tag Input frame specifically. Direct `get_metadata`
  * pulls on Kbd's confirmed sibling canvas from that same batch (`2169:19985`, which *does*
  * have a real page) show no nested Tag Input frame, and Table (`6089:36971`) / Dialog
- * (`6089:36993`) / Pagination (`6033:30`, its "v2 — restrained" frame `6318:9133`) / Popover
- * (`6033:35565`, its "v2 — restrained" frame `6318:23417`) were all individually walked and
+ * (`6089:36993`) / Pagination (`6033:30`, its "v2 - restrained" frame `6318:9133`) / Popover
+ * (`6033:35565`, its "v2 - restrained" frame `6318:23417`) were all individually walked and
  * contain only their own component's frames. `search_design_system` again surfaced nothing
  * from this file's own local assets (same known limitation logged repeatedly elsewhere in
  * SYNC_LOG.md). The "add Tag Input" commit message itself records no node id to recover.
- * Same class of gap as Select/Card/Accordion/Progress Circle/Slider this run — not inventing
+ * Same class of gap as Select/Card/Accordion/Progress Circle/Slider this run, not inventing
  * a v1 spec, per the ground rules, but still building v2 additively.
  *
- * Per this run's explicit fallback guidance, built from Popover's real, confirmed "v2 —
+ * Per this run's explicit fallback guidance, built from Popover's real, confirmed "v2 -
  * restrained" frame (`6318:23417`) as the structural reference for "what does v2 restrained
- * mean in this file" — NOT the debunked Pagination-based "squircle vs pill / tighter gap"
+ * mean in this file," NOT the debunked Pagination-based "squircle vs pill / tighter gap"
  * framing corrected earlier tonight. Popover's real v2 delta over its own v1 is narrow and
  * concrete: an added `hover` state and an added `disabled` state, both otherwise pixel-
  * identical to v1's chrome (same tokens, same radius, no invented color). Applied the same
  * shape here: `TagInputV2` adds a real `hover` treatment the base `TagInput` container never
  * had at all (`border-border-strong` on hover, mirroring the `border/strong` hover swap this
- * codebase's own audits have repeatedly confirmed on Input/Checkbox/Radio Group/Switch —
+ * codebase's own audits have repeatedly confirmed on Input/Checkbox/Radio Group/Switch,
  * i.e. an inference from this file's own recurring, confirmed cross-component hover pattern,
  * not a guess), and a `disabled` state that dims the whole control (`opacity-50`) rather than
  * only tinting the background, matching Popover v2's confirmed disabled treatment
- * (`data-[disabled]:opacity-50`) — everything else (sizes, tag chrome, focus/error-focus
+ * (`data-[disabled]:opacity-50`). Everything else (sizes, tag chrome, focus/error-focus
  * ring behavior) is carried over unchanged from `TagInput` above.
  */
 export interface TagInputV2Props extends TagInputProps {}
@@ -188,7 +195,10 @@ export function TagInputV2({
   function addTag(raw: string) {
     const value = raw.trim();
     if (!value) return;
-    if (preventDuplicates && tags.some((tag) => tag.toLowerCase() === value.toLowerCase())) {
+    if (
+      preventDuplicates &&
+      tags.some((tag) => tag.toLowerCase() === value.toLowerCase())
+    ) {
       setInputValue("");
       return;
     }
@@ -204,7 +214,11 @@ export function TagInputV2({
     if (event.key === "Enter" || event.key === ",") {
       event.preventDefault();
       addTag(inputValue);
-    } else if (event.key === "Backspace" && inputValue === "" && tags.length > 0) {
+    } else if (
+      event.key === "Backspace" &&
+      inputValue === "" &&
+      tags.length > 0
+    ) {
       removeTag(tags.length - 1);
     }
   }

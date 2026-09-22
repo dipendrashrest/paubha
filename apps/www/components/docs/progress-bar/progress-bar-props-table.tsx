@@ -18,13 +18,13 @@ const progressBarProps = definePropDefs<ProgressBarProps>()([
     name: "label",
     type: "string",
     description:
-      "Describes what is loading (e.g. \"Uploading file\") — required, since a progress bar with no description of what's progressing is a real accessibility gap.",
+      'Describes what is loading (e.g. "Uploading file"). Required, since a progress bar with no description of what\'s progressing is a real accessibility gap.',
   },
   {
     name: "size",
     type: '"sm" | "md" | "lg"',
     defaultValue: '"sm"',
-    description: "Track height — 4 / 8 / 12px.",
+    description: "Track height: 4 / 8 / 12px.",
   },
 ]);
 

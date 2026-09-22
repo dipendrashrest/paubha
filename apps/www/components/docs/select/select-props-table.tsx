@@ -7,18 +7,18 @@ const selectTriggerProps = definePropDefs<SelectTriggerProps>()([
     name: "size",
     type: '"sm" | "md" | "lg" | "xl"',
     defaultValue: '"md"',
-    description: "Density — 32 / 40 / 48 / 56px trigger height.",
+    description: "Density: 32 / 40 / 48 / 56px trigger height.",
   },
   {
     name: "error",
     type: "boolean",
     description:
-      "Marks the trigger invalid — sets aria-invalid and the error border color.",
+      "Marks the trigger invalid, setting aria-invalid and the error border color.",
   },
   {
     name: "disabled",
     type: "boolean",
-    description: "Disables the trigger — prevents opening the listbox.",
+    description: "Disables the trigger, preventing opening the listbox.",
   },
 ]);
 

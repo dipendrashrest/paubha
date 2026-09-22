@@ -122,7 +122,7 @@ describe("Pagination", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  // Audit fix regression: the per-size gap and icon scale — hardcoded before this audit —
+  // Audit fix regression: the per-size gap and icon scale (hardcoded before this audit)
   // must actually vary with the `size` prop rather than collapsing to the `md` value.
   it("scales the content gap and nav icon size with the size prop", () => {
     const { container: sm } = render(

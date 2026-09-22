@@ -34,7 +34,7 @@ describe("Spinner", () => {
     render(<Spinner />);
     const status = screen.getByRole("status");
     expect(status).toHaveClass("text-fg-brand");
-    // The <mask> also contains a <path> (with no class) one level deeper —
+    // The <mask> also contains a <path> (with no class) one level deeper.
     // select the visible arc, a direct child of the <svg>, not that one.
     const arc = status.querySelector("svg > path");
     expect(arc).toHaveClass("stroke-current");

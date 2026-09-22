@@ -4,7 +4,7 @@ import { extendTailwindMerge } from "tailwind-merge";
 // Our named type-scale utilities (text-ui-*, text-body-*, text-display-*) are custom
 // Tailwind v4 @theme tokens tailwind-merge doesn't know about out of the box. Without
 // this, it falls back to treating them as arbitrary text-color classes and silently
-// drops them whenever a real text-fg-* color class is merged in alongside — every
+// drops them whenever a real text-fg-* color class is merged in alongside. Every
 // component that pairs a type-scale class with a color class (the documented, required
 // pattern) loses its font-size/line-height/letter-spacing at runtime.
 const twMerge = extendTailwindMerge({

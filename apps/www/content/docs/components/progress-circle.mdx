@@ -42,7 +42,7 @@ import { ProgressCircle } from "@/components/ui/progress-circle";
     </li>
     <li>
       <strong>Label.</strong> Always pass <code>aria-label</code> describing what is
-      loading — it's required, since the circular rendering itself is purely decorative
+      loading, since the circular rendering itself is purely decorative
       and conveys nothing to assistive tech on its own.
     </li>
   </ul>
@@ -50,7 +50,7 @@ import { ProgressCircle } from "@/components/ui/progress-circle";
 
 ## When to use
 
-Use for circular progress — skill completion, dashboard metrics, timer countdowns.
+Use for circular progress: skill completion, dashboard metrics, timer countdowns.
 Works well in compact spaces where a linear bar would be too wide.
 
 **Do:**
@@ -59,12 +59,12 @@ Works well in compact spaces where a linear bar would be too wide.
 - Animate smoothly as the value changes
 
 **Don't:**
-- Use below 32px — the percentage text becomes unreadable
+- Use below 32px (the percentage text becomes unreadable)
 - Show multiple sizes in the same row
-- Use for indeterminate loading — use [Spinner](/docs/components/spinner) instead
+- Use for indeterminate loading, use [Spinner](/docs/components/spinner) instead
 
 ## Related components
 
-- [Progress Bar](/docs/components/progress-bar) — for linear progress
-- [Spinner](/docs/components/spinner) — for indeterminate loading
-- [Badge](/docs/components/badge) — for static metric display
+- [Progress Bar](/docs/components/progress-bar): for linear progress
+- [Spinner](/docs/components/spinner): for indeterminate loading
+- [Badge](/docs/components/badge): for static metric display

@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface SwitchProps
   extends Omit<
@@ -15,13 +15,13 @@ export interface SwitchProps
  * label clickable (linked via for/id)
  *
  * State bindings confirmed against Figma's real published Switch (node 2121:15243, 10
- * symbols: Off/On x default/hover/focus/active/disabled — single size, confirmed no
+ * symbols: Off/On x default/hover/focus/active/disabled, single size, confirmed no
  * size axis exists in this file). Off+hover -> bg/secondary (was missing). Off+active
  * and On+hover/active render identical to their own default state in Figma, so no
  * extra CSS needed. Disabled track (both Off and On) -> bg/disabled (Off's disabled
- * track was previously bg/switch-off, unchanged from its default — a real, confirmed
+ * track was previously bg/switch-off, unchanged from its default: a real, confirmed
  * bug). Disabled thumb -> bg/secondary in both states (was always bg/primary
- * regardless of disabled) — applied via `group-disabled:` since the thumb is a plain
+ * regardless of disabled), applied via `group-disabled:` since the thumb is a plain
  * span, not a form control that can match `:disabled` itself.
  */
 export function Switch({ ref, className, id, label, ...props }: SwitchProps) {

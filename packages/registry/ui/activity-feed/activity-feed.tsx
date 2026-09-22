@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 /**
  * Chronological feed of user actions / system events.
@@ -26,7 +26,7 @@ ActivityFeed.displayName = "ActivityFeed";
 
 export interface ActivityFeedItemProps
   extends Omit<React.ComponentPropsWithRef<"li">, "title"> {
-  /** Leading media — typically an Avatar at size="sm". */
+  /** Leading media, typically an Avatar at size="sm". */
   avatar?: React.ReactNode;
   /** Primary activity line (name + action). */
   title: React.ReactNode;
@@ -72,7 +72,7 @@ ActivityFeedItem.displayName = "ActivityFeedItem";
 
 export interface ActivityFeedGroupProps
   extends React.ComponentPropsWithRef<"div"> {
-  /** Section label — e.g. "Today", "Yesterday". */
+  /** Section label, e.g. "Today", "Yesterday". */
   label: React.ReactNode;
 }
 
@@ -98,7 +98,7 @@ export interface ActivityFeedTimelineItemProps
   title: React.ReactNode;
   timestamp?: React.ReactNode;
   /**
-   * Status row under the title — pass a Paubha `Badge` (e.g.
+   * Status row under the title: pass a Paubha `Badge` (e.g.
    * `<Badge variant="brand" fill="subtle" size="sm">Completed <ArrowRight /></Badge>`).
    */
   status?: React.ReactNode;
@@ -130,12 +130,12 @@ export function ActivityFeedTimelineItem({
       )}
       {...props}
     >
-      {/* Incoming stub — meets the previous row's rail at this node's center */}
+      {/* Incoming stub: meets the previous row's rail at this node's center */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute top-0 left-[5px] h-[11px] w-px bg-border-default group-first/timeline:hidden"
       />
-      {/* Outgoing rail — through this row + pb-4, stops at the next row's top edge */}
+      {/* Outgoing rail: through this row + pb-4, stops at the next row's top edge */}
       {last ? null : (
         <span
           aria-hidden="true"
@@ -169,7 +169,7 @@ ActivityFeedTimelineItem.displayName = "ActivityFeedTimelineItem";
 
 export interface ActivityFeedPanelProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
-  /** Panel heading — defaults to "Notifications". */
+  /** Panel heading, defaults to "Notifications". */
   title?: React.ReactNode;
   /** Called when "Mark all read" is activated. */
   onMarkAllRead?: () => void;

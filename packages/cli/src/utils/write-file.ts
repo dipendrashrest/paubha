@@ -7,7 +7,7 @@ export interface WriteResult {
 }
 
 /**
- * Writes a file, refusing to clobber local edits unless `force` is set —
+ * Writes a file, refusing to clobber local edits unless `force` is set:
  * `init`/`add` should never silently overwrite a file the user may have
  * customized.
  */

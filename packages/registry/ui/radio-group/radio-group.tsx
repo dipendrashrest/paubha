@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface RadioGroupProps
   extends React.ComponentPropsWithRef<typeof RadioGroupPrimitive.Root> {}
@@ -31,17 +31,17 @@ export interface RadioGroupItemProps
 
 /**
  * State bindings confirmed against Figma's real `_Radio Item` symbol set (node
- * 2121:15180, 10 symbols: Unselected/Selected x default/hover/focus/active/disabled —
+ * 2121:15180, 10 symbols: Unselected/Selected x default/hover/focus/active/disabled,
  * single size only, confirmed no size axis exists in this file, unlike several other
  * components audited tonight). Unselected hover -> border/strong (added). Unselected
  * active and Selected hover/active render identical to their own default state in
  * Figma, so no extra CSS was needed for those. Selected disabled -> bg/tertiary +
- * border/default + a fg/disabled dot (all three were previously wrong/missing — code
+ * border/default + a fg/disabled dot (all three were previously wrong/missing; code
  * inherited the unselected-disabled bg and never overrode the checked border or dot
  * color). Figma's focus state additionally tints the circle's own border to
  * brand/100 (#dbe5fe) on top of the glow-focus shadow; there is no semantic token for
- * that primitive alone, so it was deliberately left unbound rather than invented —
- * see SYNC_LOG.md OPEN QUESTIONS.
+ * that primitive alone, so it was deliberately left unbound rather than invented.
+ * See SYNC_LOG.md OPEN QUESTIONS.
  */
 export function RadioGroupItem({
   ref,

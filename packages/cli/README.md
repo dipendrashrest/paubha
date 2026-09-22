@@ -1,6 +1,6 @@
 # paubha
 
-CLI for [Paubha](https://paubha.tech) — a shadcn-style, copy-paste registry
+CLI for [Paubha](https://paubha.tech), a shadcn-style, copy-paste registry
 of React + Tailwind components. Running `add` copies component source straight
 into your project; there's no runtime package to depend on.
 

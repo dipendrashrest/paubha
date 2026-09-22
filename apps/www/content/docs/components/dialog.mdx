@@ -74,7 +74,7 @@ import { Button } from "@/components/ui/button";
   <ul>
     <li>
       <strong>Role.</strong> Built on Radix <strong>AlertDialog</strong> (not plain
-      Dialog) — <code>role=&quot;alertdialog&quot;</code>, with{" "}
+      Dialog): <code>role=&quot;alertdialog&quot;</code>, with{" "}
       <code>aria-describedby</code> pointing at <code>DialogDescription</code> and{" "}
       <code>aria-labelledby</code> at <code>DialogTitle</code>.
     </li>
@@ -86,7 +86,7 @@ import { Button } from "@/components/ui/button";
     <li>
       <strong>Escape</strong> closes the dialog. Unlike{" "}
       <a href="/docs/components/modal">Modal</a>, clicking outside does{" "}
-      <strong>not</strong> close it — the user must make an explicit choice.
+      <strong>not</strong> close it. The user must make an explicit choice.
     </li>
     <li>
       <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code> on
@@ -97,7 +97,7 @@ import { Button } from "@/components/ui/button";
 
 ## When to use
 
-Use for confirmations before destructive or irreversible actions — deleting items,
+Use for confirmations before destructive or irreversible actions: deleting items,
 discarding changes, revoking access. Requires an explicit user decision.
 
 **Do:**
@@ -106,12 +106,12 @@ discarding changes, revoking access. Requires an explicit user decision.
 - Use the error variant for destructive actions
 
 **Don't:**
-- Use for informational messages — use [Toast](/docs/components/toast) instead
+- Use for informational messages, use [Toast](/docs/components/toast) instead
 - Chain multiple dialogs
 - Default-focus the destructive action
 
 ## Related components
 
-- [Modal](/docs/components/modal) — for non-confirmation overlays
-- [Toast](/docs/components/toast) — for non-blocking feedback
-- [Alert](/docs/components/alert) — for inline warnings
+- [Modal](/docs/components/modal): for non-confirmation overlays
+- [Toast](/docs/components/toast): for non-blocking feedback
+- [Alert](/docs/components/alert): for inline warnings

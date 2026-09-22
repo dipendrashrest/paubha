@@ -28,11 +28,13 @@ export function TooltipPropsTable() {
     <>
       <p className="text-ui-sm text-fg-secondary">
         <code>Tooltip</code>, <code>TooltipProvider</code>, and{" "}
-        <code>TooltipTrigger</code> are direct re-exports of Radix's own primitives — see{" "}
+        <code>TooltipTrigger</code> are direct re-exports of Radix's own
+        primitives, see{" "}
         <a href="https://www.radix-ui.com/primitives/docs/components/tooltip">
           Radix's Tooltip docs
         </a>{" "}
-        for their full prop surface (delayDuration, disableHoverableContent, etc).
+        for their full prop surface (delayDuration, disableHoverableContent,
+        etc).
       </p>
       <h3 className="text-[1.25em] font-semibold">TooltipContent</h3>
       <PropsTable rows={[...tooltipContentProps]} />

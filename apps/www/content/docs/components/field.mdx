@@ -20,8 +20,8 @@ import { Input } from "@/components/ui/input";
 </Field>
 ```
 
-Field takes `label`/`description`/`error` as props rather than child slots —
-that's a deliberate match to how the real spec models it, not a shortcut.
+Field takes `label`/`description`/`error` as props rather than child slots.
+That's a deliberate match to how the real spec models it, not a shortcut.
 The one genuinely swappable part, the control itself, is composed in as
 `children` and gets `id`, `aria-describedby`, `aria-invalid`, and `error`
 wired onto it automatically.
@@ -34,7 +34,7 @@ wired onto it automatically.
 
 ### With Textarea
 
-Field isn't Input-specific — it composes with any control that accepts
+Field isn't Input-specific: it composes with any control that accepts
 `id`/`aria-describedby`/`aria-invalid`/`error`.
 
 <FieldWithTextarea />
@@ -49,7 +49,7 @@ Field isn't Input-specific — it composes with any control that accepts
   <ul>
     <li>
       <strong>Label.</strong> Linked to the control via a generated{" "}
-      <code>id</code> and <code>htmlFor</code> — clicking the label focuses the
+      <code>id</code> and <code>htmlFor</code>. Clicking the label focuses the
       control.
     </li>
     <li>

@@ -1,7 +1,7 @@
+import { cn } from "@paubha/registry/lib/cn";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export type ToggleGroupSize = "sm" | "md" | "lg";
 
@@ -17,7 +17,12 @@ export interface ToggleGroupProps
  * role="radiogroup" · each item role="radio" with aria-checked · Arrow keys navigate
  * between items · disabled items get a native disabled state · focus ring visible on Tab
  */
-export function ToggleGroup({ ref, className, size = "md", ...props }: ToggleGroupProps) {
+export function ToggleGroup({
+  ref,
+  className,
+  size = "md",
+  ...props
+}: ToggleGroupProps) {
   return (
     <ToggleGroupSizeContext.Provider value={size}>
       <RadioGroupPrimitive.Root
@@ -51,19 +56,22 @@ const toggleGroupItemVariants = cva(
 );
 
 export interface ToggleGroupItemProps
-  extends Omit<React.ComponentPropsWithRef<typeof RadioGroupPrimitive.Item>, "children">,
+  extends Omit<
+      React.ComponentPropsWithRef<typeof RadioGroupPrimitive.Item>,
+      "children"
+    >,
     VariantProps<typeof toggleGroupItemVariants> {
   children?: React.ReactNode;
 }
 
 /**
  * No Figma page for Toggle Group was discoverable this session (same dead-end pattern as
- * Card/Select/Progress Circle/Slider — no canvas found by ID-crawl, and the "add Toggle
+ * Card/Select/Progress Circle/Slider: no canvas found by ID-crawl, and the "add Toggle
  * Group" commit (`b83c470`) records no node id to recover it from, unlike Toast/Table/
  * Dialog). Audited against this repo's own cross-component convention instead: unchecked
  * items had no hover/active feedback at all (checked-only styling), unlike every sibling
  * form-control/segmented-control component (RadioGroupItem's unselected hover, Button's
- * ghost/ Tabs pill hover+active pairs) — added `data-[state=unchecked]:hover:bg-bg-secondary-hover`
+ * ghost/ Tabs pill hover+active pairs), added `data-[state=unchecked]:hover:bg-bg-secondary-hover`
  * / `:active:bg-bg-tertiary-hover`, the same one-step-darker-than-track pairing those
  * components already use. Focus ring (`shadow-glow-focus`) and disabled treatment were
  * already correct and unchanged.

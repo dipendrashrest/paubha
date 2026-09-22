@@ -17,12 +17,14 @@ const toastProps = definePropDefs<ToastProps>()([
     name: "variant",
     type: '"info" | "success" | "warning" | "error"',
     defaultValue: '"info"',
-    description: "Accent color and aria-live urgency (assertive for warning/error).",
+    description:
+      "Accent color and aria-live urgency (assertive for warning/error).",
   },
   {
     name: "onDismiss",
     type: "() => void",
-    description: "Called when the close button is activated. Omit to hide the close button.",
+    description:
+      "Called when the close button is activated. Omit to hide the close button.",
   },
 ]);
 
@@ -31,7 +33,8 @@ const toastOptionsProps = definePropDefs<ToastOptions>()([
     name: "duration",
     type: "number",
     defaultValue: "6000",
-    description: "Milliseconds before auto-dismiss. Set to 0 to disable auto-dismiss.",
+    description:
+      "Milliseconds before auto-dismiss. Set to 0 to disable auto-dismiss.",
   },
 ]);
 
@@ -41,7 +44,7 @@ export function ToastPropsTable() {
       <h3 className="text-[1.25em] font-semibold">Toast</h3>
       <PropsTable rows={[...toastProps]} />
       <h3 className="text-[1.25em] font-semibold">
-        useToast().toast(options) — additional options
+        useToast().toast(options): additional options
       </h3>
       <PropsTable rows={[...toastOptionsProps]} />
     </>

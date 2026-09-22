@@ -1,8 +1,8 @@
+import { cn } from "@paubha/registry/lib/cn";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { type VariantProps, cva } from "class-variance-authority";
 import { Check, Minus } from "lucide-react";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const checkboxVariants = cva(
   [
@@ -12,7 +12,7 @@ const checkboxVariants = cva(
     "data-[state=unchecked]:focus-visible:border-border-brand",
     "data-[state=unchecked]:active:border-border-brand data-[state=unchecked]:active:bg-bg-brand-subtle",
     // Figma binds the checked/indeterminate border to the same var as the fill
-    // (bg/brand-solid), not border/brand — border-brand diverges from
+    // (bg/brand-solid), not border/brand: border-brand diverges from
     // bg-brand-solid in dark mode, so match Figma's literal binding here.
     "data-[state=checked]:border-bg-brand-solid data-[state=checked]:bg-bg-brand-solid",
     "data-[state=checked]:hover:border-bg-brand-solid-hover data-[state=checked]:hover:bg-bg-brand-solid-hover",

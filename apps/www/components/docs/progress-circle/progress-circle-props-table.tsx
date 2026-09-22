@@ -29,7 +29,8 @@ const progressCircleProps = definePropDefs<ProgressCircleProps>()([
   {
     name: "aria-label",
     type: "string",
-    description: "Required — describes what is loading, since the value is conveyed via ARIA, not the visual arc.",
+    description:
+      "Required. Describes what is loading, since the value is conveyed via ARIA, not the visual arc.",
   },
 ]);
 

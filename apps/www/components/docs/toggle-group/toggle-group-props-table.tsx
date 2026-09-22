@@ -1,5 +1,8 @@
 import { definePropDefs } from "@/lib/prop-defs";
-import type { ToggleGroupItemProps, ToggleGroupProps } from "@paubha/registry/ui/toggle-group";
+import type {
+  ToggleGroupItemProps,
+  ToggleGroupProps,
+} from "@paubha/registry/ui/toggle-group";
 import { PropsTable } from "../_shared/props-table";
 
 const toggleGroupProps = definePropDefs<ToggleGroupProps>()([
@@ -17,7 +20,7 @@ const toggleGroupProps = definePropDefs<ToggleGroupProps>()([
   {
     name: "value",
     type: "string",
-    description: "Controlled selected value — pair with onValueChange.",
+    description: "Controlled selected value, pair with onValueChange.",
   },
   {
     name: "onValueChange",

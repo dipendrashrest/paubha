@@ -26,7 +26,7 @@ const NAV_LINKS = [
   },
 ];
 
-// Only the deepest-matching section is active — otherwise "Docs" (whose
+// Only the deepest-matching section is active, otherwise "Docs" (whose
 // section is a prefix of every other one) would light up alongside
 // whichever specific section the pathname is actually in.
 function activeNavLink(pathname: string) {
@@ -58,8 +58,7 @@ function SiteThemeToggle() {
     setMounted(true);
   }, []);
 
-  const value =
-    !mounted || resolvedTheme !== "light" ? "dark" : "light";
+  const value = !mounted || resolvedTheme !== "light" ? "dark" : "light";
 
   return (
     <ToggleGroup
@@ -137,7 +136,7 @@ export function SiteNavbar({
         <a
           href="/skill.md"
           download
-          aria-label="Download skill.md — AI agent instructions for Paubha"
+          aria-label="Download skill.md: AI agent instructions for Paubha"
           className={cn(
             "hidden h-8 items-center gap-2 rounded-sm border border-border-default bg-bg-primary px-3 sm:inline-flex lg:h-9",
             "text-ui-md text-fg-tertiary transition-colors",

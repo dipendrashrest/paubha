@@ -15,7 +15,7 @@ export function AccordionHero() {
   <AccordionItem value="item-1">
     <AccordionTrigger>Is Paubha free to use?</AccordionTrigger>
     <AccordionContent>
-      Yes — every component is free and MIT-licensed, copy-paste into your own project.
+      Yes, every component is free and MIT-licensed. Copy-paste into your own project.
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
@@ -25,7 +25,7 @@ export function AccordionHero() {
           <AccordionItem value="item-1">
             <AccordionTrigger>Is Paubha free to use?</AccordionTrigger>
             <AccordionContent>
-              Yes — every component is free and MIT-licensed. Copy the source
+              Yes, every component is free and MIT-licensed. Copy the source
               into your own project and own it, no runtime dependency.
             </AccordionContent>
           </AccordionItem>

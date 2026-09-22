@@ -13,7 +13,7 @@ const buttonProps = definePropDefs<ButtonProps>()([
     name: "size",
     type: '"sm" | "md" | "lg" | "xl"',
     defaultValue: '"md"',
-    description: "Density — 32 / 40 / 48 / 56px height.",
+    description: "Density: 32 / 40 / 48 / 56px height.",
   },
   {
     name: "leadingIcon",

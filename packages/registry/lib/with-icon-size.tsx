@@ -3,7 +3,7 @@ import { cn } from "./cn";
 
 /**
  * Clones an instance-swap icon slot with a consistent size and marks it decorative
- * (aria-hidden) — the accessible name for these components always comes from a
+ * (aria-hidden). The accessible name for these components always comes from a
  * label or text content, never the icon itself.
  */
 export function withIconSize(icon: React.ReactNode, sizeClassName: string) {

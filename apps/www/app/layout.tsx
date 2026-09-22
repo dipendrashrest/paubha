@@ -4,7 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
-// Utility mono font only (code, data, tags) — never a second brand typeface.
+// Utility mono font only (code, data, tags), never a second brand typeface.
 // Exposed as --font-jetbrains-mono and consumed by theme.css's --font-mono.
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL("https://paubha.tech"),
   title: {
-    template: "%s — Paubha",
-    default: "Paubha — Open-source components for React & Tailwind",
+    template: "%s · Paubha",
+    default: "Paubha · Open-source components for React & Tailwind",
   },
   description:
     "An open-source component library for React and Tailwind CSS, with a matching Figma design system.",

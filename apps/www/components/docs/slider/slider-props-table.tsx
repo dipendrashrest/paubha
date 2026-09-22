@@ -18,12 +18,13 @@ const sliderProps = definePropDefs<SliderProps>()([
   {
     name: "defaultValue",
     type: "number[]",
-    description: "Uncontrolled initial value — a single-element array for one thumb.",
+    description:
+      "Uncontrolled initial value: a single-element array for one thumb.",
   },
   {
     name: "value",
     type: "number[]",
-    description: "Controlled value — pair with onValueChange.",
+    description: "Controlled value, pair with onValueChange.",
   },
   {
     name: "min",

@@ -18,7 +18,7 @@ export const source = loader({
 
 // Sidebar "New" badge: pages opt in via `new: true` frontmatter (see
 // source.config.ts's extended schema). Applied to the page tree once, here,
-// rather than per-render in the layout — the tree is only built once anyway.
+// rather than per-render in the layout. The tree is only built once anyway.
 const newPageUrls = new Set(
   source.getPages().filter((page) => page.data.new).map((page) => page.url),
 );

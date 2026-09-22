@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Get Paubha running in under 5 minutes — already have a project, or starting from zero.
+description: Get Paubha running in under 5 minutes, whether you already have a project or you're starting from zero.
 ---
 
 ## Already have React + Tailwind v4? Do this.
@@ -12,15 +12,15 @@ npx paubha@latest add button
 
 That's it. `init` writes your design tokens and the `cn()` helper and installs
 three small deps; `add` copies a component's actual source into your project
-(no runtime dependency on Paubha — you own the file). Import a component from
+(no runtime dependency on Paubha; you own the file). Import a component from
 wherever `init` put it, e.g. `@/components/ui/button`.
 
-If either command complains, jump to [Troubleshooting](#troubleshooting) — it
+If either command complains, jump to [Troubleshooting](#troubleshooting). It
 now tells you exactly what's missing instead of failing silently.
 
 ## Starting from an empty folder?
 
-Pick your framework. Every step is copy-paste — no prior Tailwind experience
+Pick your framework. Every step is copy-paste, no prior Tailwind experience
 needed.
 
 ### Next.js
@@ -68,7 +68,7 @@ Before running the CLI, a 10-second sanity check saves a lot of confusion later:
 | React version | look at `"react"` in `package.json` | 19+ |
 | Tailwind version | look at `"tailwindcss"` in `package.json` | v4 (CSS-first `@theme`, no `tailwind.config.js`) |
 
-Don't have a `package.json` yet? You're in an empty folder — use one of the
+Don't have a `package.json` yet? You're in an empty folder, so use one of the
 "starting from zero" walkthroughs above first.
 
 ## Troubleshooting
@@ -78,19 +78,19 @@ You're not inside a project. Create one first (`npx create-next-app@latest`
 or `npm create vite@latest`), then re-run `init` from inside it.
 
 **A warning about `tailwindcss` or React version, but it still ran**
-That's non-fatal — `init`/`add` will still write files, but components may
+That's non-fatal: `init`/`add` will still write files, but components may
 not render correctly until you're on Tailwind v4 and React 19+. Fix the
 version, then re-run with `--force` to rewrite the token files.
 
 **It errors with "Tailwind CSS v3 detected, but Paubha requires v4+"**
-Paubha's tokens rely on Tailwind v4's CSS-first `@theme` — there's no
+Paubha's tokens rely on Tailwind v4's CSS-first `@theme`, and there's no
 `tailwind.config.js` to bridge from v3. Follow
 [Tailwind's v3→v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide),
 then re-run `init --force`.
 
 **Components render but have no styling**
 Almost always a CSS import order issue. `tokens.css`/`theme.css` must be
-imported **after** `@import "tailwindcss";` — otherwise Tailwind's own
+imported **after** `@import "tailwindcss";`, otherwise Tailwind's own
 resets/layers can lose to (or be lost to) the token layer. In Next.js
 `app/globals.css`:
 
@@ -105,7 +105,7 @@ See [Manual copy-paste](#manual-copy-paste) below.
 
 ## Using an AI coding agent
 
-Point it at **[/skill.md](/skill.md)** — install commands, the full token
+Point it at **[/skill.md](/skill.md)**: install commands, the full token
 list, and the real component API conventions, in one file. Works for Claude
 Code (drop it in as `.claude/skills/paubha/SKILL.md`), Cursor, or anything
 else that reads project-level agent instructions.

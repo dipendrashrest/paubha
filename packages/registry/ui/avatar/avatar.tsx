@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const avatarVariants = cva(
   "relative inline-flex shrink-0 items-center justify-center rounded-full bg-bg-brand-subtle font-medium text-fg-brand select-none",
@@ -246,7 +246,7 @@ export interface AvatarLabelGroupProps
 }
 
 /**
- * Non-interactive composition — no role of its own; the avatar keeps its own role=img.
+ * Non-interactive composition, no role of its own; the avatar keeps its own role=img.
  * secondaryText is optional supporting text (email, role) below the name.
  */
 export function AvatarLabelGroup({

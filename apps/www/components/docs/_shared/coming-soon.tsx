@@ -7,7 +7,7 @@ export function ComingSoon({ name }: { name: string }) {
       </p>
       <p className="mt-2 text-ui-sm text-fg-secondary">
         New updates are coming soon. This page is a placeholder so you can see
-        what&apos;s next — real docs land as each piece ships.
+        what&apos;s next. Real docs land as each piece ships.
       </p>
     </div>
   );

@@ -1,11 +1,11 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface PaginationProps extends React.ComponentPropsWithRef<"nav"> {}
 
-/** nav with aria-label="Pagination" — wrap PaginationContent + PaginationItem children */
+/** nav with aria-label="Pagination"; wrap PaginationContent + PaginationItem children */
 export function Pagination({
   ref,
   className,
@@ -28,9 +28,9 @@ const itemSizeContext = {
 export type PaginationSize = keyof typeof itemSizeContext;
 
 /**
- * Audit fix (confirmed via `get_design_context` on Figma nodes `6089:35746`/`35797`/`35848`
- * — the sm/md/lg default symbols on base Pagination `6089:35899`): the row gap scales per
- * size — `space/xs` (4px) at sm, `space/sm` (6px) at md, `space/md` (8px) at lg — it is not
+ * Audit fix (confirmed via `get_design_context` on Figma nodes `6089:35746`/`35797`/`35848`,
+ * the sm/md/lg default symbols on base Pagination `6089:35899`): the row gap scales per
+ * size (`space/xs` 4px at sm, `space/sm` 6px at md, `space/md` 8px at lg); it is not
  * a single fixed value. Was previously hardcoded to `gap-1.5` (6px) at every size, which
  * only happened to be correct for `md`.
  */
@@ -41,8 +41,8 @@ const contentGapContext = {
 } as const;
 
 /**
- * Audit fix (same Figma nodes as `contentGapContext` above): icon size scales per size too —
- * 12px sm, 14px md, 16px lg — for both the prev/next chevrons and the ellipsis glyph. Was
+ * Audit fix (same Figma nodes as `contentGapContext` above): icon size scales per size too,
+ * 12px sm, 14px md, 16px lg, for both the prev/next chevrons and the ellipsis glyph. Was
  * previously hardcoded to `size-3.5` (14px) regardless of `size`, so sm/lg icons rendered at
  * the wrong scale relative to their chrome.
  */
@@ -106,11 +106,11 @@ const pageLinkVariants = cva(
 export interface PaginationLinkProps
   extends React.ComponentPropsWithRef<"button">,
     VariantProps<typeof pageLinkVariants> {
-  /** Marks this page as the current page — sets aria-current="page". */
+  /** Marks this page as the current page; sets aria-current="page". */
   isActive?: boolean;
 }
 
-/** Individual page number — role=button (native <button>), aria-current="page" when active */
+/** Individual page number: role=button (native <button>), aria-current="page" when active */
 export function PaginationLink({
   ref,
   className,
@@ -124,10 +124,7 @@ export function PaginationLink({
       ref={ref}
       type={type}
       aria-current={isActive ? "page" : undefined}
-      className={cn(
-        pageLinkVariants({ size, active: isActive }),
-        className,
-      )}
+      className={cn(pageLinkVariants({ size, active: isActive }), className)}
       {...props}
     />
   );
@@ -172,7 +169,10 @@ export function PaginationPrevious({
       className={cn(navButtonVariants({ size }), className)}
       {...props}
     >
-      <ChevronLeft className={iconSizeContext[size ?? "md"]} aria-hidden="true" />
+      <ChevronLeft
+        className={iconSizeContext[size ?? "md"]}
+        aria-hidden="true"
+      />
     </button>
   );
 }
@@ -195,7 +195,10 @@ export function PaginationNext({
       className={cn(navButtonVariants({ size }), className)}
       {...props}
     >
-      <ChevronRight className={iconSizeContext[size ?? "md"]} aria-hidden="true" />
+      <ChevronRight
+        className={iconSizeContext[size ?? "md"]}
+        aria-hidden="true"
+      />
     </button>
   );
 }
@@ -223,40 +226,40 @@ export function PaginationEllipsis({
 }
 
 /**
- * PaginationV2 — "restrained" variant (additive only; does not alter `Pagination`/
+ * PaginationV2, a "restrained" variant (additive only; does not alter `Pagination`/
  * `PaginationContent`/`PaginationItem`/`PaginationLink`/`PaginationPrevious`/
  * `PaginationNext`/`PaginationEllipsis` above).
  *
- * 🆕 v2 built from a REAL, confirmed "Pagination / v2 — restrained" Figma frame
+ * 🆕 v2 built from a REAL, confirmed "Pagination / v2 - restrained" Figma frame
  * (`6318:9133`, sibling to base Pagination `6089:35899` on canvas `6033:30`, file
- * `CDgfoMkj7lP3pXWJ3aOgkH`) — this is the one frame tonight's earlier discovery correctly
+ * `CDgfoMkj7lP3pXWJ3aOgkH`): this is the one frame tonight's earlier discovery correctly
  * flagged as genuinely real (and used elsewhere as a stand-in reference for Select's and
  * Accordion's v2, which had no frame of their own).
  *
  * Verified firsthand via `get_design_context` on both nodes, size by size (sm 28px / md
  * 36px / lg 44px), rather than trusting the secondhand screenshot-diff handoff: v2's
- * `_prev`/`_page-N`/`_next` chrome is **token-for-token identical** to v1 — same
+ * `_prev`/`_page-N`/`_next` chrome is **token-for-token identical** to v1. Same
  * `bg/primary` + `border/default` (inactive) / `bg/brand-solid` + `fg/on-brand` (active),
  * same `radius/md` squircle, and the same per-size gap scale (`space/xs` 4px sm,
  * `space/sm` 6px md, `space/md` 8px lg). Two claims from the handoff don't survive direct
- * inspection: there is no squircle-vs-pill axis (v1 was never a pill in Figma — both use
+ * inspection: there is no squircle-vs-pill axis (v1 was never a pill in Figma, both use
  * `radius/md`) and there is no "tighter" v2-only gap scale (v1's real spec already has the
  * same per-size scale; both were audited and fixed together above on `PaginationContent`/
  * `iconSizeContext`).
  *
  * The one real, structural difference: v2's published symbol set adds an explicit `hover`
- * state (sm/md/lg × default/focus/disabled/hover = 12 symbols, vs. v1's 9 — confirmed via
+ * state (sm/md/lg × default/focus/disabled/hover = 12 symbols, vs. v1's 9, confirmed via
  * `get_metadata` + `get_design_context`). But extracting the `hover` symbols directly shows
- * **pixel-identical** fill/border/text bindings to `default` for every size — Figma
+ * **pixel-identical** fill/border/text bindings to `default` for every size; Figma
  * publishes the state slot but never gave it a distinct color. Rather than invent an
  * unconfirmed hover color for v2 (or silently drop hover feedback for v2 only), this build
  * carries forward the same `hover:bg-secondary-hover` affordance v1's own code already
- * applies to its inactive items/nav buttons — keeping interactive feedback consistent
+ * applies to its inactive items/nav buttons, keeping interactive feedback consistent
  * across the whole component family.
  *
  * Net effect: every sub-part below is a real, additive export with its own stable name (and
  * `pagination-v2` gets its own registry entry), but the rendered output is intentionally the
- * same as a correctly-implemented v1 — that IS the confirmed real spec here, not an
+ * same as a correctly-implemented v1; that IS the confirmed real spec here, not an
  * interpretation. Forking the CVA definitions solely to duplicate identical class strings
  * under a new name would just be dead weight, so these are direct re-exports. See
  * SYNC_LOG.md for the full discrepancy note against the secondhand handoff.

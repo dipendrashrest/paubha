@@ -1,7 +1,7 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const badgeVariants = cva(
   "inline-flex items-center justify-center gap-1 rounded-full border font-medium",
@@ -29,24 +29,84 @@ const badgeVariants = cva(
       },
     },
     compoundVariants: [
-      // subtle (bg-*-subtle, colored text, colored border) — the original default look
-      { variant: "gray", fill: "subtle", className: "border-border-default bg-bg-secondary text-fg-primary" },
-      { variant: "brand", fill: "subtle", className: "border-border-brand bg-bg-brand-subtle text-fg-brand" },
-      { variant: "success", fill: "subtle", className: "border-border-success bg-bg-success-subtle text-fg-success" },
-      { variant: "warning", fill: "subtle", className: "border-border-warning bg-bg-warning-subtle text-fg-warning" },
-      { variant: "error", fill: "subtle", className: "border-border-error bg-bg-error-subtle text-fg-error" },
+      // subtle (bg-*-subtle, colored text, colored border): the original default look
+      {
+        variant: "gray",
+        fill: "subtle",
+        className: "border-border-default bg-bg-secondary text-fg-primary",
+      },
+      {
+        variant: "brand",
+        fill: "subtle",
+        className: "border-border-brand bg-bg-brand-subtle text-fg-brand",
+      },
+      {
+        variant: "success",
+        fill: "subtle",
+        className: "border-border-success bg-bg-success-subtle text-fg-success",
+      },
+      {
+        variant: "warning",
+        fill: "subtle",
+        className: "border-border-warning bg-bg-warning-subtle text-fg-warning",
+      },
+      {
+        variant: "error",
+        fill: "subtle",
+        className: "border-border-error bg-bg-error-subtle text-fg-error",
+      },
       // outline (transparent bg, colored border + text)
-      { variant: "gray", fill: "outline", className: "border-border-default text-fg-primary" },
-      { variant: "brand", fill: "outline", className: "border-border-brand text-fg-brand" },
-      { variant: "success", fill: "outline", className: "border-border-success text-fg-success" },
-      { variant: "warning", fill: "outline", className: "border-border-warning text-fg-warning" },
-      { variant: "error", fill: "outline", className: "border-border-error text-fg-error" },
-      // solid (filled bg, on-color text) — gray has no dedicated solid token, uses tertiary bg
-      { variant: "gray", fill: "solid", className: "bg-bg-tertiary text-fg-primary" },
-      { variant: "brand", fill: "solid", className: "bg-bg-brand-solid text-fg-on-brand" },
-      { variant: "success", fill: "solid", className: "bg-bg-success-solid text-fg-on-success" },
-      { variant: "warning", fill: "solid", className: "bg-bg-warning-solid text-fg-on-warning" },
-      { variant: "error", fill: "solid", className: "bg-bg-error-solid text-fg-on-error" },
+      {
+        variant: "gray",
+        fill: "outline",
+        className: "border-border-default text-fg-primary",
+      },
+      {
+        variant: "brand",
+        fill: "outline",
+        className: "border-border-brand text-fg-brand",
+      },
+      {
+        variant: "success",
+        fill: "outline",
+        className: "border-border-success text-fg-success",
+      },
+      {
+        variant: "warning",
+        fill: "outline",
+        className: "border-border-warning text-fg-warning",
+      },
+      {
+        variant: "error",
+        fill: "outline",
+        className: "border-border-error text-fg-error",
+      },
+      // solid (filled bg, on-color text): gray has no dedicated solid token, uses tertiary bg
+      {
+        variant: "gray",
+        fill: "solid",
+        className: "bg-bg-tertiary text-fg-primary",
+      },
+      {
+        variant: "brand",
+        fill: "solid",
+        className: "bg-bg-brand-solid text-fg-on-brand",
+      },
+      {
+        variant: "success",
+        fill: "solid",
+        className: "bg-bg-success-solid text-fg-on-success",
+      },
+      {
+        variant: "warning",
+        fill: "solid",
+        className: "bg-bg-warning-solid text-fg-on-warning",
+      },
+      {
+        variant: "error",
+        fill: "solid",
+        className: "bg-bg-error-solid text-fg-on-error",
+      },
     ],
     defaultVariants: {
       variant: "gray",
@@ -66,7 +126,7 @@ export interface BadgeProps
   dismissible?: boolean;
   /** Called when the dismiss button is activated. */
   onDismiss?: () => void;
-  /** Renders as a compact icon-only badge (no visible label) — pass an icon as children. */
+  /** Renders as a compact icon-only badge (no visible label); pass an icon as children. */
   iconOnly?: boolean;
 }
 
@@ -93,7 +153,10 @@ export function Badge({
   return (
     <output
       ref={ref}
-      className={cn(badgeVariants({ variant, fill, size, iconOnly }), className)}
+      className={cn(
+        badgeVariants({ variant, fill, size, iconOnly }),
+        className,
+      )}
       {...props}
     >
       {showDot ? (

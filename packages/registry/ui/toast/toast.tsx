@@ -1,25 +1,28 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 // Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle)
-// with a status icon — there is no separate accent bar in the real spec.
-const toastVariants = cva("flex w-90 items-start gap-3 rounded-lg p-4 shadow-sm", {
-  variants: {
-    variant: {
-      info: "bg-bg-info-subtle text-fg-info",
-      success: "bg-bg-success-subtle text-fg-success",
-      warning: "bg-bg-warning-subtle text-fg-warning",
-      error: "bg-bg-error-subtle text-fg-error",
+// with a status icon; there is no separate accent bar in the real spec.
+const toastVariants = cva(
+  "flex w-90 items-start gap-3 rounded-lg p-4 shadow-sm",
+  {
+    variants: {
+      variant: {
+        info: "bg-bg-info-subtle text-fg-info",
+        success: "bg-bg-success-subtle text-fg-success",
+        warning: "bg-bg-warning-subtle text-fg-warning",
+        error: "bg-bg-error-subtle text-fg-error",
+      },
+    },
+    defaultVariants: {
+      variant: "info",
     },
   },
-  defaultVariants: {
-    variant: "info",
-  },
-});
+);
 
 export type ToastVariant = NonNullable<
   VariantProps<typeof toastVariants>["variant"]
@@ -113,7 +116,7 @@ interface ToastContextValue {
 
 const ToastContext = React.createContext<ToastContextValue | null>(null);
 
-/** Imperative toast API — call from inside a <ToastProvider>. */
+/** Imperative toast API. Call from inside a <ToastProvider>. */
 export function useToast() {
   const context = React.useContext(ToastContext);
   if (!context) {
@@ -126,7 +129,7 @@ let nextToastId = 0;
 
 /**
  * Wrap the app (or a subtree) in <ToastProvider> and call useToast().toast({...}) to
- * show a toast. Renders its own fixed-position stack — no separate <Toaster /> needed.
+ * show a toast. Renders its own fixed-position stack, no separate <Toaster /> needed.
  */
 export function ToastProvider({
   children,

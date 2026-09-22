@@ -7,7 +7,7 @@ import { dirname, relative } from "node:path";
  * apps/www's build), regardless of how deep a component's own folder is
  * nested. The CLI is what decides the real on-disk layout in a consumer
  * project (aliases.lib, aliases.components), so it's also what has to turn
- * that canonical specifier into a real relative import — computed from the
+ * that canonical specifier into a real relative import, computed from the
  * actual destination paths, not hardcoded depth. This is what keeps imports
  * correct no matter how the registry source tree or the consumer's alias
  * config is shaped.

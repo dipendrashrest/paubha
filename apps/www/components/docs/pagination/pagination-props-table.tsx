@@ -10,7 +10,7 @@ const contentProps = definePropDefs<PaginationContentProps>()([
     name: "size",
     type: '"sm" | "md" | "lg"',
     defaultValue: '"md"',
-    description: "Item diameter — 28 / 36 / 44px.",
+    description: "Item diameter: 28 / 36 / 44px.",
   },
 ]);
 
@@ -18,13 +18,13 @@ const linkProps = definePropDefs<PaginationLinkProps>()([
   {
     name: "isActive",
     type: "boolean",
-    description: 'Marks this as the current page — sets aria-current="page".',
+    description: 'Marks this as the current page, setting aria-current="page".',
   },
   {
     name: "size",
     type: '"sm" | "md" | "lg"',
     defaultValue: '"md"',
-    description: "Item diameter — 28 / 36 / 44px.",
+    description: "Item diameter: 28 / 36 / 44px.",
   },
 ]);
 

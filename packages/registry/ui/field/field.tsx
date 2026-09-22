@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import * as React from "react";
 
 interface ControllableProps {
   id?: string;
@@ -15,7 +15,7 @@ export interface FieldProps
   description?: React.ReactNode;
   error?: React.ReactNode;
   /**
-   * Marks the field as required — appends a literal " *" to the label (matching
+   * Marks the field as required. Appends a literal " *" to the label (matching
    * Figma's confirmed `required` state, node 2120:5) and passes `required` through
    * to the wrapped control so native form validation/aria-required stays in sync.
    * The asterisk is `aria-hidden`; the control's own `required` attribute is what
@@ -24,11 +24,11 @@ export interface FieldProps
   required?: boolean;
   /**
    * Success message shown in place of the helper text, in `fg-success` (matching
-   * Figma's confirmed `success` state, node 2120:5) — mirrors how `error` renders
+   * Figma's confirmed `success` state, node 2120:5); mirrors how `error` renders
    * its own message below the control. Ignored while `error` is set.
    */
   success?: React.ReactNode;
-  /** The form control to wire up (Input, Textarea, Select, ...) — receives id, aria-describedby, aria-invalid, error, and required automatically. */
+  /** The form control to wire up (Input, Textarea, Select, ...); receives id, aria-describedby, aria-invalid, error, and required automatically. */
   children: React.ReactElement<ControllableProps>;
 }
 
@@ -37,8 +37,8 @@ export interface FieldProps
  * error message wired via aria-describedby + aria-invalid on the control · required
  * shows a literal "*" after the label (aria-hidden) and sets the control's native
  * `required` attribute · success shows an fg-success message in place of the helper
- * text (Figma node 2120:5 confirms all 5 states — default/error/disabled/required/success
- * — as real, distinct symbols, not just documentation prose)
+ * text (Figma node 2120:5 confirms all 5 states, default/error/disabled/required/success,
+ * as real, distinct symbols, not just documentation prose)
  */
 export function Field({
   ref,

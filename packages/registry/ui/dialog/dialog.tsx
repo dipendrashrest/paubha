@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export const Dialog = AlertDialogPrimitive.Root;
 export const DialogTrigger = AlertDialogPrimitive.Trigger;
@@ -14,7 +14,11 @@ export interface DialogContentProps
  * open · Escape closes · does not close on outside click (requires an explicit choice) ·
  * auto-focus the safest action (place DialogCancel first, or autoFocus it explicitly)
  */
-export function DialogContent({ ref, className, ...props }: DialogContentProps) {
+export function DialogContent({
+  ref,
+  className,
+  ...props
+}: DialogContentProps) {
   return (
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-bg-overlay" />
@@ -62,7 +66,9 @@ export function DialogTitle({ ref, className, ...props }: DialogTitleProps) {
 DialogTitle.displayName = "DialogTitle";
 
 export interface DialogDescriptionProps
-  extends React.ComponentPropsWithRef<typeof AlertDialogPrimitive.Description> {}
+  extends React.ComponentPropsWithRef<
+    typeof AlertDialogPrimitive.Description
+  > {}
 
 export function DialogDescription({
   ref,
@@ -120,10 +126,10 @@ DialogCancel.displayName = "DialogCancel";
 export interface DialogActionProps
   extends React.ComponentPropsWithRef<typeof AlertDialogPrimitive.Action> {
   /**
-   * Colors the action to match the dialog's intent — brand for Confirm/Info, error for
+   * Colors the action to match the dialog's intent: brand for Confirm/Info, error for
    * Destructive. Figma's real published Dialog component (node `6089:37431`, file
-   * `CDgfoMkj7lP3pXWJ3aOgkH`) publishes three `Variant` values — Confirm, Destructive,
-   * Info — but Info's primary action renders with the exact same `bg/brand-solid` fill
+   * `CDgfoMkj7lP3pXWJ3aOgkH`) publishes three `Variant` values (Confirm, Destructive,
+   * Info), but Info's primary action renders with the exact same `bg/brand-solid` fill
    * as Confirm's (confirmed via live `get_design_context` on `6089:37423`), so it needs
    * no distinct color value here; "Info" is a composition difference (single action, no
    * DialogCancel), not a third color. This 2-value enum already covers all 3 real

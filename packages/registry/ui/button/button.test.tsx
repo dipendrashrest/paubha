@@ -89,7 +89,7 @@ describe("Button", () => {
     expect(screen.getByTestId("icon")).toHaveClass("size-5");
   });
 
-  it("scales the icon slot per size — sm 16px, md/lg 20px, xl 24px (Figma canvas 2120:2)", () => {
+  it("scales the icon slot per size: sm 16px, md/lg 20px, xl 24px (Figma canvas 2120:2)", () => {
     const expectations: Array<
       [NonNullable<React.ComponentProps<typeof Button>["size"]>, string]
     > = [

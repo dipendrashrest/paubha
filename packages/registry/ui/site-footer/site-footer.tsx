@@ -1,12 +1,12 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface SiteFooterProps extends React.ComponentPropsWithRef<"footer"> {
   /** Brand / mark slot. */
   brand?: React.ReactNode;
   /** Short blurb under the brand. */
   description?: React.ReactNode;
-  /** Column groups — typically SiteFooterColumn children. */
+  /** Column groups, typically SiteFooterColumn children. */
   children?: React.ReactNode;
   /** Bottom legal / copyright row. */
   bottom?: React.ReactNode;

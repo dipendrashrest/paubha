@@ -38,7 +38,7 @@ export function ColorScale({
   );
 }
 
-/** Even grid for semantic ColorSwatch cards — keeps row/column gaps consistent. */
+/** Even grid for semantic ColorSwatch cards, keeps row/column gaps consistent. */
 export function ColorSwatchGroup({ children }: { children: ReactNode }) {
   return (
     <div className="not-prose my-4 grid grid-cols-1 gap-3 sm:grid-cols-2">

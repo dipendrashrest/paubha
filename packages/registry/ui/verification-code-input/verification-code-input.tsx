@@ -1,10 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import * as React from "react";
 
 export interface VerificationCodeInputProps
-  extends Omit<React.ComponentPropsWithRef<"div">, "onChange" | "defaultValue"> {
+  extends Omit<
+    React.ComponentPropsWithRef<"div">,
+    "onChange" | "defaultValue"
+  > {
   /** Number of digit cells. */
   length?: number;
   value?: string;
@@ -13,7 +16,7 @@ export interface VerificationCodeInputProps
   /** Shows every cell in the error color and marks them aria-invalid. */
   error?: boolean;
   disabled?: boolean;
-  /** Required — describes the whole group, e.g. "6-digit verification code". */
+  /** Required. Describes the whole group, e.g. "6-digit verification code". */
   "aria-label": string;
 }
 
@@ -25,7 +28,7 @@ export interface VerificationCodeInputProps
  * visible via shadow-glow-focus, or shadow-glow-focus-error when a cell is focused while
  * `error` is set, matching Input/Select/Slider/Tag Input's established pattern · no
  * distinct "filled" (has a value, not focused) visual treatment was found confirmable in
- * Figma for this component — see SYNC_LOG.md OPEN QUESTIONS before adding one
+ * Figma for this component; see SYNC_LOG.md OPEN QUESTIONS before adding one
  */
 export function VerificationCodeInput({
   ref,
@@ -60,7 +63,10 @@ export function VerificationCodeInput({
     }
   }
 
-  function handleKeyDown(index: number, event: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(
+    index: number,
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) {
     if (event.key === "Backspace" && !digits[index] && index > 0) {
       const next = digits.slice();
       next[index - 1] = "";
@@ -71,7 +77,10 @@ export function VerificationCodeInput({
 
   function handlePaste(event: React.ClipboardEvent<HTMLInputElement>) {
     event.preventDefault();
-    const pasted = event.clipboardData.getData("text").replace(/\D/g, "").slice(0, length);
+    const pasted = event.clipboardData
+      .getData("text")
+      .replace(/\D/g, "")
+      .slice(0, length);
     if (!pasted) return;
     commit(pasted);
     inputRefs.current[Math.min(pasted.length, length - 1)]?.focus();

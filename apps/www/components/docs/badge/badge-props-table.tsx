@@ -13,7 +13,8 @@ const badgeProps = definePropDefs<BadgeProps>()([
     name: "fill",
     type: '"subtle" | "outline" | "solid"',
     defaultValue: '"subtle"',
-    description: "Fill style — tinted background, bordered/transparent, or solid on-color.",
+    description:
+      "Fill style: tinted background, bordered/transparent, or solid on-color.",
   },
   {
     name: "size",
@@ -25,7 +26,8 @@ const badgeProps = definePropDefs<BadgeProps>()([
     name: "iconOnly",
     type: "boolean",
     defaultValue: "false",
-    description: "Renders as a compact square icon-only badge instead of a text label.",
+    description:
+      "Renders as a compact square icon-only badge instead of a text label.",
   },
   {
     name: "showDot",
@@ -37,7 +39,8 @@ const badgeProps = definePropDefs<BadgeProps>()([
     name: "dismissible",
     type: "boolean",
     defaultValue: "false",
-    description: 'Shows a dismiss button with aria-label="Remove" after the label.',
+    description:
+      'Shows a dismiss button with aria-label="Remove" after the label.',
   },
   {
     name: "onDismiss",

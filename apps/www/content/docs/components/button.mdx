@@ -35,14 +35,14 @@ sm 32px · md 40px · lg 48px · xl 56px.
 ### With icon
 
 `leadingIcon` accepts any element and sizes it automatically to match the
-button — 16px at sm/md, 20px at lg/xl. It's a decorative slot: the icon is
+button: 16px at sm/md, 20px at lg/xl. It's a decorative slot: the icon is
 marked `aria-hidden` for you.
 
 <ButtonWithIcon />
 
 ### States
 
-`loading` shows a spinner, sets `aria-busy`, and disables the button —
+`loading` shows a spinner, sets `aria-busy`, and disables the button,
 independent of the `disabled` prop, so a button can be disabled without
 being in a loading state.
 
@@ -63,7 +63,7 @@ being in a loading state.
     </li>
     <li>
       <strong>Focus.</strong> Visible <code>glow-focus</code> ring on Tab, via{" "}
-      <code>focus-visible</code> — never shown on a pointer click.
+      <code>focus-visible</code>. Never shown on a pointer click.
     </li>
     <li>
       <strong>Disabled.</strong> The native <code>disabled</code> attribute prevents all

@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@paubha/registry/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardImage,
+  CardTitle,
+} from "@paubha/registry/ui/card";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function CardHero() {
@@ -18,7 +24,10 @@ export function CardHero() {
     >
       <div className="w-[280px]">
         <Card>
-          <CardImage src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="" />
+          <CardImage
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7"
+            alt=""
+          />
           <CardContent>
             <CardTitle>Card Title</CardTitle>
             <CardDescription>
@@ -42,7 +51,11 @@ export function CardVariants() {
         {(["default", "outlined", "elevated"] as const).map((variant) => (
           <div key={variant} className="w-[220px]">
             <Card variant={variant}>
-              <CardImage src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="" className="h-24" />
+              <CardImage
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7"
+                alt=""
+                className="h-24"
+              />
               <CardContent>
                 <CardTitle>{variant}</CardTitle>
                 <CardDescription>Card content preview.</CardDescription>
@@ -62,7 +75,7 @@ export function CardInteractive() {
   <CardContent>
     <CardTitle>Clickable card</CardTitle>
     <CardDescription>
-      Entire card is a role="button" — Enter/Space activates it.
+      Entire card is a role="button"; Enter/Space activates it.
     </CardDescription>
   </CardContent>
 </Card>`}
@@ -72,7 +85,7 @@ export function CardInteractive() {
           <CardContent>
             <CardTitle>Clickable card</CardTitle>
             <CardDescription>
-              Entire card is a role="button" — Enter/Space activates it.
+              Entire card is a role="button"; Enter/Space activates it.
             </CardDescription>
           </CardContent>
         </Card>

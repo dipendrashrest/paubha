@@ -71,7 +71,7 @@ const addButtonProps = definePropDefs<AvatarAddButtonProps>()([
     name: "aria-label",
     type: "string",
     defaultValue: '"Add"',
-    description: "Accessible name — the \"+\" glyph itself is decorative.",
+    description: 'Accessible name; the "+" glyph itself is decorative.',
   },
 ]);
 
@@ -79,17 +79,18 @@ const labelGroupProps = definePropDefs<AvatarLabelGroupProps>()([
   {
     name: "avatar",
     type: "ReactNode",
-    description: "An `<Avatar />` element — its `size` is overridden to match.",
+    description: "An `<Avatar />` element; its `size` is overridden to match.",
   },
   {
     name: "name",
     type: "ReactNode",
-    description: "Primary line — `text-ui-sm` / `fg-primary`.",
+    description: "Primary line: `text-ui-sm` / `fg-primary`.",
   },
   {
     name: "secondaryText",
     type: "ReactNode",
-    description: "Optional supporting line (email, role) — `text-ui-xs` / `fg-secondary`.",
+    description:
+      "Optional supporting line (email, role): `text-ui-xs` / `fg-secondary`.",
   },
   {
     name: "size",

@@ -1,11 +1,11 @@
 ---
 title: Typography
-description: Role-based type scale — ui-*, body-*, display-* — not generic sm/md/lg.
+description: Role-based type scale (ui-*, body-*, display-*), not generic sm/md/lg.
 ---
 
 Type roles are named for what they're for, not their size. `ui-*` is chrome
 (buttons, labels, form controls), `body-*` is reading copy, `display-*` is
-headings. Every step bakes in its own line-height and letter-spacing — never
+headings. Every step bakes in its own line-height and letter-spacing; never
 override those with a separate `leading-*`/`tracking-*` utility.
 
 <TypeScale />
@@ -19,7 +19,7 @@ override those with a separate `leading-*`/`tracking-*` utility.
 ```
 
 `ui-*` letter-spacing is a fixed `-0.1px` at every size (confirmed across
-Button, Badge, Field, and Input) — not proportional to font-size, so it's
+Button, Badge, Field, and Input), not proportional to font-size, so it's
 baked into the `text-ui-*` utilities in `theme.css` rather than left to a
 separate `tracking-*` class, which is em-relative and would drift per size.
 

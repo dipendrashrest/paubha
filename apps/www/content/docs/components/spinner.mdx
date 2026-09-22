@@ -18,10 +18,10 @@ import { Spinner } from "@/components/ui/spinner";
 ```
 
 A light track ring plus a highlighted arc, rotating as a whole via
-`animate-spin`. The arc uses `currentColor` and defaults to `text-fg-brand`
-— pass a different `text-*` class (or `className`) to recolor it, no prop
+`animate-spin`. The arc uses `currentColor` and defaults to `text-fg-brand`;
+pass a different `text-*` class (or `className`) to recolor it, no prop
 needed. Button has its own separate internal loading spinner sized to its
-icon slots, not this component reused — two independent implementations of
+icon slots, not this component reused: two independent implementations of
 the same idea, not the same thing built twice.
 
 ## Examples
@@ -47,12 +47,12 @@ the same idea, not the same thing built twice.
       announced via <code>aria-live=&quot;polite&quot;</code>.
     </li>
     <li>
-      <strong>Busy state.</strong> Spinner doesn't set <code>aria-busy</code> itself —
-      add <code>aria-busy=&quot;true&quot;</code> to whichever element is actually
+      <strong>Busy state.</strong> Spinner doesn't set <code>aria-busy</code> itself.
+      Add <code>aria-busy=&quot;true&quot;</code> to whichever element is actually
       loading (a section, a button, a form).
     </li>
     <li>
-      <strong>Unmounting.</strong> Spinner has no "done" state of its own — swap it out
+      <strong>Unmounting.</strong> Spinner has no "done" state of its own. Swap it out
       for real content (or an empty state) once loading finishes.
     </li>
   </ul>

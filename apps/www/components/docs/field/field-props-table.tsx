@@ -23,7 +23,7 @@ const fieldProps = definePropDefs<FieldProps>()([
     name: "required",
     type: "boolean",
     description:
-      "Appends a literal \" *\" to the label (aria-hidden) and sets the control's native required attribute.",
+      'Appends a literal " *" to the label (aria-hidden) and sets the control\'s native required attribute.',
   },
   {
     name: "success",
@@ -35,7 +35,7 @@ const fieldProps = definePropDefs<FieldProps>()([
     name: "children",
     type: "ReactElement",
     description:
-      "A single form control (Input, Textarea, ...) — receives id, aria-describedby, aria-invalid, error, and required automatically via cloneElement.",
+      "A single form control (Input, Textarea, ...). Receives id, aria-describedby, aria-invalid, error, and required automatically via cloneElement.",
   },
 ]);
 

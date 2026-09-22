@@ -7,7 +7,7 @@ const spinnerProps = definePropDefs<SpinnerProps>()([
     name: "size",
     type: '"sm" | "md" | "lg"',
     defaultValue: '"md"',
-    description: "Diameter — 16 / 24 / 32px.",
+    description: "Diameter: 16 / 24 / 32px.",
   },
 ]);
 

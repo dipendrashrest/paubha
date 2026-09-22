@@ -46,7 +46,7 @@ import {
 ```
 
 The close button sits inside `ModalHeader` as a flex sibling of the title
-(`ModalTitle` is `flex-1`, `ModalClose` is `shrink-0`) — that's what the real
+(`ModalTitle` is `flex-1`, `ModalClose` is `shrink-0`). That's what the real
 spec shows, not the more common absolutely-positioned-corner-X pattern. The
 overlay backdrop is tinted `brand-900` at 60% rather than plain black,
 extending the brand-tinted-shadow principle to the app's other dark surface.
@@ -61,7 +61,7 @@ extending the brand-tinted-shadow principle to the app's other dark surface.
   <ul>
     <li>
       <strong>Role.</strong> <code>role=&quot;dialog&quot;</code> with{" "}
-      <code>aria-modal=&quot;true&quot;</code> — set explicitly on{" "}
+      <code>aria-modal=&quot;true&quot;</code>, set explicitly on{" "}
       <code>ModalContent</code> rather than left to Radix's default, since the
       installed Radix version doesn't set it automatically (verified directly by
       inspecting the rendered DOM, not assumed).
@@ -69,7 +69,7 @@ extending the brand-tinted-shadow principle to the app's other dark surface.
     <li>
       <strong>Labelling.</strong> <code>aria-labelledby</code> points at{" "}
       <code>ModalTitle</code>, <code>aria-describedby</code> at{" "}
-      <code>ModalDescription</code> — wired automatically by Radix.
+      <code>ModalDescription</code>, wired automatically by Radix.
     </li>
     <li>
       <strong>Focus.</strong> Trapped within the modal while open.

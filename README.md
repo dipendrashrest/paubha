@@ -31,7 +31,7 @@ Full docs: [paubha.tech/docs](https://paubha.tech/docs)
 Drop **[paubha.tech/skill.md](https://paubha.tech/skill.md)** into your
 project (e.g. `.claude/skills/paubha/SKILL.md` for Claude Code, or just paste
 it into your agent's context) and it'll know how to install components, use
-the design tokens correctly, and follow the real component API conventions —
+the design tokens correctly, and follow the real component API conventions,
 without you re-explaining any of it per session.
 
 ## Local development
@@ -42,9 +42,10 @@ pnpm build:registry   # emits apps/www/public/r/*.json
 pnpm dev
 ```
 
-- `apps/www` — docs site + landing (Next.js + Fumadocs). Serves `/r/*.json`.
-- `packages/registry` — component source (`ui/{name}/`), tokens, `registry.json`.
-- `packages/cli` — `npx paubha init|add`.
+- `apps/www`: docs site (Next.js + Fumadocs). Serves `/r/*.json`. The marketing
+  homepage lives in a separate private repo, deployed to `ui.paubha.tech`.
+- `packages/registry`: component source (`ui/{name}/`), tokens, `registry.json`.
+- `packages/cli`: `npx paubha init|add`.
 
 ## License
 

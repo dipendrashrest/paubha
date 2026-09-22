@@ -41,7 +41,7 @@ export function Breadcrumbs({
 Breadcrumbs.displayName = "Breadcrumbs";
 
 export interface BreadcrumbItemProps extends React.ComponentPropsWithRef<"a"> {
-  /** Marks this as the current page — renders as non-interactive text with aria-current="page". */
+  /** Marks this as the current page. Renders as non-interactive text with aria-current="page". */
   current?: boolean;
 }
 

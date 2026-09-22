@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const textareaVariants = cva(
   [
@@ -33,7 +33,7 @@ export type TextareaSize = "sm" | "md" | "lg" | "xl";
 export interface TextareaProps
   extends Omit<React.ComponentPropsWithRef<"textarea">, "size"> {
   size?: TextareaSize;
-  /** Marks the textarea as invalid — sets aria-invalid and the error border/text color. */
+  /** Marks the textarea as invalid; sets aria-invalid and the error border/text color. */
   error?: boolean;
 }
 
@@ -41,7 +41,7 @@ export interface TextareaProps
  * role=textbox, multiline · requires an associated label via Field · aria-invalid=true on
  * error · resizable via the native drag handle · Figma's published Textarea (node
  * 2121:15056) confirms all 4 sizes (sm/md/lg/xl) are real, not just sm/md as an earlier
- * prose spec claimed — its real state axis is default/hover/focus/active/disabled/error
+ * prose spec claimed; its real state axis is default/hover/focus/active/disabled/error
  * (no distinct "filled" state exists despite doc prose mentioning one)
  */
 export function Textarea({

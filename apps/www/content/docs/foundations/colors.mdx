@@ -5,7 +5,7 @@ description: Primitive color scales and the semantic tokens components actually 
 
 Two layers, always. Primitives are raw 50–950 scales; the semantic layer
 (`bg-*`, `fg-*`, `border-*`) is what components reference. Never hardcode a
-primitive hex inside a component — bind to the semantic token so light/dark
+primitive hex inside a component. Bind to the semantic token so light/dark
 theming and re-branding stay a token remap, not a component edit.
 
 ## Primitive scales
@@ -23,7 +23,7 @@ theming and re-branding stay a token remap, not a component edit.
 ## Semantic tokens
 
 Each semantic token maps to a primitive step, and that mapping flips between
-light and dark mode — the token name never changes, only what it points to.
+light and dark mode; the token name never changes, only what it points to.
 
 ### Backgrounds
 
@@ -69,7 +69,7 @@ light and dark mode — the token name never changes, only what it points to.
 ## Focus ring
 
 The signature `glow-focus` ring used on every interactive component's focus
-state — `brand-500` at 24% opacity, 4px spread, zero blur or offset. Not a
+state: `brand-500` at 24% opacity, 4px spread, zero blur or offset. Not a
 hard outline.
 
 <div
@@ -79,5 +79,5 @@ hard outline.
   <span className="font-mono text-ui-xs text-fg-tertiary">tab me</span>
 </div>
 
-Full 50–950 steps for every scale live in `tokens.css` at the repo root —
+Full 50–950 steps for every scale live in `tokens.css` at the repo root;
 the values above are the semantic aliases components actually use.

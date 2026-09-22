@@ -53,7 +53,7 @@ Stacked, overlapping avatars with a `+N` overflow chip (`bg-secondary` / `fg-sec
 
 ### Label group
 
-Pairs an avatar with a name and optional secondary text (email, role) — for lists, comment authors, and member rows.
+Pairs an avatar with a name and optional secondary text (email, role), for lists, comment authors, and member rows.
 
 <AvatarLabelGroupExample />
 
@@ -80,7 +80,7 @@ Prop names and types are taken from `AvatarProps` / `AvatarGroupProps` in the re
     <li>
       <strong>Role.</strong> Each avatar is <code>role=&quot;img&quot;</code> with an{" "}
       <code>aria-label</code> from <code>alt</code> (or <code>initials</code>). Status is
-      appended to that name — <code>Maya Chen, online</code> — not a nested labelled
+      appended to that name, e.g. <code>Maya Chen, online</code>, not a nested labelled
       node. The inner <code>&lt;img&gt;</code> uses <code>alt=&quot;&quot;</code> so it
       isn't announced twice.
     </li>
@@ -94,7 +94,7 @@ Prop names and types are taken from `AvatarProps` / `AvatarGroupProps` in the re
       <code>N more</code>.
     </li>
     <li>
-      <strong>AvatarAddButton</strong> is a native <code>&lt;button&gt;</code> —
+      <strong>AvatarAddButton</strong> is a native <code>&lt;button&gt;</code>:
       Enter/Space activates, and it accepts an accessible name via{" "}
       <code>aria-label</code> (defaults to <code>&quot;Add&quot;</code>). Its
       focus ring uses the same <code>shadow-glow-focus</code> treatment as its

@@ -25,7 +25,7 @@ const itemProps = definePropDefs<ActivityFeedItemProps>()([
   {
     name: "avatar",
     type: "React.ReactNode",
-    description: 'Leading media — typically <Avatar size="sm" />.',
+    description: 'Leading media, typically <Avatar size="sm" />.',
   },
   {
     name: "title",
@@ -49,7 +49,7 @@ const groupProps = definePropDefs<ActivityFeedGroupProps>()([
   {
     name: "label",
     type: "React.ReactNode",
-    description: 'Section label — e.g. "Today", "Yesterday".',
+    description: 'Section label, e.g. "Today", "Yesterday".',
   },
   {
     name: "children",
@@ -72,7 +72,7 @@ const timelineProps = definePropDefs<ActivityFeedTimelineItemProps>()([
   {
     name: "status",
     type: "React.ReactNode",
-    description: "Status row under the title — pass a Paubha Badge.",
+    description: "Status row under the title, pass a Paubha Badge.",
   },
   {
     name: "last",

@@ -12,7 +12,8 @@ const cardProps = definePropDefs<CardProps>()([
   {
     name: "onClick",
     type: "(event: MouseEvent) => void",
-    description: "Makes the card interactive — role=\"button\", focusable, Enter/Space activates.",
+    description:
+      'Makes the card interactive: role="button", focusable, Enter/Space activates.',
   },
 ]);
 

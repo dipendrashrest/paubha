@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +10,7 @@ import {
 export interface FaqItem {
   question: React.ReactNode;
   answer: React.ReactNode;
-  /** Stable value for AccordionItem — falls back to index. */
+  /** Stable value for AccordionItem; falls back to index. */
   value?: string;
 }
 
@@ -19,7 +19,7 @@ export interface FaqProps
   title?: React.ReactNode;
   description?: React.ReactNode;
   items: FaqItem[];
-  /** Accordion type — defaults to single. */
+  /** Accordion type; defaults to single. */
   type?: "single" | "multiple";
 }
 
@@ -38,10 +38,7 @@ export function Faq({
 }: FaqProps) {
   const titleId = typeof title === "string" ? "faq-heading" : undefined;
 
-  const accordionClassName = cn(
-    "flex flex-col gap-2",
-    title != null && "mt-8",
-  );
+  const accordionClassName = cn("flex flex-col gap-2", title != null && "mt-8");
 
   const accordionItems = items.map((item, i) => {
     const value =
