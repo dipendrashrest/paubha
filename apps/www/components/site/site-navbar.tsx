@@ -6,7 +6,7 @@ import { Logo } from "@paubha/registry/ui/logo";
 import { ToggleGroup, ToggleGroupItem } from "@paubha/registry/ui/toggle-group";
 import Link from "fumadocs-core/link";
 import { SidebarTrigger } from "fumadocs-ui/layouts/docs";
-import { Menu, Moon, Sun } from "lucide-react";
+import { Download, Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
@@ -69,7 +69,7 @@ function SiteThemeToggle() {
       }}
       aria-label="Color theme"
       size="sm"
-      className="h-9 gap-0.5 rounded-sm border border-border-default bg-bg-primary p-1 lg:h-10"
+      className="h-8 gap-0.5 rounded-sm border border-border-default bg-bg-primary p-1 lg:h-9"
     >
       <ToggleGroupItem
         value="light"
@@ -135,12 +135,26 @@ export function SiteNavbar({
         <SiteSearchTrigger />
         <SiteThemeToggle />
         <a
+          href="/skill.md"
+          download
+          aria-label="Download skill.md — AI agent instructions for Paubha"
+          className={cn(
+            "hidden h-8 items-center gap-2 rounded-sm border border-border-default bg-bg-primary px-3 sm:inline-flex lg:h-9",
+            "text-ui-md text-fg-tertiary transition-colors",
+            "hover:border-border-strong",
+            "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
+          )}
+        >
+          <Download className="size-4 shrink-0" aria-hidden="true" />
+          Skill.md
+        </a>
+        <a
           href="https://github.com/dipendrashrest/paubha"
           target="_blank"
           rel="noreferrer"
           aria-label="GitHub"
           className={cn(
-            "hidden h-9 items-center gap-2 rounded-sm border border-border-default bg-bg-primary px-3 sm:inline-flex lg:h-10",
+            "hidden h-8 items-center gap-2 rounded-sm border border-border-default bg-bg-primary px-3 sm:inline-flex lg:h-9",
             "text-ui-md text-fg-tertiary transition-colors",
             "hover:border-border-strong",
             "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",

@@ -26,7 +26,7 @@ export function SiteSearchTrigger({ className }: { className?: string }) {
         "flex items-center gap-2 rounded-sm border border-border-default bg-bg-primary transition-colors",
         "hover:border-border-strong",
         "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
-        "size-9 justify-center p-0 lg:h-10 lg:w-[327px] lg:justify-start lg:px-3 lg:py-2",
+        "size-8 justify-center p-0 lg:h-9 lg:w-[327px] lg:justify-start lg:px-3 lg:py-2",
         className,
       )}
     >
