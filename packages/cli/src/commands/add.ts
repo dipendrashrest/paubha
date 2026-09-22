@@ -18,6 +18,13 @@ export interface AddOptions {
   force: boolean;
 }
 
+function toPascalCase(name: string): string {
+  return name
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
 function destinationFor(
   file: RegistryFile,
   cwd: string,
@@ -92,6 +99,19 @@ export async function runAdd(
       cwd,
       stdio: "inherit",
     });
+  }
+
+  const requestedItems = resolved.items.filter((item) =>
+    requested.has(item.name),
+  );
+  if (requestedItems.length > 0) {
+    console.log("\nImport it and use it:");
+    for (const item of requestedItems) {
+      const componentName = toPascalCase(item.name);
+      console.log(
+        `  import { ${componentName} } from "@/${config.aliases.components}/${item.name}/${item.name}";`,
+      );
+    }
   }
 
   console.log("\nDone.");
