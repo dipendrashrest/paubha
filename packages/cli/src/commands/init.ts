@@ -70,10 +70,12 @@ export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   });
 
   console.log(
-    "\nOne more step: import the token files in your global CSS, after Tailwind:\n" +
+    "\nOne more step: import the token files in your global CSS, after Tailwind.\n" +
+      `Paths are relative to wherever that CSS file lives, not this project root, so adjust the "../" depth to match:\n` +
       '  @import "tailwindcss";\n' +
-      `  @import "./${config.tailwind.tokens}";\n` +
-      `  @import "./${config.tailwind.theme}";\n` +
+      `  @import "../${config.tailwind.tokens}";\n` +
+      `  @import "../${config.tailwind.theme}";\n` +
+      `(e.g. Next.js App Router's app/globals.css is one level down, so "../" is usually right; a root-level globals.css would use "./" instead.)\n` +
       "Components won't look right until this is wired up.\n",
   );
 

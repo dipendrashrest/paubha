@@ -13,7 +13,7 @@ npx paubha@latest add button
 That's it. `init` writes your design tokens and the `cn()` helper and installs
 three small deps; `add` copies a component's actual source into your project
 (no runtime dependency on Paubha; you own the file). Import a component from
-wherever `init` put it, e.g. `@/components/ui/button`.
+wherever `init` put it, e.g. `@/components/ui/button/button`.
 
 If either command complains, jump to [Troubleshooting](#troubleshooting). It
 now tells you exactly what's missing instead of failing silently.
@@ -38,8 +38,8 @@ everything it needs. Then:
 npx paubha@latest add button
 ```
 
-Import it from `@/components/ui/button` and drop `<Button>Click me</Button>`
-into any page.
+Import it from `@/components/ui/button/button` and drop
+`<Button>Click me</Button>` into any page.
 
 ### Vite (React)
 

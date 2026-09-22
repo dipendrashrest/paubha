@@ -1,3 +1,5 @@
+"use client";
+
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";

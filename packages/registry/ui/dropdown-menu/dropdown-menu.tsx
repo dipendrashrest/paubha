@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import { withIconSize } from "@paubha/registry/lib/with-icon-size";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";

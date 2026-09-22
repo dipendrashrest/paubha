@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import * as React from "react";

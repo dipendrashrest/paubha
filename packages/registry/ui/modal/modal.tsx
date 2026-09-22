@@ -1,8 +1,10 @@
+"use client";
+
+import { cn } from "@paubha/registry/lib/cn";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export const Modal = DialogPrimitive.Root;
 export const ModalTrigger = DialogPrimitive.Trigger;
@@ -90,11 +92,16 @@ export function ModalTitle({ ref, className, ...props }: ModalTitleProps) {
 export interface ModalCloseProps
   extends React.ComponentPropsWithRef<typeof DialogPrimitive.Close> {}
 
-export function ModalClose({ ref, className, ...props }: ModalCloseProps) {
+export function ModalClose({
+  ref,
+  className,
+  children,
+  ...props
+}: ModalCloseProps) {
   return (
     <DialogPrimitive.Close
       ref={ref}
-      aria-label="Close"
+      aria-label={children ? undefined : "Close"}
       className={cn(
         "shrink-0 rounded-xs text-fg-primary outline-none",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
@@ -102,7 +109,7 @@ export function ModalClose({ ref, className, ...props }: ModalCloseProps) {
       )}
       {...props}
     >
-      <X className="size-5" />
+      {children ?? <X className="size-5" />}
     </DialogPrimitive.Close>
   );
 }

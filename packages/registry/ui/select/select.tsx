@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { type VariantProps, cva } from "class-variance-authority";

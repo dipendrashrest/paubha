@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import type * as React from "react";

@@ -130,4 +130,29 @@ describe("Modal", () => {
     await screen.findByRole("dialog");
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("falls back to an X icon with aria-label=Close when no children are given", async () => {
+    const user = userEvent.setup();
+    render(<BasicModal />);
+    await user.click(screen.getByRole("button", { name: "Delete item" }));
+    expect(screen.getByRole("button", { name: "Close" })).toBeInTheDocument();
+  });
+
+  it("renders its own children instead of the fallback icon when given", async () => {
+    const user = userEvent.setup();
+    render(
+      <Modal>
+        <ModalTrigger>Open</ModalTrigger>
+        <ModalContent>
+          <ModalTitle>Delete item?</ModalTitle>
+          <ModalClose>Cancel</ModalClose>
+        </ModalContent>
+      </Modal>,
+    );
+    await user.click(screen.getByRole("button", { name: "Open" }));
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Close" }),
+    ).not.toBeInTheDocument();
+  });
 });

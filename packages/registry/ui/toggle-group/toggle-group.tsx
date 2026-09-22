@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { type VariantProps, cva } from "class-variance-authority";

@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { type VariantProps, cva } from "class-variance-authority";

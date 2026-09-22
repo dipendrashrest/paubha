@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@paubha/registry/lib/cn";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 import type * as React from "react";
