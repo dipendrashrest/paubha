@@ -10,6 +10,8 @@
 
 :root,
 [data-preview-theme="light"] {
+  color-scheme: light;
+
   /* ============================================================
      PRIMITIVES
      ============================================================ */
@@ -253,8 +255,77 @@
    SEMANTIC — DARK
    ============================================================ */
 
+/* Follows the OS setting when no theme class is set, so dark mode works out of
+   the box. An explicit `.light`/`.dark` class (or next-themes) still wins, and a
+   `[data-preview-theme]` pane is unaffected. Generated from the `.dark` block
+   below — `pnpm check` fails if the two drift. Edit that block, never this one. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not([data-preview-theme="light"]) {
+    color-scheme: dark;
+
+    --bg-primary: #0a0a0b;
+    --bg-secondary: #111113;
+    --bg-tertiary: #18181b;
+    --bg-elevated: #1c1c1f;
+    --bg-preview: #16161a;
+    --bg-disabled: var(--gray-800);
+    --bg-secondary-hover: var(--gray-800);
+    --bg-tertiary-hover: var(--gray-700);
+    --bg-switch-off: var(--gray-600);
+
+    /* overlay: no dark-mode override in Figma — same rgb() as light, see light
+       block comment. */
+    --bg-overlay: rgb(16 24 40 / 0.6);
+
+    --bg-brand-solid: var(--brand-600);
+    --bg-brand-solid-hover: var(--brand-500);
+    --bg-brand-solid-active: var(--brand-700);
+    --bg-brand-subtle: var(--brand-950);
+
+    --bg-error-solid: var(--error-600);
+    --bg-error-solid-hover: var(--error-500);
+    --bg-error-subtle: var(--error-950);
+    --bg-warning-solid: var(--warning-600);
+    --bg-warning-subtle: var(--warning-950);
+    --bg-success-solid: var(--success-600);
+    --bg-success-subtle: var(--success-950);
+    --bg-info-solid: var(--brand-500);
+    --bg-info-subtle: var(--brand-950);
+
+    --bg-brand: var(--bg-brand-solid);
+    --bg-brand-hover: var(--bg-brand-solid-hover);
+
+    --fg-primary: var(--gray-50);
+    --fg-secondary: var(--gray-400);
+    --fg-tertiary: var(--gray-500);
+    --fg-disabled: var(--gray-600);
+    --fg-brand: var(--brand-400);
+    --fg-on-brand: var(--base-white);
+    --fg-on-error: var(--base-white);
+    --fg-on-warning: var(--base-white);
+    --fg-on-success: var(--base-white);
+    --fg-error: var(--error-400);
+    --fg-warning: var(--warning-400);
+    --fg-success: var(--success-400);
+    --fg-info: var(--brand-400);
+    --fg-on-info: var(--base-white);
+
+    --border-default: var(--gray-800);
+    --border-strong: var(--gray-700);
+    --border-brand: var(--brand-400);
+    --border-error: var(--error-400);
+    --border-warning: var(--warning-400);
+    --border-success: var(--success-400);
+    --border-info: var(--brand-400);
+
+    --focus-ring: var(--brand-400);
+  }
+}
+
 .dark,
 [data-preview-theme="dark"] {
+  color-scheme: dark;
+
   --bg-primary: #0a0a0b;
   --bg-secondary: #111113;
   --bg-tertiary: #18181b;

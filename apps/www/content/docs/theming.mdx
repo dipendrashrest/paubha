@@ -27,8 +27,32 @@ You rarely reference these in components.
 
 Meaning-based aliases onto primitives: `--bg-primary`, `--fg-secondary`,
 `--border-default`, `--focus-ring`. **Components only ever reference semantic
-tokens.** Dark mode is a `.dark` block that remaps semantic → primitive; no
-component contains a `dark:` variant for themed colors.
+tokens.** Dark mode remaps semantic → primitive; no component contains a
+`dark:` variant for themed colors.
+
+### Turning dark mode on
+
+Nothing to wire up: `tokens.css` ships a `prefers-color-scheme: dark` block, so
+the theme follows the reader's OS setting on its own. `color-scheme` is set too,
+so native scrollbars, form controls, and the text caret match.
+
+To let people choose instead of following the OS, put a `light` or `dark` class
+on `<html>`. An explicit class always beats the OS preference in both
+directions:
+
+```html
+<html class="dark">
+```
+
+With [next-themes](https://github.com/pacocoursey/next-themes), that's:
+
+```tsx
+<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+```
+
+The dark values are declared twice — once under `prefers-color-scheme`, once
+under `.dark` — and `pnpm check` fails if the two ever drift apart, so switching
+theme by OS and by class always produce the same result.
 
 ### Light → Dark remap
 

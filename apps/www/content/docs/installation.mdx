@@ -109,6 +109,11 @@ re-run:
 { "tailwind": { "css": "src/shell/base.css" } }
 ```
 
+**Dark mode isn't doing anything**
+It follows the OS by default, so check your system appearance setting first. If
+you're switching themes with a class, the class goes on `<html>` (`class="dark"`),
+not on `<body>` or a wrapper div. See [Theming](/docs/theming#turning-dark-mode-on).
+
 **I don't want to use the CLI at all**
 See [Manual copy-paste](#manual-copy-paste) below.
 

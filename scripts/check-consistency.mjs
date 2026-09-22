@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /**
- * Guards the canonical site URL.
+ * Guards the facts this repo duplicates in more than one place.
  *
- * Two failure modes this repo has actually hit:
+ * Failure modes it has actually hit:
  *  1. Links to `ui.paubha.tech/<path>` — that host serves only the marketing
  *     homepage (separate private repo), so every docs path under it 404s.
- *  2. The registry base drifting apart across the four places that hardcode it.
+ *  2. The registry base drifting apart across the places that hardcode it.
+ *  3. The CLI's `--version` literal drifting from its package.json.
+ *  4. tokens.css's two dark-mode blocks (OS fallback + `.dark` class) drifting,
+ *     which would make dark mode differ depending on how it was switched on.
  *
  * Run by `pnpm check`.
  */
@@ -38,7 +41,7 @@ function trackedFiles() {
         SCANNED_EXTENSIONS.test(file) &&
         !file.startsWith("apps/www/public/r/") &&
         // This file spells out the bad pattern in order to match it.
-        file !== "scripts/check-urls.mjs",
+        file !== "scripts/check-consistency.mjs",
     );
 }
 
@@ -110,10 +113,51 @@ expect(
   cliPkgVersion,
 );
 
+// Dark mode is declared twice — once behind `prefers-color-scheme` so it works
+// with no setup, once behind `.dark` for an explicit toggle. They must agree.
+const tokensCss = readFileSync(
+  join(root, "packages/registry/styles/tokens.css"),
+  "utf8",
+);
+
+function darkDeclarations(block) {
+  return [...block.matchAll(/--[\w-]+\s*:[^;]+;/g)]
+    .map((match) => match[0].replace(/\s+/g, " ").trim())
+    .sort();
+}
+
+const mediaBlock = tokensCss.match(
+  /@media \(prefers-color-scheme: dark\) \{(.*?)\n\}\n/s,
+)?.[1];
+const classBlock = tokensCss.match(
+  /\n\.dark,\n\[data-preview-theme="dark"\] \{(.*?)\n\}/s,
+)?.[1];
+
+if (!mediaBlock || !classBlock) {
+  errors.push(
+    "tokens.css is missing its prefers-color-scheme fallback or its .dark block",
+  );
+} else {
+  const fromMedia = darkDeclarations(mediaBlock);
+  const fromClass = darkDeclarations(classBlock);
+  const onlyMedia = fromMedia.filter((d) => !fromClass.includes(d));
+  const onlyClass = fromClass.filter((d) => !fromMedia.includes(d));
+  for (const decl of onlyClass) {
+    errors.push(
+      `tokens.css: "${decl}" is in the .dark block but not the prefers-color-scheme fallback`,
+    );
+  }
+  for (const decl of onlyMedia) {
+    errors.push(
+      `tokens.css: "${decl}" is in the prefers-color-scheme fallback but not the .dark block`,
+    );
+  }
+}
+
 if (errors.length > 0) {
-  console.error(`URL check failed (${errors.length}):\n`);
+  console.error(`Consistency check failed (${errors.length}):\n`);
   for (const error of errors) console.error(`  ✖ ${error}`);
   process.exit(1);
 }
 
-console.log("✔ URL check passed");
+console.log("✔ Consistency check passed");

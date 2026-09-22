@@ -8,8 +8,8 @@
     "build:registry": "pnpm --filter @paubha/registry build",
     "lint": "biome lint .",
     "format": "biome format --write .",
-    "check": "pnpm check:urls && biome check .",
-    "check:urls": "node scripts/check-urls.mjs",
+    "check": "pnpm check:consistency && biome check .",
+    "check:consistency": "node scripts/check-consistency.mjs",
     "test": "turbo test"
   },
   "devDependencies": {
