@@ -4,7 +4,7 @@ description: Use the Paubha CLI to init a project and add components.
 ---
 
 The Paubha CLI fetches source from the registry on
-[ui.paubha.tech](https://ui.paubha.tech) and copies it into your codebase —
+[paubha.tech](https://paubha.tech) and copies it into your codebase —
 no runtime package.
 
 ```bash
@@ -113,8 +113,8 @@ npx paubha@latest add button --cwd ./apps/web
 
 ```json
 {
-  "$schema": "https://ui.paubha.tech/schema.json",
-  "registry": "https://ui.paubha.tech/r",
+  "$schema": "https://paubha.tech/schema.json",
+  "registry": "https://paubha.tech/r",
   "aliases": {
     "components": "components/ui",
     "lib": "lib"
@@ -143,12 +143,12 @@ PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha@latest add button
 
 ## Registry
 
-Components are served from `https://ui.paubha.tech/r/{name}.json`, following
+Components are served from `https://paubha.tech/r/{name}.json`, following
 the [shadcn registry schema](https://ui.shadcn.com/schema/registry.json). You
 can also install with the shadcn CLI:
 
 ```bash
-npx shadcn@latest add https://ui.paubha.tech/r/button.json
+npx shadcn@latest add https://paubha.tech/r/button.json
 ```
 
 ### Building the registry (contributors)

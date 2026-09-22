@@ -1,6 +1,6 @@
 ---
 name: paubha
-description: Use whenever building or modifying a React + Tailwind CSS UI and the project uses (or should use) Paubha — a shadcn-style, copy-paste component registry. Trigger on requests to add a button/input/modal/dialog/select/table/dropdown/toast/card/etc. to a React app, to theme or restyle a React+Tailwind project, to scaffold a design system, or when a repo already has a components.json pointing at ui.paubha.tech. Covers installing components via the CLI, using Paubha's design tokens correctly, and following its component API conventions. Not for non-React frameworks or projects that have explicitly opted out of Paubha.
+description: Use whenever building or modifying a React + Tailwind CSS UI and the project uses (or should use) Paubha — a shadcn-style, copy-paste component registry. Trigger on requests to add a button/input/modal/dialog/select/table/dropdown/toast/card/etc. to a React app, to theme or restyle a React+Tailwind project, to scaffold a design system, or when a repo already has a components.json pointing at paubha.tech. Covers installing components via the CLI, using Paubha's design tokens correctly, and following its component API conventions. Not for non-React frameworks or projects that have explicitly opted out of Paubha.
 license: MIT
 ---
 
@@ -8,7 +8,7 @@ license: MIT
 
 React components, styled with Tailwind, shipped shadcn-style: `npx paubha add <name>` copies real source into your project. No package to update, no version to fight, nothing you can't just open and change.
 
-Docs: https://ui.paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT
+Docs: https://paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT
 
 ## When to use this
 
@@ -41,10 +41,10 @@ Imports inside the copied files are plain relative paths (`../../../lib/cn`), co
 Don't trust a hardcoded list here or anywhere else — the catalog moves. Hit the index:
 
 ```
-https://ui.paubha.tech/r/registry.json
+https://paubha.tech/r/registry.json
 ```
 
-Every entry has `name` (what `add` takes), `title`, `description`, real `files`. Want to eyeball a component's actual source before installing it? `https://ui.paubha.tech/r/<name>.json`.
+Every entry has `name` (what `add` takes), `title`, `description`, real `files`. Want to eyeball a component's actual source before installing it? `https://paubha.tech/r/<name>.json`.
 
 Snapshot as of this write-up: base components (Button, Input, Field, Textarea, Checkbox, Radio Group, Switch, Select, Avatar, Badge, Alert, Toast, Modal, Dialog, Dropdown Menu, Popover, Tooltip, Tabs, Accordion, Card, Table, Pagination, Progress Bar, Progress Circle, Slider, Spinner, Skeleton, Divider, Breadcrumbs, Kbd, Tag Input, Toggle Group, Verification Code Input, Logo) plus application patterns (Activity Feed, Chart, Calendar, App Nav, Page Header, Section Header, Metric, Progress Steps, Empty State, Inline CTA, Filter, File Upload, Announcement Bar, Logo Cloud, Site Footer, Testimonial, Newsletter, Marketing Hero, Card Header). Some base components ship a `-v2` sibling (`select-v2`, `popover-v2`, `accordion-v2`, `pagination-v2`, `tag-input-v2`) — a real, separately-maintained restrained variant, not a stale duplicate.
 
@@ -91,7 +91,7 @@ Every interactive component ships the correct ARIA role, documented keyboard beh
 
 ## Before you hand-build anything
 
-1. `https://ui.paubha.tech/r/registry.json` — does Paubha already have this?
+1. `https://paubha.tech/r/registry.json` — does Paubha already have this?
 2. Yes → `npx paubha@latest add <name>`, then go read the file it wrote. That's the real API.
 3. Styling something adjacent (a wrapper, a one-off layout)? Reach for the semantic tokens above, not a hex code.
 4. Installed behavior doesn't match what you expected? Trust the file on disk over any cached assumption — this thing moves, and things do get corrected out from under stale docs.

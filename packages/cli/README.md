@@ -1,6 +1,6 @@
 # paubha
 
-CLI for [Paubha](https://ui.paubha.tech) — a shadcn-style, copy-paste registry
+CLI for [Paubha](https://paubha.tech) — a shadcn-style, copy-paste registry
 of React + Tailwind components. Running `add` copies component source straight
 into your project; there's no runtime package to depend on.
 
@@ -49,8 +49,8 @@ npx paubha@latest add button --force
 
 ```json
 {
-  "$schema": "https://ui.paubha.tech/schema.json",
-  "registry": "https://ui.paubha.tech/r",
+  "$schema": "https://paubha.tech/schema.json",
+  "registry": "https://paubha.tech/r",
   "aliases": {
     "components": "components/ui",
     "lib": "lib"
@@ -70,7 +70,7 @@ PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha@latest add button
 
 ## Links
 
-- Docs: https://ui.paubha.tech/docs/cli
+- Docs: https://paubha.tech/docs/cli
 - Repo: https://github.com/dipendrashrest/paubha
 - Issues: https://github.com/dipendrashrest/paubha/issues
 

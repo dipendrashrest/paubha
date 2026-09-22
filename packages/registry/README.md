@@ -2,7 +2,7 @@
 
 Source of truth for Paubha UI: one folder per component under `ui/`, shared `lib/` helpers, and `styles/` tokens.
 
-This package is **not** installed from npm by apps. Consumers copy files via [`npx paubha add`](https://ui.paubha.tech/docs/cli) from the hosted registry JSON.
+This package is **not** installed from npm by apps. Consumers copy files via [`npx paubha add`](https://paubha.tech/docs/cli) from the hosted registry JSON.
 
 ## Layout
 
@@ -27,4 +27,4 @@ pnpm build:registry
 
 Writes `apps/www/public/r/{name}.json` (gitignored) for the docs site to serve.
 
-Homepage / registry base: `https://ui.paubha.tech`.
+Homepage / registry base: `https://paubha.tech`.

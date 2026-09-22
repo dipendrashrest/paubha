@@ -10,9 +10,9 @@ This file is auto-loaded by Claude Code every session. Read it before doing any 
 
 - **Repo:** https://github.com/dipendrashrest/paubha
 - **Issues:** https://github.com/dipendrashrest/paubha/issues
-- **Live site (docs + registry API):** https://ui.paubha.tech
+- **Live site (docs + registry API):** https://paubha.tech
 
-Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-09-21 — custom domain is `ui.paubha.tech` (docs + `/r/[name].json` registry endpoints). Keep `packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` pointed here together — don't let them drift apart.
+Use these exactly — don't guess or reconstruct a repo URL from the package name. Corrected 2026-09-21 — custom domain is `paubha.tech` (docs + `/r/[name].json` registry endpoints). Keep `packages/registry/registry.json`'s `homepage`, the CLI's `components.json` `$schema`, and `DEFAULT_REGISTRY_URL` in `packages/cli/src/utils/registry.ts` pointed here together — don't let them drift apart.
 
 ## Brand identity — do not deviate without being told
 
@@ -112,7 +112,7 @@ paubha/
 
 ## Distribution model
 
-shadcn-style copy-paste registry (`npx paubha@latest add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://ui.paubha.tech/r` — see "Project links" above). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). Published to npm as `paubha` — use `npx paubha@latest`.
+shadcn-style copy-paste registry (`npx paubha@latest add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://paubha.tech/r` — see "Project links" above). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). Published to npm as `paubha` — use `npx paubha@latest`.
 
 ## Where specs come from
 
@@ -128,7 +128,7 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
 - Figma base components: all 19 free-tier components fully specced and built — Button, Avatar, Badge, Input, Field, Textarea, Checkbox, Radio Group, Switch, Alert, Spinner, Divider, Skeleton, Progress Bar, Breadcrumbs, Tooltip, Dropdown Menu, Modal, Tabs.
-- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://ui.paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
+- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style

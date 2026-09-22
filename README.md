@@ -6,7 +6,7 @@ Open-source components for React & Tailwind.
 [![GitHub issues](https://img.shields.io/github/issues/dipendrashrest/paubha)](https://github.com/dipendrashrest/paubha/issues)
 
 Copy-paste UI, shadcn-style: you own the source. Docs and the component
-registry live at **[ui.paubha.tech](https://ui.paubha.tech)**.
+registry live at **[paubha.tech](https://paubha.tech)**.
 
 ## Quickstart
 
@@ -16,7 +16,7 @@ npx paubha@latest add button
 ```
 
 `init` writes tokens, the Tailwind v4 theme map, and `cn()`. `add` copies
-component source from `https://ui.paubha.tech/r` into your project.
+component source from `https://paubha.tech/r` into your project.
 
 Point the CLI at a local docs server while developing:
 
@@ -24,11 +24,11 @@ Point the CLI at a local docs server while developing:
 PAUBHA_REGISTRY_URL=http://localhost:3000/r npx paubha@latest add button
 ```
 
-Full docs: [ui.paubha.tech/docs](https://ui.paubha.tech/docs)
+Full docs: [paubha.tech/docs](https://paubha.tech/docs)
 
 ### Using an AI coding agent?
 
-Drop **[ui.paubha.tech/skill.md](https://ui.paubha.tech/skill.md)** into your
+Drop **[paubha.tech/skill.md](https://paubha.tech/skill.md)** into your
 project (e.g. `.claude/skills/paubha/SKILL.md` for Claude Code, or just paste
 it into your agent's context) and it'll know how to install components, use
 the design tokens correctly, and follow the real component API conventions —

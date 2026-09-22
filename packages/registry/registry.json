@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "paubha",
-  "homepage": "https://ui.paubha.tech",
+  "homepage": "https://paubha.tech",
   "items": [
     {
       "name": "button",
