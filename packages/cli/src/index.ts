@@ -1,7 +1,22 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { Command } from "commander";
 import { runAdd } from "./commands/add.js";
 import { runInit } from "./commands/init.js";
+
+// Read from package.json rather than a hardcoded literal: a literal is a
+// second place to remember to bump, and it already drifted once (0.1.1 vs
+// 0.1.2) before this session started fixing things. dist/index.js always
+// ships one directory below package.json, both in this repo and once
+// installed under node_modules/paubha/, so the relative path holds either way.
+const { version } = JSON.parse(
+  readFileSync(
+    join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"),
+    "utf8",
+  ),
+) as { version: string };
 
 async function runSafely(fn: () => void | Promise<void>): Promise<void> {
   try {
@@ -17,7 +32,7 @@ const program = new Command();
 program
   .name("paubha")
   .description("shadcn-style copy-paste CLI for Paubha")
-  .version("0.3.0");
+  .version(version);
 
 program
   .command("init")

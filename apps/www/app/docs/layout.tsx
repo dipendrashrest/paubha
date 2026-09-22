@@ -2,6 +2,7 @@ import { baseOptions } from "@/app/layout.config";
 import { SiteNavbar } from "@/components/site/site-navbar";
 import { siteSidebarComponents } from "@/components/site/site-sidebar";
 import { source } from "@/lib/source";
+import { CLI_VERSION } from "@/lib/version";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import type { ReactNode } from "react";
 
@@ -12,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {...baseOptions}
       nav={{
         ...baseOptions.nav,
-        component: <SiteNavbar showSidebarTrigger />,
+        component: <SiteNavbar showSidebarTrigger version={CLI_VERSION} />,
         title: null,
       }}
       themeSwitch={{ enabled: false }}

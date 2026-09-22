@@ -6,7 +6,11 @@
  *  1. Links to `ui.paubha.tech/<path>` — that host serves only the marketing
  *     homepage (separate private repo), so every docs path under it 404s.
  *  2. The registry base drifting apart across the places that hardcode it.
- *  3. The CLI's `--version` literal drifting from its package.json.
+ *  3. The CLI's `--version` and the docs navbar badge silently going stale
+ *     because they were hardcoded literals instead of reading
+ *     packages/cli/package.json (the navbar sat at "v0.1.2" through three
+ *     real releases before anyone noticed). Both now read it live, so this
+ *     guards against either regressing back to a literal.
  *  4. tokens.css's two dark-mode blocks (OS fallback + `.dark` class) drifting,
  *     which would make dark mode differ depending on how it was switched on.
  *
@@ -14,7 +18,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -103,15 +107,52 @@ expect(
   `${CANONICAL_ORIGIN}/schema.json`,
 );
 
-// `--version` is a hardcoded literal in the commander setup, so it silently
-// drifts every time package.json is bumped on its own.
-const cliPkgVersion = readJson("packages/cli/package.json").version;
+// Both used to be hardcoded literals — the CLI's own --version, and the docs
+// navbar badge — and both drifted from packages/cli/package.json before this
+// check existed. They now read it live (packages/cli/src/index.ts via fs at
+// runtime, apps/www/lib/version.ts via fs at build time). Guard against
+// either regressing back to a typed-in literal rather than re-checking a
+// value that can no longer disagree by construction.
 const indexTs = readFileSync(join(root, "packages/cli/src/index.ts"), "utf8");
-expect(
-  "packages/cli/src/index.ts .version()",
-  indexTs.match(/\.version\("([^"]+)"\)/)?.[1],
-  cliPkgVersion,
+const versionCall = indexTs.match(/\.version\(([^)]*)\)/)?.[1] ?? "";
+if (/["']/.test(versionCall)) {
+  errors.push(
+    `packages/cli/src/index.ts: .version(${versionCall}) looks like a hardcoded literal, not the value read from package.json. It drifted this way before — pass the parsed \`version\`, don't type it in.`,
+  );
+}
+
+const navbarTsx = readFileSync(
+  join(root, "apps/www/components/site/site-navbar.tsx"),
+  "utf8",
 );
+// Anchored on a literal "v" immediately before the digits (the badge's own
+// text, "v0.1.2") rather than SEMVER_LITERAL bare — GithubMark's inline SVG
+// path data is full of coincidental N.N.N-shaped number runs with no "v".
+if (/\bv\d+\.\d+\.\d+\b/.test(navbarTsx)) {
+  errors.push(
+    'apps/www/components/site/site-navbar.tsx: contains a hardcoded version-looking string. It sat stale at "v0.1.2" through three releases before — render the `version` prop (from CLI_VERSION), don\'t type a number in.',
+  );
+}
+
+// Every component folder ships an index.ts barrel so the flat, shadcn-standard
+// import (`@/components/ui/button`) resolves. The barrels existed in the source
+// all along but weren't listed in registry.json, so the build dropped them and
+// `add` copied only the bare component file — users hit "Cannot find module" on
+// their first line. build-registry.mjs adds them now; this catches a folder that
+// never got one, which would break that import for that component alone.
+const registryItems = readJson("packages/registry/registry.json").items;
+for (const item of registryItems) {
+  const componentFile = item.files.find(
+    (file) => file.type === "registry:ui" && !file.path.endsWith("/index.ts"),
+  );
+  if (!componentFile) continue;
+  const barrel = `${componentFile.path.split("/").slice(0, -1).join("/")}/index.ts`;
+  if (!existsSync(join(root, "packages/registry", barrel))) {
+    errors.push(
+      `packages/registry/${barrel} is missing, so \`add ${item.name}\` would ship a folder with no barrel and "@/components/ui/..." wouldn't resolve for it.`,
+    );
+  }
+}
 
 // Dark mode is declared twice — once behind `prefers-color-scheme` so it works
 // with no setup, once behind `.dark` for an explicit toggle. They must agree.

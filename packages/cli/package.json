@@ -1,6 +1,6 @@
 {
   "name": "paubha",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "description": "CLI for Paubha, a shadcn-style copy-paste registry of React + Tailwind components.",
   "keywords": ["react", "tailwind", "ui", "components", "cli", "design-system", "shadcn"],

@@ -2,6 +2,7 @@
 
 Open-source components for React & Tailwind.
 
+[![npm version](https://img.shields.io/npm/v/paubha.svg)](https://www.npmjs.com/package/paubha)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/dipendrashrest/paubha)](https://github.com/dipendrashrest/paubha/issues)
 

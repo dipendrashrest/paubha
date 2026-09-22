@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { basename, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { readConfig } from "../utils/config.js";
 import {
   detectPackageManager,
@@ -37,18 +37,23 @@ function destinationFor(
 }
 
 /**
- * The module specifier for an item, derived from the file it actually writes
- * rather than its registry name. `select-v2` ships `ui/select/select.tsx`, so
- * guessing `select-v2/select-v2` from the name pointed at a file that never existed.
+ * The module specifier for an item: the component's folder, which resolves
+ * through the `index.ts` barrel shipped alongside it. Derived from the file
+ * actually written rather than the registry name — `select-v2` ships
+ * `ui/select/select.tsx`, so guessing from the name pointed at a path that
+ * never existed.
  */
 function importPathFor(
   item: RegistryItem,
   componentsAlias: string,
 ): string | null {
-  const file = item.files.find((candidate) => candidate.type === "registry:ui");
+  const file = item.files.find(
+    (candidate) =>
+      candidate.type === "registry:ui" && !candidate.path.endsWith("/index.ts"),
+  );
   if (!file) return null;
-  const rel = componentRelPath(file.path).replace(/\.[jt]sx?$/, "");
-  return `@/${componentsAlias}/${rel}`;
+  const folder = dirname(componentRelPath(file.path));
+  return `@/${componentsAlias}/${folder}`;
 }
 
 export async function runAdd(

@@ -90,7 +90,8 @@ function SiteThemeToggle() {
 
 export function SiteNavbar({
   showSidebarTrigger = false,
-}: { showSidebarTrigger?: boolean }) {
+  version,
+}: { showSidebarTrigger?: boolean; version: string }) {
   const pathname = usePathname();
 
   return (
@@ -107,7 +108,7 @@ export function SiteNavbar({
             <Logo variant="combined" />
           </Link>
           <Badge variant="gray" fill="subtle" size="sm">
-            v0.1.2
+            v{version}
           </Badge>
         </div>
         <nav className="hidden items-center gap-4 text-ui-md md:flex">

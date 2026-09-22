@@ -74,16 +74,53 @@ function exportsForItem(item, files) {
     : symbols;
 }
 
+/**
+ * Every `ui/<folder>/` already carries a hand-maintained `index.ts` barrel, but
+ * registry.json never listed it — so the build stripped it and `add` copied only
+ * the bare component file. That left the shadcn-standard flat import
+ * (`@/components/ui/button`) resolving to nothing, and users hit it on their very
+ * first line of code. The barrel is added here rather than in registry.json so 40
+ * entries don't each have to remember it.
+ *
+ * Derived from the component file's own folder, never the item name: `select-v2`
+ * ships `ui/select/select.tsx`, so its barrel is `ui/select/index.ts`.
+ */
+function withBarrelFile(item, files) {
+  const componentFiles = files.filter(
+    (file) => file.type === "registry:ui" && !file.path.endsWith("/index.ts"),
+  );
+
+  if (componentFiles.length !== 1) {
+    throw new Error(
+      `"${item.name}" has ${componentFiles.length} component files; expected exactly 1. The barrel export assumes one component file per folder — give it its own folder, or teach this script the new shape.`,
+    );
+  }
+
+  const barrelPath = `${dirname(componentFiles[0].path)}/index.ts`;
+  if (files.some((file) => file.path === barrelPath)) return files;
+
+  return [
+    ...files,
+    {
+      path: barrelPath,
+      type: "registry:ui",
+      content: readSource(barrelPath),
+    },
+  ];
+}
+
 const builtItems = [];
 
 for (const item of registryJson.items) {
-  const files = item.files.map((file) => ({
+  const declaredFiles = item.files.map((file) => ({
     path: file.path,
     type: file.type,
     content: readSource(file.path),
   }));
 
-  const meta = { ...item.meta, exports: exportsForItem(item, files) };
+  // Exports come from the declared files only: the barrel re-exports rather than
+  // declaring, so it would contribute nothing and only risk skewing the list.
+  const meta = { ...item.meta, exports: exportsForItem(item, declaredFiles) };
 
   if (meta.exports.length === 0) {
     throw new Error(
@@ -92,6 +129,8 @@ for (const item of registryJson.items) {
       }`,
     );
   }
+
+  const files = withBarrelFile(item, declaredFiles);
 
   const payload = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
@@ -118,7 +157,8 @@ for (const item of registryJson.items) {
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
     meta,
-    files: item.files,
+    // Mirrors the per-item JSON (barrel included), minus the file contents.
+    files: files.map(({ path, type }) => ({ path, type })),
   });
 }
 
