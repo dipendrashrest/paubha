@@ -17,7 +17,7 @@ const program = new Command();
 program
   .name("paubha")
   .description("shadcn-style copy-paste CLI for Paubha")
-  .version("0.1.2");
+  .version("0.2.0");
 
 program
   .command("init")
