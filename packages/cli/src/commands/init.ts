@@ -70,6 +70,12 @@ export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   });
 
   console.log(
-    "\nDone. Add your first component with:\n  npx paubha add button",
+    "\nOne more step: import the token files in your global CSS, after Tailwind:\n" +
+      '  @import "tailwindcss";\n' +
+      `  @import "./${config.tailwind.tokens}";\n` +
+      `  @import "./${config.tailwind.theme}";\n` +
+      "Components won't look right until this is wired up.\n",
   );
+
+  console.log("Add your first component with:\n  npx paubha add button");
 }

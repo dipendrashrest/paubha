@@ -2,7 +2,7 @@
   "name": "paubha",
   "version": "0.1.2",
   "private": false,
-  "description": "CLI for Paubha — a shadcn-style copy-paste registry of React + Tailwind components.",
+  "description": "CLI for Paubha, a shadcn-style copy-paste registry of React + Tailwind components.",
   "keywords": ["react", "tailwind", "ui", "components", "cli", "design-system", "shadcn"],
   "license": "MIT",
   "type": "module",
@@ -27,7 +27,6 @@
     "commander": "^15.0.0"
   },
   "devDependencies": {
-    "@paubha/registry": "workspace:*",
     "@types/node": "^22.10.0",
     "tsup": "^8.3.5",
     "typescript": "^5.7.0",

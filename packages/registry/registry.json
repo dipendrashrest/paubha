@@ -414,7 +414,7 @@
       "name": "select-v2",
       "type": "registry:ui",
       "title": "Select V2 (Restrained)",
-      "description": "Additive, visually-quieter Select variant — ghost/transparent trigger chrome by default, gaining a border only on hover, open, focus, or error. Same sm/md/lg/xl sizes and Radix UI primitive as Select; does not replace it.",
+      "description": "Additive, visually-quieter Select variant: ghost/transparent trigger chrome by default, gaining a border only on hover, open, focus, or error. Same sm/md/lg/xl sizes and Radix UI primitive as Select; does not replace it.",
       "dependencies": [
         "@radix-ui/react-select",
         "class-variance-authority",
@@ -484,7 +484,7 @@
       "name": "pagination-v2",
       "type": "registry:ui",
       "title": "Pagination V2 (Restrained)",
-      "description": "Additive Pagination variant built from Figma's real 'v2 — restrained' frame — confirmed token-for-token identical to Pagination (same radius/md chrome, same per-size gap scale), with the same hover affordance v1 already uses since the extra hover state Figma publishes for v2 renders pixel-identical to default. Same sm/md/lg sizes as Pagination; does not replace it.",
+      "description": "Additive Pagination variant built from Figma's real 'v2, restrained' frame, confirmed token-for-token identical to Pagination (same radius/md chrome, same per-size gap scale), with the same hover affordance v1 already uses since the extra hover state Figma publishes for v2 renders pixel-identical to default. Same sm/md/lg sizes as Pagination; does not replace it.",
       "dependencies": [
         "class-variance-authority",
         "clsx",
@@ -525,7 +525,7 @@
       "name": "popover-v2",
       "type": "registry:ui",
       "title": "Popover V2 (Restrained)",
-      "description": "Additive Popover variant built from Figma's real 'v2 — restrained' frame — same default chrome as Popover, plus a real hover state and a dimmed disabled state v1 doesn't have. Same Radix UI primitive as Popover; does not replace it.",
+      "description": "Additive Popover variant built from Figma's real 'v2, restrained' frame, same default chrome as Popover, plus a real hover state and a dimmed disabled state v1 doesn't have. Same Radix UI primitive as Popover; does not replace it.",
       "dependencies": ["@radix-ui/react-popover", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
@@ -566,7 +566,7 @@
       "name": "accordion-v2",
       "type": "registry:ui",
       "title": "Accordion V2 (Restrained)",
-      "description": "Additive, visually-quieter Accordion variant — a borderless list with a single divider between items instead of per-item boxes, tighter padding, and a real hover state v1 doesn't have. Same Radix UI primitive as Accordion; does not replace it.",
+      "description": "Additive, visually-quieter Accordion variant: a borderless list with a single divider between items instead of per-item boxes, tighter padding, and a real hover state v1 doesn't have. Same Radix UI primitive as Accordion; does not replace it.",
       "dependencies": [
         "@radix-ui/react-accordion",
         "lucide-react",
@@ -752,7 +752,7 @@
       "name": "tag-input-v2",
       "type": "registry:ui",
       "title": "Tag Input V2 (Restrained)",
-      "description": "Additive Tag Input variant — no confirmable Figma 'v2 — restrained' frame exists for Tag Input, so this was built structurally from Popover's real v2 frame (an added hover state and an added disabled/dimmed state, chrome otherwise identical to v1): adds a hover border treatment TagInput never had, and dims the whole control when disabled instead of only tinting its background. Same sm/md/lg sizes as Tag Input; does not replace it.",
+      "description": "Additive Tag Input variant: no confirmable Figma 'v2, restrained' frame exists for Tag Input, so this was built structurally from Popover's real v2 frame (an added hover state and an added disabled/dimmed state, chrome otherwise identical to v1). Adds a hover border treatment TagInput never had, and dims the whole control when disabled instead of only tinting its background. Same sm/md/lg sizes as Tag Input; does not replace it.",
       "dependencies": [
         "lucide-react",
         "class-variance-authority",
@@ -811,7 +811,7 @@
       "name": "activity-feed",
       "type": "registry:ui",
       "title": "Activity Feed",
-      "description": "Chronological list of user actions and system events — simple, timeline, grouped, or as a notification panel.",
+      "description": "Chronological list of user actions and system events: simple, timeline, grouped, or as a notification panel.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["avatar", "badge"],
       "files": [

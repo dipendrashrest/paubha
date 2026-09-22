@@ -88,9 +88,6 @@ importers:
         specifier: ^15.0.0
         version: 15.0.0
     devDependencies:
-      '@paubha/registry':
-        specifier: workspace:*
-        version: link:../registry
       '@types/node':
         specifier: ^22.10.0
         version: 22.20.1
