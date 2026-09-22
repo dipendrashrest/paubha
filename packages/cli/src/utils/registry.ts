@@ -8,6 +8,15 @@ export interface RegistryFile {
   content?: string;
 }
 
+export interface RegistryItemMeta {
+  /**
+   * Symbols this item actually exports. Items that share a source file (`select`
+   * and `select-v2` both live in `ui/select/select.tsx`) each list only their own,
+   * so `add` can name real exports instead of inferring one from the item name.
+   */
+  exports?: readonly string[];
+}
+
 export interface RegistryItem {
   name: string;
   type: string;
@@ -15,6 +24,7 @@ export interface RegistryItem {
   description: string;
   dependencies: readonly string[];
   registryDependencies: readonly string[];
+  meta?: RegistryItemMeta;
   files: readonly RegistryFile[];
 }
 

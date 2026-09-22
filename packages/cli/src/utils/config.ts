@@ -12,6 +12,11 @@ export interface PaubhaConfig {
   tailwind: {
     tokens: string;
     theme: string;
+    /**
+     * The global stylesheet `init` adds the token `@import`s to. Auto-detected on
+     * first run and persisted, so re-runs and unusual project layouts stay stable.
+     */
+    css?: string;
   };
 }
 

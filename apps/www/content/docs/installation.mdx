@@ -10,10 +10,11 @@ npx paubha@latest init
 npx paubha@latest add button
 ```
 
-That's it. `init` writes your design tokens and the `cn()` helper and installs
-three small deps; `add` copies a component's actual source into your project
-(no runtime dependency on Paubha; you own the file). Import a component from
-wherever `init` put it, e.g. `@/components/ui/button/button`.
+That's it. `init` writes your design tokens and the `cn()` helper, installs
+three small deps, and imports the tokens into your global stylesheet for you;
+`add` copies a component's actual source into your project (no runtime
+dependency on Paubha; you own the file) and prints the exact import line to
+paste, e.g. `@/components/ui/button/button`.
 
 If either command complains, jump to [Troubleshooting](#troubleshooting). It
 now tells you exactly what's missing instead of failing silently.
@@ -89,15 +90,23 @@ Paubha's tokens rely on Tailwind v4's CSS-first `@theme`, and there's no
 then re-run `init --force`.
 
 **Components render but have no styling**
-Almost always a CSS import order issue. `tokens.css`/`theme.css` must be
-imported **after** `@import "tailwindcss";`, otherwise Tailwind's own
-resets/layers can lose to (or be lost to) the token layer. In Next.js
-`app/globals.css`:
+`init` adds the token imports to your global stylesheet automatically, so this
+usually means it couldn't find that file — check its output. `tokens.css` and
+`theme.css` must be imported **after** `@import "tailwindcss";`, otherwise
+Tailwind's resets and the token layer fight over precedence. In Next.js
+`app/globals.css` it should look like this:
 
 ```css
 @import "tailwindcss";
 @import "../styles/tokens.css";
 @import "../styles/theme.css";
+```
+
+If your stylesheet lives somewhere `init` doesn't look, point it there once and
+re-run:
+
+```json
+{ "tailwind": { "css": "src/shell/base.css" } }
 ```
 
 **I don't want to use the CLI at all**
@@ -114,8 +123,9 @@ else that reads project-level agent instructions.
 
 If you'd rather skip the CLI entirely:
 
-1. Copy `tokens.css` and `theme.css` from the docs repo into your styles,
-   imported after Tailwind (see the CSS order note under Troubleshooting).
+1. Copy `tokens.css` and `theme.css` from the docs repo into your styles, and
+   `@import` both after `@import "tailwindcss";` (this is the step `init`
+   automates; see the CSS order note under Troubleshooting).
 2. Add `cn()`:
 
 ```ts

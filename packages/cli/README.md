@@ -15,7 +15,14 @@ npx paubha@latest add button avatar tabs
 ### `init`
 
 Writes `components.json`, design tokens, the Tailwind v4 theme map, and
-`cn()`, then installs shared dependencies.
+`cn()`, then installs shared dependencies and adds the token `@import`s to your
+global stylesheet — right after `@import "tailwindcss";`, at the correct
+relative depth. Re-running it won't duplicate those imports.
+
+It looks for the stylesheet in the usual places (`app/globals.css`,
+`src/app/globals.css`, `src/index.css`, …), preferring one that already imports
+Tailwind. If yours lives somewhere else, set `tailwind.css` in
+`components.json` and re-run.
 
 ```bash
 npx paubha@latest init
@@ -57,7 +64,8 @@ npx paubha@latest add button --force
   },
   "tailwind": {
     "tokens": "styles/tokens.css",
-    "theme": "styles/theme.css"
+    "theme": "styles/theme.css",
+    "css": "app/globals.css"
   }
 }
 ```

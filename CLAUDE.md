@@ -109,10 +109,15 @@ paubha/
 - **Testing:** Vitest + Testing Library + vitest-axe (accessibility checks are mandatory per component, not optional)
 - **TypeScript:** strict mode, always
 - **Styling:** Tailwind v4, CSS-first `@theme` config — no `tailwind.config.js`
+- **URL guard:** `pnpm check` runs `scripts/check-urls.mjs`, which fails on any link to a path under `ui.paubha.tech` (that host only serves the separate private marketing homepage, so every path under it 404s — canonical docs are `paubha.tech/docs/*`) and on drift between the four places that hardcode the site URL (`registry.json` `homepage`, `packages/cli/package.json` `homepage`, `schema.json` `$id`, `DEFAULT_REGISTRY_URL`, `components.json` `$schema`). A bare `ui.paubha.tech` mention in prose is allowed. If a 404 is reported for a `ui.paubha.tech` URL and this check passes, the bad link is in the marketing repo, not here.
 
 ## Distribution model
 
 shadcn-style copy-paste registry (`npx paubha@latest add button`), NOT an npm-imported package. CLI fetches `{registry}/button.json` (default `https://paubha.tech/r` — see "Project links" above). Local/dev override: `PAUBHA_REGISTRY_URL` or `components.json` `registry` field. Public MIT-licensed repo, single free registry — no separate paid-tier registry (see "What this is" above). Published to npm as `paubha` — use `npx paubha@latest`.
+
+**`init` wires the global CSS itself** (added 2026-09-22) — it finds the project's global stylesheet (`app/globals.css`, `src/app/globals.css`, `src/index.css`, … preferring one that already imports Tailwind), inserts the `tokens.css`/`theme.css` `@import`s immediately after the last Tailwind import line at the correct relative depth, and persists the file it chose as `tailwind.css` in `components.json`. It's idempotent, and an existing import at a different depth still counts as present. This is no longer a manual step — don't reintroduce "one more step" instructions in the docs. Logic lives in `packages/cli/src/utils/css.ts`; when changing it, update `apps/www/content/docs/installation.mdx`, `apps/www/content/docs/cli.mdx`, and `packages/cli/README.md` together.
+
+**Registry item names are NOT file paths.** Several items share one source file: `select-v2`'s only file is `ui/select/select.tsx`, the same file `select` ships, because `SelectV2` is defined alongside `Select` in it (same for `accordion-v2`, `popover-v2`, `pagination-v2`, `tag-input-v2`). Never derive an import path or a symbol name from an item's name — `add` derives both from the item's real `registry:ui` file path plus `meta.exports`, which `build-registry.mjs` generates by scanning the source's top-level PascalCase `export const`/`export function` declarations and splitting them on the `V2` suffix (`-v2` items keep only `*V2`; base items drop them). The build fails if any item resolves to zero exports. Keep that suffix convention when adding a variant, or give it its own folder.
 
 ## Where specs come from
 

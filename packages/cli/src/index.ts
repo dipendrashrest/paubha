@@ -17,12 +17,12 @@ const program = new Command();
 program
   .name("paubha")
   .description("shadcn-style copy-paste CLI for Paubha")
-  .version("0.2.1");
+  .version("0.3.0");
 
 program
   .command("init")
   .description(
-    "write tokens.css, theme.css, cn(), and install core dependencies",
+    "write tokens.css, theme.css, cn(), wire them into your global CSS, and install core dependencies",
   )
   .option("--cwd <path>", "target directory", process.cwd())
   .option("--force", "overwrite existing files", false)

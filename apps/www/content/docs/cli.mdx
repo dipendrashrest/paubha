@@ -31,21 +31,24 @@ What it writes (defaults from `components.json`):
 - `lib/cn.ts`: `cn()` helper
 - `components.json`: registry URL and path aliases
 
-Existing files are skipped unless you pass `--force`. Safe to re-run.
+It also adds the `tokens.css`/`theme.css` `@import`s to your global stylesheet,
+immediately after `@import "tailwindcss";`, and records that file as
+`tailwind.css` in `components.json`.
 
-Then import the generated CSS after Tailwind. See
-[Installation](/docs/installation).
+Existing files are skipped unless you pass `--force`. Safe to re-run: the CSS
+imports aren't duplicated on a second pass.
 
 ### Options
 
 ```
 Usage: paubha init [options]
 
-write tokens.css, theme.css, cn(), and install core dependencies
+write tokens.css, theme.css, cn(), wire them into your global CSS, and install
+core dependencies
 
 Options:
-  --cwd <path>  the working directory. defaults to the current directory.
-  --force       overwrite existing files. (default: false)
+  --cwd <path>  target directory (default: current directory)
+  --force       overwrite existing files (default: false)
   -h, --help    display help for command
 ```
 
@@ -78,6 +81,25 @@ those items. Example: `add field` also pulls in `input`.
 Unknown names fail with the list of components the registry currently
 publishes.
 
+When it's done, `add` prints the import line for what it just copied, derived
+from the file it actually wrote.
+
+### Restrained (`-v2`) variants
+
+The `-v2` items — `select-v2`, `accordion-v2`, `popover-v2`, `pagination-v2`,
+`tag-input-v2` — are additive, quieter variants that ship **inside the base
+component's file**, not next to it. `add select-v2` writes
+`components/ui/select/select.tsx`, the same file `add select` writes, and you
+get both `Select` and `SelectV2` from it either way:
+
+```ts
+import { SelectV2, SelectTriggerV2, SelectContentV2 } from "@/components/ui/select/select";
+```
+
+So adding both is a no-op the second time (`already up to date`), not a
+conflict. If you've edited the file locally, `add` leaves your version alone
+and tells you to pass `--force`.
+
 ### Options
 
 ```
@@ -89,8 +111,8 @@ Arguments:
   components    component name(s), e.g. button avatar
 
 Options:
-  --cwd <path>  the working directory. defaults to the current directory.
-  --force       overwrite existing files. (default: false)
+  --cwd <path>  target directory (default: current directory)
+  --force       overwrite existing files (default: false)
   -h, --help    display help for command
 ```
 
@@ -121,7 +143,8 @@ npx paubha@latest add button --cwd ./apps/web
   },
   "tailwind": {
     "tokens": "styles/tokens.css",
-    "theme": "styles/theme.css"
+    "theme": "styles/theme.css",
+    "css": "app/globals.css"
   }
 }
 ```
@@ -132,6 +155,7 @@ npx paubha@latest add button --cwd ./apps/web
 | `aliases.components` | Where UI files land |
 | `aliases.lib` | Where helpers like `cn.ts` land |
 | `tailwind.tokens` / `tailwind.theme` | Paths `init` uses for the CSS files |
+| `tailwind.css` | Global stylesheet `init` adds the token `@import`s to (auto-detected, then saved) |
 
 Override the registry for a single command without editing the file:
 

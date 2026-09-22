@@ -5,8 +5,10 @@ import {
   detectPackageManager,
   installCommand,
 } from "../utils/package-manager.js";
+import { checkProject, reportPreflight } from "../utils/preflight.js";
 import {
   type RegistryFile,
+  type RegistryItem,
   getRegistryBase,
   resolveComponents,
 } from "../utils/registry.js";
@@ -18,11 +20,9 @@ export interface AddOptions {
   force: boolean;
 }
 
-function toPascalCase(name: string): string {
-  return name
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join("");
+/** ui/avatar/avatar.tsx → avatar/avatar.tsx (POSIX, as the registry publishes it). */
+function componentRelPath(path: string): string {
+  return path.startsWith("ui/") ? path.slice("ui/".length) : basename(path);
 }
 
 function destinationFor(
@@ -33,17 +33,33 @@ function destinationFor(
   if (file.type === "registry:lib") {
     return join(cwd, aliases.lib, basename(file.path));
   }
-  // ui/avatar/avatar.tsx → {components}/avatar/avatar.tsx
-  const rel = file.path.startsWith("ui/")
-    ? file.path.slice("ui/".length)
-    : basename(file.path);
-  return join(cwd, aliases.components, rel);
+  return join(cwd, aliases.components, componentRelPath(file.path));
+}
+
+/**
+ * The module specifier for an item, derived from the file it actually writes
+ * rather than its registry name. `select-v2` ships `ui/select/select.tsx`, so
+ * guessing `select-v2/select-v2` from the name pointed at a file that never existed.
+ */
+function importPathFor(
+  item: RegistryItem,
+  componentsAlias: string,
+): string | null {
+  const file = item.files.find((candidate) => candidate.type === "registry:ui");
+  if (!file) return null;
+  const rel = componentRelPath(file.path).replace(/\.[jt]sx?$/, "");
+  return `@/${componentsAlias}/${rel}`;
 }
 
 export async function runAdd(
   names: string[],
   { cwd, force }: AddOptions,
 ): Promise<void> {
+  if (reportPreflight(checkProject(cwd))) {
+    process.exitCode = 1;
+    return;
+  }
+
   const config = readConfig(cwd);
   if (!config) {
     console.error("No components.json found. Run `npx paubha init` first.");
@@ -81,8 +97,10 @@ export async function runAdd(
     const result = writeFileSafe(dest, content, force);
     if (result.status === "skipped-exists") {
       console.log(
-        `• ${result.path} already exists, skipping (use --force to overwrite)`,
+        `• ${result.path} already exists and differs, skipping (use --force to overwrite)`,
       );
+    } else if (result.status === "unchanged") {
+      console.log(`• ${result.path} already up to date`);
     } else {
       console.log(
         `✔ ${result.status === "overwritten" ? "Overwrote" : "Wrote"} ${result.path}`,
@@ -107,10 +125,13 @@ export async function runAdd(
   if (requestedItems.length > 0) {
     console.log("\nImport it and use it:");
     for (const item of requestedItems) {
-      const componentName = toPascalCase(item.name);
-      console.log(
-        `  import { ${componentName} } from "@/${config.aliases.components}/${item.name}/${item.name}";`,
-      );
+      const importPath = importPathFor(item, config.aliases.components);
+      const exports = item.meta?.exports ?? [];
+      if (!importPath || exports.length === 0) continue;
+
+      const shown = exports.slice(0, 4).join(", ");
+      const rest = exports.length > 4 ? `, …+${exports.length - 4} more` : "";
+      console.log(`  import { ${shown}${rest} } from "${importPath}";`);
     }
   }
 

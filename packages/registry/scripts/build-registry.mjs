@@ -38,6 +38,42 @@ for (const entry of readdirSync(outDir, { withFileTypes: true })) {
   rmSync(join(outDir, entry.name), { recursive: true, force: true });
 }
 
+/**
+ * Top-level value exports (components/helpers), in source order.
+ * `interface`/`type` exports are deliberately skipped — they can't be rendered,
+ * so they'd be noise in the CLI's "import it and use it" hint.
+ */
+function exportedSymbols(source) {
+  return [
+    ...source.matchAll(/^export\s+(?:const|function)\s+([A-Z]\w*)/gm),
+  ].map((match) => match[1]);
+}
+
+/**
+ * Several items share one source file: `SelectV2` lives inside `ui/select/select.tsx`
+ * alongside `Select`. Splitting exports by the `V2` suffix is what lets `add select-v2`
+ * report the symbols and path you actually got, instead of guessing `select-v2/select-v2`
+ * from the item name — a path that never existed on disk.
+ */
+function exportsForItem(item, files) {
+  const isV2 = item.name.endsWith("-v2");
+  const symbols = files
+    .filter((file) => file.type === "registry:ui")
+    .flatMap((file) => exportedSymbols(file.content))
+    .filter((symbol) => symbol.endsWith("V2") === isV2);
+
+  const primary = item.name
+    .split("-")
+    .map((part) =>
+      part === "v2" ? "V2" : part.charAt(0).toUpperCase() + part.slice(1),
+    )
+    .join("");
+
+  return symbols.includes(primary)
+    ? [primary, ...symbols.filter((symbol) => symbol !== primary)]
+    : symbols;
+}
+
 const builtItems = [];
 
 for (const item of registryJson.items) {
@@ -47,6 +83,16 @@ for (const item of registryJson.items) {
     content: readSource(file.path),
   }));
 
+  const meta = { ...item.meta, exports: exportsForItem(item, files) };
+
+  if (meta.exports.length === 0) {
+    throw new Error(
+      `"${item.name}" resolved to zero exports. Its source must export at least one PascalCase const/function${
+        item.name.endsWith("-v2") ? ` whose name ends in "V2".` : "."
+      }`,
+    );
+  }
+
   const payload = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: item.name,
@@ -55,6 +101,7 @@ for (const item of registryJson.items) {
     description: item.description,
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
+    meta,
     files,
   };
 
@@ -70,6 +117,7 @@ for (const item of registryJson.items) {
     description: item.description,
     dependencies: item.dependencies ?? [],
     registryDependencies: item.registryDependencies ?? [],
+    meta,
     files: item.files,
   });
 }
