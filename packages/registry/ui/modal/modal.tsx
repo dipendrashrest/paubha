@@ -2,7 +2,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export const Modal = DialogPrimitive.Root;
 export const ModalTrigger = DialogPrimitive.Trigger;

@@ -1,7 +1,7 @@
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export type SliderSize = "sm" | "md" | "lg";
 

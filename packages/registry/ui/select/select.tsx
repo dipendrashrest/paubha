@@ -2,7 +2,7 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { type VariantProps, cva } from "class-variance-authority";
 import { Check, ChevronDown } from "lucide-react";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export const Select = SelectPrimitive.Root;
 export const SelectGroup = SelectPrimitive.Group;

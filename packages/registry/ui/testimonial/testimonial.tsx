@@ -1,5 +1,5 @@
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export interface TestimonialProps
   extends Omit<React.ComponentPropsWithRef<"figure">, "title" | "role"> {

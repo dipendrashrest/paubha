@@ -3,7 +3,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 const containerVariants = cva(
   "flex flex-wrap items-center gap-1.5 rounded-sm border bg-bg-primary px-3 outline-none",

@@ -6,6 +6,7 @@
   "type": "module",
   "exports": {
     "./ui/*": "./ui/*/index.ts",
+    "./lib/with-icon-size": "./lib/with-icon-size.tsx",
     "./lib/*": "./lib/*.ts",
     "./styles/*": "./styles/*.css",
     "./registry.json": "./registry.json"

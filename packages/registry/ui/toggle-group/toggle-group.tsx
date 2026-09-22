@@ -1,7 +1,7 @@
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export type ToggleGroupSize = "sm" | "md" | "lg";
 

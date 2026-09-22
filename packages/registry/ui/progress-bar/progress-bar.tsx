@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 const trackVariants = cva(
   "w-full overflow-hidden rounded-full bg-bg-tertiary",

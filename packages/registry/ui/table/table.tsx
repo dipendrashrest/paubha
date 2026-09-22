@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export type TableVariant = "default" | "striped" | "bordered";
 

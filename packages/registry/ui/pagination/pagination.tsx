@@ -1,7 +1,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 export interface PaginationProps extends React.ComponentPropsWithRef<"nav"> {}
 

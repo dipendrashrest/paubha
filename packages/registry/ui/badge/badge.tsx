@@ -1,7 +1,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 const badgeVariants = cva(
   "inline-flex items-center justify-center gap-1 rounded-full border font-medium",

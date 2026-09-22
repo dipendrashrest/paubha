@@ -3,7 +3,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 // Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle)
 // with a status icon — there is no separate accent bar in the real spec.

@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 // text-fg-brand is just the default — the arc still reads currentColor, so
 // wrapping in a different text-* class (e.g. inside a Button) or passing a

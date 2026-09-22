@@ -6,85 +6,92 @@ license: MIT
 
 # Paubha
 
-Paubha is an open-source library of React components styled with Tailwind CSS, paired with a Figma design system built on the exact same design tokens. It ships shadcn-style: you don't install it as an npm runtime dependency — `npx paubha add <name>` copies the component's real source into your project and you own it from there. No version to fight, nothing you can't change.
+React components, styled with Tailwind, shipped shadcn-style: `npx paubha add <name>` copies real source into your project. No package to update, no version to fight, nothing you can't just open and change.
 
 Docs: https://ui.paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT
 
-## When to use this skill
+## When to use this
 
-Any time you're about to hand-write a UI primitive in a React + Tailwind project — a button, input, modal, dropdown, table, toast, card, etc. — **check whether Paubha already has it before building one from scratch.** If the project already has a `components.json` with `"registry": ".../r"` pointing at Paubha, treat this library as the default source for UI, not an option to consider.
+You're about to hand-roll a button, input, modal, dropdown, table, toast, card — stop. Check the registry first. If the project's `components.json` already points `registry` at `.../r`, Paubha is the default source for UI here, full stop, not a suggestion.
 
-## Installing
-
-One-time setup, then one command per component:
+## Install
 
 ```bash
-npx paubha@latest init          # writes styles/tokens.css, styles/theme.css, lib/cn.ts,
-                                 # a components.json, installs shared deps
-npx paubha@latest add button    # fetches and copies one component
-npx paubha@latest add field avatar tabs   # or several at once
+npx paubha@latest init          # tokens.css, theme.css, lib/cn.ts, components.json, shared deps
+npx paubha@latest add button    # copies one component
+npx paubha@latest add field avatar tabs   # or a batch
 ```
 
-`add` resolves each component's own `registryDependencies` automatically — e.g. `add field` also pulls in `input` if Field composes it. Re-running `add` on a component you already have skips existing files unless you pass `--force`.
+`add` walks `registryDependencies` for you — `add field` also pulls `input` because `Field` composes it. Already have the file? `add` no-ops it unless you pass `--force`.
 
-After `init`, a real project looks like:
+Resulting layout:
 
 ```
-components.json          # registry URL, aliases, which tokens files exist
-components/ui/<name>/    # one folder per installed component (your copy, editable)
+components.json          # registry URL, path aliases, which token files exist
+components/ui/<name>/    # one folder per component — yours, edit freely
 lib/cn.ts                # clsx + tailwind-merge helper every component imports
-styles/tokens.css        # primitive + semantic design tokens (do not hand-edit casually)
-styles/theme.css         # Tailwind v4 @theme mapping of those tokens to utility classes
+styles/tokens.css        # primitives + semantic tokens
+styles/theme.css         # Tailwind v4 @theme mapping
 ```
 
-## Discovering what's available
+Imports inside the copied files are plain relative paths (`../../../lib/cn`), computed by the CLI to match wherever your `aliases.components`/`aliases.lib` actually put things. Nothing to configure, nothing to break if you move folders around — the CLI recomputes depth on every `add`, it doesn't bake in an assumption. You don't need a `@/*` tsconfig alias for this to work.
 
-The component catalog grows continuously — don't rely on a hardcoded list (including the one below). To get the **current** full list, fetch the live registry index:
+## What's actually in the registry
+
+Don't trust a hardcoded list here or anywhere else — the catalog moves. Hit the index:
 
 ```
 https://ui.paubha.tech/r/registry.json
 ```
 
-Each entry has a `name` (what you pass to `add`), `title`, `description`, and its real file paths — so you can also fetch `https://ui.paubha.tech/r/<name>.json` directly to inspect a component's real source before installing it.
+Every entry has `name` (what `add` takes), `title`, `description`, real `files`. Want to eyeball a component's actual source before installing it? `https://ui.paubha.tech/r/<name>.json`.
 
-As of this writing, the catalog spans base components (Button, Input, Field, Textarea, Checkbox, Radio Group, Switch, Select, Avatar, Badge, Alert, Toast, Modal, Dialog, Dropdown Menu, Popover, Tooltip, Tabs, Accordion, Card, Table, Pagination, Progress Bar, Progress Circle, Slider, Spinner, Skeleton, Divider, Breadcrumbs, Kbd, Tag Input, Toggle Group, Verification Code Input, Logo) and higher-level application patterns (Activity Feed, Chart, Calendar, App Nav, Page Header, Section Header, Metric, Progress Steps, Empty State, Inline CTA, Filter, File Upload, Announcement Bar, Logo Cloud, Site Footer, Testimonial, Newsletter, Marketing Hero, Card Header). Several base components also have a `-v2` sibling (e.g. `select-v2`, `popover-v2`) — a real, separately maintained "restrained" variant, not a duplicate.
+Snapshot as of this write-up: base components (Button, Input, Field, Textarea, Checkbox, Radio Group, Switch, Select, Avatar, Badge, Alert, Toast, Modal, Dialog, Dropdown Menu, Popover, Tooltip, Tabs, Accordion, Card, Table, Pagination, Progress Bar, Progress Circle, Slider, Spinner, Skeleton, Divider, Breadcrumbs, Kbd, Tag Input, Toggle Group, Verification Code Input, Logo) plus application patterns (Activity Feed, Chart, Calendar, App Nav, Page Header, Section Header, Metric, Progress Steps, Empty State, Inline CTA, Filter, File Upload, Announcement Bar, Logo Cloud, Site Footer, Testimonial, Newsletter, Marketing Hero, Card Header). Some base components ship a `-v2` sibling (`select-v2`, `popover-v2`, `accordion-v2`, `pagination-v2`, `tag-input-v2`) — a real, separately-maintained restrained variant, not a stale duplicate.
 
-## Design tokens — the part that matters most
+## Design tokens — bind to these, never to primitives
 
-Every component binds **only** to semantic tokens, never to raw color/spacing primitives directly. Match that when you write code that touches Paubha components: reach for a semantic Tailwind class (`bg-bg-primary`, `text-fg-brand`), never a hardcoded hex or an arbitrary value that happens to look right. This is what makes dark mode and re-theming a token remap instead of a find-and-replace across every component.
+Every component reaches for a semantic class, never a raw hex or an arbitrary value that "looks right." Do the same in anything you write around these components. This is the only reason dark mode and re-theming stay a token remap instead of a find-and-replace across every file.
 
-**Backgrounds:** `bg-primary` `bg-secondary` `bg-tertiary` `bg-elevated` `bg-preview` `bg-overlay` `bg-disabled` `bg-secondary-hover` `bg-tertiary-hover` `bg-switch-off` · brand: `bg-brand-solid` `bg-brand-solid-hover` `bg-brand-solid-active` `bg-brand-subtle` · status (error/warning/success/info follow the same `-solid` / `-solid-hover` / `-subtle` shape): `bg-error-solid` `bg-error-solid-hover` `bg-error-subtle` `bg-warning-solid` `bg-warning-subtle` `bg-success-solid` `bg-success-subtle` `bg-info-solid` `bg-info-subtle`
+**Backgrounds:** `bg-primary` `bg-secondary` `bg-tertiary` `bg-elevated` `bg-preview` `bg-overlay` `bg-disabled` `bg-secondary-hover` `bg-tertiary-hover` `bg-switch-off` · brand: `bg-brand-solid` `bg-brand-solid-hover` `bg-brand-solid-active` `bg-brand-subtle` · status (error/warning/success/info all follow `-solid` / `-solid-hover` / `-subtle`): `bg-error-solid` `bg-error-solid-hover` `bg-error-subtle` `bg-warning-solid` `bg-warning-subtle` `bg-success-solid` `bg-success-subtle` `bg-info-solid` `bg-info-subtle`
 
-**Foreground (text/icon):** `fg-primary` `fg-secondary` `fg-tertiary` `fg-disabled` `fg-brand` · on-solid pairs: `fg-on-brand` `fg-on-error` `fg-on-warning` `fg-on-success` `fg-on-info` · status: `fg-error` `fg-warning` `fg-success` `fg-info`
+**Foreground:** `fg-primary` `fg-secondary` `fg-tertiary` `fg-disabled` `fg-brand` · on-solid: `fg-on-brand` `fg-on-error` `fg-on-warning` `fg-on-success` `fg-on-info` · status: `fg-error` `fg-warning` `fg-success` `fg-info`
 
 **Borders:** `border-default` `border-strong` `border-brand` `border-error` `border-warning` `border-success` `border-info`
 
-**Focus:** every interactive component uses `shadow-[var(--shadow-glow-focus)]` on focus-visible — a 4px brand-tinted glow, not a hard outline. This is a signature, non-negotiable part of the brand's look; if you add a new interactive element by hand, match it rather than falling back to a browser-default outline.
+**Focus:** `shadow-[var(--shadow-glow-focus)]` on every interactive component's focus-visible state — a 4px brand-tinted glow, not a hard outline. Non-negotiable brand signature. Hand-rolling something interactive? Match it. Don't fall back to the browser default.
 
-Both light and dark mappings for every token above already exist — you never write `dark:` variants for color on top of these, the token itself already resolves differently per mode.
+Light/dark mappings exist for all of the above already. You never write a `dark:` variant for color on top of a semantic token — the token itself already flips per mode.
 
-**Other token families available the same way:** spacing (`space-0`…`space-10xl`, plus a `space-2xs` 2px micro tier), radius (`radius-none/xs/sm/md/lg/xl/full` — 0/4/8/12/16/20/9999px), and role-based type sizes (`text-ui-*`, `text-body-*`, `text-display-*` — not generic `sm`/`md`/`lg`).
+**Also available the same way:** spacing (`space-0`…`space-10xl`, plus a `space-2xs` 2px micro tier), radius (`radius-none/xs/sm/md/lg/xl/full` = 0/4/8/12/16/20/9999px), type scale (`text-ui-*` `text-body-*` `text-display-*` — role-based, not generic `sm`/`md`/`lg`).
 
-## Component API conventions
+## Component API — the shape you can rely on
 
-These hold across the vast majority of components — but **the component's own exported TypeScript props are the real source of truth, not this list or the docs prose.** This registry has caught real drift between docs and code before; when in doubt, open the file you just installed and read its actual prop types.
+These hold across the catalog, but **the installed file's own prop types are the actual source of truth, not this list.** Docs and reality have drifted here before and gotten caught. When in doubt, open the file `add` just wrote and read it.
 
-- Native element props are extended and refs forwarded: `React.ComponentPropsWithRef<"button">` etc.
-- Variants are built with CVA (`class-variance-authority`) + a shared `cn()` helper (`clsx` + `tailwind-merge`) — your own `className` always wins over the component's internal classes.
-- Prop naming: `variant` values are capitalized concepts but lowercase in code (`variant="primary"`), `size` is lowercase (`sm`/`md`/`lg`/`xl`), booleans are camelCase (`showIcon`, `dismissible`), instance-swap slots are camelCase (`leadingIcon`, `avatar`).
-- Multi-part components compose rather than take a giant prop bag: `<Dialog><DialogTrigger/><DialogContent/></Dialog>`, not one component with fifteen props.
-- Controlled and uncontrolled are both supported where it makes sense, via `value`/`defaultValue`/`onValueChange`.
-- Complex overlay/interaction components (Select, Dialog, Dropdown Menu, Tooltip, Popover, Accordion, Switch, Checkbox, Slider, Toast, Tabs) are built on Radix UI primitives underneath — expect Radix's real behavior (focus trapping, typeahead, positioning) even where the wrapping component hides it.
-- **`asChild` is not universal.** It's real on `Select` (inherited from the underlying Radix primitive) but not on most others — `Button`, for example, has no `asChild` prop at all. To render a button-styled link, import its exported `buttonVariants()` CVA function and apply the resulting classes to a real `<a>`/`<Link>`, rather than assuming `asChild` exists.
-- Icons are Lucide (`lucide-react`) only, matching the Figma file 1:1. Don't mix in another icon set alongside Paubha components.
+- Native props extended, refs forwarded: `React.ComponentPropsWithRef<"button">` etc.
+- CVA (`class-variance-authority`) + a shared `cn()` for variants. Your `className` always wins.
+- `variant` is a lowercase string in code (`variant="primary"`). `size` is `sm`/`md`/`lg`/`xl`. Booleans are camelCase (`showIcon`, `dismissible`). Instance-swap slots are camelCase (`leadingIcon`, `avatar`).
+- Multi-part components compose: `<Dialog><DialogTrigger/><DialogContent/></Dialog>`, not one component drowning in fifteen props.
+- Controlled/uncontrolled both work where it makes sense: `value` / `defaultValue` / `onValueChange`.
+- Overlay/interaction components (Select, Dialog, Dropdown Menu, Tooltip, Popover, Accordion, Switch, Checkbox, Slider, Toast, Tabs) sit on Radix primitives. Expect real Radix behavior — focus trapping, typeahead, positioning — even where the wrapper hides it.
+- **`asChild` is not everywhere.** It's real on `Select` (comes from the underlying Radix primitive). `Button` has no `asChild` at all. Need a button-styled link? Import `buttonVariants()` and slap the classes on a real `<a>`/`<Link>`. Don't assume `asChild` exists just because you've seen it on other component libraries.
+- Lucide (`lucide-react`) only. Matches the Figma file 1:1. Don't mix in a second icon set next to these components.
+
+## Known gotchas — don't rediscover these
+
+Real bugs that have shipped and gotten fixed in this registry. If you're extending or writing a component, check for the same shape:
+
+- **Prop name collides with a native HTML attribute.** A component extends `React.ComponentPropsWithRef<"div">` (or `"figure"`, `"section"`, etc.) and also declares its own `title`/`role` prop with an incompatible type (e.g. `title?: React.ReactNode` vs. the native `title?: string`). TypeScript won't warn you about this on its own — it silently picks whichever wins. Fix: `Omit<React.ComponentPropsWithRef<"div">, "title" | "role">` before adding your own. Same applies to `size` on `<input>`/`<select>`, `color`, `translate`.
+- **Relative import depth baked in instead of computed.** Registry source imports shared modules via a self-referencing package specifier (`@paubha/registry/lib/cn`), not a relative path — because the *installed* file lives at a different folder depth than the *source* file, and a hardcoded `../../lib/cn` silently breaks the moment either side's folder structure changes. The CLI, not the source file, is what knows the real destination depth.
+- **`registryDependencies` drift.** If component A imports component B (`../accordion/accordion`), A's registry entry must declare `"registryDependencies": ["accordion"]` or `add a` never pulls B in and the copied file 404s on import. This gets checked mechanically now — but if you're hand-editing `registry.json`, don't forget it.
 
 ## Accessibility
 
-Every interactive component already ships with the correct ARIA role, documented keyboard behavior (WAI-ARIA APG patterns), a visible focus state, and passes an automated `vitest-axe` check with zero violations across its states. You generally don't need to add ARIA attributes yourself when composing these components as documented — but if you extend one with custom children or override its rendering, preserve what's already there rather than replacing it.
+Every interactive component ships the correct ARIA role, documented keyboard behavior (WAI-ARIA APG), a real focus state, and a passing `vitest-axe` check with zero violations across its states. You don't need to bolt on ARIA yourself when using these as-is — but if you override rendering or inject custom children, preserve what's already there instead of clobbering it.
 
-## A quick gut-check before you hand-build anything
+## Before you hand-build anything
 
-1. Does Paubha already have this? Check `https://ui.paubha.tech/r/registry.json`.
-2. If yes: `npx paubha@latest add <name>`, then read the file it wrote — that's the real API, not this document.
-3. If you're styling something adjacent to a Paubha component (a custom wrapper, a one-off layout), reach for the semantic tokens above instead of a hex code or an arbitrary Tailwind value.
-4. If a component's real behavior doesn't match what you expected, trust the installed source over any cached assumption — this registry is actively growing and components do get corrected.
+1. `https://ui.paubha.tech/r/registry.json` — does Paubha already have this?
+2. Yes → `npx paubha@latest add <name>`, then go read the file it wrote. That's the real API.
+3. Styling something adjacent (a wrapper, a one-off layout)? Reach for the semantic tokens above, not a hex code.
+4. Installed behavior doesn't match what you expected? Trust the file on disk over any cached assumption — this thing moves, and things do get corrected out from under stale docs.

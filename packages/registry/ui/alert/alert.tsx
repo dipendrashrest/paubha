@@ -1,7 +1,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 // Figma (node 2121:15306): no border — a brand-tinted shadow/sm instead; radius/xl
 // (not radius/sm, which is reserved for controls like buttons/inputs).

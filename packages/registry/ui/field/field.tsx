@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "@paubha/registry/lib/cn";
 
 interface ControllableProps {
   id?: string;

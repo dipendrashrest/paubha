@@ -1,36 +1,107 @@
 ---
 title: Installation
-description: Set up Paubha in a Next.js, Vite, or Remix project.
+description: Get Paubha running in under 5 minutes — already have a project, or starting from zero.
 ---
 
-## Prerequisites
-
-- React 19+
-- Tailwind CSS v4 (CSS-first `@theme` — no `tailwind.config.js`)
-- TypeScript (recommended)
-
-## Quick start
+## Already have React + Tailwind v4? Do this.
 
 ```bash
 npx paubha@latest init
+npx paubha@latest add button
 ```
 
-`init` does three things:
+That's it. `init` writes your design tokens and the `cn()` helper and installs
+three small deps; `add` copies a component's actual source into your project
+(no runtime dependency on Paubha — you own the file). Import a component from
+wherever `init` put it, e.g. `@/components/ui/button`.
 
-1. Writes `styles/tokens.css` (primitives + semantic layer, light and dark).
-2. Adds the Tailwind v4 `@theme` mapping in `styles/theme.css` so token
-   utilities work (`bg-bg-primary`, `text-fg-secondary`, `shadow-glow-focus`, …).
-3. Installs shared deps: `clsx`, `tailwind-merge`, `class-variance-authority`,
-   and drops in the `cn()` helper at `lib/cn.ts`.
+If either command complains, jump to [Troubleshooting](#troubleshooting) — it
+now tells you exactly what's missing instead of failing silently.
 
-Then add components as you need them:
+## Starting from an empty folder?
+
+Pick your framework. Every step is copy-paste — no prior Tailwind experience
+needed.
+
+### Next.js
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --app
+cd my-app
+npx paubha@latest init
+```
+
+`create-next-app --tailwind` already wires up Tailwind v4, so `init` has
+everything it needs. Then:
 
 ```bash
 npx paubha@latest add button
 ```
 
-Each `add` copies the component source into your project. You own the file —
-no runtime dependency on Paubha.
+Import it from `@/components/ui/button` and drop `<Button>Click me</Button>`
+into any page.
+
+### Vite (React)
+
+```bash
+npm create vite@latest my-app -- --template react-ts
+cd my-app
+npm install tailwindcss @tailwindcss/vite
+```
+
+Add the Tailwind plugin to `vite.config.ts` and `@import "tailwindcss";` to
+your main CSS (see [Tailwind's Vite guide](https://tailwindcss.com/docs/installation/using-vite)
+if you haven't done this before), then:
+
+```bash
+npx paubha@latest init
+npx paubha@latest add button
+```
+
+## Verify your setup
+
+Before running the CLI, a 10-second sanity check saves a lot of confusion later:
+
+| Check | How | Needed |
+| --- | --- | --- |
+| Node version | `node -v` | 18+ |
+| React version | look at `"react"` in `package.json` | 19+ |
+| Tailwind version | look at `"tailwindcss"` in `package.json` | v4 (CSS-first `@theme`, no `tailwind.config.js`) |
+
+Don't have a `package.json` yet? You're in an empty folder — use one of the
+"starting from zero" walkthroughs above first.
+
+## Troubleshooting
+
+**`npx paubha init` exits with "No package.json found"**
+You're not inside a project. Create one first (`npx create-next-app@latest`
+or `npm create vite@latest`), then re-run `init` from inside it.
+
+**A warning about `tailwindcss` or React version, but it still ran**
+That's non-fatal — `init`/`add` will still write files, but components may
+not render correctly until you're on Tailwind v4 and React 19+. Fix the
+version, then re-run with `--force` to rewrite the token files.
+
+**It errors with "Tailwind CSS v3 detected, but Paubha requires v4+"**
+Paubha's tokens rely on Tailwind v4's CSS-first `@theme` — there's no
+`tailwind.config.js` to bridge from v3. Follow
+[Tailwind's v3→v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide),
+then re-run `init --force`.
+
+**Components render but have no styling**
+Almost always a CSS import order issue. `tokens.css`/`theme.css` must be
+imported **after** `@import "tailwindcss";` — otherwise Tailwind's own
+resets/layers can lose to (or be lost to) the token layer. In Next.js
+`app/globals.css`:
+
+```css
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/theme.css";
+```
+
+**I don't want to use the CLI at all**
+See [Manual copy-paste](#manual-copy-paste) below.
 
 ## Using an AI coding agent
 
@@ -39,38 +110,12 @@ list, and the real component API conventions, in one file. Works for Claude
 Code (drop it in as `.claude/skills/paubha/SKILL.md`), Cursor, or anything
 else that reads project-level agent instructions.
 
-## Next.js (App Router)
-
-1. Run `npx paubha@latest init` from the app root.
-2. Import tokens in your global CSS **after** Tailwind. With the default
-   `components.json` paths and `app/globals.css`:
-
-```css
-@import "tailwindcss";
-@import "../styles/tokens.css";
-@import "../styles/theme.css";
-```
-
-3. Add components:
-
-```bash
-npx paubha@latest add button
-```
-
-4. Use them from `@/components/ui/button` (or whatever path `init` configured).
-
-## Vite
-
-Same flow. Point your main CSS at the generated `styles/tokens.css` /
-`styles/theme.css`, ensure Tailwind v4 is wired through `@tailwindcss/vite` or
-PostCSS, then `add` components into `src/components/ui` (update
-`aliases.components` in `components.json` if needed).
-
 ## Manual copy-paste
 
-If you skip the CLI:
+If you'd rather skip the CLI entirely:
 
-1. Copy `tokens.css` and `theme.css` from the docs repo into your styles.
+1. Copy `tokens.css` and `theme.css` from the docs repo into your styles,
+   imported after Tailwind (see the CSS order note under Troubleshooting).
 2. Add `cn()`:
 
 ```ts
@@ -82,8 +127,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-3. Copy each component's source from its docs page (or the registry JSON) into
-   your codebase.
+3. Copy each component's source from its docs page (or the registry JSON)
+   into your codebase.
 
 ## shadcn registry compatibility
 
@@ -94,4 +139,4 @@ installable with:
 npx shadcn@latest add https://ui.paubha.tech/r/button.json
 ```
 
-For the full command reference, see [CLI](/docs/cli).
+For every flag and option, see the full [CLI reference](/docs/cli).

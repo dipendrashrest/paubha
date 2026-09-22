@@ -10,6 +10,7 @@ import {
   getRegistryBase,
   resolveComponents,
 } from "../utils/registry.js";
+import { rewriteLibImports } from "../utils/rewrite-imports.js";
 import { writeFileSafe } from "../utils/write-file.js";
 
 export interface AddOptions {
@@ -65,9 +66,12 @@ export async function runAdd(
     );
   }
 
+  const libDir = join(cwd, config.aliases.lib);
+
   for (const file of resolved.files) {
     const dest = destinationFor(file, cwd, config.aliases);
-    const result = writeFileSafe(dest, file.content, force);
+    const content = rewriteLibImports(file.content, dest, libDir);
+    const result = writeFileSafe(dest, content, force);
     if (result.status === "skipped-exists") {
       console.log(
         `• ${result.path} already exists, skipping (use --force to overwrite)`,
