@@ -10,7 +10,8 @@
     "format": "biome format --write .",
     "check": "pnpm check:consistency && biome check .",
     "check:consistency": "node scripts/check-consistency.mjs",
-    "test": "turbo test"
+    "test": "turbo test",
+    "sync:tokens": "pnpm --filter @paubha/registry sync:tokens"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

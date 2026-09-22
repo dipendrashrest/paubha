@@ -126,6 +126,19 @@ function darkDeclarations(block) {
     .sort();
 }
 
+// Exactly one of each: a stale second copy would silently win or lose by source
+// order, and comparing only the first would not notice.
+const mediaCount = (
+  tokensCss.match(/@media \(prefers-color-scheme: dark\)/g) ?? []
+).length;
+const classCount = (tokensCss.match(/^\.dark,$/gm) ?? []).length;
+const duplicated = mediaCount !== 1 || classCount !== 1;
+if (duplicated) {
+  errors.push(
+    `tokens.css should have exactly one prefers-color-scheme block and one .dark block, found ${mediaCount} and ${classCount}. Run \`pnpm sync:tokens\`.`,
+  );
+}
+
 const mediaBlock = tokensCss.match(
   /@media \(prefers-color-scheme: dark\) \{(.*?)\n\}\n/s,
 )?.[1];
@@ -137,19 +150,21 @@ if (!mediaBlock || !classBlock) {
   errors.push(
     "tokens.css is missing its prefers-color-scheme fallback or its .dark block",
   );
-} else {
+} else if (!duplicated) {
+  // A stray extra block makes every declaration look mismatched; the count
+  // error above is the one worth acting on, so don't bury it.
   const fromMedia = darkDeclarations(mediaBlock);
   const fromClass = darkDeclarations(classBlock);
   const onlyMedia = fromMedia.filter((d) => !fromClass.includes(d));
   const onlyClass = fromClass.filter((d) => !fromMedia.includes(d));
   for (const decl of onlyClass) {
     errors.push(
-      `tokens.css: "${decl}" is in the .dark block but not the prefers-color-scheme fallback`,
+      `tokens.css: "${decl}" is in the .dark block but not the prefers-color-scheme fallback. Run \`pnpm sync:tokens\`.`,
     );
   }
   for (const decl of onlyMedia) {
     errors.push(
-      `tokens.css: "${decl}" is in the prefers-color-scheme fallback but not the .dark block`,
+      `tokens.css: "${decl}" is in the prefers-color-scheme fallback but not the .dark block. Run \`pnpm sync:tokens\`.`,
     );
   }
 }

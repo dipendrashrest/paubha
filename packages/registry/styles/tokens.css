@@ -257,8 +257,8 @@
 
 /* Follows the OS setting when no theme class is set, so dark mode works out of
    the box. An explicit `.light`/`.dark` class (or next-themes) still wins, and a
-   `[data-preview-theme]` pane is unaffected. Generated from the `.dark` block
-   below — `pnpm check` fails if the two drift. Edit that block, never this one. */
+   `[data-preview-theme]` pane is unaffected — this rule only matches :root.
+   GENERATED from the .dark block below by `pnpm sync:tokens`; do not edit. */
 @media (prefers-color-scheme: dark) {
   :root:not(.light):not([data-preview-theme="light"]) {
     color-scheme: dark;

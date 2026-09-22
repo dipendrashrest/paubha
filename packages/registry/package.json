@@ -37,7 +37,8 @@
   "scripts": {
     "build": "node scripts/build-registry.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "sync:tokens": "node scripts/sync-dark-tokens.mjs"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
