@@ -55,7 +55,12 @@ import { Kbd, KbdGroup } from "@/components/ui/kbd";
     <li>
       <strong>Decorative usage.</strong> When shown next to a menu item or tooltip purely as
       a hint (not the primary label), wrap the group in <code>aria-hidden</code> so it isn't
-      announced twice.
+      announced twice. Expose the real shortcut on the control itself with
+      <code>aria-keyshortcuts</code>.
+    </li>
+    <li>
+      <strong>Not interactive.</strong> <code>Kbd</code> is static text: no role, no tab stop,
+      no focus state.
     </li>
     <li>
       <strong>Separator.</strong> The "+" between keys in <code>KbdGroup</code> is

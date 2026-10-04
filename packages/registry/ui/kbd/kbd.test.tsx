@@ -25,6 +25,23 @@ describe("Kbd", () => {
     expect(kbd).toHaveClass("bg-bg-secondary");
   });
 
+  it("matches the Figma key cap tokens", () => {
+    render(<Kbd>K</Kbd>);
+    const kbd = screen.getByText("K");
+    for (const cls of [
+      "rounded-xs",
+      "border-border-default",
+      "px-2",
+      "py-1",
+      "font-sans",
+      "text-ui-xs",
+      "font-medium",
+      "text-fg-secondary",
+    ]) {
+      expect(kbd).toHaveClass(cls);
+    }
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(<Kbd>K</Kbd>);
     expect(await axe(container)).toHaveNoViolations();
@@ -32,6 +49,17 @@ describe("Kbd", () => {
 });
 
 describe("KbdGroup", () => {
+  it("forwards a ref and spaces keys with a 4px gap", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    render(
+      <KbdGroup ref={ref}>
+        <Kbd>⌘</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>,
+    );
+    expect(ref.current).toHaveClass("gap-1");
+  });
+
   it("renders each key and a decorative + between them", () => {
     render(
       <KbdGroup>
@@ -43,6 +71,11 @@ describe("KbdGroup", () => {
     expect(screen.getByText("K")).toBeInTheDocument();
     const separator = screen.getByText("+");
     expect(separator).toHaveAttribute("aria-hidden", "true");
+    expect(separator).toHaveClass(
+      "text-[11px]",
+      "font-normal",
+      "text-fg-secondary",
+    );
   });
 
   it("does not render a trailing separator after the last key", () => {
