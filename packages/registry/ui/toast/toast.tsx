@@ -28,12 +28,12 @@ export type ToastVariant = NonNullable<
   VariantProps<typeof toastVariants>["variant"]
 >;
 
-// Figma binds the chip fill to the primitive {variant}/100 — no semantic token exists yet.
+// Chip fill on the bg-*-chip semantics (Figma binds the {variant}/100 primitive).
 const chipByVariant: Record<ToastVariant, string> = {
-  info: "bg-(--info-100)",
-  success: "bg-(--success-100)",
-  warning: "bg-(--warning-100)",
-  error: "bg-(--error-100)",
+  info: "bg-bg-info-chip",
+  success: "bg-bg-success-chip",
+  warning: "bg-bg-warning-chip",
+  error: "bg-bg-error-chip",
 };
 
 // Same per-variant glyph mapping as Alert (Figma ships a distinct status icon per variant).
