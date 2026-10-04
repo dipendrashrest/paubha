@@ -108,6 +108,52 @@ describe("Popover", () => {
     );
   });
 
+  it("matches the Figma panel spec (280px, radius/md, z-popover, focus border)", async () => {
+    render(
+      <Popover open>
+        <PopoverTrigger>Open popover</PopoverTrigger>
+        <PopoverContent>
+          <PopoverTitle>Title</PopoverTitle>
+          <PopoverDescription>Body</PopoverDescription>
+        </PopoverContent>
+      </Popover>,
+    );
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog).toHaveClass(
+      "w-70",
+      "rounded-md",
+      "z-(--z-popover)",
+      "border-border-default",
+      "bg-bg-primary",
+      "shadow-md",
+      "focus-visible:border-focus-ring",
+      "focus-visible:ring-focus-ring",
+    );
+    expect(screen.getByText("Title")).toHaveClass(
+      "text-ui-md",
+      "font-medium",
+      "text-fg-primary",
+    );
+    expect(screen.getByText("Body")).toHaveClass(
+      "text-body-sm",
+      "text-fg-secondary",
+    );
+  });
+
+  it("has no axe violations when the panel itself holds focus", async () => {
+    const { container } = render(
+      <Popover open>
+        <PopoverTrigger>Open popover</PopoverTrigger>
+        <PopoverContent>
+          <PopoverTitle>Title</PopoverTitle>
+        </PopoverContent>
+      </Popover>,
+    );
+    const dialog = await screen.findByRole("dialog");
+    await waitFor(() => expect(dialog).toHaveFocus());
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("supports the documented side prop via Radix pass-through", async () => {
     const user = userEvent.setup();
     render(
@@ -170,6 +216,14 @@ describe("PopoverV2 (restrained)", () => {
   it("has no axe violations while open", async () => {
     const user = userEvent.setup();
     const { container } = render(<BasicPopoverV2 />);
+    await user.click(screen.getByRole("button", { name: "Open popover" }));
+    await screen.findByRole("dialog");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("has no axe violations while disabled", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<BasicPopoverV2 disabled />);
     await user.click(screen.getByRole("button", { name: "Open popover" }));
     await screen.findByRole("dialog");
     expect(await axe(container)).toHaveNoViolations();

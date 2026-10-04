@@ -62,12 +62,13 @@ import {
       <code>aria-expanded</code> automatically.
     </li>
     <li>
-      <strong>Focus.</strong> Focus moves to the first focusable element on
-      open and returns to the trigger on close; Tab traps focus within the
-      popover while open.
+      <strong>Focus.</strong> Focus moves into the popover on open and returns
+      to the trigger on close. The popover is non-modal by default; pass{" "}
+      <code>modal</code> to <code>Popover</code> to trap Tab inside it. When
+      the panel itself holds keyboard focus it shows a 2px focus-ring border.
     </li>
     <li>
-      <strong>Keyboard.</strong> Escape closes the popover.
+      <strong>Keyboard.</strong> Escape or a click outside closes the popover.
     </li>
   </ul>
 </A11yCallout>
