@@ -19,36 +19,36 @@ export function DialogHero() {
     <ComponentPlayground
       code={`<Dialog>
   <DialogTrigger asChild>
-    <Button>Confirm Action</Button>
+    <Button variant="secondary">Discard changes</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogBody>
-      <DialogTitle>Confirm Action</DialogTitle>
+      <DialogTitle>Discard changes?</DialogTitle>
       <DialogDescription>
-        Are you sure you want to proceed? This action cannot be undone.
+        Unsaved changes to Website redesign will be lost.
       </DialogDescription>
     </DialogBody>
     <DialogActions>
-      <DialogCancel>Cancel</DialogCancel>
-      <DialogAction>Confirm</DialogAction>
+      <DialogCancel>Keep editing</DialogCancel>
+      <DialogAction>Discard changes</DialogAction>
     </DialogActions>
   </DialogContent>
 </Dialog>`}
     >
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Confirm Action</Button>
+          <Button variant="secondary">Discard changes</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogBody>
-            <DialogTitle>Confirm Action</DialogTitle>
+            <DialogTitle>Discard changes?</DialogTitle>
             <DialogDescription>
-              Are you sure you want to proceed? This action cannot be undone.
+              Unsaved changes to Website redesign will be lost.
             </DialogDescription>
           </DialogBody>
           <DialogActions>
-            <DialogCancel>Cancel</DialogCancel>
-            <DialogAction>Confirm</DialogAction>
+            <DialogCancel>Keep editing</DialogCancel>
+            <DialogAction>Discard changes</DialogAction>
           </DialogActions>
         </DialogContent>
       </Dialog>
@@ -61,38 +61,36 @@ export function DialogDestructive() {
     <ComponentPlayground
       code={`<Dialog>
   <DialogTrigger asChild>
-    <Button destructive>Delete Item</Button>
+    <Button destructive>Delete project</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogBody>
-      <DialogTitle>Delete Item</DialogTitle>
+      <DialogTitle>Delete project?</DialogTitle>
       <DialogDescription>
-        This will permanently delete this item and all associated data. This
-        action cannot be reversed.
+        Deleting Website redesign cannot be undone.
       </DialogDescription>
     </DialogBody>
     <DialogActions>
       <DialogCancel>Cancel</DialogCancel>
-      <DialogAction variant="error">Delete</DialogAction>
+      <DialogAction variant="error">Delete project</DialogAction>
     </DialogActions>
   </DialogContent>
 </Dialog>`}
     >
       <Dialog>
         <DialogTrigger asChild>
-          <Button destructive>Delete Item</Button>
+          <Button destructive>Delete project</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogBody>
-            <DialogTitle>Delete Item</DialogTitle>
+            <DialogTitle>Delete project?</DialogTitle>
             <DialogDescription>
-              This will permanently delete this item and all associated data.
-              This action cannot be reversed.
+              Deleting Website redesign cannot be undone.
             </DialogDescription>
           </DialogBody>
           <DialogActions>
             <DialogCancel>Cancel</DialogCancel>
-            <DialogAction variant="error">Delete</DialogAction>
+            <DialogAction variant="error">Delete project</DialogAction>
           </DialogActions>
         </DialogContent>
       </Dialog>
@@ -105,34 +103,34 @@ export function DialogInfo() {
     <ComponentPlayground
       code={`<Dialog>
   <DialogTrigger asChild>
-    <Button variant="secondary">Show Info</Button>
+    <Button variant="secondary">Leave project</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogBody>
-      <DialogTitle>Information</DialogTitle>
+      <DialogTitle>Leave project?</DialogTitle>
       <DialogDescription>
-        Your changes have been saved successfully.
+        You will lose access to Website redesign.
       </DialogDescription>
     </DialogBody>
     <DialogActions>
-      <DialogAction>Got it</DialogAction>
+      <DialogAction>Leave project</DialogAction>
     </DialogActions>
   </DialogContent>
 </Dialog>`}
     >
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="secondary">Show Info</Button>
+          <Button variant="secondary">Leave project</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogBody>
-            <DialogTitle>Information</DialogTitle>
+            <DialogTitle>Leave project?</DialogTitle>
             <DialogDescription>
-              Your changes have been saved successfully.
+              You will lose access to Website redesign.
             </DialogDescription>
           </DialogBody>
           <DialogActions>
-            <DialogAction>Got it</DialogAction>
+            <DialogAction>Leave project</DialogAction>
           </DialogActions>
         </DialogContent>
       </Dialog>

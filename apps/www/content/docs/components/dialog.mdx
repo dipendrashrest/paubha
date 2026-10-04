@@ -27,18 +27,18 @@ import { Button } from "@/components/ui/button";
 
 <Dialog>
   <DialogTrigger asChild>
-    <Button>Confirm Action</Button>
+    <Button variant="secondary">Discard changes</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogBody>
-      <DialogTitle>Confirm Action</DialogTitle>
+      <DialogTitle>Discard changes?</DialogTitle>
       <DialogDescription>
-        Are you sure you want to proceed? This action cannot be undone.
+        Unsaved changes to Website redesign will be lost.
       </DialogDescription>
     </DialogBody>
     <DialogActions>
-      <DialogCancel>Cancel</DialogCancel>
-      <DialogAction>Confirm</DialogAction>
+      <DialogCancel>Keep editing</DialogCancel>
+      <DialogAction>Discard changes</DialogAction>
     </DialogActions>
   </DialogContent>
 </Dialog>
@@ -74,23 +74,27 @@ import { Button } from "@/components/ui/button";
   <ul>
     <li>
       <strong>Role.</strong> Built on Radix <strong>AlertDialog</strong> (not plain
-      Dialog): <code>role=&quot;alertdialog&quot;</code>, with{" "}
-      <code>aria-describedby</code> pointing at <code>DialogDescription</code> and{" "}
-      <code>aria-labelledby</code> at <code>DialogTitle</code>.
+      Dialog): <code>role=&quot;alertdialog&quot;</code> with{" "}
+      <code>aria-modal=&quot;true&quot;</code>, <code>aria-labelledby</code> pointing
+      at <code>DialogTitle</code> (the decision) and <code>aria-describedby</code> at{" "}
+      <code>DialogDescription</code> (its consequence).
     </li>
     <li>
-      <strong>Focus.</strong> Trapped within the dialog while open. Place{" "}
-      <code>DialogCancel</code> first (or add <code>autoFocus</code>) so the safest
-      action gets focus by default.
+      <strong>Focus.</strong> On open, focus lands on <code>DialogCancel</code>, the
+      safe action. Tab and Shift+Tab stay inside; background content is inert.
     </li>
     <li>
-      <strong>Escape</strong> closes the dialog. Unlike{" "}
-      <a href="/docs/components/modal">Modal</a>, clicking outside does{" "}
+      <strong>Escape</strong> takes the cancel path and restores focus to the trigger.
+      Unlike <a href="/docs/components/modal">Modal</a>, clicking outside does{" "}
       <strong>not</strong> close it. The user must make an explicit choice.
     </li>
     <li>
       <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code> on
       both actions.
+    </li>
+    <li>
+      <strong>Motion.</strong> Opens with a <code>duration-fast</code> (100ms) ease-out
+      fade; instant under <code>prefers-reduced-motion</code>.
     </li>
   </ul>
 </A11yCallout>
@@ -101,12 +105,13 @@ Use for confirmations before destructive or irreversible actions: deleting items
 discarding changes, revoking access. Requires an explicit user decision.
 
 **Do:**
-- Auto-focus the safest action (Cancel)
-- Write specific confirmation text
+- Name the decision in the title ("Discard changes?"), not a generic "Are you sure?"
+- Explain the actual consequence, naming the affected item
+- Keep the safe action (Cancel, Keep editing) alongside the decision action
 - Use the error variant for destructive actions
 
 **Don't:**
-- Use for informational messages, use [Toast](/docs/components/toast) instead
+- Use for informational updates, use [Alert](/docs/components/alert) or [Toast](/docs/components/toast) instead
 - Chain multiple dialogs
 - Default-focus the destructive action
 

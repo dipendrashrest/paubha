@@ -77,6 +77,58 @@ describe("Dialog", () => {
     );
   });
 
+  it("sets aria-modal and layers on the z-overlay / z-modal tokens", async () => {
+    const user = userEvent.setup();
+    render(<BasicDialog />);
+    await user.click(screen.getByRole("button", { name: "Delete item" }));
+    const dialog = await screen.findByRole("alertdialog");
+    expect(dialog).toHaveAttribute("aria-modal", "true");
+    expect(dialog).toHaveClass("z-(--z-modal)", "duration-(--duration-fast)");
+    expect(document.querySelector(".fixed.inset-0.bg-bg-overlay")).toHaveClass(
+      "z-(--z-overlay)",
+    );
+  });
+
+  it("focuses Cancel (the safe action) on open", async () => {
+    const user = userEvent.setup();
+    render(<BasicDialog />);
+    await user.click(screen.getByRole("button", { name: "Delete item" }));
+    await screen.findByRole("alertdialog");
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Cancel" })).toHaveFocus(),
+    );
+  });
+
+  it("restores focus to the trigger on Escape", async () => {
+    const user = userEvent.setup();
+    render(<BasicDialog />);
+    const trigger = screen.getByRole("button", { name: "Delete item" });
+    await user.click(trigger);
+    await screen.findByRole("alertdialog");
+    await user.keyboard("{Escape}");
+    await waitFor(() => expect(trigger).toHaveFocus());
+  });
+
+  it("renders a single-action Info dialog with no axe violations", async () => {
+    const { baseElement } = render(
+      <Dialog open>
+        <DialogContent>
+          <DialogBody>
+            <DialogTitle>Leave project?</DialogTitle>
+            <DialogDescription>
+              You will lose access to this project.
+            </DialogDescription>
+          </DialogBody>
+          <DialogActions>
+            <DialogAction>Leave project</DialogAction>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>,
+    );
+    await screen.findByRole("alertdialog");
+    expect(await axe(baseElement)).toHaveNoViolations();
+  });
+
   it("closes on Escape", async () => {
     const user = userEvent.setup();
     render(<BasicDialog />);
@@ -93,7 +145,7 @@ describe("Dialog", () => {
     render(<BasicDialog />);
     await user.click(screen.getByRole("button", { name: "Delete item" }));
     await screen.findByRole("alertdialog");
-    const overlay = document.querySelector(".fixed.inset-0.z-50");
+    const overlay = document.querySelector(".fixed.inset-0.bg-bg-overlay");
     expect(overlay).not.toBeNull();
     fireEvent.pointerDown(overlay as Element);
     fireEvent.click(overlay as Element);
