@@ -48,8 +48,13 @@ import {
 The close button sits inside `ModalHeader` as a flex sibling of the title
 (`ModalTitle` is `flex-1`, `ModalClose` is `shrink-0`). That's what the real
 spec shows, not the more common absolutely-positioned-corner-X pattern. The
-overlay backdrop is tinted `brand-900` at 60% rather than plain black,
-extending the brand-tinted-shadow principle to the app's other dark surface.
+overlay backdrop is `bg-bg-overlay` (black at 60% in light mode, 70% in dark)
+and sits on the `--z-overlay` layer, with the panel above it on `--z-modal`.
+Both fade in over `duration/normal` (200ms) with ease-out; under
+`prefers-reduced-motion` they appear instantly.
+
+Pick the smallest size that comfortably fits the task: `sm`, `md` (default),
+or `lg`.
 
 ## API reference
 
@@ -72,11 +77,17 @@ extending the brand-tinted-shadow principle to the app's other dark surface.
       <code>ModalDescription</code>, wired automatically by Radix.
     </li>
     <li>
-      <strong>Focus.</strong> Trapped within the modal while open.
+      <strong>Focus.</strong> Moves inside on open; Tab and Shift+Tab stay
+      within the modal. Background content is inert while it's open.
     </li>
     <li>
-      <strong>Dismiss.</strong> Escape closes it, as does clicking{" "}
-      <code>ModalClose</code> or the overlay.
+      <strong>Dismiss.</strong> Escape closes it and returns focus to the
+      trigger, as does clicking <code>ModalClose</code> or the overlay. The
+      icon-only close control is labelled &quot;Close&quot;.
+    </li>
+    <li>
+      <strong>Motion.</strong> 200ms ease-out fade on open; instant when the
+      user prefers reduced motion.
     </li>
   </ul>
 </A11yCallout>

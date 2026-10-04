@@ -7,7 +7,8 @@ const modalContentProps = definePropDefs<ModalContentProps>()([
     name: "size",
     type: '"sm" | "md" | "lg"',
     defaultValue: '"md"',
-    description: "Max width: 400 / 560 / 720px.",
+    description:
+      "Max width: 400 / 560 / 720px. Use the smallest size that fits the task.",
   },
 ]);
 

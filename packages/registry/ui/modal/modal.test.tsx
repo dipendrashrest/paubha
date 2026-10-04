@@ -155,4 +155,98 @@ describe("Modal", () => {
       screen.queryByRole("button", { name: "Close" }),
     ).not.toBeInTheDocument();
   });
+  it("restores focus to the trigger on Escape", async () => {
+    const user = userEvent.setup();
+    render(<BasicModal />);
+    const trigger = screen.getByRole("button", { name: "Delete item" });
+    await user.click(trigger);
+    await screen.findByRole("dialog");
+    await user.keyboard("{Escape}");
+    await waitFor(() => expect(trigger).toHaveFocus());
+  });
+
+  it("traps Tab focus inside the dialog", async () => {
+    const user = userEvent.setup();
+    render(<BasicModal />);
+    await user.click(screen.getByRole("button", { name: "Delete item" }));
+    const dialog = await screen.findByRole("dialog");
+    for (let i = 0; i < 5; i++) {
+      await user.tab();
+      expect(dialog).toContainElement(document.activeElement as HTMLElement);
+    }
+  });
+
+  it("layers overlay and content on the z-overlay / z-modal tokens", async () => {
+    render(
+      <Modal open>
+        <ModalContent>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    const dialog = await screen.findByRole("dialog");
+    expect(dialog).toHaveClass("z-(--z-modal)", "bg-bg-elevated", "rounded-lg");
+    const overlay = document.querySelector(".bg-bg-overlay");
+    expect(overlay).toHaveClass("z-(--z-overlay)");
+  });
+
+  it.each([
+    ["sm", "max-w-[400px]"],
+    ["md", "max-w-[560px]"],
+    ["lg", "max-w-[720px]"],
+  ] as const)("size=%s applies %s", async (size, cls) => {
+    render(
+      <Modal open>
+        <ModalContent size={size}>
+          <ModalTitle>Title</ModalTitle>
+        </ModalContent>
+      </Modal>,
+    );
+    expect(await screen.findByRole("dialog")).toHaveClass(cls);
+  });
+
+  it("uses the Figma header/body/footer spacing", async () => {
+    render(
+      <Modal open>
+        <ModalContent>
+          <ModalHeader data-testid="h">
+            <ModalTitle>Title</ModalTitle>
+            <ModalClose />
+          </ModalHeader>
+          <ModalBody data-testid="b" />
+          <ModalFooter data-testid="f" />
+        </ModalContent>
+      </Modal>,
+    );
+    expect(await screen.findByTestId("h")).toHaveClass("px-6", "py-4");
+    expect(screen.getByTestId("h")).not.toHaveClass("gap-4");
+    expect(screen.getByTestId("b")).toHaveClass("px-6", "pt-1", "pb-4");
+    expect(screen.getByTestId("f")).toHaveClass("gap-3", "px-6", "py-4");
+    expect(screen.getByRole("button", { name: "Close" })).toHaveClass(
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it.each(["sm", "lg"] as const)(
+    "has no axe violations at size=%s",
+    async (size) => {
+      const { baseElement } = render(
+        <Modal open>
+          <ModalContent size={size}>
+            <ModalHeader>
+              <ModalTitle>Invite teammates</ModalTitle>
+              <ModalClose />
+            </ModalHeader>
+            <ModalBody>
+              <ModalDescription>
+                Send email invitations to your workspace.
+              </ModalDescription>
+            </ModalBody>
+          </ModalContent>
+        </Modal>,
+      );
+      await screen.findByRole("dialog");
+      expect(await axe(baseElement)).toHaveNoViolations();
+    },
+  );
 });

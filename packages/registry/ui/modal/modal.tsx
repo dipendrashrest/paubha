@@ -10,7 +10,11 @@ export const Modal = DialogPrimitive.Root;
 export const ModalTrigger = DialogPrimitive.Trigger;
 
 const modalContentVariants = cva(
-  "fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border-default bg-bg-elevated shadow-xl",
+  [
+    "fixed top-1/2 left-1/2 z-(--z-modal) w-full -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-border-default bg-bg-elevated shadow-xl",
+    // Open motion: duration/normal (200ms) ease-out; reduced motion = duration/instant.
+    "transition-opacity duration-(--duration-normal) ease-out starting:opacity-0 motion-reduce:duration-(--duration-instant)",
+  ],
   {
     variants: {
       size: {
@@ -34,8 +38,10 @@ export interface ModalContentProps
     VariantProps<typeof modalContentVariants> {}
 
 /**
- * role=dialog · aria-modal=true · focus trapped while open · Esc closes · aria-labelledby
- * points at ModalTitle · aria-describedby points at ModalDescription
+ * role=dialog · aria-modal=true · aria-labelledby → ModalTitle · aria-describedby →
+ * ModalDescription · focus moves inside on open; Tab/Shift+Tab stay trapped · Esc closes
+ * and restores focus to the trigger · background is inert · close control labelled "Close"
+ * · open motion duration/normal (200ms) ease-out, instant under prefers-reduced-motion
  */
 export function ModalContent({
   ref,
@@ -46,7 +52,7 @@ export function ModalContent({
 }: ModalContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-bg-overlay" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-(--z-overlay) bg-bg-overlay transition-opacity duration-(--duration-normal) ease-out starting:opacity-0 motion-reduce:duration-(--duration-instant)" />
       <DialogPrimitive.Content
         ref={ref}
         aria-modal="true"
@@ -66,10 +72,7 @@ export function ModalHeader({
   ...props
 }: React.ComponentPropsWithRef<"div">) {
   return (
-    <div
-      className={cn("flex items-center gap-4 px-6 py-4", className)}
-      {...props}
-    />
+    <div className={cn("flex items-center px-6 py-4", className)} {...props} />
   );
 }
 
