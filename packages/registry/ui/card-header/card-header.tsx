@@ -39,11 +39,17 @@ export function CardHeader({
   const hasConvenienceContent =
     title != null || description != null || avatar != null || actions != null;
   const hasTabsSlot = children != null;
+  // Figma: title-only header is 16px vertical padding; others are 20px.
+  const simple = avatar == null && actions == null && description == null;
 
   return (
     <div
       ref={ref}
-      className={cn("flex w-full flex-col gap-3 px-5 py-4", className)}
+      className={cn(
+        "flex w-full flex-col gap-4 border border-border-default bg-bg-primary px-5",
+        hasTabsSlot ? "pt-5" : simple ? "py-4" : "py-5",
+        className,
+      )}
       {...props}
     >
       {hasConvenienceContent ? (
@@ -52,7 +58,11 @@ export function CardHeader({
             {avatar ? <div className="shrink-0">{avatar}</div> : null}
             <div className="flex min-w-0 flex-col gap-0.5">
               {title != null ? (
-                <CardHeaderTitle>{title}</CardHeaderTitle>
+                <CardHeaderTitle
+                  className={avatar != null ? "text-ui-md" : undefined}
+                >
+                  {title}
+                </CardHeaderTitle>
               ) : null}
               {description != null ? (
                 <CardHeaderDescription>{description}</CardHeaderDescription>
@@ -82,7 +92,7 @@ export function CardHeaderTitle({
   return (
     <p
       ref={ref}
-      className={cn("text-ui-md font-semibold text-fg-primary", className)}
+      className={cn("text-ui-lg font-semibold text-fg-primary", className)}
       {...props}
     />
   );
@@ -101,7 +111,7 @@ export function CardHeaderDescription({
   return (
     <p
       ref={ref}
-      className={cn("text-ui-sm text-fg-tertiary", className)}
+      className={cn("text-ui-sm text-fg-secondary", className)}
       {...props}
     />
   );
