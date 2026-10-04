@@ -18,16 +18,31 @@ const badgeProps = definePropDefs<BadgeProps>()([
   },
   {
     name: "size",
-    type: '"sm" | "md"',
+    type: '"sm" | "md" | "lg"',
     defaultValue: '"sm"',
-    description: "Padding and font size.",
+    description: "Height (20/28/32px), padding, font, and icon size.",
   },
   {
     name: "iconOnly",
     type: "boolean",
     defaultValue: "false",
     description:
-      "Renders as a compact square icon-only badge instead of a text label.",
+      'Icon-only type: pass the icon as children plus an aria-label; renders role="img".',
+  },
+  {
+    name: "leadingIcon",
+    type: "React.ReactNode",
+    description: "Leading icon slot, sized 16px (sm) or 20px (md, lg).",
+  },
+  {
+    name: "leadingAvatar",
+    type: "React.ReactNode",
+    description: "Leading avatar slot, sized 12px (sm) or 14px (md, lg).",
+  },
+  {
+    name: "trailingIcon",
+    type: "React.ReactNode",
+    description: "Trailing icon slot, sized 16px (sm) or 20px (md, lg).",
   },
   {
     name: "showDot",
@@ -39,8 +54,14 @@ const badgeProps = definePropDefs<BadgeProps>()([
     name: "dismissible",
     type: "boolean",
     defaultValue: "false",
+    description: "Shows a dismiss button after the label.",
+  },
+  {
+    name: "dismissLabel",
+    type: "string",
+    defaultValue: '"Remove"',
     description:
-      'Shows a dismiss button with aria-label="Remove" after the label.',
+      'Accessible name for the dismiss button; be specific, e.g. "Remove Design category".',
   },
   {
     name: "onDismiss",

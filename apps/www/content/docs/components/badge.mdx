@@ -15,7 +15,9 @@ description: Status label for categories, counts, and metadata, with an optional
 import { Badge } from "@/components/ui/badge";
 
 <Badge variant="success">Active</Badge>
-<Badge dismissible onDismiss={() => remove(tag)}>Frontend</Badge>
+<Badge dismissible dismissLabel="Remove Frontend tag" onDismiss={() => remove(tag)}>
+  Frontend
+</Badge>
 ```
 
 ## Examples
@@ -27,6 +29,14 @@ import { Badge } from "@/components/ui/badge";
 ### Sizes
 
 <BadgeSizes />
+
+### With icons
+
+<BadgeWithIcons />
+
+### Icon only
+
+<BadgeIconOnly />
 
 ### With a status dot
 
@@ -51,18 +61,24 @@ import { Badge } from "@/components/ui/badge";
 <A11yCallout>
   <ul>
     <li>
-      <strong>Root element.</strong> Renders as a native <code>&lt;output&gt;</code>,
-      whose implicit ARIA role genuinely is <code>status</code>, no explicit{" "}
-      <code>role</code> attribute needed.
+      <strong>Root element.</strong> A plain <code>&lt;span&gt;</code>: static
+      badges are ordinary text. Pass <code>role=&quot;status&quot;</code> only
+      when the badge announces a meaningful live update.
     </li>
     <li>
-      <strong>Dismiss button.</strong>{" "}
-      <code>role=&quot;button&quot;</code> with{" "}
-      <code>aria-label=&quot;Remove&quot;</code>, and its own{" "}
-      <code>glow-focus</code> ring.
+      <strong>Icon-only.</strong> Renders <code>role=&quot;img&quot;</code>;
+      always give it an <code>aria-label</code>.
     </li>
     <li>
-      <strong>Dot indicator.</strong> Purely decorative, <code>aria-hidden</code>.
+      <strong>Dismiss button.</strong> Native <code>&lt;button&gt;</code>: Tab to
+      focus, Enter/Space activates, <code>glow-focus</code> ring. Name each
+      action specifically via <code>dismissLabel</code> (e.g. &quot;Remove
+      Design category&quot;).
+    </li>
+    <li>
+      <strong>Dot, icon, and avatar slots.</strong> Decorative,{" "}
+      <code>aria-hidden</code>. State the status in visible text; never rely on
+      color alone.
     </li>
   </ul>
 </A11yCallout>

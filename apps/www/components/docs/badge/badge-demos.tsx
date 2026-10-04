@@ -1,6 +1,7 @@
 "use client";
 
 import { Badge } from "@paubha/registry/ui/badge";
+import { ArrowRight, Bell, Star } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const variants = ["gray", "brand", "success", "warning", "error"] as const;
@@ -47,10 +48,12 @@ export function BadgeSizes() {
   return (
     <ComponentPlayground
       code={`<Badge size="sm">Small</Badge>
-<Badge size="md">Medium</Badge>`}
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>`}
     >
       <Badge size="sm">Small</Badge>
       <Badge size="md">Medium</Badge>
+      <Badge size="lg">Large</Badge>
     </ComponentPlayground>
   );
 }
@@ -70,10 +73,60 @@ export function BadgeWithDot() {
 export function BadgeDismissible() {
   return (
     <ComponentPlayground
-      code={`<Badge dismissible onDismiss={() => alert("Removed")}>Removable</Badge>`}
+      code={`<Badge
+  dismissible
+  dismissLabel="Remove Design category"
+  onDismiss={() => alert("Removed")}
+>
+  Design
+</Badge>`}
     >
-      <Badge dismissible onDismiss={() => alert("Removed")}>
-        Removable
+      <Badge
+        dismissible
+        dismissLabel="Remove Design category"
+        onDismiss={() => alert("Removed")}
+      >
+        Design
+      </Badge>
+    </ComponentPlayground>
+  );
+}
+
+export function BadgeWithIcons() {
+  return (
+    <ComponentPlayground
+      code={`<Badge variant="brand" leadingIcon={<Star />}>Featured</Badge>
+<Badge variant="success" trailingIcon={<ArrowRight />}>Completed</Badge>`}
+    >
+      <Badge variant="brand" leadingIcon={<Star />}>
+        Featured
+      </Badge>
+      <Badge variant="success" trailingIcon={<ArrowRight />}>
+        Completed
+      </Badge>
+    </ComponentPlayground>
+  );
+}
+
+export function BadgeIconOnly() {
+  return (
+    <ComponentPlayground
+      code={`<Badge iconOnly aria-label="Notifications"><Bell /></Badge>
+<Badge iconOnly size="md" variant="brand" fill="solid" aria-label="Notifications">
+  <Bell />
+</Badge>`}
+    >
+      <Badge iconOnly aria-label="Notifications">
+        <Bell />
+      </Badge>
+      <Badge
+        iconOnly
+        size="md"
+        variant="brand"
+        fill="solid"
+        aria-label="Notifications"
+      >
+        <Bell />
       </Badge>
     </ComponentPlayground>
   );

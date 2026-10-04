@@ -52,7 +52,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Status label for categories, counts, and metadata, with subtle/outline/solid fill styles, an optional dot indicator, and dismiss action.",
+      "description": "Status label for categories, counts, and metadata: gray/brand/success/warning/error colors, subtle/outline/solid fills, sm/md/lg sizes, label or icon-only type, leading icon/avatar/dot and trailing icon slots, and a dismiss action.",
       "dependencies": [
         "class-variance-authority",
         "clsx",

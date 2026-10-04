@@ -3,8 +3,10 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import type * as React from "react";
 
+// Heights are fixed (20/28/32) so the 1px outline border sits inside the box,
+// matching Figma's inside stroke; every fill reserves the same transparent border.
 const badgeVariants = cva(
-  "inline-flex items-center justify-center gap-1 rounded-full border font-medium",
+  "inline-flex shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-full border border-transparent font-medium",
   {
     variants: {
       variant: {
@@ -16,46 +18,47 @@ const badgeVariants = cva(
       },
       fill: {
         subtle: "",
-        outline: "border-solid",
-        solid: "border-transparent",
+        outline: "",
+        solid: "",
       },
       size: {
-        sm: "px-2 py-0.5 text-ui-xs",
-        md: "px-3 py-1 text-ui-sm",
+        sm: "h-5 px-2 text-ui-xs",
+        md: "h-7 px-3 text-ui-sm",
+        lg: "h-8 px-4 text-ui-md",
       },
       iconOnly: {
-        true: "aspect-square p-1",
+        true: "",
         false: "",
       },
     },
     compoundVariants: [
-      // subtle (bg-*-subtle, colored text, colored border): the original default look
+      // subtle: tinted background, colored text, no border
       {
         variant: "gray",
         fill: "subtle",
-        className: "border-border-default bg-bg-secondary text-fg-primary",
+        className: "bg-bg-secondary text-fg-primary",
       },
       {
         variant: "brand",
         fill: "subtle",
-        className: "border-border-brand bg-bg-brand-subtle text-fg-brand",
+        className: "bg-bg-brand-subtle text-fg-brand",
       },
       {
         variant: "success",
         fill: "subtle",
-        className: "border-border-success bg-bg-success-subtle text-fg-success",
+        className: "bg-bg-success-subtle text-fg-success",
       },
       {
         variant: "warning",
         fill: "subtle",
-        className: "border-border-warning bg-bg-warning-subtle text-fg-warning",
+        className: "bg-bg-warning-subtle text-fg-warning",
       },
       {
         variant: "error",
         fill: "subtle",
-        className: "border-border-error bg-bg-error-subtle text-fg-error",
+        className: "bg-bg-error-subtle text-fg-error",
       },
-      // outline (transparent bg, colored border + text)
+      // outline: transparent background, colored border + text
       {
         variant: "gray",
         fill: "outline",
@@ -81,7 +84,7 @@ const badgeVariants = cva(
         fill: "outline",
         className: "border-border-error text-fg-error",
       },
-      // solid (filled bg, on-color text): gray has no dedicated solid token, uses tertiary bg
+      // solid: filled background, on-color text (gray uses tertiary bg per Figma)
       {
         variant: "gray",
         fill: "solid",
@@ -117,70 +120,149 @@ const badgeVariants = cva(
   },
 );
 
+type BadgeSize = "sm" | "md" | "lg";
+
+const slotSize: Record<
+  BadgeSize,
+  { icon: string; dot: string; avatar: string; dismiss: string }
+> = {
+  sm: { icon: "size-4", dot: "size-1.5", avatar: "size-3", dismiss: "size-3" },
+  md: {
+    icon: "size-5",
+    dot: "size-2",
+    avatar: "size-3.5",
+    dismiss: "size-3.5",
+  },
+  lg: { icon: "size-5", dot: "size-2", avatar: "size-3.5", dismiss: "size-4" },
+};
+
 export interface BadgeProps
-  extends React.ComponentPropsWithRef<"output">,
+  extends React.ComponentPropsWithRef<"span">,
     VariantProps<typeof badgeVariants> {
+  /** Leading icon slot (Lucide), sized 16px (sm) / 20px (md, lg). Decorative. */
+  leadingIcon?: React.ReactNode;
+  /** Leading avatar slot, sized 12px (sm) / 14px (md, lg). */
+  leadingAvatar?: React.ReactNode;
+  /** Trailing icon slot (Lucide), sized 16px (sm) / 20px (md, lg). Decorative. */
+  trailingIcon?: React.ReactNode;
   /** Shows a small decorative status dot before the label. */
   showDot?: boolean;
   /** Shows a dismiss button after the label. */
   dismissible?: boolean;
   /** Called when the dismiss button is activated. */
   onDismiss?: () => void;
-  /** Renders as a compact icon-only badge (no visible label); pass an icon as children. */
+  /** Accessible name for the dismiss button, e.g. "Remove Design category". */
+  dismissLabel?: string;
+  /**
+   * Renders the icon-only type (no visible label); pass the icon as children and
+   * an `aria-label` — the badge is then exposed as role="img" with that name.
+   */
   iconOnly?: boolean;
 }
 
 /**
- * role=status · dismiss button role=button with aria-label="Remove" · dot indicator is
- * decorative (aria-hidden)
+ * Static badges are ordinary text (no role) — pass role="status" only when the
+ * badge announces a meaningful live update · icon-only badges render role=img and
+ * need aria-label · dot, icon, and avatar slots are decorative (aria-hidden) ·
+ * dismiss button is a native button (Tab to focus, Enter/Space activates) with a
+ * specific aria-label (dismissLabel) and glow-focus ring · never rely on color alone
  */
 export function Badge({
   ref,
   className,
   variant,
   fill,
-  size = "sm",
+  size,
   iconOnly = false,
+  leadingIcon,
+  leadingAvatar,
+  trailingIcon,
   showDot = false,
   dismissible = false,
   onDismiss,
+  dismissLabel = "Remove",
+  role,
   children,
   ...props
 }: BadgeProps) {
-  const dotSizeClassName = size === "md" ? "size-2" : "size-1.5";
-  const dismissSizeClassName = size === "md" ? "size-3.5" : "size-3";
+  const slots = slotSize[size ?? "sm"];
 
   return (
-    <output
+    <span
       ref={ref}
+      role={role ?? (iconOnly ? "img" : undefined)}
       className={cn(
         badgeVariants({ variant, fill, size, iconOnly }),
         className,
       )}
       {...props}
     >
-      {showDot ? (
+      {iconOnly ? (
         <span
           aria-hidden="true"
-          className={cn(dotSizeClassName, "shrink-0 rounded-full bg-current")}
-        />
-      ) : null}
-      {children}
+          className={cn(slots.icon, "inline-flex shrink-0 [&>svg]:size-full")}
+        >
+          {children}
+        </span>
+      ) : (
+        <>
+          {leadingIcon ? (
+            <span
+              aria-hidden="true"
+              className={cn(
+                slots.icon,
+                "inline-flex shrink-0 [&>svg]:size-full",
+              )}
+            >
+              {leadingIcon}
+            </span>
+          ) : null}
+          {leadingAvatar ? (
+            <span
+              aria-hidden="true"
+              className={cn(
+                slots.avatar,
+                "inline-flex shrink-0 overflow-hidden rounded-full [&>*]:size-full",
+              )}
+            >
+              {leadingAvatar}
+            </span>
+          ) : null}
+          {showDot ? (
+            <span
+              aria-hidden="true"
+              className={cn(slots.dot, "shrink-0 rounded-full bg-current")}
+            />
+          ) : null}
+          {children}
+          {trailingIcon ? (
+            <span
+              aria-hidden="true"
+              className={cn(
+                slots.icon,
+                "inline-flex shrink-0 [&>svg]:size-full",
+              )}
+            >
+              {trailingIcon}
+            </span>
+          ) : null}
+        </>
+      )}
       {dismissible ? (
         <button
           type="button"
-          aria-label="Remove"
+          aria-label={dismissLabel}
           onClick={onDismiss}
           className={cn(
-            dismissSizeClassName,
-            "shrink-0 rounded-full text-current outline-none",
+            slots.dismiss,
+            "inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full text-current outline-none",
             "focus-visible:shadow-[var(--shadow-glow-focus)]",
           )}
         >
-          <X className="size-full" />
+          <X aria-hidden="true" className="size-full" />
         </button>
       ) : null}
-    </output>
+    </span>
   );
 }
 

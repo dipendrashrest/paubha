@@ -112,8 +112,10 @@ import {
   BadgeDismissible,
   BadgeFillStyles,
   BadgeHero,
+  BadgeIconOnly,
   BadgeSizes,
   BadgeWithDot,
+  BadgeWithIcons,
 } from "@/components/docs/badge/badge-demos";
 import { BadgePropsTable } from "@/components/docs/badge/badge-props-table";
 import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
@@ -432,10 +434,12 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     BadgeDismissible,
     BadgeFillStyles,
     BadgeHero,
+    BadgeIconOnly,
     BadgeInstall,
     BadgePropsTable,
     BadgeSizes,
     BadgeWithDot,
+    BadgeWithIcons,
 
     // Input
     InputHero,
