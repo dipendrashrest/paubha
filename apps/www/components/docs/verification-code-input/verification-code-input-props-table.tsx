@@ -33,6 +33,12 @@ const verificationCodeInputProps = definePropDefs<VerificationCodeInputProps>()(
         "Shows every cell in the error color and marks them aria-invalid.",
     },
     {
+      name: "errorMessage",
+      type: "React.ReactNode",
+      description:
+        "Shown below the cells while error is set; linked via aria-describedby.",
+    },
+    {
       name: "disabled",
       type: "boolean",
       defaultValue: "false",

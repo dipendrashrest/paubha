@@ -32,12 +32,13 @@ export function VerificationCodeInputError() {
   return (
     <ComponentPlayground
       code={
-        '<VerificationCodeInput defaultValue="123456" error aria-label="Verification code" />'
+        '<VerificationCodeInput\n  defaultValue="123456"\n  error\n  errorMessage="Invalid verification code. Please try again."\n  aria-label="Verification code"\n/>'
       }
     >
       <VerificationCodeInput
         defaultValue="123456"
         error
+        errorMessage="Invalid verification code. Please try again."
         aria-label="Verification code"
       />
     </ComponentPlayground>

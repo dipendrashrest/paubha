@@ -116,4 +116,27 @@ describe("VerificationCodeInput", () => {
     rerender(<VerificationCodeInput length={4} aria-label="Code" error />);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders the error message and links it to every cell", async () => {
+    const { container } = render(
+      <VerificationCodeInput
+        length={3}
+        aria-label="Code"
+        error
+        errorMessage="Invalid verification code."
+      />,
+    );
+    const message = screen.getByText("Invalid verification code.");
+    for (const cell of screen.getAllByRole("textbox")) {
+      expect(cell).toHaveAttribute("aria-describedby", message.id);
+    }
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("hides the error message when error is not set", () => {
+    render(
+      <VerificationCodeInput aria-label="Code" errorMessage="Invalid code" />,
+    );
+    expect(screen.queryByText("Invalid code")).not.toBeInTheDocument();
+  });
 });

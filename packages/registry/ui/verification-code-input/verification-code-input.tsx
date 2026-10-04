@@ -15,6 +15,8 @@ export interface VerificationCodeInputProps
   onValueChange?: (value: string) => void;
   /** Shows every cell in the error color and marks them aria-invalid. */
   error?: boolean;
+  /** Message shown below the cells while `error` is set; linked via aria-describedby. */
+  errorMessage?: React.ReactNode;
   disabled?: boolean;
   /** Required. Describes the whole group, e.g. "6-digit verification code". */
   "aria-label": string;
@@ -26,9 +28,9 @@ export interface VerificationCodeInputProps
  * on an empty cell moves focus to the previous one · pasting a full code fills every
  * cell at once · error state is announced via aria-invalid on each cell · focus ring
  * visible via shadow-glow-focus, or shadow-glow-focus-error when a cell is focused while
- * `error` is set, matching Input/Select/Slider/Tag Input's established pattern · no
- * distinct "filled" (has a value, not focused) visual treatment was found confirmable in
- * Figma for this component; see SYNC_LOG.md OPEN QUESTIONS before adding one
+ * `error` is set · `errorMessage` renders below the cells and is linked to every cell
+ * via aria-describedby · Figma's "filled" digit state matches default (border-default,
+ * fg-primary) so it needs no separate treatment
  */
 export function VerificationCodeInput({
   ref,
@@ -38,6 +40,7 @@ export function VerificationCodeInput({
   defaultValue,
   onValueChange,
   error = false,
+  errorMessage,
   disabled = false,
   "aria-label": ariaLabel,
   ...props
@@ -47,6 +50,8 @@ export function VerificationCodeInput({
   const rawValue = isControlled ? (value ?? "") : internalValue;
   const digits = Array.from({ length }, (_, i) => rawValue[i] ?? "");
   const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
+  const messageId = React.useId();
+  const showMessage = error && errorMessage != null;
 
   function commit(next: string) {
     if (!isControlled) setInternalValue(next);
@@ -86,14 +91,14 @@ export function VerificationCodeInput({
     inputRefs.current[Math.min(pasted.length, length - 1)]?.focus();
   }
 
-  return (
+  const group = (
     <div
-      ref={ref}
+      ref={showMessage ? undefined : ref}
       // biome-ignore lint/a11y/useSemanticElements: <fieldset> requires a <legend> for its accessible name and can't take aria-label the same way; a labeled group of inputs via role="group" matches Figma's a11y spec exactly
       role="group"
       aria-label={ariaLabel}
-      className={cn("flex gap-2", className)}
-      {...props}
+      className={cn("flex items-center gap-2", !showMessage && className)}
+      {...(showMessage ? {} : props)}
     >
       {digits.map((digit, index) => (
         <input
@@ -110,11 +115,12 @@ export function VerificationCodeInput({
           disabled={disabled}
           aria-label={`Digit ${index + 1} of ${length}`}
           aria-invalid={error || undefined}
+          aria-describedby={showMessage ? messageId : undefined}
           onChange={(event) => handleChange(index, event.target.value)}
           onKeyDown={(event) => handleKeyDown(index, event)}
           onPaste={handlePaste}
           className={cn(
-            "h-14 w-12 shrink-0 rounded-md border bg-bg-primary text-center text-display-xs font-semibold text-fg-primary outline-none",
+            "size-9 shrink-0 rounded-md border bg-bg-primary text-center text-display-xs font-semibold text-fg-primary outline-none",
             "focus-visible:border-2 focus-visible:border-border-brand focus-visible:text-fg-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
             error
               ? "border-2 border-border-error text-fg-error"
@@ -128,6 +134,17 @@ export function VerificationCodeInput({
           )}
         />
       ))}
+    </div>
+  );
+
+  if (!showMessage) return group;
+
+  return (
+    <div ref={ref} className={cn("flex flex-col gap-3", className)} {...props}>
+      {group}
+      <p id={messageId} className="text-body-sm text-fg-error">
+        {errorMessage}
+      </p>
     </div>
   );
 }
