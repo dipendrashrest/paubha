@@ -115,11 +115,73 @@ describe("Tabs", () => {
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
   });
 
+  it("moves focus with Home/End and skips the disabled tab", async () => {
+    const user = userEvent.setup();
+    render(<BasicTabs />);
+    screen.getByRole("tab", { name: "Billing" }).focus();
+    await user.keyboard("{Home}");
+    expect(screen.getByRole("tab", { name: "Account" })).toHaveFocus();
+    await user.keyboard("{End}");
+    expect(screen.getByRole("tab", { name: "Billing" })).toHaveFocus();
+  });
+
+  it("supports manual activation: arrows move focus, Enter selects", async () => {
+    const user = userEvent.setup();
+    render(
+      <Tabs defaultValue="a" activationMode="manual">
+        <TabsList aria-label="Manual">
+          <TabsTrigger value="a">A</TabsTrigger>
+          <TabsTrigger value="b">B</TabsTrigger>
+        </TabsList>
+        <TabsContent value="a">A content</TabsContent>
+        <TabsContent value="b">B content</TabsContent>
+      </Tabs>,
+    );
+    screen.getByRole("tab", { name: "A" }).focus();
+    await user.keyboard("{ArrowRight}");
+    expect(screen.getByRole("tab", { name: "B" })).toHaveFocus();
+    expect(screen.getByRole("tabpanel")).toHaveTextContent("A content");
+    await user.keyboard("{Enter}");
+    expect(screen.getByRole("tabpanel")).toHaveTextContent("B content");
+  });
+
+  it("uses the fast ease-out transition with an instant reduced-motion fallback", () => {
+    render(<BasicTabs />);
+    const tab = screen.getByRole("tab", { name: "Account" });
+    expect(tab).toHaveClass("duration-(--duration-fast)", "ease-out");
+    expect(tab).toHaveClass("motion-reduce:duration-(--duration-instant)");
+  });
+
+  it("sizes a leading icon to 16px", () => {
+    render(<BasicTabs />);
+    expect(screen.getByRole("tab", { name: "Account" })).toHaveClass(
+      "[&_svg]:size-4",
+    );
+  });
+
   it("has no axe violations for underline and pill variants", async () => {
     const { container, rerender } = render(<BasicTabs variant="underline" />);
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<BasicTabs variant="pill" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("has no axe violations with icon triggers", async () => {
+    const { container } = render(
+      <Tabs defaultValue="a">
+        <TabsList aria-label="Icons">
+          <TabsTrigger value="a">
+            <svg aria-hidden="true" />A
+          </TabsTrigger>
+          <TabsTrigger value="b" disabled>
+            <svg aria-hidden="true" />B
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="a">A content</TabsContent>
+        <TabsContent value="b">B content</TabsContent>
+      </Tabs>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -37,6 +37,26 @@ mockup would.
 
 <TabsPillVariant />
 
+Keep labels to one or two words, and use a single tab group per set of panels —
+don't nest tab groups inside a panel.
+
+### With icons
+
+An optional leading Lucide icon is sized to 16px automatically. Mark it
+`aria-hidden` so the label stays the accessible name.
+
+<TabsWithIcons />
+
+### Manual activation
+
+Arrow keys select the focused tab by default. When a panel takes noticeable
+time to render, pass `activationMode="manual"` to `Tabs`: arrows then only move
+focus, and Enter or Space selects.
+
+```tsx
+<Tabs defaultValue="overview" activationMode="manual">…</Tabs>
+```
+
 ## API reference
 
 <TabsPropsTable />
@@ -51,14 +71,25 @@ mockup would.
       <code>role=&quot;tabpanel&quot;</code>.
     </li>
     <li>
-      <strong>Keyboard.</strong> Arrow keys navigate between tabs, and, in this
-      Radix version, auto-select the newly-focused tab (verified directly; this
-      is genuinely different from Radio Group's arrow-key behavior in the same
-      install, which only moves focus without selecting).
+      <strong>Keyboard.</strong> Left/Right Arrow move between tabs and, by
+      default, select the newly focused tab; Home/End jump to the first/last
+      enabled tab. Roving tabindex keeps only the selected tab in the Tab
+      sequence, so the next Tab moves into the panel. With{" "}
+      <code>activationMode=&quot;manual&quot;</code>, arrows only move focus and
+      Enter/Space select.
+    </li>
+    <li>
+      <strong>Label.</strong> Give <code>TabsList</code> an{" "}
+      <code>aria-label</code> or <code>aria-labelledby</code>.
+    </li>
+    <li>
+      <strong>Motion.</strong> State changes use a 100ms ease-out transition,
+      instant under <code>prefers-reduced-motion</code>.
     </li>
     <li>
       <strong>ARIA.</strong> <code>aria-selected</code> on the active tab,{" "}
-      <code>aria-controls</code> linking each tab to its panel.
+      <code>aria-controls</code> linking each tab to its panel, and{" "}
+      <code>aria-labelledby</code> linking each panel back to its tab.
     </li>
   </ul>
 </A11yCallout>

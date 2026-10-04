@@ -29,8 +29,13 @@ export interface TabsListProps
     VariantProps<typeof listVariants> {}
 
 /**
- * role=tablist · each tab role=tab · panels role=tabpanel · arrow keys navigate ·
- * aria-selected on the active tab · aria-controls links each tab to its panel
+ * role=tablist (label it via aria-label/aria-labelledby) · each tab role=tab ·
+ * panels role=tabpanel, aria-labelledby their tab · Left/Right Arrow move between
+ * tabs, Home/End jump to the first/last enabled tab · roving tabindex: Tab enters
+ * at the selected tab, next Tab moves to the panel · aria-selected only on the
+ * selected tab · aria-controls links each tab to its panel · automatic activation
+ * by default; pass activationMode="manual" to Tabs when panels load slowly
+ * (arrows move focus, Enter/Space select) · focus ring visible on Tab
  */
 export function TabsList({
   ref,
@@ -64,7 +69,9 @@ export function TabsTrigger({ ref, className, ...props }: TabsTriggerProps) {
     <TabsPrimitive.Trigger
       ref={ref}
       className={cn(
-        "text-ui-sm font-medium text-fg-secondary outline-none transition-colors",
+        "inline-flex items-center justify-center gap-1.5 whitespace-nowrap text-ui-sm font-medium text-fg-secondary outline-none",
+        "transition-colors duration-(--duration-fast) ease-out motion-reduce:duration-(--duration-instant)",
+        "[&_svg]:size-4 [&_svg]:shrink-0",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
         "disabled:pointer-events-none disabled:text-fg-disabled",
         variant === "underline"

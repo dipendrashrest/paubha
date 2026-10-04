@@ -6,6 +6,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@paubha/registry/ui/tabs";
+import { FolderKanban, LayoutDashboard, Settings } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function TabsHero() {
@@ -65,6 +66,44 @@ export function TabsPillVariant() {
         <TabsList variant="pill" aria-label="View">
           <TabsTrigger value="list">List</TabsTrigger>
           <TabsTrigger value="grid">Grid</TabsTrigger>
+        </TabsList>
+      </Tabs>
+    </ComponentPlayground>
+  );
+}
+
+export function TabsWithIcons() {
+  return (
+    <ComponentPlayground
+      code={`<TabsList aria-label="Project">
+  <TabsTrigger value="overview">
+    <LayoutDashboard aria-hidden="true" />
+    Overview
+  </TabsTrigger>
+  <TabsTrigger value="tasks">
+    <FolderKanban aria-hidden="true" />
+    Tasks
+  </TabsTrigger>
+  <TabsTrigger value="settings" disabled>
+    <Settings aria-hidden="true" />
+    Settings
+  </TabsTrigger>
+</TabsList>`}
+    >
+      <Tabs defaultValue="overview">
+        <TabsList aria-label="Project">
+          <TabsTrigger value="overview">
+            <LayoutDashboard aria-hidden="true" />
+            Overview
+          </TabsTrigger>
+          <TabsTrigger value="tasks">
+            <FolderKanban aria-hidden="true" />
+            Tasks
+          </TabsTrigger>
+          <TabsTrigger value="settings" disabled>
+            <Settings aria-hidden="true" />
+            Settings
+          </TabsTrigger>
         </TabsList>
       </Tabs>
     </ComponentPlayground>

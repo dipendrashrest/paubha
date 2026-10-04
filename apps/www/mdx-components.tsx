@@ -327,7 +327,11 @@ import {
   TableStriped,
 } from "@/components/docs/table/table-demos";
 import { TablePropsTable } from "@/components/docs/table/table-props-table";
-import { TabsHero, TabsPillVariant } from "@/components/docs/tabs/tabs-demos";
+import {
+  TabsHero,
+  TabsPillVariant,
+  TabsWithIcons,
+} from "@/components/docs/tabs/tabs-demos";
 import { TabsPropsTable } from "@/components/docs/tabs/tabs-props-table";
 import {
   TagInputDisabled,
@@ -546,6 +550,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TabsInstall,
     TabsPillVariant,
     TabsPropsTable,
+    TabsWithIcons,
 
     // Select
     SelectHero,
