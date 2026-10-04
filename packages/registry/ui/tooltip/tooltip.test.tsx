@@ -97,4 +97,47 @@ describe("Tooltip", () => {
     expect(arrowSvg).toHaveAttribute("width", "6");
     expect(arrowSvg).toHaveAttribute("height", "5");
   });
+  it("uses Figma's layering token and opacity-in motion", async () => {
+    const user = userEvent.setup();
+    render(<BasicTooltip />);
+    await user.hover(screen.getByText("Hover me"));
+    await screen.findByRole("tooltip");
+    const content = document.querySelector("[data-side]") as HTMLElement;
+    expect(content.className).toContain("z-(--z-tooltip)");
+    expect(content.className).toContain("duration-(--duration-fast)");
+    expect(content.className).toContain(
+      "motion-reduce:duration-(--duration-instant)",
+    );
+  });
+
+  it("defaults the provider show delay to Figma's 400ms", async () => {
+    const user = userEvent.setup();
+    render(
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>Hover me</TooltipTrigger>
+          <TooltipContent>Helpful info</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>,
+    );
+    await user.hover(screen.getByText("Hover me"));
+    await new Promise((r) => setTimeout(r, 200));
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+    expect(
+      await screen.findByRole("tooltip", {}, { timeout: 1000 }),
+    ).toHaveTextContent("Helpful info");
+  });
+
+  it("has no axe violations when opened by keyboard focus", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<BasicTooltip />);
+    await user.tab();
+    await screen.findByRole("tooltip");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("has no axe violations while closed", async () => {
+    const { container } = render(<BasicTooltip />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });

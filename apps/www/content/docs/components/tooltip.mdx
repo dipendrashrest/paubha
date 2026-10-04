@@ -34,6 +34,14 @@ a deliberate surface inversion, not a mistake. Uses Radix's own `Arrow`
 primitive rather than a hand-rolled CSS triangle, since it measures and
 positions itself correctly across all four sides for free.
 
+`TooltipProvider` defaults to a 400ms show delay. Content sits on the
+`--z-tooltip` layer (above modals, popovers and toasts) and fades in over
+`--duration-fast` (100ms, ease-out), instantly under `prefers-reduced-motion`.
+
+Use a tooltip only for a brief, non-interactive hint. The trigger needs its own
+accessible name; the tooltip never replaces it. Move long procedures into
+visible help, and interactive options into a [Popover](/docs/components/popover).
+
 ## Examples
 
 ### Sides
@@ -52,10 +60,11 @@ positions itself correctly across all four sides for free.
       <strong>Role.</strong> <code>role=&quot;tooltip&quot;</code>, set by Radix.
     </li>
     <li>
-      <strong>Trigger.</strong> Shows on hover or keyboard focus.
+      <strong>Trigger.</strong> Shows on hover or keyboard focus after a
+      400ms delay. Focus stays on the trigger.
     </li>
     <li>
-      <strong>Dismiss.</strong> Escape closes it.
+      <strong>Dismiss.</strong> Escape closes it without moving focus.
     </li>
     <li>
       <strong>Linking.</strong> Connected to its trigger via{" "}
@@ -63,7 +72,8 @@ positions itself correctly across all four sides for free.
     </li>
     <li>
       <strong>Not interactive.</strong> Tooltip content is not focusable and
-      shouldn't contain interactive elements.
+      shouldn't contain interactive elements. Essential information should
+      also be visible elsewhere.
     </li>
   </ul>
 </A11yCallout>
