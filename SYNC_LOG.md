@@ -421,3 +421,15 @@ OPEN QUESTIONS (patterns group 1)
 - App Nav: Figma frame names don't match contents; `Sidebar/Documentation` (6588:308) not implemented.
 - Chart: Line/Area Figma nodes not fetched (colours only).
 - CLI Snippet: Figma `showCopy` default true, code false (compat). Code-snippet syntax variables still have no code tokens.
+
+### Patterns — group 2 (2026-10-05)
+Comment (`CommentAction` with icon slot, 4px rhythm, medium timestamp), Confirm Dialog (verified only — composes the synced Alert Dialog), Cookie Banner (semantic `<section>`, `useId` label), Data Toolbar (matched; doc + test), Date Picker (⚠️ **behaviour:** picking a day now stages it; `onValueChange` fires and the popover closes on **Apply** only, Cancel/Esc discard — per Figma; 336px elevated panel with date input + Today + Cancel/Apply; popover radius-sm), Empty State (card surface, 40px padding, display-xs title, icon chip with `tone`, root `<output>`), FAQ (Figma default title, unique heading id), Feature List (center-aligned rows, stable keys, aria-hidden tile), File Upload (Browse button zone, `status` rows with `ProgressBar`, new `browseLabel`).
+New token: `bg-brand-chip` (light = Figma `brand/100`; dark = brand-500 @ 24%, code-side choice like the other chips).
+
+OPEN QUESTIONS (patterns group 2)
+- 🔴 Confirm Dialog: Figma "Modal flows" frame (6126:41452) shows a warning-icon chip, 24/32 title, radius-lg, 24px padding — conflicts with the Alert Dialog page (18/28 title, radius-md). Code follows Alert Dialog. Settle in Figma, then add an optional `icon` slot if wanted.
+- Date Picker: Date Range, Date Time, Month Year pickers and week-view frames exist in Figma with no code variants; Figma's in-context trigger is a plain Input (code keeps the secondary Button trigger).
+- File Upload: Figma success text binds primitive `success/500`; Image Upload Preview / Upload Button frames and the "Uploading Files (n)" list card not built; docs demos still show the old zone.
+- Empty State: four Figma presets (No Data / No Search / First Time / Error) differ only in content + error chip colour — only `tone` added.
+- FAQ: Figma sample copy says "50 application patterns" (CLAUDE.md says 27).
+- Cookie Banner: Figma shows three buttons (Customize/Reject/Accept) — supplied by callers via `actions`.
