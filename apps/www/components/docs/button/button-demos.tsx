@@ -4,28 +4,22 @@ import { Button } from "@paubha/registry/ui/button";
 import { Plus } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
-const variants = [
-  "primary",
-  "secondary",
-  "ghost",
-  "destructive",
-  "link",
-] as const;
-const sizes = ["sm", "md", "lg", "xl"] as const;
+const variants = ["primary", "secondary", "tertiary", "link"] as const;
+const sizes = ["sm", "md", "lg", "xl", "2xl"] as const;
 
 export function ButtonHero() {
   return (
     <ComponentPlayground
       code={`<Button>Button</Button>
 <Button variant="secondary">Secondary</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="destructive">Destructive</Button>
+<Button variant="tertiary">Tertiary</Button>
+<Button destructive>Destructive</Button>
 <Button variant="link">Link</Button>`}
     >
       <Button>Button</Button>
       <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button destructive>Destructive</Button>
       <Button variant="link">Link</Button>
     </ComponentPlayground>
   );
@@ -41,6 +35,22 @@ export function ButtonVariants() {
       {variants.map((variant) => (
         <Button key={variant} variant={variant}>
           {variant.charAt(0).toUpperCase() + variant.slice(1)}
+        </Button>
+      ))}
+    </ComponentPlayground>
+  );
+}
+
+export function ButtonDestructive() {
+  return (
+    <ComponentPlayground
+      code={variants
+        .map((v) => `<Button variant="${v}" destructive>Delete</Button>`)
+        .join("\n")}
+    >
+      {variants.map((variant) => (
+        <Button key={variant} variant={variant} destructive>
+          Delete
         </Button>
       ))}
     </ComponentPlayground>

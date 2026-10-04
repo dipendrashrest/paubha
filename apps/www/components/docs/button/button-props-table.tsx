@@ -5,21 +5,28 @@ import { PropsTable } from "../_shared/props-table";
 const buttonProps = definePropDefs<ButtonProps>()([
   {
     name: "variant",
-    type: '"primary" | "secondary" | "ghost" | "destructive" | "link"',
+    type: '"primary" | "secondary" | "tertiary" | "link"',
     defaultValue: '"primary"',
-    description: "Visual style.",
+    description: "Visual hierarchy.",
+  },
+  {
+    name: "destructive",
+    type: "boolean",
+    defaultValue: "false",
+    description:
+      "Destructive intent, combinable with any variant. Switches to error colors and the glow-focus-error ring.",
   },
   {
     name: "size",
-    type: '"sm" | "md" | "lg" | "xl"',
+    type: '"sm" | "md" | "lg" | "xl" | "2xl"',
     defaultValue: '"md"',
-    description: "Density: 32 / 40 / 48 / 56px height.",
+    description: "Density: 32 / 40 / 48 / 56 / 64px height.",
   },
   {
     name: "leadingIcon",
     type: "ReactNode",
     description:
-      "Instance-swap icon slot rendered before the label, auto-sized to match the button's size (16px sm, 20px md/lg, 24px xl).",
+      "Instance-swap icon slot rendered before the label, auto-sized to match the button's size (16px sm, 20px md/lg, 24px xl/2xl).",
   },
   {
     name: "loading",

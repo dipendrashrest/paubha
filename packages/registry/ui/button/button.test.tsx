@@ -89,7 +89,7 @@ describe("Button", () => {
     expect(screen.getByTestId("icon")).toHaveClass("size-5");
   });
 
-  it("scales the icon slot per size: sm 16px, md/lg 20px, xl 24px (Figma canvas 2120:2)", () => {
+  it("scales the icon slot per size: sm 16px, md/lg 20px, xl/2xl 24px (Figma canvas 2120:2)", () => {
     const expectations: Array<
       [NonNullable<React.ComponentProps<typeof Button>["size"]>, string]
     > = [
@@ -97,6 +97,7 @@ describe("Button", () => {
       ["md", "size-5"],
       ["lg", "size-5"],
       ["xl", "size-6"],
+      ["2xl", "size-6"],
     ];
     for (const [size, expectedClass] of expectations) {
       const { unmount } = render(
@@ -118,6 +119,78 @@ describe("Button", () => {
     expect(button).toHaveClass("focus-visible:border-border-brand");
   });
 
+  it("renders the 2xl size at 64px with 32px padding", () => {
+    render(<Button size="2xl">Click</Button>);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("h-16", "px-8", "gap-3", "text-ui-lg");
+  });
+
+  it("tertiary variant is transparent with tertiary-hover fill", () => {
+    render(<Button variant="tertiary">Click</Button>);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("bg-transparent", "text-fg-primary");
+    expect(button).toHaveClass("hover:bg-bg-tertiary-hover");
+    expect(button).toHaveClass("active:bg-bg-tertiary");
+  });
+
+  it("link variant keeps fg-brand without an underline", () => {
+    render(<Button variant="link">Click</Button>);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("text-fg-brand");
+    expect(button.className).not.toMatch(/underline/);
+  });
+
+  it("primary destructive uses error-solid fills and the error focus ring", () => {
+    render(<Button destructive>Delete</Button>);
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass(
+      "bg-bg-error-solid",
+      "text-fg-on-error",
+      "hover:bg-bg-error-solid-hover",
+      "active:bg-bg-error-solid-active",
+      "focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+    );
+    expect(button).not.toHaveClass("bg-bg-brand-solid");
+    expect(button).not.toHaveClass(
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("secondary destructive uses border-error, fg-error and error-subtle hover", () => {
+    render(
+      <Button variant="secondary" destructive>
+        Delete
+      </Button>,
+    );
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass(
+      "border-border-error",
+      "bg-bg-primary",
+      "text-fg-error",
+      "hover:bg-bg-error-subtle",
+      "active:bg-bg-error-subtle",
+      "focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+    );
+    expect(button).not.toHaveClass("text-fg-primary");
+  });
+
+  it.each(["tertiary", "link"] as const)(
+    "%s destructive uses fg-error and error-subtle hover",
+    (variant) => {
+      render(
+        <Button variant={variant} destructive>
+          Delete
+        </Button>,
+      );
+      const button = screen.getByRole("button");
+      expect(button).toHaveClass(
+        "text-fg-error",
+        "hover:bg-bg-error-subtle",
+        "focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+      );
+    },
+  );
+
   it("has no axe violations across default, disabled, and loading states", async () => {
     const { container, rerender } = render(<Button>Default</Button>);
     expect(await axe(container)).toHaveNoViolations();
@@ -127,5 +200,19 @@ describe("Button", () => {
 
     rerender(<Button loading>Loading</Button>);
     expect(await axe(container)).toHaveNoViolations();
+
+    for (const variant of [
+      "primary",
+      "secondary",
+      "tertiary",
+      "link",
+    ] as const) {
+      rerender(
+        <Button variant={variant} destructive>
+          Delete
+        </Button>,
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    }
   });
 });

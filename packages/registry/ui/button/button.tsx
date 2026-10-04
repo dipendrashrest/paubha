@@ -8,7 +8,7 @@ const buttonVariants = cva(
     "inline-flex items-center justify-center whitespace-nowrap",
     "rounded-sm font-medium transition-colors",
     "disabled:pointer-events-none disabled:opacity-100",
-    "focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]",
+    "focus-visible:outline-none",
   ].join(" "),
   {
     variants: {
@@ -17,7 +17,7 @@ const buttonVariants = cva(
           "bg-bg-brand-solid text-fg-on-brand shadow-sm",
           "hover:bg-bg-brand-solid-hover",
           "active:bg-bg-brand-solid-active",
-          "disabled:bg-bg-disabled disabled:text-fg-disabled",
+          "disabled:bg-bg-disabled disabled:text-fg-disabled disabled:shadow-none",
         ].join(" "),
         secondary: [
           "border border-border-default bg-bg-primary text-fg-primary shadow-xs",
@@ -26,34 +26,63 @@ const buttonVariants = cva(
           "focus-visible:border-border-brand",
           "disabled:bg-bg-primary disabled:text-fg-disabled disabled:border-border-default",
         ].join(" "),
-        ghost: [
+        tertiary: [
           "bg-transparent text-fg-primary",
-          "hover:bg-bg-secondary-hover",
+          "hover:bg-bg-tertiary-hover",
           "active:bg-bg-tertiary",
-          "disabled:text-fg-disabled",
+          "disabled:bg-transparent disabled:text-fg-disabled",
         ].join(" "),
-        destructive: [
-          "bg-bg-error-solid text-fg-on-error shadow-sm",
-          "hover:bg-bg-error-solid-hover",
-          "active:bg-[var(--error-800)]",
-          "disabled:bg-bg-disabled disabled:text-fg-disabled",
-        ].join(" "),
+        // Figma: Link keeps fg/brand across hover/active, no underline.
         link: [
-          "bg-transparent text-fg-brand underline-offset-4",
-          "hover:text-fg-brand hover:underline",
-          "active:text-[var(--brand-800)]",
-          "disabled:text-fg-disabled disabled:no-underline",
+          "bg-transparent text-fg-brand",
+          "disabled:bg-transparent disabled:text-fg-disabled",
         ].join(" "),
+      },
+      destructive: {
+        false: "focus-visible:shadow-[var(--shadow-glow-focus)]",
+        true: "focus-visible:shadow-[var(--shadow-glow-focus-error)]",
       },
       size: {
         sm: "h-8 gap-1 px-3 text-ui-md",
         md: "h-10 gap-2 px-4 text-ui-lg",
         lg: "h-12 gap-2 px-5 text-ui-lg",
         xl: "h-14 gap-3 px-6 text-ui-lg",
+        "2xl": "h-16 gap-3 px-8 text-ui-lg",
       },
     },
+    compoundVariants: [
+      {
+        variant: "primary",
+        destructive: true,
+        className: [
+          "bg-bg-error-solid text-fg-on-error",
+          "hover:bg-bg-error-solid-hover",
+          "active:bg-bg-error-solid-active",
+        ].join(" "),
+      },
+      {
+        variant: "secondary",
+        destructive: true,
+        className: [
+          "border-border-error text-fg-error",
+          "hover:border-border-error hover:bg-bg-error-subtle",
+          "active:border-border-error active:bg-bg-error-subtle",
+          "focus-visible:border-border-error",
+        ].join(" "),
+      },
+      {
+        variant: ["tertiary", "link"],
+        destructive: true,
+        className: [
+          "text-fg-error",
+          "hover:bg-bg-error-subtle",
+          "active:bg-bg-error-subtle",
+        ].join(" "),
+      },
+    ],
     defaultVariants: {
       variant: "primary",
+      destructive: false,
       size: "md",
     },
   },
@@ -63,6 +92,8 @@ export interface ButtonProps
   extends React.ComponentPropsWithRef<"button">,
     VariantProps<typeof buttonVariants> {
   loading?: boolean;
+  /** Destructive intent, independent of `variant`. Swaps to error colors and the error focus ring. */
+  destructive?: boolean;
   /** Instance-swap icon slot rendered before the label. Sized to match the button's `size`. */
   leadingIcon?: React.ReactNode;
   /** Instance-swap icon slot rendered after the label. Sized to match the button's `size`. */
@@ -96,12 +127,13 @@ function Spinner({ className }: { className?: string }) {
 }
 
 /**
- * role=button · Enter/Space activates · focus ring visible on Tab · disabled prevents interaction · loading state announces via aria-busy
+ * role=button · Enter/Space activates · focus ring visible on Tab (glow-focus-error when destructive) · disabled prevents interaction · loading state announces via aria-busy
  */
 export function Button({
   ref,
   className,
   variant,
+  destructive = false,
   size = "md",
   loading = false,
   disabled,
@@ -112,15 +144,19 @@ export function Button({
 }: ButtonProps) {
   const isDisabled = disabled || loading;
   // Icon sizes per Figma (canvas 2120:2, node 2121:38/2121:74/2121:110):
-  // sm -> 16px, md/lg -> 20px, xl -> 24px. Not a flat sm/md=16, lg/xl=20 split.
+  // sm -> 16px, md/lg -> 20px, xl/2xl -> 24px.
   const iconSizeClassName =
-    size === "xl" ? "size-6" : size === "sm" ? "size-4" : "size-5";
+    size === "xl" || size === "2xl"
+      ? "size-6"
+      : size === "sm"
+        ? "size-4"
+        : "size-5";
 
   return (
     <button
       ref={ref}
       type="button"
-      className={cn(buttonVariants({ variant, size }), className)}
+      className={cn(buttonVariants({ variant, destructive, size }), className)}
       disabled={isDisabled}
       aria-busy={loading || undefined}
       {...props}

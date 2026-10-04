@@ -61,7 +61,7 @@ export function DialogDestructive() {
     <ComponentPlayground
       code={`<Dialog>
   <DialogTrigger asChild>
-    <Button variant="destructive">Delete Item</Button>
+    <Button destructive>Delete Item</Button>
   </DialogTrigger>
   <DialogContent>
     <DialogBody>
@@ -80,7 +80,7 @@ export function DialogDestructive() {
     >
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="destructive">Delete Item</Button>
+          <Button destructive>Delete Item</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogBody>

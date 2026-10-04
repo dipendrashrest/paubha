@@ -19,7 +19,7 @@ export function ModalHero() {
     <ComponentPlayground
       code={`<Modal>
   <ModalTrigger asChild>
-    <Button variant="destructive">Delete item</Button>
+    <Button destructive>Delete item</Button>
   </ModalTrigger>
   <ModalContent>
     <ModalHeader>
@@ -31,14 +31,14 @@ export function ModalHero() {
     </ModalBody>
     <ModalFooter>
       <Button variant="secondary">Cancel</Button>
-      <Button variant="destructive">Confirm</Button>
+      <Button destructive>Confirm</Button>
     </ModalFooter>
   </ModalContent>
 </Modal>`}
     >
       <Modal>
         <ModalTrigger asChild>
-          <Button variant="destructive">Delete item</Button>
+          <Button destructive>Delete item</Button>
         </ModalTrigger>
         <ModalContent>
           <ModalHeader>
@@ -50,7 +50,7 @@ export function ModalHero() {
           </ModalBody>
           <ModalFooter>
             <Button variant="secondary">Cancel</Button>
-            <Button variant="destructive">Confirm</Button>
+            <Button destructive>Confirm</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

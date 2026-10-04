@@ -16,26 +16,35 @@ import { Button } from "@/components/ui/button";
 
 <Button>Save changes</Button>
 <Button variant="secondary">Cancel</Button>
+<Button destructive>Delete</Button>
 ```
 
 ## Examples
 
 ### Variants
 
-Primary, secondary, ghost, destructive, and link.
+Primary, secondary, tertiary, and link.
 
 <ButtonVariants />
 
+### Destructive
+
+`destructive` is independent of `variant`, so every hierarchy has a
+destructive form. It swaps to error colors and uses the
+`glow-focus-error` focus ring.
+
+<ButtonDestructive />
+
 ### Sizes
 
-sm 32px · md 40px · lg 48px · xl 56px.
+sm 32px · md 40px · lg 48px · xl 56px · 2xl 64px.
 
 <ButtonSizes />
 
 ### With icon
 
 `leadingIcon` accepts any element and sizes it automatically to match the
-button: 16px at sm/md, 20px at lg/xl. It's a decorative slot: the icon is
+button: 16px at sm, 20px at md/lg, 24px at xl/2xl. It's a decorative slot: the icon is
 marked `aria-hidden` for you.
 
 <ButtonWithIcon />
@@ -63,7 +72,8 @@ being in a loading state.
     </li>
     <li>
       <strong>Focus.</strong> Visible <code>glow-focus</code> ring on Tab, via{" "}
-      <code>focus-visible</code>. Never shown on a pointer click.
+      <code>focus-visible</code> (<code>glow-focus-error</code> when{" "}
+      <code>destructive</code>). Never shown on a pointer click.
     </li>
     <li>
       <strong>Disabled.</strong> The native <code>disabled</code> attribute prevents all

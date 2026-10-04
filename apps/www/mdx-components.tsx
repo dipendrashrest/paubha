@@ -118,6 +118,7 @@ import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
 import { BreadcrumbsHero } from "@/components/docs/breadcrumbs/breadcrumbs-demos";
 import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs/breadcrumbs-props-table";
 import {
+  ButtonDestructive,
   ButtonHero,
   ButtonSizes,
   ButtonStates,
@@ -412,6 +413,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ButtonSizes,
     ButtonStates,
     ButtonVariants,
+    ButtonDestructive,
     ButtonWithIcon,
 
     // Badge

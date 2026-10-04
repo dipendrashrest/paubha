@@ -30,7 +30,7 @@ function BasicModal(props: { onConfirm?: () => void }) {
         </ModalBody>
         <ModalFooter>
           <Button variant="secondary">Cancel</Button>
-          <Button variant="destructive" onClick={props.onConfirm}>
+          <Button destructive onClick={props.onConfirm}>
             Confirm
           </Button>
         </ModalFooter>
