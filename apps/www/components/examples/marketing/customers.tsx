@@ -117,7 +117,7 @@ export function CustomersMarketingPage() {
               meta={
                 <Link
                   href="/examples/marketing/blog"
-                  className={buttonVariants({ variant: "ghost", size: "sm" })}
+                  className={buttonVariants({ variant: "tertiary", size: "sm" })}
                 >
                   Read
                 </Link>
@@ -134,7 +134,7 @@ export function CustomersMarketingPage() {
               meta={
                 <Link
                   href="/examples/marketing/blog"
-                  className={buttonVariants({ variant: "ghost", size: "sm" })}
+                  className={buttonVariants({ variant: "tertiary", size: "sm" })}
                 >
                   Read
                 </Link>

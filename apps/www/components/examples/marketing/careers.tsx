@@ -130,7 +130,7 @@ export function CareersMarketingPage() {
           actions={
             <Link
               href="/examples/marketing/changelog"
-              className={buttonVariants({ variant: "ghost", size: "sm" })}
+              className={buttonVariants({ variant: "tertiary", size: "sm" })}
             >
               Changelog
             </Link>

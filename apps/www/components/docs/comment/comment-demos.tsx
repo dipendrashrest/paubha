@@ -13,7 +13,7 @@ export function CommentHero() {
     avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}
     author="Ava Ruiz"
     timestamp="2h ago"
-    actions={<Button variant="ghost" size="sm">Reply</Button>}
+    actions={<Button variant="tertiary" size="sm">Reply</Button>}
   >
     Tokens finally match Figma.
   </Comment>
@@ -26,7 +26,7 @@ export function CommentHero() {
             author="Ava Ruiz"
             timestamp="2h ago"
             actions={
-              <Button variant="ghost" size="sm">
+              <Button variant="tertiary" size="sm">
                 Reply
               </Button>
             }

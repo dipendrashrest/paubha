@@ -8,7 +8,7 @@ export function ConfirmDialogHero() {
   return (
     <ComponentPlayground
       code={`<ConfirmDialog
-  trigger={<Button variant="destructive" size="sm">Delete</Button>}
+  trigger={<Button destructive size="sm">Delete</Button>}
   title="Delete project?"
   description="This cannot be undone."
   intent="error"
@@ -17,7 +17,7 @@ export function ConfirmDialogHero() {
     >
       <ConfirmDialog
         trigger={
-          <Button variant="destructive" size="sm">
+          <Button destructive size="sm">
             Delete
           </Button>
         }
