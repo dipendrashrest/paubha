@@ -30,6 +30,15 @@ describe("Divider", () => {
     expect(screen.getByRole("separator")).toHaveClass("h-px", "w-full");
   });
 
+  it("renders a 1px vertical line for orientation=vertical", () => {
+    render(<Divider orientation="vertical" />);
+    expect(screen.getByRole("separator")).toHaveClass(
+      "h-full",
+      "w-px",
+      "bg-border-default",
+    );
+  });
+
   it("renders a label between two line segments when given one", () => {
     render(<Divider label="OR" />);
     expect(screen.getByText("OR")).toBeInTheDocument();

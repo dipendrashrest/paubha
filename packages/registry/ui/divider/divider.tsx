@@ -1,5 +1,25 @@
 import { cn } from "@paubha/registry/lib/cn";
+import { cva } from "class-variance-authority";
 import type * as React from "react";
+
+// Figma "Divider" (6087:36806): a 1px line bound to border/default, in
+// Horizontal and Vertical orientations — nothing else.
+const lineVariants = cva("shrink-0 bg-border-default", {
+  variants: {
+    orientation: {
+      horizontal: "h-px w-full",
+      vertical: "h-full w-px",
+    },
+  },
+  defaultVariants: { orientation: "horizontal" },
+});
+
+const segmentVariants = cva("flex-1 bg-border-default", {
+  variants: {
+    orientation: { horizontal: "h-px", vertical: "w-px" },
+  },
+  defaultVariants: { orientation: "horizontal" },
+});
 
 export interface DividerProps extends React.ComponentPropsWithRef<"div"> {
   orientation?: "horizontal" | "vertical";
@@ -8,8 +28,9 @@ export interface DividerProps extends React.ComponentPropsWithRef<"div"> {
 }
 
 /**
- * role=separator · aria-orientation set for vertical dividers · decorative by default
- * (structural, non-interactive)
+ * role=separator · aria-orientation=vertical on vertical dividers (horizontal
+ * is the implicit default) · structural and non-interactive, so not focusable
+ * and no focus state · pass aria-hidden for a purely decorative line
  */
 export function Divider({
   ref,
@@ -28,11 +49,7 @@ export function Divider({
         ref={ref}
         role="separator"
         aria-orientation={isVertical ? "vertical" : undefined}
-        className={cn(
-          isVertical ? "h-full w-px" : "h-px w-full",
-          "shrink-0 bg-border-default",
-          className,
-        )}
+        className={cn(lineVariants({ orientation }), className)}
         {...props}
       />
     );
@@ -52,15 +69,11 @@ export function Divider({
       )}
       {...props}
     >
-      <div
-        className={cn("flex-1 bg-border-default", isVertical ? "w-px" : "h-px")}
-      />
+      <div className={segmentVariants({ orientation })} />
       <span className="shrink-0 text-ui-xs font-medium text-fg-tertiary">
         {label}
       </span>
-      <div
-        className={cn("flex-1 bg-border-default", isVertical ? "w-px" : "h-px")}
-      />
+      <div className={segmentVariants({ orientation })} />
     </div>
   );
 }

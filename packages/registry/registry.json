@@ -234,7 +234,7 @@
       "type": "registry:ui",
       "title": "Divider",
       "description": "Visual separator between content sections, horizontal or vertical with an optional label.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         {
