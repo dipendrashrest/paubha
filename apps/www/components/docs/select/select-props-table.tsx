@@ -5,7 +5,7 @@ import { PropsTable } from "../_shared/props-table";
 const selectTriggerProps = definePropDefs<SelectTriggerProps>()([
   {
     name: "size",
-    type: '"sm" | "md" | "lg" | "xl"',
+    type: '"sm" | "md" | "lg" | "xl" | "2xl"',
     defaultValue: '"md"',
     description: "Density: 32 / 40 / 48 / 56px trigger height.",
   },

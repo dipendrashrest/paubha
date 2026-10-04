@@ -9,7 +9,7 @@ import {
 } from "@paubha/registry/ui/select";
 import { ComponentPlayground } from "../_shared/component-playground";
 
-const sizes = ["sm", "md", "lg", "xl"] as const;
+const sizes = ["sm", "md", "lg", "xl", "2xl"] as const;
 
 function Frameworks() {
   return (

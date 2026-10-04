@@ -400,7 +400,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Dropdown selection input with sm/md/lg/xl sizes and an error state, built on Radix UI.",
+      "description": "Dropdown selection input with sm/md/lg/xl/2xl sizes and an error state, built on Radix UI.",
       "dependencies": [
         "@radix-ui/react-select",
         "class-variance-authority",
@@ -424,7 +424,7 @@
       "name": "select-v2",
       "type": "registry:ui",
       "title": "Select V2 (Restrained)",
-      "description": "Additive, visually-quieter Select variant: ghost/transparent trigger chrome by default, gaining a border only on hover, open, focus, or error. Same sm/md/lg/xl sizes and Radix UI primitive as Select; does not replace it.",
+      "description": "Restrained Select variant: same sizes, tokens, and states as Select plus a hover state (bg-secondary + border-strong). Built on the same Radix UI primitive.",
       "dependencies": [
         "@radix-ui/react-select",
         "class-variance-authority",

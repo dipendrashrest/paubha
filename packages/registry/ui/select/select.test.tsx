@@ -128,6 +128,26 @@ describe("Select", () => {
     expect(ref.current).toBeInstanceOf(HTMLButtonElement);
   });
 
+  it("applies the 2xl size (64px, 24px chevron)", () => {
+    render(
+      <Select>
+        <SelectTrigger aria-label="Plan" size="2xl">
+          <SelectValue placeholder="Plan" />
+        </SelectTrigger>
+      </Select>,
+    );
+    const trigger = screen.getByRole("combobox", { name: "Plan" });
+    expect(trigger.className).toContain("h-16");
+    expect(trigger.className).toContain("[&>svg]:size-6");
+  });
+
+  it("has no axe violations when disabled or in error", async () => {
+    const { container, rerender } = render(<BasicSelect disabled />);
+    expect(await axe(container)).toHaveNoViolations();
+    rerender(<BasicSelect error />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("has no axe violations while open", async () => {
     const user = userEvent.setup();
     const { container } = render(<BasicSelect />);
@@ -170,11 +190,19 @@ describe("SelectV2 (restrained)", () => {
     ).toHaveTextContent("Select a framework");
   });
 
-  it("is transparent/borderless by default (ghost chrome), unlike the original Select", () => {
+  it("is bordered at rest and adds a hover state (bg/secondary + border/strong)", () => {
     render(<RestrainedSelect />);
     const trigger = screen.getByRole("combobox", { name: "Framework" });
-    expect(trigger.className).toContain("border-transparent");
-    expect(trigger.className).toContain("bg-transparent");
+    expect(trigger.className).toContain("border-border-default");
+    expect(trigger.className).toContain("hover:bg-bg-secondary");
+    expect(trigger.className).toContain("hover:border-border-strong");
+  });
+
+  it("has no axe violations when disabled or in error", async () => {
+    const { container, rerender } = render(<RestrainedSelect disabled />);
+    expect(await axe(container)).toHaveNoViolations();
+    rerender(<RestrainedSelect error />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it("opens the listbox and selects an option, calling onValueChange", async () => {
