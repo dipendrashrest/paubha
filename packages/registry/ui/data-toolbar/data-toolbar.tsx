@@ -11,8 +11,10 @@ export interface DataToolbarProps extends React.ComponentPropsWithRef<"div"> {
 }
 
 /**
- * Table / list toolbar · search + filters + actions · layout only ·
- * slotted controls must carry glow-focus
+ * Table / list toolbar · layout only (no role added) · search (min 12rem,
+ * flexes) · filters · right-aligned actions · wraps on narrow widths ·
+ * Tab order follows visual order (search, filters, children, actions) ·
+ * slotted controls must carry shadow-glow-focus
  */
 export function DataToolbar({
   ref,

@@ -15,6 +15,21 @@ describe("DataToolbar", () => {
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
+  it("keeps DOM order and merges className", () => {
+    render(
+      <DataToolbar
+        data-testid="t"
+        className="custom"
+        search={<input aria-label="Search" />}
+        filters={<button type="button">Status</button>}
+        actions={<button type="button">Add</button>}
+      />,
+    );
+    expect(screen.getByTestId("t")).toHaveClass("custom", "flex-wrap");
+    const names = screen.getAllByRole("button").map((b) => b.textContent);
+    expect(names).toEqual(["Status", "Add"]);
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <DataToolbar
