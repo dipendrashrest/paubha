@@ -54,20 +54,78 @@ describe("Table", () => {
     expect(screen.getByText("Alex Johnson")).toBeInTheDocument();
   });
 
-  it("applies striped classes to even rows when variant=striped", () => {
+  it("fills odd body rows when variant=striped, never the header row", () => {
     render(<BasicTable variant="striped" />);
-    const rows = screen.getAllByRole("row");
-    expect(rows[2]).toHaveClass("even:bg-bg-secondary");
+    const [headerRow, firstRow] = screen.getAllByRole("row");
+    expect(firstRow).toHaveClass("odd:bg-bg-secondary");
+    expect(headerRow).not.toHaveClass("odd:bg-bg-secondary", "bg-bg-primary");
   });
 
-  it("applies a bordered, rounded wrapper when variant=bordered", () => {
-    const { container } = render(<BasicTable variant="bordered" />);
-    expect(container.firstChild).toHaveClass("rounded-md", "border");
+  it("gives body rows the bg-primary surface and header cells the ui-sm tertiary style", () => {
+    render(<BasicTable />);
+    const [headerRow, firstRow] = screen.getAllByRole("row");
+    expect(firstRow).toHaveClass("bg-bg-primary", "border-border-default");
+    expect(headerRow?.parentElement).toHaveClass("bg-bg-secondary");
+    expect(screen.getAllByRole("columnheader")[0]).toHaveClass(
+      "h-11",
+      "px-5",
+      "text-ui-sm",
+      "font-medium",
+      "text-fg-tertiary",
+    );
+    expect(screen.getByText("Alex Johnson")).toHaveClass(
+      "h-16",
+      "px-5",
+      "text-body-md",
+    );
   });
 
-  it("clips vertical overflow on the bordered wrapper so the header background can't square off past the rounded corners", () => {
-    const { container } = render(<BasicTable variant="bordered" />);
-    expect(container.firstChild).toHaveClass("overflow-y-hidden");
+  it("wraps every variant in an elevated, bordered, radius-sm container", () => {
+    for (const variant of ["default", "striped", "bordered"] as const) {
+      const { container, unmount } = render(<BasicTable variant={variant} />);
+      expect(container.firstChild).toHaveClass(
+        "rounded-sm",
+        "border",
+        "bg-bg-elevated",
+        "overflow-y-hidden",
+        variant === "bordered"
+          ? "border-border-strong"
+          : "border-border-default",
+      );
+      unmount();
+    }
+  });
+
+  it("draws strong column dividers on every cell but the last when variant=bordered", () => {
+    render(<BasicTable variant="bordered" />);
+    const [first] = screen.getAllByRole("columnheader");
+    expect(first).toHaveClass(
+      "border-r",
+      "border-border-strong",
+      "last:border-r-0",
+    );
+    expect(screen.getByText("Alex Johnson")).toHaveClass("border-r");
+    expect(screen.getAllByRole("row")[1]).toHaveClass("border-border-strong");
+  });
+
+  it("does not draw column dividers outside the bordered variant", () => {
+    render(<BasicTable />);
+    expect(screen.getByText("Alex Johnson")).not.toHaveClass("border-r");
+  });
+
+  it("lets className override row and cell styles", () => {
+    render(
+      <Table aria-label="Override">
+        <TableBody>
+          <TableRow className="bg-bg-tertiary">
+            <TableCell className="text-fg-secondary">A</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>,
+    );
+    expect(screen.getByRole("row")).toHaveClass("bg-bg-tertiary");
+    expect(screen.getByRole("row")).not.toHaveClass("bg-bg-primary");
+    expect(screen.getByText("A")).not.toHaveClass("text-fg-primary");
   });
 
   it("forwards a ref to the underlying table element", () => {

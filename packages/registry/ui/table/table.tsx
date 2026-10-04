@@ -5,23 +5,28 @@ import * as React from "react";
 export type TableVariant = "default" | "striped" | "bordered";
 
 const TableVariantContext = React.createContext<TableVariant>("default");
+/** True inside `TableHeader`, so header rows keep the thead's `bg-secondary` fill. */
+const TableHeaderContext = React.createContext(false);
 
-const wrapperVariants = cva("w-full overflow-x-auto", {
-  variants: {
-    variant: {
-      default: "",
-      striped: "",
-      // Figma's bordered variant wraps the table in `overflow-clip` so the header's
-      // solid background doesn't square off past the rounded corners. `overflow-x-auto`
-      // (base) only clips horizontally, so pair it with `overflow-y-hidden` here rather
-      // than `overflow-hidden`, which would also kill the horizontal scroll behavior.
-      bordered: "overflow-y-hidden rounded-md border border-border-default",
+// Every Figma variant wraps the table in an elevated, 1px-bordered, radius-sm (8px)
+// container that clips its contents (`overflow-clip`). `overflow-x-auto` keeps wide
+// tables horizontally scrollable, so pair it with `overflow-y-hidden` rather than
+// `overflow-hidden`, which would also kill the horizontal scroll.
+const wrapperVariants = cva(
+  "w-full overflow-x-auto overflow-y-hidden rounded-sm border bg-bg-elevated",
+  {
+    variants: {
+      variant: {
+        default: "border-border-default",
+        striped: "border-border-default",
+        bordered: "border-border-strong",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+);
 
 export interface TableProps
   extends React.ComponentPropsWithRef<"table">,
@@ -29,7 +34,9 @@ export interface TableProps
 
 /**
  * Native table semantics · TableHead renders th scope="col" · keyboard navigation is the
- * browser's native table/cell tabbing, no custom handling needed for a static table
+ * browser's native table/cell tabbing, no custom handling needed for a static table ·
+ * name the table via aria-label or TableCaption · interactive cell content (buttons,
+ * links) carries its own glow-focus ring
  */
 export function Table({
   ref,
@@ -56,7 +63,11 @@ export function TableHeader({
   className,
   ...props
 }: React.ComponentPropsWithRef<"thead">) {
-  return <thead className={cn("bg-bg-secondary", className)} {...props} />;
+  return (
+    <TableHeaderContext.Provider value={true}>
+      <thead className={cn("bg-bg-secondary", className)} {...props} />
+    </TableHeaderContext.Provider>
+  );
 }
 
 TableHeader.displayName = "TableHeader";
@@ -79,13 +90,19 @@ export interface TableRowProps extends React.ComponentPropsWithRef<"tr"> {}
 
 export function TableRow({ ref, className, ...props }: TableRowProps) {
   const variant = React.useContext(TableVariantContext);
+  const inHeader = React.useContext(TableHeaderContext);
 
   return (
     <tr
       ref={ref}
       className={cn(
-        "border-b border-border-default",
-        variant === "striped" && "even:bg-bg-secondary",
+        "border-b",
+        variant === "bordered"
+          ? "border-border-strong"
+          : "border-border-default",
+        !inHeader && "bg-bg-primary",
+        // Figma's striped variant fills the 1st, 3rd, … body rows.
+        !inHeader && variant === "striped" && "odd:bg-bg-secondary",
         className,
       )}
       {...props}
@@ -95,15 +112,21 @@ export function TableRow({ ref, className, ...props }: TableRowProps) {
 
 TableRow.displayName = "TableRow";
 
+/** Bordered variant draws a vertical divider after every column except the last. */
+const columnDivider = "border-r border-border-strong last:border-r-0";
+
 export function TableHead({
   className,
   ...props
 }: React.ComponentPropsWithRef<"th">) {
+  const variant = React.useContext(TableVariantContext);
+
   return (
     <th
       scope="col"
       className={cn(
-        "px-4 py-3 text-ui-sm font-semibold whitespace-nowrap text-fg-primary",
+        "h-11 px-5 text-ui-sm font-medium whitespace-nowrap text-fg-tertiary",
+        variant === "bordered" && columnDivider,
         className,
       )}
       {...props}
@@ -117,9 +140,15 @@ export function TableCell({
   className,
   ...props
 }: React.ComponentPropsWithRef<"td">) {
+  const variant = React.useContext(TableVariantContext);
+
   return (
     <td
-      className={cn("px-4 py-3 text-ui-sm text-fg-primary", className)}
+      className={cn(
+        "h-16 px-5 text-body-md text-fg-primary",
+        variant === "bordered" && columnDivider,
+        className,
+      )}
       {...props}
     />
   );

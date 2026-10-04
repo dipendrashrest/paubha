@@ -7,7 +7,8 @@ const tableProps = definePropDefs<TableProps>()([
     name: "variant",
     type: '"default" | "striped" | "bordered"',
     defaultValue: '"default"',
-    description: "Row alternation and outer border/rounded treatment.",
+    description:
+      "default: row dividers only · striped: fills odd body rows · bordered: strong outer, row, and column dividers. Every variant sits in a rounded, bordered container.",
   },
 ]);
 

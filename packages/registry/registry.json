@@ -721,7 +721,7 @@
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
-      "description": "A structured data display component with rows and columns.",
+      "description": "A data table for structured content, in default, striped, and bordered variants.",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [

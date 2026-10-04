@@ -1,6 +1,6 @@
 ---
 title: Table
-description: A structured data display component with rows and columns, supporting headers, body cells, and optional sorting or selection states.
+description: A data table for structured content, in default, striped, and bordered variants.
 ---
 
 <TableHero />
@@ -29,6 +29,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
   </TableBody>
 </Table>
 ```
+
+Header cells use `ui-sm` medium in `fg-tertiary`; body cells use `body-md` in `fg-primary`. Pass `className="text-fg-secondary"` on supporting columns (email, role) to match the Figma spec.
 
 ## Examples
 
