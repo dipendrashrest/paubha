@@ -17,6 +17,21 @@ describe("BlogCard", () => {
     expect(screen.getByText("Own the source.")).toBeInTheDocument();
   });
 
+  it("renders cover and a linked title", async () => {
+    const { container } = render(
+      <BlogCard
+        cover={<img src="/x.png" alt="" />}
+        href="/post"
+        title="Linked"
+      />,
+    );
+    expect(screen.getByRole("link", { name: "Linked" })).toHaveAttribute(
+      "href",
+      "/post",
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <BlogCardGrid>

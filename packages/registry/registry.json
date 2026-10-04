@@ -1127,7 +1127,7 @@
       "name": "blog-card",
       "type": "registry:ui",
       "title": "Blog Card",
-      "description": "Post cards for blog indexes — tag, title, excerpt, and author meta.",
+      "description": "Post cards for blog indexes — cover, tag, linked title, excerpt, and author meta.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["card"],
       "files": [
