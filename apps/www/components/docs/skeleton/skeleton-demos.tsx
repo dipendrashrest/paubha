@@ -15,13 +15,13 @@ export function SkeletonVariants() {
   return (
     <ComponentPlayground
       code={`<Skeleton className="w-48" />
-<Skeleton variant="circle" className="size-12" />
-<Skeleton variant="rectangle" className="h-24 w-48" />`}
+<Skeleton variant="circle" />
+<Skeleton variant="rectangle" className="w-48" />`}
     >
       <div className="flex flex-col items-start gap-4">
         <Skeleton className="w-48" />
-        <Skeleton variant="circle" className="size-12" />
-        <Skeleton variant="rectangle" className="h-24 w-48" />
+        <Skeleton variant="circle" />
+        <Skeleton variant="rectangle" className="w-48" />
       </div>
     </ComponentPlayground>
   );

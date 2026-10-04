@@ -15,6 +15,26 @@ describe("Skeleton", () => {
     expect(container.firstChild).toHaveClass("h-4", "w-full");
   });
 
+  it("text variant uses radius-sm", () => {
+    const { container } = render(<Skeleton />);
+    expect(container.firstChild).toHaveClass("rounded-sm");
+  });
+
+  it("circle and rectangle get Figma default sizes", () => {
+    const { container, rerender } = render(<Skeleton variant="circle" />);
+    expect(container.firstChild).toHaveClass("size-12");
+    rerender(<Skeleton variant="rectangle" />);
+    expect(container.firstChild).toHaveClass("h-30", "w-full");
+  });
+
+  it("className overrides default size", () => {
+    const { container } = render(
+      <Skeleton variant="circle" className="size-10" />,
+    );
+    expect(container.firstChild).toHaveClass("size-10");
+    expect(container.firstChild).not.toHaveClass("size-12");
+  });
+
   it("renders a circle variant with rounded-full", () => {
     const { container } = render(
       <Skeleton variant="circle" className="size-12" />,
@@ -22,11 +42,11 @@ describe("Skeleton", () => {
     expect(container.firstChild).toHaveClass("rounded-full", "size-12");
   });
 
-  it("renders a rectangle variant with rounded-sm", () => {
+  it("renders a rectangle variant with rounded-md", () => {
     const { container } = render(
       <Skeleton variant="rectangle" className="h-24 w-full" />,
     );
-    expect(container.firstChild).toHaveClass("rounded-sm");
+    expect(container.firstChild).toHaveClass("rounded-md");
   });
 
   it("is animated via animate-pulse", () => {

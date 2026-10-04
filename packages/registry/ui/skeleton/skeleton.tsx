@@ -5,9 +5,9 @@ import type * as React from "react";
 const skeletonVariants = cva("animate-pulse bg-bg-tertiary", {
   variants: {
     variant: {
-      text: "h-4 w-full rounded-xs",
-      circle: "rounded-full",
-      rectangle: "rounded-sm",
+      text: "h-4 w-full rounded-sm",
+      circle: "size-12 rounded-full",
+      rectangle: "h-30 w-full rounded-md",
     },
   },
   defaultVariants: {
@@ -24,6 +24,9 @@ export interface SkeletonProps extends React.ComponentPropsWithRef<"div"> {
 }
 
 /**
+ * Figma defaults: text 16px line (radius-sm) · circle 48px (radius-full) ·
+ * rectangle 120px tall (radius-md). Override any size via className.
+ *
  * aria-hidden=true (purely decorative) · wrap it in a container with aria-busy=true while
  * loading · announce the swap to real content once it's ready (e.g. via a live region)
  */

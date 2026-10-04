@@ -8,7 +8,7 @@ const skeletonProps = definePropDefs<SkeletonProps>()([
     type: '"text" | "circle" | "rectangle"',
     defaultValue: '"text"',
     description:
-      "Text gets a real default size (h-4 w-full, one line of text); circle and rectangle have no default size, so size them via className.",
+      "Shape and default size: text is one 16px line (h-4 w-full, radius-sm), circle is 48px (size-12, fully round), rectangle is 120px tall (h-30 w-full, radius-md). Override the size via className.",
   },
 ]);
 
