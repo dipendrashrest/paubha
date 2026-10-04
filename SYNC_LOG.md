@@ -321,3 +321,16 @@ OPEN QUESTIONS (pilots)
 - Breadcrumbs Figma symbols render a doubled separator ("Page > > Page") — likely a Figma bug; code renders one.
 - Button: destructive md instances in Figma use `ui/md` 14px (non-destructive md is `ui/lg` 16px) — code keeps size-driven type. `disabled:shadow-none` on primary is an assumption.
 - Avatar: Icon type has no filled circle in Figma (unlike Initials/Image) — matched literally; Initials+Online variants bind primitive `success/500` instead of `bg/success-solid` (code uses the semantic token); profile-photo initials don't scale (28/32px at all sizes) — matched literally.
+
+### Components — batch 2: inputs (2026-10-05)
+- **Input** — follows the shared 32/40/48/56 scale + new `2xl` (64); body-* regular text; `leadingText`, `leadingAddon`/`trailingAddon` slots; disabled → bg-disabled/border-disabled. CLAUDE.md density note updated.
+- **Field** — new `disabled` (also inferred from the child control).
+- **Textarea** — body-sm/body-md type (min-heights 34/42/50/58 already matched — the earlier min-height open question is ✅ closed); hover border-strong, active border-brand, disabled bg-disabled.
+- **Select** — `2xl`; Figma padding/type/chevron sizes per size; disabled tokens; 2px focus border. **SelectV2 now has a real Figma spec** ("Select / v2 — restrained", 6318:8939) — the earlier "built without spec" question is ✅ closed (V2 now bordered at rest with a hover state).
+- **Tag Input** — chip + text scale per size; hover; 1px error border; content-sized container.
+- **Verification Code Input** — 36×36 cells; new `errorMessage`.
+
+OPEN QUESTIONS (batch 2)
+- Several Figma focus frames (Select v2, Tag Input) show no glow — code keeps `glow-focus` per CLAUDE.md.
+- Tag Input: Figma disabled looks identical to default; sm chip uses an 11px size with no type token.
+- Input: Figma notes mention a trailing button (e.g. Search) with no variant; not built.
