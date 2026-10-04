@@ -409,3 +409,15 @@ OPEN QUESTIONS (batch 6)
 - Tabs icon gap is 0 in Figma (code 6px). Kbd: no 11px type token. Dropdown Menu: off-page duplicate set 6347:28872.
 
 **Base components: all 39 synced.**
+
+### Patterns — group 1 (2026-10-05)
+Activity Feed (`divided`, semibold title, primary timestamp), Announcement Bar (semantic `<section>`, 12px padding, medium text), App Nav (Figma top bar/sidebar/icon-nav spacing, no underline indicator), Auth Card (32px padding, radius-md, shadow-sm, centered footer), Blog Card (`cover` slot, linked title focus stop, default Card variant), Calendar (Figma sizes, real APG date grid with roving tabindex, continuous range strip, short mini title "Jun 2026"), Card Header (border/bg, padding variants, ui-lg title), Chart (semantic series colours; gray series now fg-tertiary), CLI Snippet (`showCopy` copy button, wrapping mono command).
+
+OPEN QUESTIONS (patterns group 1)
+- Blog Card frame binds `radius/md` (12) while Card (8px per its Figma frame) — reconcile in Figma.
+- Announcement Bar: Figma shows a styled action link with arrow + "New" pill; code leaves these to the `action`/`badge` slots.
+- Calendar: Figma month shows only subtle states (today = brand-subtle; single selected kept solid); week view starts Monday vs Sunday-start in code (kept for API stability).
+- Card Header (pattern) exports `CardHeader`, which now clashes by name with ui/card's `CardHeader` if both are imported in one module.
+- App Nav: Figma frame names don't match contents; `Sidebar/Documentation` (6588:308) not implemented.
+- Chart: Line/Area Figma nodes not fetched (colours only).
+- CLI Snippet: Figma `showCopy` default true, code false (compat). Code-snippet syntax variables still have no code tokens.
