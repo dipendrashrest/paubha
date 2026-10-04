@@ -6,20 +6,20 @@ const textareaVariants = cva(
   [
     "w-full resize-y rounded-sm border border-border-default bg-bg-primary text-fg-primary transition-colors",
     "placeholder:text-fg-tertiary",
-    "focus:border-border-brand focus:shadow-[var(--shadow-glow-focus)] focus:outline-none",
-    "disabled:cursor-not-allowed disabled:bg-bg-secondary disabled:text-fg-disabled",
+    "hover:border-border-strong active:border-border-brand",
+    "focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:border-border-default disabled:bg-bg-disabled disabled:text-fg-disabled disabled:placeholder:text-fg-disabled",
     "aria-invalid:border-border-error aria-invalid:text-fg-error",
   ].join(" "),
   {
     variants: {
       size: {
-        // Min-heights match Figma's published Textarea (node 2121:15056)
-        // exactly: sm/md/lg/xl = 34/42/50/58px, derived from each size's own
-        // padding + line-height on the shared 32/40/48/56 density scale.
-        sm: "min-h-[34px] px-3 py-1.5 text-ui-md",
-        md: "min-h-[42px] px-4 py-2 text-ui-lg",
-        lg: "min-h-[50px] px-5 py-3 text-ui-lg",
-        xl: "min-h-[58px] px-6 py-4 text-ui-lg",
+        // Figma is source of truth (Paubha-UI node 2121:15056): min-heights
+        // sm/md/lg/xl = 34/42/50/58px = padding + one line of body-sm/body-md.
+        sm: "min-h-[34px] px-3 py-1.5 text-body-sm",
+        md: "min-h-[42px] px-4 py-2 text-body-md",
+        lg: "min-h-[50px] px-5 py-3 text-body-md",
+        xl: "min-h-[58px] px-6 py-4 text-body-md",
       },
     },
     defaultVariants: {
@@ -38,11 +38,10 @@ export interface TextareaProps
 }
 
 /**
- * role=textbox, multiline · requires an associated label via Field · aria-invalid=true on
- * error · resizable via the native drag handle · Figma's published Textarea (node
- * 2121:15056) confirms all 4 sizes (sm/md/lg/xl) are real, not just sm/md as an earlier
- * prose spec claimed; its real state axis is default/hover/focus/active/disabled/error
- * (no distinct "filled" state exists despite doc prose mentioning one)
+ * role=textbox, multiline · requires an associated label via Field · Tab focuses, glow-focus
+ * ring visible · aria-invalid=true on error · disabled prevents interaction · resizable via
+ * the native drag handle. Figma (node 2121:15056): sizes sm/md/lg/xl, states
+ * default/hover/focus/active/disabled/error.
  */
 export function Textarea({
   ref,

@@ -61,7 +61,34 @@ describe("Textarea", () => {
   it("shows the focus glow-focus shadow class", () => {
     render(<Textarea aria-label="Bio" />);
     expect(screen.getByRole("textbox")).toHaveClass(
-      "focus:shadow-[var(--shadow-glow-focus)]",
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("matches Figma's per-size min-heights and body type", () => {
+    const { rerender } = render(<Textarea size="sm" aria-label="Bio" />);
+    expect(screen.getByRole("textbox")).toHaveClass(
+      "min-h-[34px]",
+      "text-body-sm",
+    );
+    for (const [size, h] of [
+      ["md", 42],
+      ["lg", 50],
+      ["xl", 58],
+    ] as const) {
+      rerender(<Textarea size={size} aria-label="Bio" />);
+      expect(screen.getByRole("textbox")).toHaveClass(
+        `min-h-[${h}px]`,
+        "text-body-md",
+      );
+    }
+  });
+
+  it("uses the disabled background and strong hover border", () => {
+    render(<Textarea aria-label="Bio" />);
+    expect(screen.getByRole("textbox")).toHaveClass(
+      "disabled:bg-bg-disabled",
+      "hover:border-border-strong",
     );
   });
 
