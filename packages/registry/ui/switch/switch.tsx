@@ -24,7 +24,8 @@ export interface SwitchProps
  * track was previously bg/switch-off, unchanged from its default: a real, confirmed
  * bug). Disabled thumb -> bg/secondary in both states (was always bg/primary
  * regardless of disabled), applied via `group-disabled:` since the thumb is a plain
- * span, not a form control that can match `:disabled` itself.
+ * span, not a form control that can match `:disabled` itself. Disabled thumb drops
+ * shadow/sm (Figma: no effect on disabled thumbs). Label = body/sm (14/22).
  */
 export function Switch({ ref, className, id, label, ...props }: SwitchProps) {
   const generatedId = React.useId();
@@ -46,13 +47,13 @@ export function Switch({ ref, className, id, label, ...props }: SwitchProps) {
         )}
         {...props}
       >
-        <SwitchPrimitive.Thumb className="size-5 shrink-0 rounded-full bg-bg-primary shadow-sm group-disabled:bg-bg-secondary" />
+        <SwitchPrimitive.Thumb className="size-5 shrink-0 rounded-full bg-bg-primary shadow-sm group-disabled:bg-bg-secondary group-disabled:shadow-none" />
       </SwitchPrimitive.Root>
       {label ? (
         <label
           htmlFor={controlId}
           className={cn(
-            "select-none text-ui-md font-normal text-fg-primary",
+            "select-none text-body-sm font-normal text-fg-primary",
             "peer-disabled:cursor-not-allowed peer-disabled:text-fg-disabled",
           )}
         >

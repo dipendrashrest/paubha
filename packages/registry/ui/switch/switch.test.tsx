@@ -102,5 +102,16 @@ describe("Switch", () => {
 
     rerender(<Switch label="Notifications" checked={false} disabled />);
     expect(await axe(container)).toHaveNoViolations();
+
+    rerender(<Switch label="Notifications" checked disabled />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("uses body/sm label type and drops the thumb shadow when disabled", () => {
+    const { container } = render(<Switch label="Notifications" disabled />);
+    expect(screen.getByText("Notifications")).toHaveClass("text-body-sm");
+    expect(container.querySelector("[data-state] > span")).toHaveClass(
+      "group-disabled:shadow-none",
+    );
   });
 });
