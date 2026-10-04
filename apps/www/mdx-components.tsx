@@ -210,6 +210,7 @@ import {
   InlineCtaHero,
 } from "@/components/docs/inline-cta/inline-cta-demos";
 import {
+  InputAddons,
   InputHero,
   InputSizes,
   InputStates,
@@ -441,6 +442,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     InputPropsTable,
     InputSizes,
     InputStates,
+    InputAddons,
     InputWithIcons,
 
     // Field

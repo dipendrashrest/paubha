@@ -1,10 +1,10 @@
 "use client";
 
 import { Input } from "@paubha/registry/ui/input";
-import { Mail, Search } from "lucide-react";
+import { CreditCard, Mail, Search } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
-const sizes = ["sm", "md", "lg", "xl"] as const;
+const sizes = ["sm", "md", "lg", "xl", "2xl"] as const;
 
 export function InputHero() {
   return (
@@ -39,6 +39,52 @@ export function InputWithIcons() {
       <div className="flex w-full max-w-xs flex-col gap-3">
         <Input leadingIcon={<Search />} placeholder="Search..." />
         <Input trailingIcon={<Mail />} placeholder="you@example.com" />
+      </div>
+    </ComponentPlayground>
+  );
+}
+
+export function InputAddons() {
+  return (
+    <ComponentPlayground
+      code={`<Input leadingText="https://" placeholder="example.com" aria-label="Website" />
+<Input
+  leadingAddon={
+    <select aria-label="Currency" className="bg-transparent text-body-sm text-fg-secondary outline-none">
+      <option>USD</option>
+      <option>EUR</option>
+    </select>
+  }
+  placeholder="Enter amount"
+  aria-label="Amount"
+/>
+<Input leadingIcon={<CreditCard />} placeholder="1234 1234 1234 1234" aria-label="Card number" />`}
+    >
+      <div className="flex w-full max-w-xs flex-col gap-3">
+        <Input
+          leadingText="https://"
+          placeholder="example.com"
+          aria-label="Website"
+        />
+        <Input
+          leadingAddon={
+            <select
+              aria-label="Currency"
+              className="bg-transparent text-body-sm text-fg-secondary outline-none"
+            >
+              <option>USD</option>
+              <option>EUR</option>
+            </select>
+          }
+          placeholder="Enter amount"
+          aria-label="Amount"
+        />
+        <Input
+          leadingIcon={<CreditCard />}
+          placeholder="1234 1234 1234 1234"
+          aria-label="Card number"
+          inputMode="numeric"
+        />
       </div>
     </ComponentPlayground>
   );

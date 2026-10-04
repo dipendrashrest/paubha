@@ -99,6 +99,43 @@ describe("Input", () => {
     );
   });
 
+  it("uses Figma's per-size heights, including 2xl", () => {
+    const { rerender } = render(<Input size="sm" aria-label="Email" />);
+    const wrapper = () => screen.getByRole("textbox").parentElement;
+    expect(wrapper()).toHaveClass("h-8");
+    rerender(<Input size="xl" aria-label="Email" />);
+    expect(wrapper()).toHaveClass("h-14");
+    rerender(<Input size="2xl" aria-label="Email" />);
+    expect(wrapper()).toHaveClass("h-16", "px-8");
+  });
+
+  it("uses disabled border and background tokens", () => {
+    render(<Input disabled aria-label="Email" />);
+    expect(screen.getByRole("textbox").parentElement).toHaveClass(
+      "has-[:disabled]:bg-bg-disabled",
+      "has-[:disabled]:border-border-disabled",
+    );
+  });
+
+  it("renders leadingText as a non-editable prefix and addon slots as separate controls", () => {
+    render(
+      <Input
+        leadingText="https://"
+        trailingAddon={
+          <select aria-label="Currency">
+            <option>USD</option>
+          </select>
+        }
+        aria-label="Website"
+      />,
+    );
+    expect(screen.getByText("https://")).toHaveClass("bg-bg-secondary");
+    expect(screen.getByRole("textbox")).toHaveValue("");
+    expect(
+      screen.getByRole("combobox", { name: "Currency" }),
+    ).toBeInTheDocument();
+  });
+
   it("has no axe violations across default, error, and disabled states", async () => {
     const { container, rerender } = render(<Input aria-label="Email" />);
     expect(await axe(container)).toHaveNoViolations();
@@ -107,6 +144,19 @@ describe("Input", () => {
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<Input disabled aria-label="Email" />);
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(
+      <Input
+        leadingText="https://"
+        leadingAddon={
+          <select aria-label="Currency">
+            <option>USD</option>
+          </select>
+        }
+        aria-label="Website"
+      />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

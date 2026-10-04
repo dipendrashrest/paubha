@@ -5,9 +5,26 @@ import { PropsTable } from "../_shared/props-table";
 const inputProps = definePropDefs<InputProps>()([
   {
     name: "size",
-    type: '"sm" | "md" | "lg" | "xl"',
+    type: '"sm" | "md" | "lg" | "xl" | "2xl"',
     defaultValue: '"md"',
-    description: "Density: 32 / 40 / 48 / 56px wrapper height.",
+    description: "Density: 32 / 40 / 48 / 56 / 64px wrapper height.",
+  },
+  {
+    name: "leadingText",
+    type: "ReactNode",
+    description:
+      'Fixed, non-editable prefix before the value (e.g. "https://").',
+  },
+  {
+    name: "leadingAddon",
+    type: "ReactNode",
+    description:
+      "Separate control before the value, such as a currency selector. Label it.",
+  },
+  {
+    name: "trailingAddon",
+    type: "ReactNode",
+    description: "Separate control after the value. Label it.",
   },
   {
     name: "error",

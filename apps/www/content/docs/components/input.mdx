@@ -32,6 +32,16 @@ attributes. Input itself is deliberately just the control.
 
 <InputWithIcons />
 
+### Add-ons
+
+`leadingText` shows a fixed prefix such as a URL scheme. `leadingAddon` and
+`trailingAddon` hold a separate control, such as a currency selector — give
+it its own accessible label. Composed types are designed for `sm` and `md`;
+`2xl` is for the plain input only. For multiple values as tags, use
+[Tag Input](/docs/components/tag-input).
+
+<InputAddons />
+
 ### States
 
 <InputStates />
@@ -61,6 +71,10 @@ attributes. Input itself is deliberately just the control.
       <strong>Focus.</strong> The wrapper shows the <code>glow-focus</code> ring on{" "}
       <code>focus-within</code>, so focusing the inner input rings the whole
       bordered box, not just the text.
+    </li>
+    <li>
+      <strong>Add-ons.</strong> Leading text is presentational and not part of
+      the value. Add-on controls are separate tab stops with their own labels.
     </li>
   </ul>
 </A11yCallout>
