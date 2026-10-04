@@ -10,7 +10,8 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        info: "bg-bg-info-subtle text-fg-info",
+        // Figma binds the Info title/icon to fg/brand (not fg/info).
+        info: "bg-bg-info-subtle text-fg-brand",
         success: "bg-bg-success-subtle text-fg-success",
         warning: "bg-bg-warning-subtle text-fg-warning",
         error: "bg-bg-error-subtle text-fg-error",
@@ -21,6 +22,16 @@ const alertVariants = cva(
     },
   },
 );
+
+// Figma `_iconChip`: 32px pill, space/sm (6px) padding, bound to the *-100
+// primitive step — no semantic chip token exists yet, so the primitive var is
+// referenced directly (TODO: replace with a semantic token once one ships).
+const chipByVariant = {
+  info: "bg-[var(--info-100)]",
+  success: "bg-[var(--success-100)]",
+  warning: "bg-[var(--warning-100)]",
+  error: "bg-[var(--error-100)]",
+} as const;
 
 export type AlertVariant = NonNullable<
   VariantProps<typeof alertVariants>["variant"]
@@ -79,7 +90,15 @@ export function Alert({
       className={cn(alertVariants({ variant }), className)}
       {...props}
     >
-      <VariantIcon aria-hidden="true" className="size-5 shrink-0" />
+      <span
+        data-slot="alert-icon"
+        className={cn(
+          "flex size-8 shrink-0 items-center justify-center rounded-full p-1.5",
+          chipByVariant[variant],
+        )}
+      >
+        <VariantIcon aria-hidden="true" className="size-5" />
+      </span>
       <div className="flex min-w-0 flex-1 flex-col items-start gap-1">
         {title ? (
           <p className="w-full text-ui-md font-medium">{title}</p>

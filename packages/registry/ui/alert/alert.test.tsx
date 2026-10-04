@@ -100,4 +100,11 @@ describe("Alert", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders the status icon inside a decorative chip", () => {
+    const { container } = render(<Alert variant="error" title="Error" />);
+    const chip = container.querySelector('[data-slot="alert-icon"]');
+    expect(chip).toHaveClass("size-8", "rounded-full", "bg-[var(--error-100)]");
+    expect(chip?.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+  });
 });
