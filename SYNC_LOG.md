@@ -365,3 +365,16 @@ OPEN QUESTIONS (batch 4)
 - Badge lg Label variant lacks icon/avatar/dot properties in Figma (sm/md have them). Figma "Badge group" set has no code counterpart.
 - Progress Circle: sm label is unbound 11px (code uses ui-xs 12px); track stroke centre-aligned/thinner than arc in Figma (sets 2173:19977/19982/19987); `bg-secondary` track is near-invisible on white.
 - Progress Bar: Figma track doesn't clip the fill — code keeps overflow-hidden.
+
+### Components — batch 5: overlays + display (2026-10-05)
+- **Alert Dialog** (`dialog`) — `aria-modal`, `--z-overlay`/`--z-modal`, 100ms fade (Figma notes: `duration/fast`), title 18/28 semibold, 36px actions, 440px width. `DialogAction variant="brand"|"error"` kept.
+- **Popover** — 280px panel, `--z-popover`, focus-ring border on the panel (Figma), medium title, body-sm description; docs corrected (non-modal, no focus trap unless `modal`).
+- **Tooltip** — `--z-tooltip`, `TooltipProvider` default 400ms delay (Figma notes), 100ms fade-in.
+- **Accordion** — focus ring moved to the item (was clipped by `overflow-hidden` — real bug); body `ui-sm`; disabled = opacity only. AccordionV2 still has no Figma spec; its clipped focus ring fixed the same way.
+- **Table** — rounded bordered `bg-elevated` container on every variant, 44px header (`ui-sm` fg-tertiary) / 64px body (`body-md`) rows, odd-row striping, bordered column dividers.
+- **Card** — ⚠️ radius 12 → **8px** (Figma; CLAUDE.md radius guide updated), no hover shadow on default/outlined; new `disabled`/`error` props and `CardHeader`/`CardEyebrow`/`CardFooter`/`CardMeta` parts; `CardContent` p-8, `CardTitle` display-sm, `CardDescription` body-md (pattern usages pinned to their previous sizes).
+
+OPEN QUESTIONS (batch 5)
+- Card's 8px radius and 32px padding are unbound raw values in Figma — bind to `radius/block` / spacing. Error+focus glow on clickable cards is extrapolated.
+- Alert Dialog: `_cancel` is 38px (stroke adds height) vs `_primary` 36px in Figma; motion 100ms vs Modal 200ms — intentional per notes?
+- Accordion/Tooltip/Alert Dialog text in Figma isn't bound to text styles (raw values) — mapped to nearest `ui-*`/`body-*`.
