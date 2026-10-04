@@ -105,7 +105,7 @@ export function SiteNavbar({
         ) : null}
         <div className="flex items-center gap-2">
           <Link href="/" aria-label="Paubha" className="flex items-center">
-            <Logo variant="combined" />
+            <Logo variant="combined" size={32} />
           </Link>
           <Badge variant="gray" fill="subtle" size="sm">
             v{version}

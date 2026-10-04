@@ -12,7 +12,7 @@ export function SiteFooterHero() {
   return (
     <ComponentPlayground
       code={`<SiteFooter
-  brand={<Logo variant="combined" />}
+  brand={<Logo variant="combined" size={32} />}
   description="Open-source components for React & Tailwind."
   bottom="© 2026 Paubha"
 >
@@ -23,7 +23,7 @@ export function SiteFooterHero() {
     >
       <div className="w-full max-w-3xl overflow-hidden rounded-md border border-border-default">
         <SiteFooter
-          brand={<Logo variant="combined" />}
+          brand={<Logo variant="combined" size={32} />}
           description="Open-source components for React & Tailwind."
           bottom="© 2026 Paubha"
         >

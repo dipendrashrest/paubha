@@ -42,7 +42,7 @@ function ProductCanvas() {
       <AppNav
         logo={
           <AppNavBrand>
-            <Logo variant="icon" />
+            <Logo variant="icon" size={32} />
             <span className="text-ui-md font-semibold text-fg-primary">
               Paubha
             </span>

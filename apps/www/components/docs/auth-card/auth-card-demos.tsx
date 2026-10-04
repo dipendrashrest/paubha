@@ -11,7 +11,7 @@ export function AuthCardHero() {
   return (
     <ComponentPlayground
       code={`<AuthCard
-  mark={<Logo variant="combined" />}
+  mark={<Logo variant="combined" size={32} />}
   title="Log in"
   description="Welcome back to Paubha."
 >
@@ -27,7 +27,7 @@ export function AuthCardHero() {
 </AuthCard>`}
     >
       <AuthCard
-        mark={<Logo variant="icon" />}
+        mark={<Logo variant="icon" size={32} />}
         title="Log in"
         description="Welcome back to Paubha."
       >

@@ -34,7 +34,7 @@ export function PaubhaMark({
       )}
       aria-label="Paubha home"
     >
-      <Logo variant={variant} />
+      <Logo variant={variant} size={32} />
     </Link>
   );
 }

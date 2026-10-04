@@ -803,7 +803,7 @@
       "name": "logo",
       "type": "registry:ui",
       "title": "Logo",
-      "description": "Brand logo with icon, wordmark, combined, and combined-dark variants.",
+      "description": "Brand logo (inline SVG, token-bound) with icon, wordmark, combined, and combined-dark variants at Figma sizes.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
