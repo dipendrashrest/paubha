@@ -1,0 +1,29 @@
+---
+title: Page Header
+description: Page-level header with breadcrumb, title, description, actions, and tabs.
+---
+
+<PageHeaderHero />
+
+## Installation
+
+<RegistryInstall name="page-header" />
+
+## Usage
+
+```tsx
+import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
+
+<PageHeader
+  title="Settings"
+  description="Manage your account preferences."
+  actions={<Button variant="secondary" size="sm">Save</Button>}
+/>
+```
+
+## Examples
+
+### With breadcrumb
+
+<PageHeaderWithBreadcrumb />

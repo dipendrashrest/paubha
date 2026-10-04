@@ -1,0 +1,25 @@
+---
+title: Team Card
+description: Compact team member cards with avatar, name, and role.
+---
+
+<TeamCardHero />
+
+## Installation
+
+<RegistryInstall name="team-card" />
+
+## Usage
+
+```tsx
+import { TeamCard, TeamCardGrid } from "@/components/ui/team-card";
+import { Avatar } from "@/components/ui/avatar";
+
+<TeamCardGrid>
+  <TeamCard
+    avatar={<Avatar initials="AR" alt="Ava Ruiz" size="md" />}
+    name="Ava Ruiz"
+    role="Design systems"
+  />
+</TeamCardGrid>
+```

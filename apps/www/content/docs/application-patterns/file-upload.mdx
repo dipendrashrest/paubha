@@ -1,0 +1,27 @@
+---
+title: File Upload
+description: Drag-and-drop upload zone with file list and progress.
+---
+
+<FileUploadHero />
+
+## Installation
+
+<RegistryInstall name="file-upload" />
+
+## Usage
+
+```tsx
+import { FileUpload, FileUploadItem, FileUploadList } from "@/components/ui/file-upload";
+
+<FileUpload onFilesChange={(files) => console.log(files)} />
+<FileUploadList>
+  <FileUploadItem name="brief.pdf" size="1.2 MB" progress={40} />
+</FileUploadList>
+```
+
+## Examples
+
+### Upload list
+
+<FileUploadListDemo />

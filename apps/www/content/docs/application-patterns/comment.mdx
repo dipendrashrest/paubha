@@ -1,0 +1,27 @@
+---
+title: Comment
+description: Thread item with Avatar, author, timestamp, and actions.
+---
+
+<CommentHero />
+
+## Installation
+
+<RegistryInstall name="comment" />
+
+## Usage
+
+```tsx
+import { Comment } from "@/components/ui/comment";
+import { Avatar } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+<Comment
+  avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}
+  author="Ava Ruiz"
+  timestamp="2h ago"
+  actions={<Button variant="ghost" size="sm">Reply</Button>}
+>
+  Tokens finally match Figma.
+</Comment>
+```

@@ -1,0 +1,25 @@
+---
+title: Data Toolbar
+description: Search, filters, and actions for tables and lists.
+---
+
+<DataToolbarHero />
+
+## Installation
+
+<RegistryInstall name="data-toolbar" />
+
+## Usage
+
+```tsx
+import { DataToolbar } from "@/components/ui/data-toolbar";
+import { SearchField } from "@/components/ui/search-field";
+import { Button } from "@/components/ui/button";
+import { FilterChip } from "@/components/ui/filter";
+
+<DataToolbar
+  search={<SearchField placeholder="Search projects" />}
+  filters={<FilterChip label="Active" selected />}
+  actions={<Button size="sm">New project</Button>}
+/>
+```

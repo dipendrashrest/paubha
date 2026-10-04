@@ -1,0 +1,23 @@
+---
+title: User Menu
+description: Account dropdown built from Avatar and Dropdown Menu.
+---
+
+<UserMenuHero />
+
+## Installation
+
+<RegistryInstall name="user-menu" />
+
+## Usage
+
+```tsx
+import { UserMenu } from "@/components/ui/user-menu";
+import { Avatar } from "@/components/ui/avatar";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+
+<UserMenu avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}>
+  <DropdownMenuItem>Profile</DropdownMenuItem>
+  <DropdownMenuItem>Sign out</DropdownMenuItem>
+</UserMenu>
+```

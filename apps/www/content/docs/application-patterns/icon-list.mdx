@@ -1,0 +1,25 @@
+---
+title: Icon List
+description: Stacked icon + title + description rows for contact and detail lists.
+---
+
+<IconListHero />
+
+## Installation
+
+<RegistryInstall name="icon-list" />
+
+## Usage
+
+```tsx
+import { IconList, IconListItem } from "@/components/ui/icon-list";
+import { Mail } from "lucide-react";
+
+<IconList>
+  <IconListItem
+    icon={<Mail aria-hidden="true" />}
+    title="Email"
+    description="hello@paubha.tech"
+  />
+</IconList>
+```

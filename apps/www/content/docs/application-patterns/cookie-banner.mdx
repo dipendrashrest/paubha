@@ -1,0 +1,26 @@
+---
+title: Cookie Banner
+description: Consent bar composed from tokens and Button.
+---
+
+<CookieBannerHero />
+
+## Installation
+
+<RegistryInstall name="cookie-banner" />
+
+## Usage
+
+```tsx
+import { CookieBanner } from "@/components/ui/cookie-banner";
+import { Button } from "@/components/ui/button";
+
+<CookieBanner
+  actions={
+    <>
+      <Button variant="secondary" size="sm">Decline</Button>
+      <Button size="sm">Accept</Button>
+    </>
+  }
+/>
+```

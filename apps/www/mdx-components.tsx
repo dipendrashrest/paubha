@@ -15,6 +15,66 @@ import {
   ActivityFeedPropsTable,
   ActivityFeedTimelineItemPropsTable,
 } from "@/components/docs/activity-feed/activity-feed-props-table";
+import {
+  CardHeaderHero,
+  CardHeaderWithAvatar,
+} from "@/components/docs/card-header/card-header-demos";
+import { EmptyStateHero } from "@/components/docs/empty-state/empty-state-demos";
+import {
+  MetricGroupDemo,
+  MetricHero,
+  MetricSparkline,
+} from "@/components/docs/metric/metric-demos";
+import {
+  PageHeaderHero,
+  PageHeaderWithBreadcrumb,
+} from "@/components/docs/page-header/page-header-demos";
+import {
+  ProgressStepsHero,
+  ProgressStepsVertical,
+} from "@/components/docs/progress-steps/progress-steps-demos";
+import {
+  SectionHeaderBordered,
+  SectionHeaderHero,
+} from "@/components/docs/section-header/section-header-demos";
+import { AppNavHero, AppSidebarDemo } from "@/components/docs/app-nav/app-nav-demos";
+import { CalendarHero, CalendarRange } from "@/components/docs/calendar/calendar-demos";
+import { ChartDonut, ChartHero, ChartLine } from "@/components/docs/chart/chart-demos";
+import {
+  FileUploadHero,
+  FileUploadListDemo,
+} from "@/components/docs/file-upload/file-upload-demos";
+import { FilterActive, FilterHero } from "@/components/docs/filter/filter-demos";
+import { InlineCtaCard, InlineCtaHero } from "@/components/docs/inline-cta/inline-cta-demos";
+import { AnnouncementBarHero } from "@/components/docs/announcement-bar/announcement-bar-demos";
+import { LogoCloudHero } from "@/components/docs/logo-cloud/logo-cloud-demos";
+import { MarketingHeroDemo } from "@/components/docs/marketing-hero/marketing-hero-demos";
+import { NewsletterHero } from "@/components/docs/newsletter/newsletter-demos";
+import { SiteFooterHero } from "@/components/docs/site-footer/site-footer-demos";
+import {
+  TestimonialGridDemo,
+  TestimonialHero,
+} from "@/components/docs/testimonial/testimonial-demos";
+import {
+  PricingCardFeatured,
+  PricingCardHero,
+} from "@/components/docs/pricing-card/pricing-card-demos";
+import { FaqHero } from "@/components/docs/faq/faq-demos";
+import { FeatureListHero } from "@/components/docs/feature-list/feature-list-demos";
+import { CliSnippetHero } from "@/components/docs/cli-snippet/cli-snippet-demos";
+import { IconListHero } from "@/components/docs/icon-list/icon-list-demos";
+import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
+import { TeamCardHero } from "@/components/docs/team-card/team-card-demos";
+import { DatePickerHero } from "@/components/docs/date-picker/date-picker-demos";
+import { UserMenuHero } from "@/components/docs/user-menu/user-menu-demos";
+import { SearchFieldHero } from "@/components/docs/search-field/search-field-demos";
+import { ConfirmDialogHero } from "@/components/docs/confirm-dialog/confirm-dialog-demos";
+import { SettingsRowHero } from "@/components/docs/settings-row/settings-row-demos";
+import { CommentHero } from "@/components/docs/comment/comment-demos";
+import { DataToolbarHero } from "@/components/docs/data-toolbar/data-toolbar-demos";
+import { AuthCardHero } from "@/components/docs/auth-card/auth-card-demos";
+import { CookieBannerHero } from "@/components/docs/cookie-banner/cookie-banner-demos";
+import { MarketingExamplePreview } from "@/components/docs/marketing-examples/marketing-preview";
 import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert/alert-demos";
 import { AlertPropsTable } from "@/components/docs/alert/alert-props-table";
 import {
@@ -38,6 +98,11 @@ import { CheckboxHero, CheckboxStates } from "@/components/docs/checkbox/checkbo
 import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
 import { ColorScale, ColorSwatch, ColorSwatchGroup } from "@/components/docs/_shared/color-scale";
 import { ComingSoon } from "@/components/docs/_shared/coming-soon";
+import {
+  IconsHero,
+  IconsShowcase,
+  IconsUsage,
+} from "@/components/docs/icons/icons-showcase";
 import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
 import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider/divider-demos";
 import { DividerPropsTable } from "@/components/docs/divider/divider-props-table";
@@ -164,6 +229,7 @@ import {
   TextareaInstall,
   ToastInstall,
   TooltipInstall,
+  RegistryInstall,
 } from "@/components/docs/_shared/registry-install";
 import { SkeletonCard, SkeletonHero, SkeletonVariants } from "@/components/docs/skeleton/skeleton-demos";
 import { SkeletonPropsTable } from "@/components/docs/skeleton/skeleton-props-table";
@@ -187,6 +253,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     A11yCallout,
     ComingSoon,
     ComponentPlayground,
+    IconsHero,
+    IconsShowcase,
+    IconsUsage,
     InstallCommand,
     IntroPositioningAlert,
     PropsTable,
@@ -456,6 +525,87 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ActivityFeedSimple,
     ActivityFeedTimeline,
     ActivityFeedTimelineItemPropsTable,
+
+    // Card Header (application pattern)
+    CardHeaderHero,
+    CardHeaderWithAvatar,
+
+    // Page Header (application pattern)
+    PageHeaderHero,
+    PageHeaderWithBreadcrumb,
+
+    // Section Header (application pattern)
+    SectionHeaderBordered,
+    SectionHeaderHero,
+
+    // Metric (application pattern)
+    MetricGroupDemo,
+    MetricHero,
+    MetricSparkline,
+
+    // Progress Steps (application pattern)
+    ProgressStepsHero,
+    ProgressStepsVertical,
+
+    // Empty State (application pattern)
+    EmptyStateHero,
+
+    // Chart (application pattern)
+    ChartDonut,
+    ChartHero,
+    ChartLine,
+
+    // Calendar (application pattern)
+    CalendarHero,
+    CalendarRange,
+
+    // App Nav (application pattern)
+    AppNavHero,
+    AppSidebarDemo,
+
+    // Inline CTA (application pattern)
+    InlineCtaCard,
+    InlineCtaHero,
+
+    // Filter (application pattern)
+    FilterActive,
+    FilterHero,
+
+    // File Upload (application pattern)
+    FileUploadHero,
+    FileUploadListDemo,
+
+    // New marketing patterns
+    AnnouncementBarHero,
+    LogoCloudHero,
+    SiteFooterHero,
+    TestimonialHero,
+    TestimonialGridDemo,
+    NewsletterHero,
+    MarketingHeroDemo,
+    PricingCardHero,
+    PricingCardFeatured,
+    FaqHero,
+    FeatureListHero,
+    CliSnippetHero,
+    IconListHero,
+    BlogCardHero,
+    TeamCardHero,
+    DatePickerHero,
+    UserMenuHero,
+    SearchFieldHero,
+    ConfirmDialogHero,
+    SettingsRowHero,
+    CommentHero,
+    DataToolbarHero,
+    AuthCardHero,
+    CookieBannerHero,
+
+    // Marketing Examples
+    MarketingExamplePreview,
+
+    // Lean install for other application patterns
+    RegistryInstall,
 
     ...components,
   };

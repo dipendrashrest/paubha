@@ -1,0 +1,30 @@
+---
+title: Testimonial
+description: Quote block with author, role, and optional avatar.
+---
+
+<TestimonialHero />
+
+## Installation
+
+<RegistryInstall name="testimonial" />
+
+## Usage
+
+```tsx
+import { Testimonial } from "@/components/ui/testimonial";
+import { Avatar } from "@/components/ui/avatar";
+
+<Testimonial
+  quote="Paubha’s glow-focus alone feels like a real brand."
+  author="Ava Ruiz"
+  role="Design lead"
+  avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}
+/>
+```
+
+## Examples
+
+### Grid
+
+<TestimonialGridDemo />

@@ -1,0 +1,29 @@
+---
+title: Card Header
+description: Reusable card header strip with title, description, avatar, and actions slots.
+---
+
+<CardHeaderHero />
+
+## Installation
+
+<RegistryInstall name="card-header" />
+
+## Usage
+
+```tsx
+import { CardHeader } from "@/components/ui/card-header";
+import { Button } from "@/components/ui/button";
+
+<CardHeader
+  title="Project Atlas"
+  description="Last updated 2h ago"
+  actions={<Button variant="secondary" size="sm">Edit</Button>}
+/>
+```
+
+## Examples
+
+### With avatar
+
+<CardHeaderWithAvatar />

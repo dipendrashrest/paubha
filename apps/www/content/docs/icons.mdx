@@ -1,6 +1,56 @@
 ---
 title: Icons
-description: The Lucide icon set used across Paubha components and the docs site.
+description: Paubha uses Lucide. The same set as the Figma file, imported from lucide-react.
 ---
 
-<ComingSoon name="Icons" />
+<IconsHero />
+
+Paubha does not ship its own icon font. Every glyph in the registry and on this
+site comes from [Lucide](https://lucide.dev): an open-source, MIT-licensed set
+of consistent stroke icons. The Figma file uses the same family. If you need a
+glyph we have not shown here, take it from
+[lucide.dev/icons](https://lucide.dev/icons) and import it the same way.
+
+## Browse
+
+Search the curated set we actually use in components. The inspector copies the
+import and opens the official Lucide page for that icon.
+
+<IconsShowcase />
+
+## Install
+
+Lucide is already a dependency of the docs site and of any project you `init`
+with the CLI. Add it yourself if you are wiring icons before `npx paubha`.
+
+```bash
+pnpm add lucide-react
+```
+
+```tsx
+import { Search } from "lucide-react";
+
+<Search className="size-5" strokeWidth={1.75} aria-hidden="true" />
+```
+
+React package docs: [lucide.dev/guide/packages/lucide-react](https://lucide.dev/guide/packages/lucide-react).
+
+## Usage rules
+
+<IconsUsage />
+
+- **One family.** Lucide only. Do not mix Phosphor, Tabler, or hand-drawn SVGs
+  into a Paubha tree.
+- **Named imports.** Tree-shake. Never `import * as Icons`.
+- **Decorative by default.** `aria-hidden="true"` unless the icon is the only
+  label (then give the control an `aria-label`).
+- **Color from tokens.** `text-fg-primary`, `text-fg-brand`, `text-fg-on-brand`.
+  Never a raw hex on the SVG.
+- **Focus is not the icon.** Interactive hosts still use `shadow-glow-focus`.
+
+## Official links
+
+- [Lucide](https://lucide.dev) - homepage
+- [Icon gallery](https://lucide.dev/icons) - full searchable set
+- [lucide-react](https://lucide.dev/guide/packages/lucide-react) - React package
+- [GitHub](https://github.com/lucide-icons/lucide) - source

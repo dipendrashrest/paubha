@@ -59,7 +59,7 @@ const SiteSidebarItem: SidebarComponents["Item"] = ({ item }) => {
       href={item.url}
       external={item.external}
       className={cn(
-        "flex h-[34px] items-center gap-2 rounded-sm px-2 text-ui-sm transition-colors",
+        "mb-1 flex h-[34px] items-center gap-2 rounded-sm px-2 text-ui-sm transition-colors",
         "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
         active
           ? "bg-bg-brand-subtle font-semibold text-fg-brand"
@@ -112,7 +112,9 @@ const SiteSidebarFolder: SidebarComponents["Folder"] = ({
           {item.name}
         </SectionLabel>
       </button>
-      {open ? <div className="flex flex-col gap-1">{children}</div> : null}
+      {/* No gap here — each Item supplies its own mb-1, so root-level and
+          folder-nested items share one spacing rule instead of two. */}
+      {open ? <div className="flex flex-col">{children}</div> : null}
     </div>
   );
 };

@@ -1,0 +1,34 @@
+---
+title: Metric
+description: Stat cards with optional trend delta and sparkline.
+---
+
+<MetricHero />
+
+## Installation
+
+<RegistryInstall name="metric" />
+
+## Usage
+
+```tsx
+import { Metric } from "@/components/ui/metric";
+
+<Metric
+  label="Views"
+  value="2,000"
+  trend="up"
+  delta="40%"
+  description="vs last month"
+/>
+```
+
+## Examples
+
+### With sparkline
+
+<MetricSparkline />
+
+### Metric group
+
+<MetricGroupDemo />

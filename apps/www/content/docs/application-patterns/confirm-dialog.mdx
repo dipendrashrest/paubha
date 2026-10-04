@@ -1,0 +1,25 @@
+---
+title: Confirm Dialog
+description: Confirm or destructive prompt composed from Dialog.
+---
+
+<ConfirmDialogHero />
+
+## Installation
+
+<RegistryInstall name="confirm-dialog" />
+
+## Usage
+
+```tsx
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
+import { Button } from "@/components/ui/button";
+
+<ConfirmDialog
+  trigger={<Button variant="destructive">Delete</Button>}
+  title="Delete project?"
+  description="This cannot be undone."
+  intent="error"
+  confirmLabel="Delete"
+/>
+```

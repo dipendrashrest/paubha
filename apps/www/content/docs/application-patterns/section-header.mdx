@@ -1,0 +1,29 @@
+---
+title: Section Header
+description: In-page section header with title, actions, search, and tabs.
+---
+
+<SectionHeaderHero />
+
+## Installation
+
+<RegistryInstall name="section-header" />
+
+## Usage
+
+```tsx
+import { SectionHeader } from "@/components/ui/section-header";
+import { Button } from "@/components/ui/button";
+
+<SectionHeader
+  title="Team members"
+  description="12 people"
+  actions={<Button variant="secondary" size="sm">Invite</Button>}
+/>
+```
+
+## Examples
+
+### Bordered
+
+<SectionHeaderBordered />

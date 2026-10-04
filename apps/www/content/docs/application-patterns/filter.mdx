@@ -1,0 +1,30 @@
+---
+title: Filter
+description: Filter bar, chips, and active-filters row for data views.
+---
+
+<FilterHero />
+
+## Installation
+
+<RegistryInstall name="filter" />
+
+## Usage
+
+```tsx
+import { ActiveFilters, FilterBar, FilterChip } from "@/components/ui/filter";
+
+<FilterBar>
+  <FilterChip label="Status" selected />
+  <FilterChip label="Priority" />
+</FilterBar>
+<ActiveFilters onClear={() => {}}>
+  <FilterChip label="Assignee: Sarah" selected onRemove={() => {}} />
+</ActiveFilters>
+```
+
+## Examples
+
+### Active filters
+
+<FilterActive />

@@ -1,0 +1,27 @@
+---
+title: Site Footer
+description: Marketing footer with brand, link columns, and legal row.
+---
+
+<SiteFooterHero />
+
+## Installation
+
+<RegistryInstall name="site-footer" />
+
+## Usage
+
+```tsx
+import { Logo } from "@/components/ui/logo";
+import {
+  SiteFooter,
+  SiteFooterColumn,
+  SiteFooterLink,
+} from "@/components/ui/site-footer";
+
+<SiteFooter brand={<Logo />} description="…" bottom="© 2026 Paubha">
+  <SiteFooterColumn title="Product">
+    <SiteFooterLink href="/docs">Docs</SiteFooterLink>
+  </SiteFooterColumn>
+</SiteFooter>
+```

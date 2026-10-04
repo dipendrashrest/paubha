@@ -1,0 +1,25 @@
+---
+title: Feature List
+description: Stacked marketing feature rows with icons and dividers.
+---
+
+<FeatureListHero />
+
+## Installation
+
+<RegistryInstall name="feature-list" />
+
+## Usage
+
+```tsx
+import { FeatureList, FeatureListItem } from "@/components/ui/feature-list";
+import { Boxes } from "lucide-react";
+
+<FeatureList>
+  <FeatureListItem
+    icon={<Boxes aria-hidden="true" />}
+    title="Copy, don’t install"
+    description="Own every line of the component."
+  />
+</FeatureList>
+```

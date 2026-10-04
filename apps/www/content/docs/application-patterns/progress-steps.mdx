@@ -1,0 +1,28 @@
+---
+title: Progress Steps
+description: Horizontal or vertical multi-step progress indicator.
+---
+
+<ProgressStepsHero />
+
+## Installation
+
+<RegistryInstall name="progress-steps" />
+
+## Usage
+
+```tsx
+import { ProgressStep, ProgressSteps } from "@/components/ui/progress-steps";
+
+<ProgressSteps>
+  <ProgressStep status="complete" label="Account" />
+  <ProgressStep status="current" label="Profile" />
+  <ProgressStep status="upcoming" label="Done" />
+</ProgressSteps>
+```
+
+## Examples
+
+### Vertical
+
+<ProgressStepsVertical />

@@ -1,0 +1,32 @@
+---
+title: Blog Card
+description: Post cards for blog indexes, tag, title, excerpt, and meta.
+---
+
+<BlogCardHero />
+
+## Installation
+
+<RegistryInstall name="blog-card" />
+
+## Usage
+
+```tsx
+import { BlogCard, BlogCardGrid } from "@/components/ui/blog-card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar } from "@/components/ui/avatar";
+
+<BlogCardGrid>
+  <BlogCard
+    tag={<Badge variant="gray" fill="subtle" size="sm">Design</Badge>}
+    title="Why copy-paste wins"
+    excerpt="Own the source, no black-box npm package."
+    meta={
+      <div className="flex items-center gap-2">
+        <Avatar initials="AR" alt="Ava Ruiz" size="sm" />
+        <span className="text-ui-sm">Ava Ruiz</span>
+      </div>
+    }
+  />
+</BlogCardGrid>
+```

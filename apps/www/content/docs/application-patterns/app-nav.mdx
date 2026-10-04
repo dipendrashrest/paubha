@@ -1,0 +1,30 @@
+---
+title: App Nav
+description: Application sidebar and top navigation shells.
+---
+
+<AppNavHero />
+
+## Installation
+
+<RegistryInstall name="app-nav" />
+
+## Usage
+
+```tsx
+import { AppNav, AppNavBrand, AppNavLink, AppNavLinks } from "@/components/ui/app-nav";
+
+<AppNav>
+  <AppNavBrand>Paubha</AppNavBrand>
+  <AppNavLinks>
+    <AppNavLink href="/home" active>Home</AppNavLink>
+    <AppNavLink href="/projects">Projects</AppNavLink>
+  </AppNavLinks>
+</AppNav>
+```
+
+## Examples
+
+### Sidebar
+
+<AppSidebarDemo />

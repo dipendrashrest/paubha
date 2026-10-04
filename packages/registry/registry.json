@@ -824,6 +824,413 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "card-header",
+      "type": "registry:ui",
+      "title": "Card Header",
+      "description": "Title, description, and action slot for card tops.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/card-header/card-header.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "Simple bar, line, and donut charts bound to semantic tokens.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/chart/chart.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Month grid and week strip with single or range selection.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/calendar/calendar.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "app-nav",
+      "type": "registry:ui",
+      "title": "App Nav",
+      "description": "Top bar and sidebar shells for application chrome.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/app-nav/app-nav.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:ui",
+      "title": "Page Header",
+      "description": "Page-level header with breadcrumb, title, actions, and tabs.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/page-header/page-header.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "section-header",
+      "type": "registry:ui",
+      "title": "Section Header",
+      "description": "Section title, description, and optional action.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/section-header/section-header.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "metric",
+      "type": "registry:ui",
+      "title": "Metric",
+      "description": "KPI card with optional trend, sparkline, and group layout.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/metric/metric.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "progress-steps",
+      "type": "registry:ui",
+      "title": "Progress Steps",
+      "description": "Horizontal or vertical stepper for multi-step flows.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/progress-steps/progress-steps.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty State",
+      "description": "Placeholder for empty views, zero results, and first-run screens.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/empty-state/empty-state.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "inline-cta",
+      "type": "registry:ui",
+      "title": "Inline CTA",
+      "description": "Promotional banners and call-to-action blocks.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/inline-cta/inline-cta.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "filter",
+      "type": "registry:ui",
+      "title": "Filter",
+      "description": "Filter bar, chips, and active-filter row.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/filter/filter.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "title": "File Upload",
+      "description": "Drag-and-drop upload zone with a file list.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/file-upload/file-upload.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "announcement-bar",
+      "type": "registry:ui",
+      "title": "Announcement Bar",
+      "description": "Site-wide top announcement with optional badge, action, and dismiss.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/announcement-bar/announcement-bar.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:ui",
+      "title": "Logo Cloud",
+      "description": "Social-proof logo strip with optional label.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/logo-cloud/logo-cloud.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "site-footer",
+      "type": "registry:ui",
+      "title": "Site Footer",
+      "description": "Marketing footer with brand, link columns, and legal row.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/site-footer/site-footer.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "testimonial",
+      "type": "registry:ui",
+      "title": "Testimonial",
+      "description": "Quote block with author, role, optional avatar, and a grid layout.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/testimonial/testimonial.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:ui",
+      "title": "Newsletter",
+      "description": "Email capture form with title, description, and success state.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["button", "input"],
+      "files": [
+        { "path": "ui/newsletter/newsletter.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "marketing-hero",
+      "type": "registry:ui",
+      "title": "Marketing Hero",
+      "description": "Marketing page hero shell — eyebrow, title, description, actions, and media.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/marketing-hero/marketing-hero.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "pricing-card",
+      "type": "registry:ui",
+      "title": "Pricing Card",
+      "description": "Plan card with price, feature checklist, badge, and CTA — plus a grid layout.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": ["card"],
+      "files": [
+        { "path": "ui/pricing-card/pricing-card.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:ui",
+      "title": "FAQ",
+      "description": "FAQ section built on Accordion — title, description, and Q&A items.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["accordion"],
+      "files": [
+        { "path": "ui/faq/faq.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "feature-list",
+      "type": "registry:ui",
+      "title": "Feature List",
+      "description": "Stacked marketing feature rows with optional icons and dividers.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["divider"],
+      "files": [
+        { "path": "ui/feature-list/feature-list.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "cli-snippet",
+      "type": "registry:ui",
+      "title": "CLI Snippet",
+      "description": "Monospace command callout for marketing and docs pages.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/cli-snippet/cli-snippet.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "icon-list",
+      "type": "registry:ui",
+      "title": "Icon List",
+      "description": "Stacked icon + title + description rows for contact and detail lists.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/icon-list/icon-list.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "blog-card",
+      "type": "registry:ui",
+      "title": "Blog Card",
+      "description": "Post cards for blog indexes — tag, title, excerpt, and author meta.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["card"],
+      "files": [
+        { "path": "ui/blog-card/blog-card.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "team-card",
+      "type": "registry:ui",
+      "title": "Team Card",
+      "description": "Compact team member cards with avatar, name, and role.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["card"],
+      "files": [
+        { "path": "ui/team-card/team-card.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Date field composed from Button, Popover, and Calendar.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": ["button", "calendar", "popover"],
+      "files": [
+        { "path": "ui/date-picker/date-picker.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "user-menu",
+      "type": "registry:ui",
+      "title": "User Menu",
+      "description": "Account dropdown composed from Avatar and Dropdown Menu.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["dropdown-menu"],
+      "files": [
+        { "path": "ui/user-menu/user-menu.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "search-field",
+      "type": "registry:ui",
+      "title": "Search Field",
+      "description": "Search input composed from Input and a Lucide icon.",
+      "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
+      "registryDependencies": ["input"],
+      "files": [
+        { "path": "ui/search-field/search-field.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:ui",
+      "title": "Confirm Dialog",
+      "description": "Confirm or destructive prompt composed from Dialog.",
+      "dependencies": [],
+      "registryDependencies": ["dialog"],
+      "files": [
+        { "path": "ui/confirm-dialog/confirm-dialog.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "settings-row",
+      "type": "registry:ui",
+      "title": "Settings Row",
+      "description": "Settings list row with title, description, and a trailing control.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/settings-row/settings-row.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "comment",
+      "type": "registry:ui",
+      "title": "Comment",
+      "description": "Thread item with avatar, author, timestamp, and actions.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/comment/comment.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "data-toolbar",
+      "type": "registry:ui",
+      "title": "Data Toolbar",
+      "description": "Search, filters, and actions for tables and lists.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/data-toolbar/data-toolbar.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "auth-card",
+      "type": "registry:ui",
+      "title": "Auth Card",
+      "description": "Login / signup card composed from Card.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": ["card"],
+      "files": [
+        { "path": "ui/auth-card/auth-card.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "cookie-banner",
+      "type": "registry:ui",
+      "title": "Cookie Banner",
+      "description": "Cookie / consent bar with title, description, and action slots.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "ui/cookie-banner/cookie-banner.tsx", "type": "registry:ui" },
+        { "path": "lib/cn.ts", "type": "registry:lib" }
+      ]
     }
   ]
 }

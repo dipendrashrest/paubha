@@ -1,0 +1,36 @@
+---
+title: Pricing Card
+description: Plan cards with price, feature checklist, and CTA.
+---
+
+<PricingCardHero />
+
+## Installation
+
+<RegistryInstall name="pricing-card" />
+
+## Usage
+
+```tsx
+import { PricingCard, PricingCardGrid } from "@/components/ui/pricing-card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+<PricingCardGrid>
+  <PricingCard
+    name="Team"
+    description="Priority support"
+    price="$49"
+    featured
+    badge={<Badge variant="brand" fill="subtle" size="sm">Popular</Badge>}
+    features={["All components", "Slack channel"]}
+    action={<Button>Start trial</Button>}
+  />
+</PricingCardGrid>
+```
+
+## Examples
+
+### Featured
+
+<PricingCardFeatured />

@@ -7,12 +7,13 @@
     "theming",
     "cli",
     "changelog",
-    "coming-soon",
     "---Resources---",
     "figma",
     "icons",
     "foundations",
     "components",
-    "application-patterns"
+    "application-patterns",
+    "marketing-examples",
+    "coming-soon"
   ]
 }

@@ -1,0 +1,24 @@
+---
+title: Announcement Bar
+description: Site-wide top announcement with optional badge, action, and dismiss.
+---
+
+<AnnouncementBarHero />
+
+## Installation
+
+<RegistryInstall name="announcement-bar" />
+
+## Usage
+
+```tsx
+import { AnnouncementBar } from "@/components/ui/announcement-bar";
+import { Badge } from "@/components/ui/badge";
+
+<AnnouncementBar
+  badge={<Badge variant="brand" fill="solid" size="sm">New</Badge>}
+  dismissible
+>
+  Application patterns just shipped.
+</AnnouncementBar>
+```

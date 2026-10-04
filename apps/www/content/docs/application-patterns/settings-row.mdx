@@ -1,0 +1,23 @@
+---
+title: Settings Row
+description: Title, description, and a trailing control — usually Switch.
+---
+
+<SettingsRowHero />
+
+## Installation
+
+<RegistryInstall name="settings-row" />
+
+## Usage
+
+```tsx
+import { SettingsRow } from "@/components/ui/settings-row";
+import { Switch } from "@/components/ui/switch";
+
+<SettingsRow
+  title="Email notifications"
+  description="Product updates only."
+  control={<Switch aria-label="Email notifications" />}
+/>
+```

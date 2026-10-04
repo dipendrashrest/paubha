@@ -1,0 +1,28 @@
+---
+title: Auth Card
+description: Login / signup card composed from Card, Field, Input, and Button.
+---
+
+<AuthCardHero />
+
+## Installation
+
+<RegistryInstall name="auth-card" />
+
+## Usage
+
+```tsx
+import { AuthCard } from "@/components/ui/auth-card";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+<AuthCard title="Log in" description="Welcome back.">
+  <form className="flex flex-col gap-4">
+    <Field label="Email">
+      <Input type="email" />
+    </Field>
+    <Button type="submit">Log in</Button>
+  </form>
+</AuthCard>
+```

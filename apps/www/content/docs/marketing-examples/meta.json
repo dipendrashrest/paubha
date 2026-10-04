@@ -1,0 +1,20 @@
+{
+  "title": "Marketing Examples",
+  "defaultOpen": true,
+  "pages": [
+    "index",
+    "saas",
+    "pricing",
+    "waitlist",
+    "about",
+    "changelog",
+    "contact",
+    "blog",
+    "auth",
+    "launch",
+    "studio",
+    "open-source",
+    "careers",
+    "customers"
+  ]
+}

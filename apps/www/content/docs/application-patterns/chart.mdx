@@ -1,0 +1,36 @@
+---
+title: Chart
+description: Lightweight SVG charts, line, bar, area, and donut.
+---
+
+<ChartHero />
+
+## Installation
+
+<RegistryInstall name="chart" />
+
+## Usage
+
+```tsx
+import { BarChart, ChartCard } from "@/components/ui/chart";
+
+<ChartCard title="Revenue">
+  <BarChart
+    data={[
+      { label: "Mon", value: 40 },
+      { label: "Tue", value: 65 },
+      { label: "Wed", value: 52 },
+    ]}
+  />
+</ChartCard>
+```
+
+## Examples
+
+### Line chart
+
+<ChartLine />
+
+### Donut chart
+
+<ChartDonut />

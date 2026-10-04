@@ -1,0 +1,30 @@
+---
+title: Inline CTA
+description: Promotional banners and call-to-action blocks.
+---
+
+<InlineCtaHero />
+
+## Installation
+
+<RegistryInstall name="inline-cta" />
+
+## Usage
+
+```tsx
+import { InlineCta } from "@/components/ui/inline-cta";
+import { Button } from "@/components/ui/button";
+
+<InlineCta
+  title="Upgrade to Pro"
+  description="Unlock advanced analytics."
+  actions={<Button size="sm">Upgrade</Button>}
+  dismissible
+/>
+```
+
+## Examples
+
+### Card
+
+<InlineCtaCard />
