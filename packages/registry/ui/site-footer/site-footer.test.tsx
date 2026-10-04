@@ -7,7 +7,11 @@ import { SiteFooter, SiteFooterColumn, SiteFooterLink } from "./site-footer";
 describe("SiteFooter", () => {
   it("renders brand, columns, and bottom", () => {
     render(
-      <SiteFooter brand={<span>Paubha</span>} description="Tagline" bottom="© 2026">
+      <SiteFooter
+        brand={<span>Paubha</span>}
+        description="Tagline"
+        bottom="© 2026"
+      >
         <SiteFooterColumn title="Product">
           <SiteFooterLink href="/pricing">Pricing</SiteFooterLink>
         </SiteFooterColumn>

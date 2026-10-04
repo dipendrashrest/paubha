@@ -19,7 +19,9 @@ describe("PageHeader", () => {
         actions={<button type="button">New project</button>}
       />,
     );
-    expect(screen.getByRole("heading", { name: "Projects" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Projects" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "New project" }),
     ).toBeInTheDocument();
@@ -39,15 +41,14 @@ describe("PageHeader", () => {
       />,
     );
     expect(screen.getByLabelText("Breadcrumb")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Settings" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Settings" }),
+    ).toBeInTheDocument();
   });
 
   it("renders description under the title", () => {
     render(
-      <PageHeader
-        title="Team"
-        description="Manage members and permissions."
-      />,
+      <PageHeader title="Team" description="Manage members and permissions." />,
     );
     expect(
       screen.getByText("Manage members and permissions."),

@@ -5,7 +5,9 @@ import { ComponentPlayground } from "../_shared/component-playground";
 
 export function SliderHero() {
   return (
-    <ComponentPlayground code={'<Slider aria-label="Volume" defaultValue={[40]} />'}>
+    <ComponentPlayground
+      code={'<Slider aria-label="Volume" defaultValue={[40]} />'}
+    >
       <div className="w-full max-w-sm">
         <Slider aria-label="Volume" defaultValue={[40]} />
       </div>

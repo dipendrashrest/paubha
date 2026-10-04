@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandField } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
 import { Avatar } from "@paubha/registry/ui/avatar";
 import { Badge } from "@paubha/registry/ui/badge";
 import { BlogCard, BlogCardGrid } from "@paubha/registry/ui/blog-card";
@@ -8,8 +10,6 @@ import { LogoCloud } from "@paubha/registry/ui/logo-cloud";
 import { Metric } from "@paubha/registry/ui/metric";
 import { Testimonial } from "@paubha/registry/ui/testimonial";
 import Link from "next/link";
-import { BrandField } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
 import { BrandMarks } from "./brand-marks";
 import { MarketingShell } from "./shell";
 

@@ -4,7 +4,13 @@ import { Button } from "@paubha/registry/ui/button";
 import { Plus } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
-const variants = ["primary", "secondary", "ghost", "destructive", "link"] as const;
+const variants = [
+  "primary",
+  "secondary",
+  "ghost",
+  "destructive",
+  "link",
+] as const;
 const sizes = ["sm", "md", "lg", "xl"] as const;
 
 export function ButtonHero() {
@@ -28,7 +34,9 @@ export function ButtonHero() {
 export function ButtonVariants() {
   return (
     <ComponentPlayground
-      code={variants.map((v) => `<Button variant="${v}">${v}</Button>`).join("\n")}
+      code={variants
+        .map((v) => `<Button variant="${v}">${v}</Button>`)
+        .join("\n")}
     >
       {variants.map((variant) => (
         <Button key={variant} variant={variant}>

@@ -21,7 +21,11 @@ export function DocsIconButton({
   ...props
 }: React.ComponentProps<"button">) {
   return (
-    <button type="button" className={cn(docsIconButtonClassName, className)} {...props}>
+    <button
+      type="button"
+      className={cn(docsIconButtonClassName, className)}
+      {...props}
+    >
       {children}
     </button>
   );

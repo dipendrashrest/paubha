@@ -17,7 +17,9 @@ export function InputHero() {
 export function InputSizes() {
   return (
     <ComponentPlayground
-      code={sizes.map((s) => `<Input size="${s}" placeholder="Size ${s}" />`).join("\n")}
+      code={sizes
+        .map((s) => `<Input size="${s}" placeholder="Size ${s}" />`)
+        .join("\n")}
     >
       <div className="flex w-full max-w-xs flex-col gap-3">
         {sizes.map((size) => (

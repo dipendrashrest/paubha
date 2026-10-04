@@ -30,7 +30,9 @@ describe("TagInput", () => {
   it("renders existing tags with remove buttons", () => {
     render(<ControlledTagInput initial={["React", "Figma"]} />);
     expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Remove React" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Remove React" }),
+    ).toBeInTheDocument();
   });
 
   it("adds a tag on Enter", async () => {
@@ -54,7 +56,9 @@ describe("TagInput", () => {
   it("does not add a duplicate tag by default", async () => {
     const user = userEvent.setup();
     const onTagsChange = vi.fn();
-    render(<ControlledTagInput initial={["React"]} onTagsChange={onTagsChange} />);
+    render(
+      <ControlledTagInput initial={["React"]} onTagsChange={onTagsChange} />,
+    );
     const input = screen.getByPlaceholderText("Add tag...");
     await user.type(input, "React{Enter}");
     expect(onTagsChange).not.toHaveBeenCalled();
@@ -63,7 +67,12 @@ describe("TagInput", () => {
   it("removes the last tag on backspace when the input is empty", async () => {
     const user = userEvent.setup();
     const onTagsChange = vi.fn();
-    render(<ControlledTagInput initial={["React", "Figma"]} onTagsChange={onTagsChange} />);
+    render(
+      <ControlledTagInput
+        initial={["React", "Figma"]}
+        onTagsChange={onTagsChange}
+      />,
+    );
     const input = screen.getByPlaceholderText("Add tag...");
     await user.click(input);
     await user.keyboard("{Backspace}");
@@ -73,7 +82,12 @@ describe("TagInput", () => {
   it("removes a specific tag when its remove button is clicked", async () => {
     const user = userEvent.setup();
     const onTagsChange = vi.fn();
-    render(<ControlledTagInput initial={["React", "Figma"]} onTagsChange={onTagsChange} />);
+    render(
+      <ControlledTagInput
+        initial={["React", "Figma"]}
+        onTagsChange={onTagsChange}
+      />,
+    );
     await user.click(screen.getByRole("button", { name: "Remove React" }));
     expect(onTagsChange).toHaveBeenLastCalledWith(["Figma"]);
   });
@@ -96,9 +110,13 @@ describe("TagInput", () => {
   });
 
   it("switches the focus-visible ring to the error-tinted glow when error is set (audit fix)", () => {
-    const { container, rerender } = render(<ControlledTagInput initial={["React"]} />);
+    const { container, rerender } = render(
+      <ControlledTagInput initial={["React"]} />,
+    );
     const group = screen.getByRole("group");
-    expect(group).toHaveClass("has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]");
+    expect(group).toHaveClass(
+      "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
+    );
     expect(group).not.toHaveClass(
       "has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]",
     );
@@ -138,7 +156,9 @@ describe("TagInputV2", () => {
   it("renders tags and adds a new one on Enter, same as TagInput", async () => {
     const user = userEvent.setup();
     const onTagsChange = vi.fn();
-    render(<ControlledTagInputV2 initial={["React"]} onTagsChange={onTagsChange} />);
+    render(
+      <ControlledTagInputV2 initial={["React"]} onTagsChange={onTagsChange} />,
+    );
     expect(screen.getByText("React")).toBeInTheDocument();
     await user.type(screen.getByPlaceholderText("Add tag..."), "Figma{Enter}");
     expect(onTagsChange).toHaveBeenLastCalledWith(["React", "Figma"]);
@@ -164,7 +184,9 @@ describe("TagInputV2", () => {
   });
 
   it("has no axe violations for default, hover-eligible, and disabled states", async () => {
-    const { container, rerender } = render(<ControlledTagInputV2 initial={["React"]} />);
+    const { container, rerender } = render(
+      <ControlledTagInputV2 initial={["React"]} />,
+    );
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<ControlledTagInputV2 initial={["React"]} disabled />);

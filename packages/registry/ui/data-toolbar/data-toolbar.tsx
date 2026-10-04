@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface DataToolbarProps extends React.ComponentPropsWithRef<"div"> {
   /** Leading search slot — typically SearchField. */
@@ -26,10 +26,7 @@ export function DataToolbar({
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex w-full flex-wrap items-center gap-3",
-        className,
-      )}
+      className={cn("flex w-full flex-wrap items-center gap-3", className)}
       {...props}
     >
       {search != null ? (
@@ -40,7 +37,9 @@ export function DataToolbar({
       ) : null}
       {children}
       {actions != null ? (
-        <div className="ml-auto flex shrink-0 items-center gap-2">{actions}</div>
+        <div className="ml-auto flex shrink-0 items-center gap-2">
+          {actions}
+        </div>
       ) : null}
     </div>
   );

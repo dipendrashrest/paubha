@@ -1,10 +1,11 @@
 "use client";
 
+import { CodeCopyButton } from "@/components/docs/_shared/docs-icon-button";
+import { cn } from "@paubha/registry/lib/cn";
 import { Badge } from "@paubha/registry/ui/badge";
 import { Button, buttonVariants } from "@paubha/registry/ui/button";
 import { FilterChip } from "@paubha/registry/ui/filter";
 import { SearchField } from "@paubha/registry/ui/search-field";
-import { cn } from "@paubha/registry/lib/cn";
 import {
   Activity,
   AlertCircle,
@@ -43,6 +44,7 @@ import {
   LayoutGrid,
   Link2,
   Lock,
+  type LucideIcon,
   Mail,
   Menu,
   MessageSquare,
@@ -69,10 +71,8 @@ import {
   User,
   Users,
   Zap,
-  type LucideIcon,
 } from "lucide-react";
 import * as React from "react";
-import { CodeCopyButton } from "@/components/docs/_shared/docs-icon-button";
 
 const LUCIDE_HOME = "https://lucide.dev";
 const LUCIDE_ICONS = "https://lucide.dev/icons";
@@ -229,22 +229,25 @@ export function IconsHero() {
           </div>
         </div>
         <div className="pb-enter-late grid grid-cols-4 gap-3">
-          {[Sparkles, PenTool, Command, Shield, Calendar, Search, Zap, Boxes].map(
-            (Icon, i) => (
-              <div
-                key={Icon.displayName ?? i}
-                data-drawn={drawn ? "true" : "false"}
-                className="pb-icon-draw flex aspect-square items-center justify-center rounded-md border border-border-default bg-bg-primary text-fg-brand"
-                style={{ animationDelay: `${i * 40}ms` }}
-              >
-                <Icon
-                  className="size-7"
-                  strokeWidth={1.75}
-                  aria-hidden="true"
-                />
-              </div>
-            ),
-          )}
+          {[
+            Sparkles,
+            PenTool,
+            Command,
+            Shield,
+            Calendar,
+            Search,
+            Zap,
+            Boxes,
+          ].map((Icon, i) => (
+            <div
+              key={Icon.displayName ?? i}
+              data-drawn={drawn ? "true" : "false"}
+              className="pb-icon-draw flex aspect-square items-center justify-center rounded-md border border-border-default bg-bg-primary text-fg-brand"
+              style={{ animationDelay: `${i * 40}ms` }}
+            >
+              <Icon className="size-7" strokeWidth={1.75} aria-hidden="true" />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -368,11 +371,7 @@ export function IconsShowcase() {
             data-drawn={drawn ? "true" : "false"}
             className="pb-icon-draw flex min-h-36 items-center justify-center rounded-md border border-border-default bg-bg-primary text-fg-brand"
           >
-            <SelectedIcon
-              size={size}
-              strokeWidth={stroke}
-              aria-hidden="true"
-            />
+            <SelectedIcon size={size} strokeWidth={stroke} aria-hidden="true" />
           </div>
           <div>
             <p className="font-mono text-ui-sm font-medium text-fg-primary">
@@ -455,7 +454,9 @@ export function IconsUsage() {
   return (
     <div className="not-prose my-6 grid gap-3 md:grid-cols-2">
       <div className="rounded-lg border border-border-default bg-bg-secondary p-5">
-        <p className="text-ui-md font-semibold text-fg-primary">In components</p>
+        <p className="text-ui-md font-semibold text-fg-primary">
+          In components
+        </p>
         <p className="mt-2 text-body-sm text-fg-secondary">
           Import the named export. Pass it as a slot (
           <code className="font-mono text-ui-xs">leadingIcon</code>

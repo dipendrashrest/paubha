@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandField } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
 import { Avatar } from "@paubha/registry/ui/avatar";
 import { Badge } from "@paubha/registry/ui/badge";
 import { Button, buttonVariants } from "@paubha/registry/ui/button";
@@ -12,8 +14,6 @@ import { Switch } from "@paubha/registry/ui/switch";
 import { TeamCard, TeamCardGrid } from "@paubha/registry/ui/team-card";
 import { Briefcase } from "lucide-react";
 import Link from "next/link";
-import { BrandField } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
 import { MarketingShell } from "./shell";
 
 const ROLES = [
@@ -80,7 +80,9 @@ export function CareersMarketingPage() {
             <SettingsRow
               title="glow-focus or it is incomplete"
               description="The brand is the ring. We will send it back."
-              control={<Switch defaultChecked aria-label="glow-focus required" />}
+              control={
+                <Switch defaultChecked aria-label="glow-focus required" />
+              }
             />
           </div>
         </div>

@@ -117,7 +117,10 @@ describe("DropdownMenu", () => {
     render(<BasicMenu />);
     await user.click(screen.getByRole("button", { name: "Open menu" }));
     const item = await screen.findByRole("menuitem", { name: "Edit" });
-    expect(item).toHaveClass("active:bg-bg-brand-subtle", "active:text-fg-brand");
+    expect(item).toHaveClass(
+      "active:bg-bg-brand-subtle",
+      "active:text-fg-brand",
+    );
   });
 
   it("gives a destructive item error-tinted active treatment instead of brand", async () => {
@@ -125,6 +128,9 @@ describe("DropdownMenu", () => {
     render(<BasicMenu />);
     await user.click(screen.getByRole("button", { name: "Open menu" }));
     const item = await screen.findByRole("menuitem", { name: "Delete" });
-    expect(item).toHaveClass("active:bg-bg-error-subtle", "active:text-fg-error");
+    expect(item).toHaveClass(
+      "active:bg-bg-error-subtle",
+      "active:text-fg-error",
+    );
   });
 });

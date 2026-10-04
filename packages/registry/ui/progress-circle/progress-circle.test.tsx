@@ -7,7 +7,9 @@ import { ProgressCircle } from "./progress-circle";
 describe("ProgressCircle", () => {
   it("renders a progressbar with the correct aria value attributes", () => {
     render(<ProgressCircle value={75} aria-label="Upload progress" />);
-    const progress = screen.getByRole("progressbar", { name: "Upload progress" });
+    const progress = screen.getByRole("progressbar", {
+      name: "Upload progress",
+    });
     expect(progress).toHaveAttribute("aria-valuenow", "75");
     expect(progress).toHaveAttribute("aria-valuemin", "0");
     expect(progress).toHaveAttribute("aria-valuemax", "100");
@@ -19,7 +21,13 @@ describe("ProgressCircle", () => {
   });
 
   it("hides the percentage text when showPercentage is false", () => {
-    render(<ProgressCircle value={75} showPercentage={false} aria-label="Upload progress" />);
+    render(
+      <ProgressCircle
+        value={75}
+        showPercentage={false}
+        aria-label="Upload progress"
+      />,
+    );
     expect(screen.queryByText("75%")).not.toBeInTheDocument();
   });
 
@@ -29,18 +37,24 @@ describe("ProgressCircle", () => {
   });
 
   it("respects a custom max", () => {
-    render(<ProgressCircle value={40} max={200} aria-label="Upload progress" />);
+    render(
+      <ProgressCircle value={40} max={200} aria-label="Upload progress" />,
+    );
     expect(screen.getByText("20%")).toBeInTheDocument();
   });
 
   it("forwards a ref to the underlying element", () => {
     const ref = React.createRef<HTMLDivElement>();
-    render(<ProgressCircle ref={ref} value={50} aria-label="Upload progress" />);
+    render(
+      <ProgressCircle ref={ref} value={50} aria-label="Upload progress" />,
+    );
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
   it("has no axe violations", async () => {
-    const { container } = render(<ProgressCircle value={50} aria-label="Upload progress" />);
+    const { container } = render(
+      <ProgressCircle value={50} aria-label="Upload progress" />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

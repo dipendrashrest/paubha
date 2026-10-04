@@ -11,7 +11,9 @@ describe("AuthCard", () => {
       </AuthCard>,
     );
     expect(screen.getByText("Log in")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Continue" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Continue" }),
+    ).toBeInTheDocument();
   });
 
   it("has no axe violations", async () => {

@@ -3,7 +3,13 @@ import userEvent from "@testing-library/user-event";
 import * as React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { Card, CardContent, CardDescription, CardImage, CardTitle } from "./card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardImage,
+  CardTitle,
+} from "./card";
 
 function BasicCard(props: { onClick?: () => void }) {
   return (
@@ -11,7 +17,9 @@ function BasicCard(props: { onClick?: () => void }) {
       <CardImage src="/photo.jpg" alt="" />
       <CardContent>
         <CardTitle>Card Title</CardTitle>
-        <CardDescription>A brief description of the card content goes here.</CardDescription>
+        <CardDescription>
+          A brief description of the card content goes here.
+        </CardDescription>
       </CardContent>
     </Card>
   );

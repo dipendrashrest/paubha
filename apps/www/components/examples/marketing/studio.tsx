@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandField, BrandOrbit } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
 import { Avatar } from "@paubha/registry/ui/avatar";
 import { Badge } from "@paubha/registry/ui/badge";
 import { buttonVariants } from "@paubha/registry/ui/button";
@@ -7,8 +9,6 @@ import { InlineCta } from "@paubha/registry/ui/inline-cta";
 import { TeamCard } from "@paubha/registry/ui/team-card";
 import { Testimonial } from "@paubha/registry/ui/testimonial";
 import Link from "next/link";
-import { BrandField, BrandOrbit } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
 import { MarketingShell } from "./shell";
 
 const CREW = [
@@ -116,7 +116,11 @@ export function StudioMarketingPage() {
                 key={member.initials}
                 className="min-w-[220px] snap-start md:min-w-0"
                 avatar={
-                  <Avatar initials={member.initials} alt={member.name} size="md" />
+                  <Avatar
+                    initials={member.initials}
+                    alt={member.name}
+                    size="md"
+                  />
                 }
                 name={member.name}
                 role={member.role}

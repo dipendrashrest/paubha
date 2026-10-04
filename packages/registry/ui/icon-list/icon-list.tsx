@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface IconListItemProps
   extends Omit<React.ComponentPropsWithRef<"li">, "title"> {
@@ -45,11 +45,7 @@ export interface IconListProps extends React.ComponentPropsWithRef<"ul"> {}
  */
 export function IconList({ ref, className, ...props }: IconListProps) {
   return (
-    <ul
-      ref={ref}
-      className={cn("flex flex-col gap-5", className)}
-      {...props}
-    />
+    <ul ref={ref} className={cn("flex flex-col gap-5", className)} {...props} />
   );
 }
 

@@ -57,7 +57,9 @@ export function BadgeSizes() {
 
 export function BadgeWithDot() {
   return (
-    <ComponentPlayground code={`<Badge variant="success" showDot>Active</Badge>`}>
+    <ComponentPlayground
+      code={`<Badge variant="success" showDot>Active</Badge>`}
+    >
       <Badge variant="success" showDot>
         Active
       </Badge>

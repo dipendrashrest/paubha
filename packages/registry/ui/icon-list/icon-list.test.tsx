@@ -1,5 +1,5 @@
-import { Mail } from "lucide-react";
 import { render, screen } from "@testing-library/react";
+import { Mail } from "lucide-react";
 import { describe, expect, it } from "vitest";
 import { axe } from "../../lib/test-axe";
 import { IconList, IconListItem } from "./icon-list";

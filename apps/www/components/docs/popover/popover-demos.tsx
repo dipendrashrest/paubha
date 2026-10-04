@@ -33,8 +33,7 @@ export function PopoverHero() {
         <PopoverContent>
           <PopoverTitle>Popover Title</PopoverTitle>
           <PopoverDescription>
-            This is a popover content area. It can contain any text or
-            elements.
+            This is a popover content area. It can contain any text or elements.
           </PopoverDescription>
         </PopoverContent>
       </Popover>

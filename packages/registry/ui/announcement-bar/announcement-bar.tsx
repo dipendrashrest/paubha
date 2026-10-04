@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface AnnouncementBarProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title"> {

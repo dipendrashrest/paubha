@@ -56,9 +56,7 @@ describe("Metric", () => {
       />,
     );
     expect(screen.getByText("-2.1%")).toBeInTheDocument();
-    expect(
-      container.querySelector("svg.lucide-arrow-down-right"),
-    ).toBeTruthy();
+    expect(container.querySelector("svg.lucide-arrow-down-right")).toBeTruthy();
   });
 
   it("renders a sparkline from series data", () => {

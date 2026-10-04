@@ -89,9 +89,7 @@ export function AboutMarketingPage() {
           {TEAM.map((m) => (
             <TeamCard
               key={m.initials}
-              avatar={
-                <Avatar initials={m.initials} alt={m.name} size="md" />
-              }
+              avatar={<Avatar initials={m.initials} alt={m.name} size="md" />}
               name={m.name}
               role={m.role}
             />

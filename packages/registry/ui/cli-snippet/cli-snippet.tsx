@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface CliSnippetProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title"> {

@@ -1,15 +1,19 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export type ProgressCircleSize = "sm" | "md" | "lg";
 
-const sizeConfig: Record<ProgressCircleSize, { px: number; strokeWidth: number; textClassName: string }> = {
+const sizeConfig: Record<
+  ProgressCircleSize,
+  { px: number; strokeWidth: number; textClassName: string }
+> = {
   sm: { px: 40, strokeWidth: 4, textClassName: "text-ui-xs" },
   md: { px: 48, strokeWidth: 5, textClassName: "text-ui-sm" },
   lg: { px: 64, strokeWidth: 6, textClassName: "text-ui-md" },
 };
 
-export interface ProgressCircleProps extends React.ComponentPropsWithRef<"div"> {
+export interface ProgressCircleProps
+  extends React.ComponentPropsWithRef<"div"> {
   /** Current progress value, from 0 to max. */
   value: number;
   max?: number;
@@ -48,7 +52,10 @@ export function ProgressCircle({
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
-      className={cn("relative inline-flex shrink-0 items-center justify-center", className)}
+      className={cn(
+        "relative inline-flex shrink-0 items-center justify-center",
+        className,
+      )}
       style={{ width: px, height: px }}
       {...props}
     >
@@ -82,10 +89,7 @@ export function ProgressCircle({
       {showPercentage ? (
         <p
           aria-hidden="true"
-          className={cn(
-            "absolute font-medium text-fg-primary",
-            textClassName,
-          )}
+          className={cn("absolute font-medium text-fg-primary", textClassName)}
         >
           {Math.round(percentage)}%
         </p>

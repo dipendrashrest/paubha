@@ -893,7 +893,10 @@
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
-        { "path": "ui/section-header/section-header.tsx", "type": "registry:ui" },
+        {
+          "path": "ui/section-header/section-header.tsx",
+          "type": "registry:ui"
+        },
         { "path": "lib/cn.ts", "type": "registry:lib" }
       ]
     },
@@ -917,7 +920,10 @@
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
-        { "path": "ui/progress-steps/progress-steps.tsx", "type": "registry:ui" },
+        {
+          "path": "ui/progress-steps/progress-steps.tsx",
+          "type": "registry:ui"
+        },
         { "path": "lib/cn.ts", "type": "registry:lib" }
       ]
     },
@@ -977,7 +983,10 @@
       "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
-        { "path": "ui/announcement-bar/announcement-bar.tsx", "type": "registry:ui" },
+        {
+          "path": "ui/announcement-bar/announcement-bar.tsx",
+          "type": "registry:ui"
+        },
         { "path": "lib/cn.ts", "type": "registry:lib" }
       ]
     },
@@ -1037,7 +1046,10 @@
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
-        { "path": "ui/marketing-hero/marketing-hero.tsx", "type": "registry:ui" },
+        {
+          "path": "ui/marketing-hero/marketing-hero.tsx",
+          "type": "registry:ui"
+        },
         { "path": "lib/cn.ts", "type": "registry:lib" }
       ]
     },
@@ -1169,7 +1181,10 @@
       "dependencies": [],
       "registryDependencies": ["dialog"],
       "files": [
-        { "path": "ui/confirm-dialog/confirm-dialog.tsx", "type": "registry:ui" }
+        {
+          "path": "ui/confirm-dialog/confirm-dialog.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {

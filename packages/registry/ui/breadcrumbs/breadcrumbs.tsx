@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { ChevronRight } from "lucide-react";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface BreadcrumbsProps extends React.ComponentPropsWithRef<"nav"> {}
 

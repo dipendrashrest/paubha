@@ -93,7 +93,9 @@ describe("RadioGroup", () => {
   it("binds hover and disabled states to the confirmed Figma tokens", () => {
     render(<BasicGroup value="pro" disabled />);
     const unselected = screen.getByRole("radio", { name: "Free" });
-    expect(unselected).toHaveClass("data-[state=unchecked]:hover:border-border-strong");
+    expect(unselected).toHaveClass(
+      "data-[state=unchecked]:hover:border-border-strong",
+    );
     expect(unselected).toHaveClass("disabled:bg-bg-secondary");
 
     const selected = screen.getByRole("radio", { name: "Pro" });

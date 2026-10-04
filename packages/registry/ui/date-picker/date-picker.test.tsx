@@ -12,9 +12,7 @@ describe("DatePicker", () => {
   });
 
   it("has no axe violations", async () => {
-    const { container } = render(
-      <DatePicker value={new Date(2026, 8, 22)} />,
-    );
+    const { container } = render(<DatePicker value={new Date(2026, 8, 22)} />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

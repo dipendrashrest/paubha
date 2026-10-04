@@ -5,7 +5,9 @@ import { ComponentPlayground } from "../_shared/component-playground";
 
 export function CheckboxHero() {
   return (
-    <ComponentPlayground code={`<Checkbox label="Accept terms and conditions" />`}>
+    <ComponentPlayground
+      code={`<Checkbox label="Accept terms and conditions" />`}
+    >
       <Checkbox label="Accept terms and conditions" />
     </ComponentPlayground>
   );

@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface SettingsRowProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
@@ -36,9 +36,7 @@ export function SettingsRow({
           <p className="mt-0.5 text-body-sm text-fg-secondary">{description}</p>
         ) : null}
       </div>
-      {control != null ? (
-        <div className="shrink-0">{control}</div>
-      ) : null}
+      {control != null ? <div className="shrink-0">{control}</div> : null}
     </div>
   );
 }

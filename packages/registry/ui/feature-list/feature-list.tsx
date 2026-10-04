@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import * as React from "react";
 import { Divider } from "../divider/divider";
 
 export interface FeatureListItemProps

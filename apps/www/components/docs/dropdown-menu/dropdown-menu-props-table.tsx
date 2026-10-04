@@ -35,8 +35,8 @@ export function DropdownMenuPropsTable() {
   return (
     <>
       <p className="text-ui-sm text-fg-secondary">
-        <code>DropdownMenu</code> and <code>DropdownMenuTrigger</code> are direct
-        re-exports of Radix's <code>Root</code>/<code>Trigger</code>.
+        <code>DropdownMenu</code> and <code>DropdownMenuTrigger</code> are
+        direct re-exports of Radix's <code>Root</code>/<code>Trigger</code>.
       </p>
       <h3 className="text-[1.25em] font-semibold">DropdownMenuItem</h3>
       <PropsTable rows={[...dropdownMenuItemProps]} />

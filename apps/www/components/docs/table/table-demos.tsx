@@ -1,12 +1,34 @@
 "use client";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@paubha/registry/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@paubha/registry/ui/table";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 const rows = [
-  { name: "Alex Johnson", email: "alex@example.com", role: "Admin", status: "Active" },
-  { name: "Sam Williams", email: "sam@example.com", role: "Editor", status: "Active" },
-  { name: "Jamie Brown", email: "jamie@example.com", role: "Viewer", status: "Inactive" },
+  {
+    name: "Alex Johnson",
+    email: "alex@example.com",
+    role: "Admin",
+    status: "Active",
+  },
+  {
+    name: "Sam Williams",
+    email: "sam@example.com",
+    role: "Editor",
+    status: "Active",
+  },
+  {
+    name: "Jamie Brown",
+    email: "jamie@example.com",
+    role: "Viewer",
+    status: "Inactive",
+  },
 ];
 
 function DemoTable(props: { variant?: "default" | "striped" | "bordered" }) {
@@ -66,7 +88,9 @@ export function TableHero() {
 
 export function TableStriped() {
   return (
-    <ComponentPlayground code={'<Table variant="striped" aria-label="Users">...</Table>'}>
+    <ComponentPlayground
+      code={'<Table variant="striped" aria-label="Users">...</Table>'}
+    >
       <div className="w-full">
         <DemoTable variant="striped" />
       </div>
@@ -76,7 +100,9 @@ export function TableStriped() {
 
 export function TableBordered() {
   return (
-    <ComponentPlayground code={'<Table variant="bordered" aria-label="Users">...</Table>'}>
+    <ComponentPlayground
+      code={'<Table variant="bordered" aria-label="Users">...</Table>'}
+    >
       <div className="w-full">
         <DemoTable variant="bordered" />
       </div>

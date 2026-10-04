@@ -141,19 +141,97 @@ export function SuccessScale() {
 }
 
 const typeScale = [
-  { name: "ui-xs", size: "12px", lineHeight: "16px", weight: "Medium", className: "text-ui-xs font-medium" },
-  { name: "ui-sm", size: "13px", lineHeight: "18px", weight: "Medium", className: "text-ui-sm font-medium" },
-  { name: "ui-md", size: "14px", lineHeight: "20px", weight: "Medium", className: "text-ui-md font-medium" },
-  { name: "ui-lg", size: "16px", lineHeight: "24px", weight: "Medium", className: "text-ui-lg font-medium" },
-  { name: "body-sm", size: "14px", lineHeight: "22px", weight: "Regular", className: "text-body-sm font-normal" },
-  { name: "body-md", size: "16px", lineHeight: "26px", weight: "Regular", className: "text-body-md font-normal" },
-  { name: "body-lg", size: "18px", lineHeight: "28px", weight: "Regular", className: "text-body-lg font-normal" },
-  { name: "display-xs", size: "24px", lineHeight: "32px", weight: "Semibold", className: "text-display-xs font-semibold" },
-  { name: "display-sm", size: "30px", lineHeight: "38px", weight: "Semibold", className: "text-display-sm font-semibold" },
-  { name: "display-md", size: "36px", lineHeight: "44px", weight: "Semibold", className: "text-display-md font-semibold" },
-  { name: "display-lg", size: "48px", lineHeight: "58px", weight: "Semibold", className: "text-display-lg font-semibold" },
-  { name: "display-xl", size: "60px", lineHeight: "72px", weight: "Semibold", className: "text-display-xl font-semibold" },
-  { name: "display-2xl", size: "72px", lineHeight: "88px", weight: "Semibold", className: "text-display-2xl font-semibold" },
+  {
+    name: "ui-xs",
+    size: "12px",
+    lineHeight: "16px",
+    weight: "Medium",
+    className: "text-ui-xs font-medium",
+  },
+  {
+    name: "ui-sm",
+    size: "13px",
+    lineHeight: "18px",
+    weight: "Medium",
+    className: "text-ui-sm font-medium",
+  },
+  {
+    name: "ui-md",
+    size: "14px",
+    lineHeight: "20px",
+    weight: "Medium",
+    className: "text-ui-md font-medium",
+  },
+  {
+    name: "ui-lg",
+    size: "16px",
+    lineHeight: "24px",
+    weight: "Medium",
+    className: "text-ui-lg font-medium",
+  },
+  {
+    name: "body-sm",
+    size: "14px",
+    lineHeight: "22px",
+    weight: "Regular",
+    className: "text-body-sm font-normal",
+  },
+  {
+    name: "body-md",
+    size: "16px",
+    lineHeight: "26px",
+    weight: "Regular",
+    className: "text-body-md font-normal",
+  },
+  {
+    name: "body-lg",
+    size: "18px",
+    lineHeight: "28px",
+    weight: "Regular",
+    className: "text-body-lg font-normal",
+  },
+  {
+    name: "display-xs",
+    size: "24px",
+    lineHeight: "32px",
+    weight: "Semibold",
+    className: "text-display-xs font-semibold",
+  },
+  {
+    name: "display-sm",
+    size: "30px",
+    lineHeight: "38px",
+    weight: "Semibold",
+    className: "text-display-sm font-semibold",
+  },
+  {
+    name: "display-md",
+    size: "36px",
+    lineHeight: "44px",
+    weight: "Semibold",
+    className: "text-display-md font-semibold",
+  },
+  {
+    name: "display-lg",
+    size: "48px",
+    lineHeight: "58px",
+    weight: "Semibold",
+    className: "text-display-lg font-semibold",
+  },
+  {
+    name: "display-xl",
+    size: "60px",
+    lineHeight: "72px",
+    weight: "Semibold",
+    className: "text-display-xl font-semibold",
+  },
+  {
+    name: "display-2xl",
+    size: "72px",
+    lineHeight: "88px",
+    weight: "Semibold",
+    className: "text-display-2xl font-semibold",
+  },
 ] as const;
 
 export function TypeScale() {
@@ -199,8 +277,13 @@ export function SpacingScale() {
     <div className="not-prose my-6 space-y-2">
       {spacingScale.map(([step, px]) => (
         <div key={step} className="flex items-center gap-4">
-          <div className="w-20 shrink-0 font-mono text-ui-xs text-fg-tertiary">space-{step}</div>
-          <div className="h-3 rounded-xs bg-bg-brand-solid" style={{ width: px }} />
+          <div className="w-20 shrink-0 font-mono text-ui-xs text-fg-tertiary">
+            space-{step}
+          </div>
+          <div
+            className="h-3 rounded-xs bg-bg-brand-solid"
+            style={{ width: px }}
+          />
           <div className="font-mono text-ui-xs text-fg-tertiary">{px}</div>
         </div>
       ))}
@@ -238,9 +321,18 @@ export function RadiusScale() {
 const shadowScale = [
   ["xs", "0 1px 2px rgb(30 52 133 / 0.06)"],
   ["sm", "0 1px 3px rgb(30 52 133 / 0.1), 0 1px 2px rgb(30 52 133 / 0.06)"],
-  ["md", "0 4px 6px -1px rgb(30 52 133 / 0.1), 0 2px 4px -2px rgb(30 52 133 / 0.06)"],
-  ["lg", "0 10px 15px -3px rgb(30 52 133 / 0.1), 0 4px 6px -4px rgb(30 52 133 / 0.05)"],
-  ["xl", "0 20px 25px -5px rgb(30 52 133 / 0.1), 0 8px 10px -6px rgb(30 52 133 / 0.05)"],
+  [
+    "md",
+    "0 4px 6px -1px rgb(30 52 133 / 0.1), 0 2px 4px -2px rgb(30 52 133 / 0.06)",
+  ],
+  [
+    "lg",
+    "0 10px 15px -3px rgb(30 52 133 / 0.1), 0 4px 6px -4px rgb(30 52 133 / 0.05)",
+  ],
+  [
+    "xl",
+    "0 20px 25px -5px rgb(30 52 133 / 0.1), 0 8px 10px -6px rgb(30 52 133 / 0.05)",
+  ],
   ["2xl", "0 25px 50px -12px rgb(30 52 133 / 0.22)"],
 ] as const;
 
@@ -270,7 +362,10 @@ export function BlurScale() {
   return (
     <div className="not-prose my-6 flex flex-wrap gap-8 p-4">
       {blurScale.map(([step, px]) => (
-        <div key={step} className="relative flex size-20 items-center justify-center overflow-hidden rounded-lg bg-bg-brand-subtle">
+        <div
+          key={step}
+          className="relative flex size-20 items-center justify-center overflow-hidden rounded-lg bg-bg-brand-subtle"
+        >
           <div
             className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%2740%27%20height=%2740%27%3E%3Ccircle%20cx=%2710%27%20cy=%2710%27%20r=%278%27%20fill=%27%232450EA%27/%3E%3Ccircle%20cx=%2730%27%20cy=%2730%27%20r=%278%27%20fill=%27%23079455%27/%3E%3C/svg%3E')] bg-repeat"
             style={{ filter: `blur(${px})` }}

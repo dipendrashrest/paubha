@@ -1,3 +1,4 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { buttonVariants } from "@paubha/registry/ui/button";
 import { Logo } from "@paubha/registry/ui/logo";
 import {
@@ -5,7 +6,6 @@ import {
   SiteFooterColumn,
   SiteFooterLink,
 } from "@paubha/registry/ui/site-footer";
-import { cn } from "@paubha/registry/lib/cn";
 import Link from "next/link";
 import type * as React from "react";
 
@@ -57,10 +57,7 @@ export function MarketingNav({
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-6">
         <PaubhaMark />
-        <nav
-          aria-label="Primary"
-          className="hidden items-center gap-1 md:flex"
-        >
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -99,18 +96,30 @@ export function MarketingFooter({ className }: { className?: string }) {
       bottom={`© ${new Date().getFullYear()} Paubha, open-source components for React & Tailwind.`}
     >
       <SiteFooterColumn title="Product">
-        <SiteFooterLink href="/examples/marketing/saas">Overview</SiteFooterLink>
-        <SiteFooterLink href="/examples/marketing/launch">Launch</SiteFooterLink>
-        <SiteFooterLink href="/examples/marketing/pricing">Pricing</SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/saas">
+          Overview
+        </SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/launch">
+          Launch
+        </SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/pricing">
+          Pricing
+        </SiteFooterLink>
         <SiteFooterLink href="/examples/marketing/changelog">
           Changelog
         </SiteFooterLink>
       </SiteFooterColumn>
       <SiteFooterColumn title="Company">
         <SiteFooterLink href="/examples/marketing/about">About</SiteFooterLink>
-        <SiteFooterLink href="/examples/marketing/studio">Studio</SiteFooterLink>
-        <SiteFooterLink href="/examples/marketing/careers">Careers</SiteFooterLink>
-        <SiteFooterLink href="/examples/marketing/contact">Contact</SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/studio">
+          Studio
+        </SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/careers">
+          Careers
+        </SiteFooterLink>
+        <SiteFooterLink href="/examples/marketing/contact">
+          Contact
+        </SiteFooterLink>
       </SiteFooterColumn>
       <SiteFooterColumn title="Get started">
         <SiteFooterLink href="/docs">Docs</SiteFooterLink>
@@ -193,7 +202,8 @@ export const MARKETING_EXAMPLES = [
   {
     slug: "studio",
     title: "Studio",
-    description: "Editorial design-system page. Point of view, not a feature grid.",
+    description:
+      "Editorial design-system page. Point of view, not a feature grid.",
   },
   {
     slug: "open-source",

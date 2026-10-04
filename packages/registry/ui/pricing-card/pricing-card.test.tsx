@@ -19,7 +19,9 @@ describe("PricingCard", () => {
     expect(screen.getByText("Team")).toBeInTheDocument();
     expect(screen.getByText("$49")).toBeInTheDocument();
     expect(screen.getByText("All components")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Start trial" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Start trial" }),
+    ).toBeInTheDocument();
   });
 
   it("has no axe violations", async () => {

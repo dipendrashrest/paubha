@@ -1,7 +1,7 @@
-import { type VariantProps, cva } from "class-variance-authority";
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
 import { withIconSize } from "@paubha/registry/lib/with-icon-size";
+import { type VariantProps, cva } from "class-variance-authority";
+import type * as React from "react";
 
 const buttonVariants = cva(
   [

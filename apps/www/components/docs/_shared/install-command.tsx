@@ -6,9 +6,6 @@ export function InstallCommand({
   name: string;
 }) {
   return (
-    <CodeSnippet
-      className="not-prose"
-      code={`npx paubha@latest add ${name}`}
-    />
+    <CodeSnippet className="not-prose" code={`npx paubha@latest add ${name}`} />
   );
 }

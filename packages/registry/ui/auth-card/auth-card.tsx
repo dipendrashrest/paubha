@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 import { Card, CardContent } from "../card/card";
 
 export interface AuthCardProps

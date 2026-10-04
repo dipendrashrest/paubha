@@ -7,7 +7,9 @@ import { Slider } from "./slider";
 
 describe("Slider", () => {
   it("renders a slider with the correct aria value attributes", () => {
-    render(<Slider aria-label="Volume" defaultValue={[40]} min={0} max={100} />);
+    render(
+      <Slider aria-label="Volume" defaultValue={[40]} min={0} max={100} />,
+    );
     const slider = screen.getByRole("slider", { name: "Volume" });
     expect(slider).toHaveAttribute("aria-valuenow", "40");
     expect(slider).toHaveAttribute("aria-valuemin", "0");
@@ -67,8 +69,12 @@ describe("Slider", () => {
     render(<Slider aria-label="Volume" defaultValue={[40]} error />);
     const slider = screen.getByRole("slider");
     expect(slider).toHaveClass("border-border-error");
-    expect(slider).toHaveClass("focus-visible:shadow-[var(--shadow-glow-focus-error)]");
-    expect(slider).not.toHaveClass("focus-visible:shadow-[var(--shadow-glow-focus)]");
+    expect(slider).toHaveClass(
+      "focus-visible:shadow-[var(--shadow-glow-focus-error)]",
+    );
+    expect(slider).not.toHaveClass(
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
   });
 
   it("forwards a ref to the root element", () => {

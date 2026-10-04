@@ -1,15 +1,11 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import { Calendar as CalendarIcon } from "lucide-react";
 import * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 import { Button } from "../button/button";
 import { Calendar } from "../calendar/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../popover/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover/popover";
 
 const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -66,9 +62,7 @@ export function DatePicker({
             size="md"
             disabled={disabled}
             leadingIcon={<CalendarIcon aria-hidden="true" />}
-            aria-label={
-              current ? DATE_FORMATTER.format(current) : placeholder
-            }
+            aria-label={current ? DATE_FORMATTER.format(current) : placeholder}
             className="min-w-[12.5rem] justify-start font-medium"
           >
             {current ? DATE_FORMATTER.format(current) : placeholder}
@@ -78,11 +72,7 @@ export function DatePicker({
           align="start"
           className="w-auto border-0 bg-transparent p-0 shadow-none"
         >
-          <Calendar
-            value={current}
-            onValueChange={select}
-            size="sm"
-          />
+          <Calendar value={current} onValueChange={select} size="sm" />
         </PopoverContent>
       </Popover>
     </div>

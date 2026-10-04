@@ -20,7 +20,9 @@ describe("SectionHeader", () => {
         actions={<button type="button">Invite</button>}
       />,
     );
-    expect(screen.getByRole("heading", { name: "Members" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Members" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByText("People with access to this workspace."),
     ).toBeInTheDocument();
@@ -54,10 +56,11 @@ describe("SectionHeader", () => {
   });
 
   it("applies a bottom border when bordered", () => {
-    const { container } = render(
-      <SectionHeader title="Bordered" bordered />,
+    const { container } = render(<SectionHeader title="Bordered" bordered />);
+    expect(container.firstChild).toHaveClass(
+      "border-b",
+      "border-border-default",
     );
-    expect(container.firstChild).toHaveClass("border-b", "border-border-default");
   });
 
   it("forwards a ref to the root", () => {

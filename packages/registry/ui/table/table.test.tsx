@@ -2,7 +2,14 @@ import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, expect, it } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./table";
 
 function BasicTable(props: { variant?: "default" | "striped" | "bordered" }) {
   return (

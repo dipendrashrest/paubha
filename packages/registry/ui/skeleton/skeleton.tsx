@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 const skeletonVariants = cva("animate-pulse bg-bg-tertiary", {
   variants: {

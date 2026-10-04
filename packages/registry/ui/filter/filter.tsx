@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface FilterBarProps extends React.ComponentPropsWithRef<"div"> {}
 
@@ -124,7 +124,10 @@ export function ActiveFilters({
   return (
     <div
       ref={ref}
-      className={cn("flex w-full flex-wrap items-center gap-2 px-4 py-2", className)}
+      className={cn(
+        "flex w-full flex-wrap items-center gap-2 px-4 py-2",
+        className,
+      )}
       {...props}
     >
       <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">

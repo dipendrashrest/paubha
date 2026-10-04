@@ -15,8 +15,8 @@ export function TabsPropsTable() {
   return (
     <>
       <p className="text-ui-sm text-fg-secondary">
-        <code>Tabs</code> and <code>TabsContent</code> are direct re-exports of Radix's{" "}
-        <code>Root</code>/<code>Content</code>.
+        <code>Tabs</code> and <code>TabsContent</code> are direct re-exports of
+        Radix's <code>Root</code>/<code>Content</code>.
       </p>
       <h3 className="text-[1.25em] font-semibold">TabsList</h3>
       <PropsTable rows={[...tabsListProps]} />

@@ -5,11 +5,7 @@ import { CookieBanner } from "./cookie-banner";
 
 describe("CookieBanner", () => {
   it("renders title and actions", () => {
-    render(
-      <CookieBanner
-        actions={<button type="button">Accept</button>}
-      />,
-    );
+    render(<CookieBanner actions={<button type="button">Accept</button>} />);
     expect(screen.getByText("We use cookies")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Accept" })).toBeInTheDocument();
   });

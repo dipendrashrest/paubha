@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandField } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
 import { Avatar, AvatarGroup } from "@paubha/registry/ui/avatar";
 import { Badge } from "@paubha/registry/ui/badge";
 import { buttonVariants } from "@paubha/registry/ui/button";
@@ -7,8 +9,6 @@ import { CliSnippet } from "@paubha/registry/ui/cli-snippet";
 import { Faq } from "@paubha/registry/ui/faq";
 import { MarketingHero } from "@paubha/registry/ui/marketing-hero";
 import Link from "next/link";
-import { BrandField } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
 import { MarketingShell } from "./shell";
 
 export function OpenSourceMarketingPage() {

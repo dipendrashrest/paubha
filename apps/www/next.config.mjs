@@ -3,7 +3,10 @@ import { fileURLToPath } from "node:url";
 import { createMDX } from "fumadocs-mdx/next";
 
 const withMDX = createMDX();
-const monorepoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const monorepoRoot = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../..",
+);
 
 /** @type {import('next').NextConfig} */
 const config = {

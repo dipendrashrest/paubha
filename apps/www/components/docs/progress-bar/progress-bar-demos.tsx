@@ -5,7 +5,9 @@ import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ProgressBarHero() {
   return (
-    <ComponentPlayground code={`<ProgressBar value={60} label="Uploading file" />`}>
+    <ComponentPlayground
+      code={`<ProgressBar value={60} label="Uploading file" />`}
+    >
       <div className="w-full max-w-xs">
         <ProgressBar value={60} label="Uploading file" />
       </div>

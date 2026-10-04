@@ -70,7 +70,13 @@ const POSTS = [
   },
 ] as const;
 
-const TAGS = ["All", "Design systems", "Engineering", "Design", "Company"] as const;
+const TAGS = [
+  "All",
+  "Design systems",
+  "Engineering",
+  "Design",
+  "Company",
+] as const;
 
 export function BlogMarketingPage() {
   return (

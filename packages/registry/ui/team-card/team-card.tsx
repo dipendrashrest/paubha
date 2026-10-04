@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 import { Card, CardContent } from "../card/card";
 
 export interface TeamCardProps
@@ -45,11 +45,7 @@ TeamCard.displayName = "TeamCard";
 
 export interface TeamCardGridProps extends React.ComponentPropsWithRef<"div"> {}
 
-export function TeamCardGrid({
-  ref,
-  className,
-  ...props
-}: TeamCardGridProps) {
+export function TeamCardGrid({ ref, className, ...props }: TeamCardGridProps) {
   return (
     <div
       ref={ref}

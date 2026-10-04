@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandField } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
 import { AnnouncementBar } from "@paubha/registry/ui/announcement-bar";
 import { Avatar } from "@paubha/registry/ui/avatar";
 import { Badge } from "@paubha/registry/ui/badge";
@@ -11,8 +13,6 @@ import { Newsletter } from "@paubha/registry/ui/newsletter";
 import { Testimonial } from "@paubha/registry/ui/testimonial";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { BrandField } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
 import { BrandMarks } from "./brand-marks";
 import { MarketingShell } from "./shell";
 

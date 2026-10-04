@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface MarketingHeroProps
   extends Omit<React.ComponentPropsWithRef<"section">, "title"> {
@@ -42,7 +42,8 @@ export function MarketingHero({
       <div
         className={cn(
           "relative mx-auto grid max-w-6xl gap-10 px-6 pt-16 pb-20",
-          media != null && "lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pt-20",
+          media != null &&
+            "lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pt-20",
         )}
       >
         <div className="flex flex-col gap-6">

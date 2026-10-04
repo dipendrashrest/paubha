@@ -3,12 +3,7 @@ import userEvent from "@testing-library/user-event";
 import * as React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { axe } from "../../lib/test-axe";
-import {
-  ActiveFilters,
-  FilterBar,
-  FilterChip,
-  FilterChips,
-} from "./filter";
+import { ActiveFilters, FilterBar, FilterChip, FilterChips } from "./filter";
 
 describe("FilterBar", () => {
   it("renders children", () => {

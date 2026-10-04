@@ -10,7 +10,11 @@ export function DocsPre(props: React.ComponentProps<"pre">) {
 
   return (
     <div ref={wrapRef} className="relative">
-      <CodeBlock allowCopy={false} viewportProps={{ className: "pr-10" }} {...props}>
+      <CodeBlock
+        allowCopy={false}
+        viewportProps={{ className: "pr-10" }}
+        {...props}
+      >
         <Pre>{props.children}</Pre>
       </CodeBlock>
       <CodeCopyButton

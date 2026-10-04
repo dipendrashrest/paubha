@@ -62,9 +62,9 @@ describe("Pagination", () => {
       "aria-current",
       "page",
     );
-    expect(
-      screen.getByRole("button", { name: "2" }),
-    ).not.toHaveAttribute("aria-current");
+    expect(screen.getByRole("button", { name: "2" })).not.toHaveAttribute(
+      "aria-current",
+    );
   });
 
   it("calls the handler when a page link is clicked", async () => {
@@ -95,7 +95,9 @@ describe("Pagination", () => {
         </PaginationContent>
       </Pagination>,
     );
-    expect(screen.getByRole("button", { name: "Previous page" })).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "Previous page" }),
+    ).toBeDisabled();
   });
 
   it("exposes ellipsis text for screen readers", () => {

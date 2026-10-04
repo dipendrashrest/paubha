@@ -1,7 +1,7 @@
-import { NewBadge } from "@/components/docs/_shared/new-badge";
 import { docs } from "@/.source";
-import { loader } from "fumadocs-core/source";
+import { NewBadge } from "@/components/docs/_shared/new-badge";
 import type { Node } from "fumadocs-core/page-tree";
+import { loader } from "fumadocs-core/source";
 
 // fumadocs-mdx@11.10 returns `files` as a lazy function; fumadocs-core@15.8
 // expects an array. Bridge at runtime, keep the MDX Source type for inference.
@@ -20,7 +20,10 @@ export const source = loader({
 // source.config.ts's extended schema). Applied to the page tree once, here,
 // rather than per-render in the layout. The tree is only built once anyway.
 const newPageUrls = new Set(
-  source.getPages().filter((page) => page.data.new).map((page) => page.url),
+  source
+    .getPages()
+    .filter((page) => page.data.new)
+    .map((page) => page.url),
 );
 
 function withNewBadges(node: Node): Node {

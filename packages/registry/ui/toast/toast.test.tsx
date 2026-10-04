@@ -23,16 +23,10 @@ describe("Toast", () => {
 
   it("uses aria-live=assertive for warning and error variants", () => {
     const { rerender } = render(<Toast variant="warning" title="Warning" />);
-    expect(screen.getByRole("alert")).toHaveAttribute(
-      "aria-live",
-      "assertive",
-    );
+    expect(screen.getByRole("alert")).toHaveAttribute("aria-live", "assertive");
 
     rerender(<Toast variant="error" title="Error" />);
-    expect(screen.getByRole("alert")).toHaveAttribute(
-      "aria-live",
-      "assertive",
-    );
+    expect(screen.getByRole("alert")).toHaveAttribute("aria-live", "assertive");
   });
 
   it("does not render a dismiss button without onDismiss", () => {

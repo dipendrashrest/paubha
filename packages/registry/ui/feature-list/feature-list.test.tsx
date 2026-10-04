@@ -1,5 +1,5 @@
-import { Boxes } from "lucide-react";
 import { render, screen } from "@testing-library/react";
+import { Boxes } from "lucide-react";
 import { describe, expect, it } from "vitest";
 import { axe } from "../../lib/test-axe";
 import { FeatureList, FeatureListItem } from "./feature-list";

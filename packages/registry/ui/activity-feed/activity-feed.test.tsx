@@ -25,7 +25,9 @@ describe("ActivityFeed", () => {
       </ActivityFeed>,
     );
     expect(screen.getByRole("list")).toBeInTheDocument();
-    expect(screen.getByRole("listitem")).toHaveTextContent("Anna Chen commented");
+    expect(screen.getByRole("listitem")).toHaveTextContent(
+      "Anna Chen commented",
+    );
     expect(screen.getByText("2h ago")).toBeInTheDocument();
   });
 
@@ -81,7 +83,11 @@ describe("ActivityFeedTimelineItem", () => {
         <ActivityFeedTimelineItem
           title="Project Atlas launched"
           timestamp="Today · 10:20 AM"
-          status={<Badge variant="brand" fill="subtle" size="sm">Completed</Badge>}
+          status={
+            <Badge variant="brand" fill="subtle" size="sm">
+              Completed
+            </Badge>
+          }
           last
         />
       </ActivityFeed>,

@@ -59,24 +59,9 @@ export function MetricGroupDemo() {
     >
       <div className="w-full max-w-lg">
         <MetricGroup>
-          <Metric
-            compact
-            icon={<Eye />}
-            label="Views"
-            value="12.4k"
-          />
-          <Metric
-            compact
-            icon={<Users />}
-            label="Users"
-            value="3,281"
-          />
-          <Metric
-            compact
-            icon={<Zap />}
-            label="Sessions"
-            value="8.1k"
-          />
+          <Metric compact icon={<Eye />} label="Views" value="12.4k" />
+          <Metric compact icon={<Users />} label="Users" value="3,281" />
+          <Metric compact icon={<Zap />} label="Sessions" value="8.1k" />
         </MetricGroup>
       </div>
     </ComponentPlayground>

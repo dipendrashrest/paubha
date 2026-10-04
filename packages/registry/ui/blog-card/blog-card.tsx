@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 import { Card, CardContent, CardDescription } from "../card/card";
 
 export interface BlogCardProps
@@ -46,14 +46,9 @@ export function BlogCard({
 
 BlogCard.displayName = "BlogCard";
 
-export interface BlogCardGridProps
-  extends React.ComponentPropsWithRef<"div"> {}
+export interface BlogCardGridProps extends React.ComponentPropsWithRef<"div"> {}
 
-export function BlogCardGrid({
-  ref,
-  className,
-  ...props
-}: BlogCardGridProps) {
+export function BlogCardGrid({ ref, className, ...props }: BlogCardGridProps) {
   return (
     <div
       ref={ref}

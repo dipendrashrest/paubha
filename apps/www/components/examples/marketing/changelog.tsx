@@ -61,8 +61,8 @@ export function ChangelogMarketingPage() {
           What we shipped
         </h1>
         <p className="mt-3 text-body-md text-fg-secondary">
-          Weekly notes from the Paubha team. Components, patterns, and fixes,
-          no fluff.
+          Weekly notes from the Paubha team. Components, patterns, and fixes, no
+          fluff.
         </p>
       </section>
 

@@ -1,9 +1,17 @@
+import {
+  MARKETING_EXAMPLES,
+  PaubhaMark,
+} from "@/components/examples/marketing/shell";
 import { Badge } from "@paubha/registry/ui/badge";
 import { buttonVariants } from "@paubha/registry/ui/button";
-import { Card, CardContent, CardDescription, CardTitle } from "@paubha/registry/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@paubha/registry/ui/card";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { PaubhaMark, MARKETING_EXAMPLES } from "@/components/examples/marketing/shell";
 
 export const metadata = {
   title: "Marketing Examples",

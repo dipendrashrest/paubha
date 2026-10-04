@@ -128,7 +128,9 @@ export function ActivityFeedTimeline() {
 </ActivityFeed>`}
     >
       <div className="flex w-full max-w-[520px] flex-col gap-3 rounded-md border border-border-default bg-bg-primary p-4">
-        <p className="text-ui-xs font-medium text-fg-secondary">Timeline feed</p>
+        <p className="text-ui-xs font-medium text-fg-secondary">
+          Timeline feed
+        </p>
         <ActivityFeed className="gap-0">
           <ActivityFeedTimelineItem
             title="Project Atlas launched"
@@ -251,10 +253,7 @@ export function ActivityFeedNotifications() {
   </ActivityFeed>
 </ActivityFeedPanel>`}
     >
-      <ActivityFeedPanel
-        className="w-full max-w-md"
-        onMarkAllRead={() => {}}
-      >
+      <ActivityFeedPanel className="w-full max-w-md" onMarkAllRead={() => {}}>
         <ActivityFeed>
           <ActivityFeedItem
             avatar={<Avatar initials="AC" alt="Anna Chen" size="sm" />}

@@ -31,7 +31,12 @@ export function TagInputSizes() {
     >
       <div className="flex w-full max-w-sm flex-col gap-4">
         <TagInput size="sm" tags={sm} onTagsChange={setSm} aria-label="Small" />
-        <TagInput size="md" tags={md} onTagsChange={setMd} aria-label="Medium" />
+        <TagInput
+          size="md"
+          tags={md}
+          onTagsChange={setMd}
+          aria-label="Medium"
+        />
         <TagInput size="lg" tags={lg} onTagsChange={setLg} aria-label="Large" />
       </div>
     </ComponentPlayground>
@@ -41,7 +46,11 @@ export function TagInputSizes() {
 export function TagInputError() {
   const [tags, setTags] = React.useState(["React"]);
   return (
-    <ComponentPlayground code={'<TagInput tags={tags} onTagsChange={setTags} error aria-label="Tags" />'}>
+    <ComponentPlayground
+      code={
+        '<TagInput tags={tags} onTagsChange={setTags} error aria-label="Tags" />'
+      }
+    >
       <div className="w-full max-w-sm">
         <TagInput tags={tags} onTagsChange={setTags} error aria-label="Tags" />
       </div>
@@ -52,7 +61,9 @@ export function TagInputError() {
 export function TagInputDisabled() {
   return (
     <ComponentPlayground
-      code={'<TagInput tags={["React", "Figma"]} onTagsChange={() => {}} disabled aria-label="Tags" />'}
+      code={
+        '<TagInput tags={["React", "Figma"]} onTagsChange={() => {}} disabled aria-label="Tags" />'
+      }
     >
       <div className="w-full max-w-sm">
         <TagInput

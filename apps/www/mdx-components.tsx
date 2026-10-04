@@ -1,6 +1,74 @@
 import { A11yCallout } from "@/components/docs/_shared/a11y-callout";
+import {
+  ColorScale,
+  ColorSwatch,
+  ColorSwatchGroup,
+} from "@/components/docs/_shared/color-scale";
+import { ComingSoon } from "@/components/docs/_shared/coming-soon";
+import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
 import { DocsPre } from "@/components/docs/_shared/docs-pre";
-import { IntroPositioningAlert, SkillMdCard } from "@/components/docs/introduction/intro-blocks";
+import {
+  BlurScale,
+  BrandScale,
+  ErrorScale,
+  GrayScale,
+  RadiusScale,
+  ShadowScale,
+  SpacingScale,
+  SuccessScale,
+  TypeScale,
+  WarningScale,
+} from "@/components/docs/_shared/foundation-scales";
+import { InstallCommand } from "@/components/docs/_shared/install-command";
+import { PropsTable } from "@/components/docs/_shared/props-table";
+import {
+  AccordionInstall,
+  ActivityFeedInstall,
+  AlertInstall,
+  AvatarInstall,
+  BadgeInstall,
+  BreadcrumbsInstall,
+  ButtonInstall,
+  CardInstall,
+  CheckboxInstall,
+  DialogInstall,
+  DividerInstall,
+  DropdownMenuInstall,
+  FieldInstall,
+  InputInstall,
+  KbdInstall,
+  ModalInstall,
+  PaginationInstall,
+  PopoverInstall,
+  ProgressBarInstall,
+  ProgressCircleInstall,
+  RadioGroupInstall,
+  RegistryInstall,
+  SelectInstall,
+  SkeletonInstall,
+  SliderInstall,
+  SpinnerInstall,
+  SwitchInstall,
+  TableInstall,
+  TabsInstall,
+  TagInputInstall,
+  TextareaInstall,
+  ToastInstall,
+  ToggleGroupInstall,
+  TooltipInstall,
+  VerificationCodeInputInstall,
+} from "@/components/docs/_shared/registry-install";
+import {
+  AccordionDisabled,
+  AccordionHero,
+  AccordionMultiple,
+} from "@/components/docs/accordion/accordion-demos";
+import {
+  AccordionContentPropsTable,
+  AccordionItemPropsTable,
+  AccordionPropsTable,
+  AccordionTriggerPropsTable,
+} from "@/components/docs/accordion/accordion-props-table";
 import {
   ActivityFeedGrouped,
   ActivityFeedHero,
@@ -16,67 +84,17 @@ import {
   ActivityFeedTimelineItemPropsTable,
 } from "@/components/docs/activity-feed/activity-feed-props-table";
 import {
-  CardHeaderHero,
-  CardHeaderWithAvatar,
-} from "@/components/docs/card-header/card-header-demos";
-import { EmptyStateHero } from "@/components/docs/empty-state/empty-state-demos";
-import {
-  MetricGroupDemo,
-  MetricHero,
-  MetricSparkline,
-} from "@/components/docs/metric/metric-demos";
-import {
-  PageHeaderHero,
-  PageHeaderWithBreadcrumb,
-} from "@/components/docs/page-header/page-header-demos";
-import {
-  ProgressStepsHero,
-  ProgressStepsVertical,
-} from "@/components/docs/progress-steps/progress-steps-demos";
-import {
-  SectionHeaderBordered,
-  SectionHeaderHero,
-} from "@/components/docs/section-header/section-header-demos";
-import { AppNavHero, AppSidebarDemo } from "@/components/docs/app-nav/app-nav-demos";
-import { CalendarHero, CalendarRange } from "@/components/docs/calendar/calendar-demos";
-import { ChartDonut, ChartHero, ChartLine } from "@/components/docs/chart/chart-demos";
-import {
-  FileUploadHero,
-  FileUploadListDemo,
-} from "@/components/docs/file-upload/file-upload-demos";
-import { FilterActive, FilterHero } from "@/components/docs/filter/filter-demos";
-import { InlineCtaCard, InlineCtaHero } from "@/components/docs/inline-cta/inline-cta-demos";
-import { AnnouncementBarHero } from "@/components/docs/announcement-bar/announcement-bar-demos";
-import { LogoCloudHero } from "@/components/docs/logo-cloud/logo-cloud-demos";
-import { MarketingHeroDemo } from "@/components/docs/marketing-hero/marketing-hero-demos";
-import { NewsletterHero } from "@/components/docs/newsletter/newsletter-demos";
-import { SiteFooterHero } from "@/components/docs/site-footer/site-footer-demos";
-import {
-  TestimonialGridDemo,
-  TestimonialHero,
-} from "@/components/docs/testimonial/testimonial-demos";
-import {
-  PricingCardFeatured,
-  PricingCardHero,
-} from "@/components/docs/pricing-card/pricing-card-demos";
-import { FaqHero } from "@/components/docs/faq/faq-demos";
-import { FeatureListHero } from "@/components/docs/feature-list/feature-list-demos";
-import { CliSnippetHero } from "@/components/docs/cli-snippet/cli-snippet-demos";
-import { IconListHero } from "@/components/docs/icon-list/icon-list-demos";
-import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
-import { TeamCardHero } from "@/components/docs/team-card/team-card-demos";
-import { DatePickerHero } from "@/components/docs/date-picker/date-picker-demos";
-import { UserMenuHero } from "@/components/docs/user-menu/user-menu-demos";
-import { SearchFieldHero } from "@/components/docs/search-field/search-field-demos";
-import { ConfirmDialogHero } from "@/components/docs/confirm-dialog/confirm-dialog-demos";
-import { SettingsRowHero } from "@/components/docs/settings-row/settings-row-demos";
-import { CommentHero } from "@/components/docs/comment/comment-demos";
-import { DataToolbarHero } from "@/components/docs/data-toolbar/data-toolbar-demos";
-import { AuthCardHero } from "@/components/docs/auth-card/auth-card-demos";
-import { CookieBannerHero } from "@/components/docs/cookie-banner/cookie-banner-demos";
-import { MarketingExamplePreview } from "@/components/docs/marketing-examples/marketing-preview";
-import { AlertHero, AlertVariants, AlertWithActionAndDismiss } from "@/components/docs/alert/alert-demos";
+  AlertHero,
+  AlertVariants,
+  AlertWithActionAndDismiss,
+} from "@/components/docs/alert/alert-demos";
 import { AlertPropsTable } from "@/components/docs/alert/alert-props-table";
+import { AnnouncementBarHero } from "@/components/docs/announcement-bar/announcement-bar-demos";
+import {
+  AppNavHero,
+  AppSidebarDemo,
+} from "@/components/docs/app-nav/app-nav-demos";
+import { AuthCardHero } from "@/components/docs/auth-card/auth-card-demos";
 import {
   AvatarAddButtonSizes,
   AvatarAddButtonWithGroup,
@@ -88,62 +106,215 @@ import {
   AvatarStatus,
 } from "@/components/docs/avatar/avatar-demos";
 import { AvatarPropsTable } from "@/components/docs/avatar/avatar-props-table";
-import { BadgeDismissible, BadgeFillStyles, BadgeHero, BadgeSizes, BadgeWithDot } from "@/components/docs/badge/badge-demos";
+import {
+  BadgeDismissible,
+  BadgeFillStyles,
+  BadgeHero,
+  BadgeSizes,
+  BadgeWithDot,
+} from "@/components/docs/badge/badge-demos";
 import { BadgePropsTable } from "@/components/docs/badge/badge-props-table";
+import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
 import { BreadcrumbsHero } from "@/components/docs/breadcrumbs/breadcrumbs-demos";
 import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs/breadcrumbs-props-table";
-import { ButtonHero, ButtonSizes, ButtonStates, ButtonVariants, ButtonWithIcon } from "@/components/docs/button/button-demos";
+import {
+  ButtonHero,
+  ButtonSizes,
+  ButtonStates,
+  ButtonVariants,
+  ButtonWithIcon,
+} from "@/components/docs/button/button-demos";
 import { ButtonPropsTable } from "@/components/docs/button/button-props-table";
-import { CheckboxHero, CheckboxStates } from "@/components/docs/checkbox/checkbox-demos";
-import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
-import { ColorScale, ColorSwatch, ColorSwatchGroup } from "@/components/docs/_shared/color-scale";
-import { ComingSoon } from "@/components/docs/_shared/coming-soon";
 import {
-  IconsHero,
-  IconsShowcase,
-  IconsUsage,
-} from "@/components/docs/icons/icons-showcase";
-import { ComponentPlayground } from "@/components/docs/_shared/component-playground";
-import { DividerHero, DividerVertical, DividerWithLabel } from "@/components/docs/divider/divider-demos";
-import { DividerPropsTable } from "@/components/docs/divider/divider-props-table";
-import { DropdownMenuHero } from "@/components/docs/dropdown-menu/dropdown-menu-demos";
-import { DropdownMenuPropsTable } from "@/components/docs/dropdown-menu/dropdown-menu-props-table";
-import { FieldError, FieldHero, FieldWithTextarea } from "@/components/docs/field/field-demos";
-import { FieldPropsTable } from "@/components/docs/field/field-props-table";
+  CalendarHero,
+  CalendarRange,
+} from "@/components/docs/calendar/calendar-demos";
 import {
-  BlurScale,
-  BrandScale,
-  ErrorScale,
-  GrayScale,
-  RadiusScale,
-  ShadowScale,
-  SpacingScale,
-  SuccessScale,
-  TypeScale,
-  WarningScale,
-} from "@/components/docs/_shared/foundation-scales";
-import { InputHero, InputSizes, InputStates, InputWithIcons } from "@/components/docs/input/input-demos";
-import { InputPropsTable } from "@/components/docs/input/input-props-table";
+  CardHeaderHero,
+  CardHeaderWithAvatar,
+} from "@/components/docs/card-header/card-header-demos";
 import {
-  AccordionDisabled,
-  AccordionHero,
-  AccordionMultiple,
-} from "@/components/docs/accordion/accordion-demos";
-import {
-  AccordionContentPropsTable,
-  AccordionItemPropsTable,
-  AccordionPropsTable,
-  AccordionTriggerPropsTable,
-} from "@/components/docs/accordion/accordion-props-table";
-import { CardHero, CardInteractive, CardVariants } from "@/components/docs/card/card-demos";
+  CardHero,
+  CardInteractive,
+  CardVariants,
+} from "@/components/docs/card/card-demos";
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
-import { DialogDestructive, DialogHero, DialogInfo } from "@/components/docs/dialog/dialog-demos";
+import {
+  ChartDonut,
+  ChartHero,
+  ChartLine,
+} from "@/components/docs/chart/chart-demos";
+import {
+  CheckboxHero,
+  CheckboxStates,
+} from "@/components/docs/checkbox/checkbox-demos";
+import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
+import { CliSnippetHero } from "@/components/docs/cli-snippet/cli-snippet-demos";
+import { CommentHero } from "@/components/docs/comment/comment-demos";
+import { ConfirmDialogHero } from "@/components/docs/confirm-dialog/confirm-dialog-demos";
+import { CookieBannerHero } from "@/components/docs/cookie-banner/cookie-banner-demos";
+import { DataToolbarHero } from "@/components/docs/data-toolbar/data-toolbar-demos";
+import { DatePickerHero } from "@/components/docs/date-picker/date-picker-demos";
+import {
+  DialogDestructive,
+  DialogHero,
+  DialogInfo,
+} from "@/components/docs/dialog/dialog-demos";
 import {
   DialogActionPropsTable,
   DialogContentPropsTable,
   DialogPropsTable,
 } from "@/components/docs/dialog/dialog-props-table";
-import { InstallCommand } from "@/components/docs/_shared/install-command";
+import {
+  DividerHero,
+  DividerVertical,
+  DividerWithLabel,
+} from "@/components/docs/divider/divider-demos";
+import { DividerPropsTable } from "@/components/docs/divider/divider-props-table";
+import { DropdownMenuHero } from "@/components/docs/dropdown-menu/dropdown-menu-demos";
+import { DropdownMenuPropsTable } from "@/components/docs/dropdown-menu/dropdown-menu-props-table";
+import { EmptyStateHero } from "@/components/docs/empty-state/empty-state-demos";
+import { FaqHero } from "@/components/docs/faq/faq-demos";
+import { FeatureListHero } from "@/components/docs/feature-list/feature-list-demos";
+import {
+  FieldError,
+  FieldHero,
+  FieldWithTextarea,
+} from "@/components/docs/field/field-demos";
+import { FieldPropsTable } from "@/components/docs/field/field-props-table";
+import {
+  FileUploadHero,
+  FileUploadListDemo,
+} from "@/components/docs/file-upload/file-upload-demos";
+import {
+  FilterActive,
+  FilterHero,
+} from "@/components/docs/filter/filter-demos";
+import { IconListHero } from "@/components/docs/icon-list/icon-list-demos";
+import {
+  IconsHero,
+  IconsShowcase,
+  IconsUsage,
+} from "@/components/docs/icons/icons-showcase";
+import {
+  InlineCtaCard,
+  InlineCtaHero,
+} from "@/components/docs/inline-cta/inline-cta-demos";
+import {
+  InputHero,
+  InputSizes,
+  InputStates,
+  InputWithIcons,
+} from "@/components/docs/input/input-demos";
+import { InputPropsTable } from "@/components/docs/input/input-props-table";
+import {
+  IntroPositioningAlert,
+  SkillMdCard,
+} from "@/components/docs/introduction/intro-blocks";
+import {
+  KbdHero,
+  KbdInMenuItem,
+  KbdSingleKey,
+  KbdThreeKeys,
+} from "@/components/docs/kbd/kbd-demos";
+import {
+  KbdGroupPropsTable,
+  KbdPropsTable,
+} from "@/components/docs/kbd/kbd-props-table";
+import { LogoCloudHero } from "@/components/docs/logo-cloud/logo-cloud-demos";
+import { MarketingExamplePreview } from "@/components/docs/marketing-examples/marketing-preview";
+import { MarketingHeroDemo } from "@/components/docs/marketing-hero/marketing-hero-demos";
+import {
+  MetricGroupDemo,
+  MetricHero,
+  MetricSparkline,
+} from "@/components/docs/metric/metric-demos";
+import { ModalHero } from "@/components/docs/modal/modal-demos";
+import { ModalPropsTable } from "@/components/docs/modal/modal-props-table";
+import { NewsletterHero } from "@/components/docs/newsletter/newsletter-demos";
+import {
+  PageHeaderHero,
+  PageHeaderWithBreadcrumb,
+} from "@/components/docs/page-header/page-header-demos";
+import {
+  PaginationHero,
+  PaginationInteractive,
+  PaginationSizes,
+} from "@/components/docs/pagination/pagination-demos";
+import { PaginationPropsTable } from "@/components/docs/pagination/pagination-props-table";
+import {
+  PopoverHero,
+  PopoverSides,
+  PopoverWithClose,
+} from "@/components/docs/popover/popover-demos";
+import { PopoverPropsTable } from "@/components/docs/popover/popover-props-table";
+import {
+  PricingCardFeatured,
+  PricingCardHero,
+} from "@/components/docs/pricing-card/pricing-card-demos";
+import {
+  ProgressBarHero,
+  ProgressBarSizes,
+} from "@/components/docs/progress-bar/progress-bar-demos";
+import { ProgressBarPropsTable } from "@/components/docs/progress-bar/progress-bar-props-table";
+import {
+  ProgressCircleHero,
+  ProgressCircleNoPercentage,
+  ProgressCircleSizes,
+} from "@/components/docs/progress-circle/progress-circle-demos";
+import { ProgressCirclePropsTable } from "@/components/docs/progress-circle/progress-circle-props-table";
+import {
+  ProgressStepsHero,
+  ProgressStepsVertical,
+} from "@/components/docs/progress-steps/progress-steps-demos";
+import {
+  RadioGroupDisabled,
+  RadioGroupHero,
+} from "@/components/docs/radio-group/radio-group-demos";
+import { RadioGroupPropsTable } from "@/components/docs/radio-group/radio-group-props-table";
+import { SearchFieldHero } from "@/components/docs/search-field/search-field-demos";
+import {
+  SectionHeaderBordered,
+  SectionHeaderHero,
+} from "@/components/docs/section-header/section-header-demos";
+import {
+  SelectHero,
+  SelectSizes,
+  SelectStates,
+} from "@/components/docs/select/select-demos";
+import { SelectPropsTable } from "@/components/docs/select/select-props-table";
+import { SettingsRowHero } from "@/components/docs/settings-row/settings-row-demos";
+import { SiteFooterHero } from "@/components/docs/site-footer/site-footer-demos";
+import {
+  SkeletonCard,
+  SkeletonHero,
+  SkeletonVariants,
+} from "@/components/docs/skeleton/skeleton-demos";
+import { SkeletonPropsTable } from "@/components/docs/skeleton/skeleton-props-table";
+import {
+  SliderHero,
+  SliderSizes,
+  SliderStates,
+} from "@/components/docs/slider/slider-demos";
+import { SliderPropsTable } from "@/components/docs/slider/slider-props-table";
+import {
+  SpinnerHero,
+  SpinnerSizes,
+} from "@/components/docs/spinner/spinner-demos";
+import { SpinnerPropsTable } from "@/components/docs/spinner/spinner-props-table";
+import {
+  SwitchHero,
+  SwitchStates,
+} from "@/components/docs/switch/switch-demos";
+import { SwitchPropsTable } from "@/components/docs/switch/switch-props-table";
+import {
+  TableBordered,
+  TableHero,
+  TableStriped,
+} from "@/components/docs/table/table-demos";
+import { TablePropsTable } from "@/components/docs/table/table-props-table";
+import { TabsHero, TabsPillVariant } from "@/components/docs/tabs/tabs-demos";
+import { TabsPropsTable } from "@/components/docs/tabs/tabs-props-table";
 import {
   TagInputDisabled,
   TagInputError,
@@ -151,21 +322,22 @@ import {
   TagInputSizes,
 } from "@/components/docs/tag-input/tag-input-demos";
 import { TagInputPropsTable } from "@/components/docs/tag-input/tag-input-props-table";
-import { TableBordered, TableHero, TableStriped } from "@/components/docs/table/table-demos";
-import { TablePropsTable } from "@/components/docs/table/table-props-table";
+import { TeamCardHero } from "@/components/docs/team-card/team-card-demos";
 import {
-  VerificationCodeInputDisabled,
-  VerificationCodeInputError,
-  VerificationCodeInputHero,
-  VerificationCodeInputLength,
-} from "@/components/docs/verification-code-input/verification-code-input-demos";
-import { VerificationCodeInputPropsTable } from "@/components/docs/verification-code-input/verification-code-input-props-table";
+  TestimonialGridDemo,
+  TestimonialHero,
+} from "@/components/docs/testimonial/testimonial-demos";
 import {
-  ProgressCircleHero,
-  ProgressCircleNoPercentage,
-  ProgressCircleSizes,
-} from "@/components/docs/progress-circle/progress-circle-demos";
-import { ProgressCirclePropsTable } from "@/components/docs/progress-circle/progress-circle-props-table";
+  TextareaHero,
+  TextareaStates,
+} from "@/components/docs/textarea/textarea-demos";
+import { TextareaPropsTable } from "@/components/docs/textarea/textarea-props-table";
+import {
+  ToastHero,
+  ToastImperative,
+  ToastVariants,
+} from "@/components/docs/toast/toast-demos";
+import { ToastPropsTable } from "@/components/docs/toast/toast-props-table";
 import {
   ToggleGroupDisabled,
   ToggleGroupHero,
@@ -175,74 +347,19 @@ import {
   ToggleGroupItemPropsTable,
   ToggleGroupPropsTable,
 } from "@/components/docs/toggle-group/toggle-group-props-table";
-import { SliderHero, SliderSizes, SliderStates } from "@/components/docs/slider/slider-demos";
-import { SliderPropsTable } from "@/components/docs/slider/slider-props-table";
-import { KbdHero, KbdInMenuItem, KbdSingleKey, KbdThreeKeys } from "@/components/docs/kbd/kbd-demos";
-import { KbdGroupPropsTable, KbdPropsTable } from "@/components/docs/kbd/kbd-props-table";
-import { ModalHero } from "@/components/docs/modal/modal-demos";
-import { ModalPropsTable } from "@/components/docs/modal/modal-props-table";
-import { ProgressBarHero, ProgressBarSizes } from "@/components/docs/progress-bar/progress-bar-demos";
-import { ProgressBarPropsTable } from "@/components/docs/progress-bar/progress-bar-props-table";
-import { PropsTable } from "@/components/docs/_shared/props-table";
-import { RadioGroupDisabled, RadioGroupHero } from "@/components/docs/radio-group/radio-group-demos";
-import { RadioGroupPropsTable } from "@/components/docs/radio-group/radio-group-props-table";
-import { SelectHero, SelectSizes, SelectStates } from "@/components/docs/select/select-demos";
-import { SelectPropsTable } from "@/components/docs/select/select-props-table";
-import { ToastHero, ToastImperative, ToastVariants } from "@/components/docs/toast/toast-demos";
-import { ToastPropsTable } from "@/components/docs/toast/toast-props-table";
-import { PaginationHero, PaginationInteractive, PaginationSizes } from "@/components/docs/pagination/pagination-demos";
-import { PaginationPropsTable } from "@/components/docs/pagination/pagination-props-table";
-import { PopoverHero, PopoverSides, PopoverWithClose } from "@/components/docs/popover/popover-demos";
-import { PopoverPropsTable } from "@/components/docs/popover/popover-props-table";
 import {
-  AlertInstall,
-  ActivityFeedInstall,
-  AvatarInstall,
-  BadgeInstall,
-  BreadcrumbsInstall,
-  ButtonInstall,
-  CheckboxInstall,
-  DividerInstall,
-  DropdownMenuInstall,
-  AccordionInstall,
-  CardInstall,
-  DialogInstall,
-  FieldInstall,
-  InputInstall,
-  ProgressCircleInstall,
-  SliderInstall,
-  TableInstall,
-  TagInputInstall,
-  ToggleGroupInstall,
-  VerificationCodeInputInstall,
-  KbdInstall,
-  ModalInstall,
-  PaginationInstall,
-  PopoverInstall,
-  ProgressBarInstall,
-  RadioGroupInstall,
-  SelectInstall,
-  SkeletonInstall,
-  SpinnerInstall,
-  SwitchInstall,
-  TabsInstall,
-  TextareaInstall,
-  ToastInstall,
-  TooltipInstall,
-  RegistryInstall,
-} from "@/components/docs/_shared/registry-install";
-import { SkeletonCard, SkeletonHero, SkeletonVariants } from "@/components/docs/skeleton/skeleton-demos";
-import { SkeletonPropsTable } from "@/components/docs/skeleton/skeleton-props-table";
-import { SpinnerHero, SpinnerSizes } from "@/components/docs/spinner/spinner-demos";
-import { SpinnerPropsTable } from "@/components/docs/spinner/spinner-props-table";
-import { SwitchHero, SwitchStates } from "@/components/docs/switch/switch-demos";
-import { SwitchPropsTable } from "@/components/docs/switch/switch-props-table";
-import { TabsHero, TabsPillVariant } from "@/components/docs/tabs/tabs-demos";
-import { TabsPropsTable } from "@/components/docs/tabs/tabs-props-table";
-import { TextareaHero, TextareaStates } from "@/components/docs/textarea/textarea-demos";
-import { TextareaPropsTable } from "@/components/docs/textarea/textarea-props-table";
-import { TooltipHero, TooltipSides } from "@/components/docs/tooltip/tooltip-demos";
+  TooltipHero,
+  TooltipSides,
+} from "@/components/docs/tooltip/tooltip-demos";
 import { TooltipPropsTable } from "@/components/docs/tooltip/tooltip-props-table";
+import { UserMenuHero } from "@/components/docs/user-menu/user-menu-demos";
+import {
+  VerificationCodeInputDisabled,
+  VerificationCodeInputError,
+  VerificationCodeInputHero,
+  VerificationCodeInputLength,
+} from "@/components/docs/verification-code-input/verification-code-input-demos";
+import { VerificationCodeInputPropsTable } from "@/components/docs/verification-code-input/verification-code-input-props-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 

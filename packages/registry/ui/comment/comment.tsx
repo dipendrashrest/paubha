@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface CommentProps
   extends Omit<React.ComponentPropsWithRef<"article">, "title"> {
@@ -26,11 +26,7 @@ export function Comment({
   ...props
 }: CommentProps) {
   return (
-    <article
-      ref={ref}
-      className={cn("flex gap-3", className)}
-      {...props}
-    >
+    <article ref={ref} className={cn("flex gap-3", className)} {...props}>
       {avatar != null ? <div className="shrink-0">{avatar}</div> : null}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-2">
@@ -54,11 +50,7 @@ Comment.displayName = "Comment";
 
 export interface CommentListProps extends React.ComponentPropsWithRef<"div"> {}
 
-export function CommentList({
-  ref,
-  className,
-  ...props
-}: CommentListProps) {
+export function CommentList({ ref, className, ...props }: CommentListProps) {
   return (
     <div
       ref={ref}

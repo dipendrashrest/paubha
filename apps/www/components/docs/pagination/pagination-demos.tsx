@@ -71,7 +71,9 @@ export function PaginationHero() {
 export function PaginationSizes() {
   return (
     <ComponentPlayground
-      code={sizes.map((s) => `<PaginationContent size="${s}">...</PaginationContent>`).join("\n")}
+      code={sizes
+        .map((s) => `<PaginationContent size="${s}">...</PaginationContent>`)
+        .join("\n")}
     >
       <div className="flex flex-col gap-4">
         {sizes.map((size) => (

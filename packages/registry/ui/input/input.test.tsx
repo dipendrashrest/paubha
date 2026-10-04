@@ -40,7 +40,9 @@ describe("Input", () => {
 
   it("has a hover treatment on the wrapper", () => {
     render(<Input aria-label="Email" />);
-    expect(screen.getByRole("textbox").parentElement).toHaveClass("hover:border-border-strong");
+    expect(screen.getByRole("textbox").parentElement).toHaveClass(
+      "hover:border-border-strong",
+    );
   });
 
   it("does not set aria-invalid by default", () => {

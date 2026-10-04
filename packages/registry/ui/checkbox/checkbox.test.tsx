@@ -83,7 +83,9 @@ describe("Checkbox", () => {
   });
 
   it("binds hover/active/disabled states to the confirmed Figma tokens", () => {
-    const { rerender } = render(<Checkbox label="Accept terms" checked={false} />);
+    const { rerender } = render(
+      <Checkbox label="Accept terms" checked={false} />,
+    );
     let checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveClass("hover:border-border-strong");
     expect(checkbox).toHaveClass(

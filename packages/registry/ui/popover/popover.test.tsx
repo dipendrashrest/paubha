@@ -20,9 +20,7 @@ function BasicPopover() {
       <PopoverTrigger>Open popover</PopoverTrigger>
       <PopoverContent>
         <PopoverTitle>Popover Title</PopoverTitle>
-        <PopoverDescription>
-          This is a popover content area.
-        </PopoverDescription>
+        <PopoverDescription>This is a popover content area.</PopoverDescription>
         <PopoverClose>Close</PopoverClose>
       </PopoverContent>
     </Popover>
@@ -134,9 +132,7 @@ function BasicPopoverV2(props: { disabled?: boolean }) {
       <PopoverTrigger>Open popover</PopoverTrigger>
       <PopoverContentV2 disabled={props.disabled}>
         <PopoverTitle>Popover Title</PopoverTitle>
-        <PopoverDescription>
-          This is a popover content area.
-        </PopoverDescription>
+        <PopoverDescription>This is a popover content area.</PopoverDescription>
         <PopoverClose>Close</PopoverClose>
       </PopoverContentV2>
     </PopoverV2>

@@ -2,13 +2,7 @@ import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, expect, it } from "vitest";
 import { axe } from "../../lib/test-axe";
-import {
-  AreaChart,
-  BarChart,
-  ChartCard,
-  DonutChart,
-  LineChart,
-} from "./chart";
+import { AreaChart, BarChart, ChartCard, DonutChart, LineChart } from "./chart";
 
 const barData = [
   { label: "Mon", value: 40 },
@@ -35,13 +29,20 @@ const donutData = [
 describe("ChartCard", () => {
   it("renders title and children", () => {
     render(
-      <ChartCard title="Revenue" actions={<button type="button">Export</button>}>
+      <ChartCard
+        title="Revenue"
+        actions={<button type="button">Export</button>}
+      >
         <BarChart data={barData} aria-label="Weekly revenue" />
       </ChartCard>,
     );
-    expect(screen.getByRole("heading", { name: "Revenue" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Revenue" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Export" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Weekly revenue" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Weekly revenue" }),
+    ).toBeInTheDocument();
   });
 
   it("has no axe violations", async () => {
@@ -79,11 +80,7 @@ describe("BarChart", () => {
 describe("LineChart", () => {
   it("renders current and previous series", () => {
     render(
-      <LineChart
-        data={lineData}
-        showPrevious
-        aria-label="Monthly trend"
-      />,
+      <LineChart data={lineData} showPrevious aria-label="Monthly trend" />,
     );
     expect(
       screen.getByRole("img", { name: "Monthly trend" }),

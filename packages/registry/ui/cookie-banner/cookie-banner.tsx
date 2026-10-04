@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface CookieBannerProps
   extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
@@ -20,8 +20,7 @@ export function CookieBanner({
   actions,
   ...props
 }: CookieBannerProps) {
-  const titleId =
-    typeof title === "string" ? "cookie-banner-title" : undefined;
+  const titleId = typeof title === "string" ? "cookie-banner-title" : undefined;
 
   return (
     <div
@@ -36,10 +35,7 @@ export function CookieBanner({
     >
       <div className="min-w-0">
         {title != null ? (
-          <p
-            id={titleId}
-            className="text-ui-md font-semibold text-fg-primary"
-          >
+          <p id={titleId} className="text-ui-md font-semibold text-fg-primary">
             {title}
           </p>
         ) : null}

@@ -6,7 +6,9 @@ import { SearchField } from "./search-field";
 describe("SearchField", () => {
   it("renders a search input", () => {
     render(<SearchField />);
-    expect(screen.getByRole("searchbox", { name: "Search" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("searchbox", { name: "Search" }),
+    ).toBeInTheDocument();
   });
 
   it("has no axe violations", async () => {

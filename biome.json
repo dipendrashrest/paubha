@@ -28,7 +28,11 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "recommended": true
+        "recommended": true,
+        "useValidAriaRole": {
+          "level": "error",
+          "options": { "ignoreNonDom": true, "allowInvalidRoles": [] }
+        }
       }
     }
   },

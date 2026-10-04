@@ -21,9 +21,7 @@ describe("InlineCta", () => {
   it("calls onDismiss when dismissible", async () => {
     const user = userEvent.setup();
     const onDismiss = vi.fn();
-    render(
-      <InlineCta title="New feature" dismissible onDismiss={onDismiss} />,
-    );
+    render(<InlineCta title="New feature" dismissible onDismiss={onDismiss} />);
     await user.click(screen.getByRole("button", { name: "Dismiss" }));
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });

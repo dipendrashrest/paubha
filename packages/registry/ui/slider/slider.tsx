@@ -1,24 +1,27 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { type VariantProps, cva } from "class-variance-authority";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export type SliderSize = "sm" | "md" | "lg";
 
-const trackVariants = cva("relative w-full grow overflow-hidden rounded-full bg-bg-tertiary", {
-  variants: {
-    size: {
-      sm: "h-1",
-      md: "h-1.5",
-      lg: "h-2",
+const trackVariants = cva(
+  "relative w-full grow overflow-hidden rounded-full bg-bg-tertiary",
+  {
+    variants: {
+      size: {
+        sm: "h-1",
+        md: "h-1.5",
+        lg: "h-2",
+      },
+    },
+    defaultVariants: {
+      size: "md",
     },
   },
-  defaultVariants: {
-    size: "md",
-  },
-});
+);
 
 const thumbSizeClassName: Record<SliderSize, string> = {
   sm: "size-3.5 hover:size-4",

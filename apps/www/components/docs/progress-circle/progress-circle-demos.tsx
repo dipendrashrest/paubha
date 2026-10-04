@@ -5,7 +5,9 @@ import { ComponentPlayground } from "../_shared/component-playground";
 
 export function ProgressCircleHero() {
   return (
-    <ComponentPlayground code={'<ProgressCircle value={75} aria-label="Upload progress" />'}>
+    <ComponentPlayground
+      code={'<ProgressCircle value={75} aria-label="Upload progress" />'}
+    >
       <ProgressCircle value={75} aria-label="Upload progress" />
     </ComponentPlayground>
   );
@@ -30,7 +32,9 @@ export function ProgressCircleSizes() {
 export function ProgressCircleNoPercentage() {
   return (
     <ComponentPlayground
-      code={'<ProgressCircle value={60} showPercentage={false} aria-label="Loading" />'}
+      code={
+        '<ProgressCircle value={60} showPercentage={false} aria-label="Loading" />'
+      }
     >
       <ProgressCircle value={60} showPercentage={false} aria-label="Loading" />
     </ComponentPlayground>

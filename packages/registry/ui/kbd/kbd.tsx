@@ -1,5 +1,5 @@
-import * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import * as React from "react";
 
 export interface KbdProps extends React.ComponentPropsWithRef<"kbd"> {}
 
@@ -30,7 +30,12 @@ export interface KbdGroupProps extends React.ComponentPropsWithRef<"span"> {}
  * Composes multiple Kbd keys into a shortcut, e.g. <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>.
  * Inserts a decorative "+" (aria-hidden) between each key.
  */
-export function KbdGroup({ ref, className, children, ...props }: KbdGroupProps) {
+export function KbdGroup({
+  ref,
+  className,
+  children,
+  ...props
+}: KbdGroupProps) {
   const items = React.Children.toArray(children);
 
   return (

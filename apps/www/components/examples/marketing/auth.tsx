@@ -13,7 +13,7 @@ import {
   TabsTrigger,
 } from "@paubha/registry/ui/tabs";
 import Link from "next/link";
-import { PaubhaMark, MarketingShell } from "./shell";
+import { MarketingShell, PaubhaMark } from "./shell";
 
 export function AuthMarketingPage() {
   return (

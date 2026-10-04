@@ -1,6 +1,11 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@paubha/registry/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@paubha/registry/ui/tabs";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function TabsHero() {
@@ -24,13 +29,22 @@ export function TabsHero() {
             <TabsTrigger value="billing">Billing</TabsTrigger>
             <TabsTrigger value="team">Team</TabsTrigger>
           </TabsList>
-          <TabsContent value="account" className="pt-4 text-ui-sm text-fg-secondary">
+          <TabsContent
+            value="account"
+            className="pt-4 text-ui-sm text-fg-secondary"
+          >
             Account settings
           </TabsContent>
-          <TabsContent value="billing" className="pt-4 text-ui-sm text-fg-secondary">
+          <TabsContent
+            value="billing"
+            className="pt-4 text-ui-sm text-fg-secondary"
+          >
             Billing settings
           </TabsContent>
-          <TabsContent value="team" className="pt-4 text-ui-sm text-fg-secondary">
+          <TabsContent
+            value="team"
+            className="pt-4 text-ui-sm text-fg-secondary"
+          >
             Team settings
           </TabsContent>
         </Tabs>

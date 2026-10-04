@@ -10,15 +10,22 @@ function getDayButton(day: number, nameHint?: RegExp | string) {
     name: nameHint ?? new RegExp(`\\b${day}\\b`),
   });
   // Prefer an in-month day when duplicates exist (leading/trailing outside days).
-  return buttons.find((btn) => !btn.className.includes("text-fg-tertiary")) ?? buttons[0];
+  return (
+    buttons.find((btn) => !btn.className.includes("text-fg-tertiary")) ??
+    buttons[0]
+  );
 }
 
 describe("Calendar", () => {
   it("renders the month label and weekday headers", () => {
     render(<Calendar defaultMonth={new Date(2026, 2, 1)} />);
     expect(screen.getByText("March 2026")).toBeInTheDocument();
-    expect(screen.getByRole("columnheader", { name: "Su" })).toBeInTheDocument();
-    expect(screen.getByRole("columnheader", { name: "Sa" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: "Su" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("columnheader", { name: "Sa" }),
+    ).toBeInTheDocument();
     expect(screen.getByRole("grid")).toBeInTheDocument();
   });
 
@@ -91,7 +98,10 @@ describe("Calendar", () => {
 
   it("has no axe violations", async () => {
     const { container } = render(
-      <Calendar defaultMonth={new Date(2026, 2, 1)} defaultValue={new Date(2026, 2, 15)} />,
+      <Calendar
+        defaultMonth={new Date(2026, 2, 1)}
+        defaultValue={new Date(2026, 2, 15)}
+      />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });

@@ -37,7 +37,9 @@ export function BrandField({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const colors = readBrand(wrap);
     let width = 0;
     let height = 0;
@@ -46,11 +48,7 @@ export function BrandField({ className }: { className?: string }) {
     let visible = true;
 
     const spawn = () => {
-      const count = reduce
-        ? 28
-        : window.innerWidth < 768
-          ? 42
-          : 86;
+      const count = reduce ? 28 : window.innerWidth < 768 ? 42 : 86;
       particles = Array.from({ length: count }, () => ({
         x: (Math.random() - 0.5) * 2.2,
         y: (Math.random() - 0.5) * 1.6,
@@ -156,7 +154,10 @@ export function BrandField({ className }: { className?: string }) {
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}
+      className={cn(
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      )}
     >
       <canvas ref={canvasRef} className="size-full" />
     </div>

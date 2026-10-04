@@ -1,5 +1,8 @@
 "use client";
 
+import { BrandField } from "@/components/motion/brand-field";
+import { Reveal } from "@/components/motion/reveal";
+import { TokenMarquee } from "@/components/motion/token-marquee";
 import { AnnouncementBar } from "@paubha/registry/ui/announcement-bar";
 import {
   AppNav,
@@ -31,9 +34,6 @@ import { UserMenu } from "@paubha/registry/ui/user-menu";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
-import { BrandField } from "@/components/motion/brand-field";
-import { Reveal } from "@/components/motion/reveal";
-import { TokenMarquee } from "@/components/motion/token-marquee";
 import { MarketingShell } from "./shell";
 
 function ProductCanvas() {

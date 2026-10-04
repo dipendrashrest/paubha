@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { X } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export type InlineCtaVariant = "banner" | "card" | "link" | "floating";
 
@@ -59,7 +59,9 @@ export function InlineCta({
       <div
         className={cn(
           "flex min-w-0 flex-1",
-          isCard ? "flex-col gap-1" : "flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3",
+          isCard
+            ? "flex-col gap-1"
+            : "flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3",
         )}
       >
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">

@@ -1,6 +1,6 @@
+import { cn } from "@paubha/registry/lib/cn";
 import { Search } from "lucide-react";
 import type * as React from "react";
-import { cn } from "@paubha/registry/lib/cn";
 import { Input, type InputProps } from "../input/input";
 
 export interface SearchFieldProps extends Omit<InputProps, "type"> {

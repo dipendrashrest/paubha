@@ -23,9 +23,8 @@
   .pb-reveal[data-inview="true"] {
     opacity: 1;
     transform: none;
-    transition:
-      opacity 620ms var(--pb-ease-out),
-      transform 620ms var(--pb-ease-out);
+    transition: opacity 620ms var(--pb-ease-out), transform 620ms
+      var(--pb-ease-out);
     transition-delay: var(--pb-delay, 0ms);
   }
 

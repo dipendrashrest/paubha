@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@paubha/registry/ui/button";
 import {
   Dialog,
   DialogAction,
@@ -11,7 +12,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@paubha/registry/ui/dialog";
-import { Button } from "@paubha/registry/ui/button";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function DialogHero() {

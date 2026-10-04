@@ -1,5 +1,5 @@
-import type * as React from "react";
 import { cn } from "@paubha/registry/lib/cn";
+import type * as React from "react";
 
 export interface LogoCloudProps extends React.ComponentPropsWithRef<"div"> {
   /** Optional eyebrow above the logos. */

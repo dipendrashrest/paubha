@@ -85,9 +85,10 @@ describe("Select", () => {
 
   it("sets aria-invalid on the trigger when error is set", () => {
     render(<BasicSelect error />);
-    expect(
-      screen.getByRole("combobox", { name: "Framework" }),
-    ).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByRole("combobox", { name: "Framework" })).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
   });
 
   it("binds the error-focus glow ring class when error and focused together", async () => {

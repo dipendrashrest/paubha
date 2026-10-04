@@ -13,7 +13,9 @@ describe("AnnouncementBar", () => {
       </AnnouncementBar>,
     );
     expect(screen.getByText("Pro plan is 20% off")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "See pricing" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "See pricing" }),
+    ).toBeInTheDocument();
   });
 
   it("calls onDismiss", async () => {

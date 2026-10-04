@@ -7,10 +7,10 @@ import {
   ChevronDown,
   CircleCheck,
   FileText,
+  type LucideIcon,
   RefreshCcw,
   Sparkles,
   Terminal,
-  type LucideIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import * as React from "react";

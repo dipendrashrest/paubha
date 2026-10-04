@@ -2,7 +2,12 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import * as React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { axe } from "../../lib/test-axe";
-import { Avatar, AvatarAddButton, AvatarGroup, AvatarLabelGroup } from "./avatar";
+import {
+  Avatar,
+  AvatarAddButton,
+  AvatarGroup,
+  AvatarLabelGroup,
+} from "./avatar";
 
 describe("Avatar", () => {
   it("uses alt text as the accessible name when no status is set", () => {
@@ -155,23 +160,19 @@ describe("AvatarLabelGroup", () => {
     );
     expect(screen.getByText("Anastasia Upton")).toBeInTheDocument();
     expect(screen.getByText("anastasia@example.com")).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Anastasia Upton" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Anastasia Upton" }),
+    ).toBeInTheDocument();
   });
 
   it("omits the secondary text line when not provided", () => {
-    render(
-      <AvatarLabelGroup avatar={<Avatar alt="Jane" />} name="Jane" />,
-    );
+    render(<AvatarLabelGroup avatar={<Avatar alt="Jane" />} name="Jane" />);
     expect(screen.queryByText("anastasia@example.com")).not.toBeInTheDocument();
   });
 
   it("passes its size down to the avatar", () => {
     render(
-      <AvatarLabelGroup
-        avatar={<Avatar alt="Jane" />}
-        name="Jane"
-        size="lg"
-      />,
+      <AvatarLabelGroup avatar={<Avatar alt="Jane" />} name="Jane" size="lg" />,
     );
     expect(screen.getByRole("img", { name: "Jane" })).toHaveClass("size-12");
   });

@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@paubha/registry/lib/cn";
 import { FileIcon, Upload, X } from "lucide-react";
 import type * as React from "react";
 import { useId, useRef, useState } from "react";
-import { cn } from "@paubha/registry/lib/cn";
 
 export interface FileUploadProps
   extends Omit<React.ComponentPropsWithRef<"div">, "onChange"> {
@@ -190,7 +190,11 @@ export function FileUploadList({
   ...props
 }: FileUploadListProps) {
   return (
-    <div ref={ref} className={cn("flex w-full flex-col gap-3", className)} {...props} />
+    <div
+      ref={ref}
+      className={cn("flex w-full flex-col gap-3", className)}
+      {...props}
+    />
   );
 }
 

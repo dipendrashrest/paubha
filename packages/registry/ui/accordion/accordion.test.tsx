@@ -61,7 +61,9 @@ describe("Accordion", () => {
     render(<BasicAccordion />);
     screen.getByRole("button", { name: "First section" }).focus();
     await user.keyboard("{ArrowDown}");
-    expect(screen.getByRole("button", { name: "Second section" })).toHaveFocus();
+    expect(
+      screen.getByRole("button", { name: "Second section" }),
+    ).toHaveFocus();
   });
 
   it("natively disables a disabled item's header button", () => {
@@ -99,7 +101,11 @@ describe("Accordion", () => {
 
 function BasicAccordionV2(props: { type?: "single" | "multiple" }) {
   return (
-    <AccordionV2 type={props.type ?? "single"} collapsible defaultValue="item-1">
+    <AccordionV2
+      type={props.type ?? "single"}
+      collapsible
+      defaultValue="item-1"
+    >
       <AccordionItemV2 value="item-1">
         <AccordionTriggerV2>First section</AccordionTriggerV2>
         <AccordionContentV2>First content</AccordionContentV2>
