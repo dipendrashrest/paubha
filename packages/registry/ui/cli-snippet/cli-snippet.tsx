@@ -81,9 +81,7 @@ export function CliSnippet({
             >
               <Icon className="size-4" aria-hidden="true" />
             </button>
-            <output className="sr-only">
-              {copied ? "Copied" : ""}
-            </output>
+            <output className="sr-only">{copied ? "Copied" : ""}</output>
           </>
         ) : null}
       </div>
