@@ -29,8 +29,13 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "User portrait with image, initials fallback, optional status, stacked groups, and an add-member button.",
-      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+      "description": "User portrait with image, initials or icon, presence/company/verified indicators, profile photo, stacked groups, and an add-member button.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "tailwind-merge"
+      ],
       "registryDependencies": [],
       "files": [
         {

@@ -103,7 +103,9 @@ import {
   AvatarImageFallback,
   AvatarLabelGroupExample,
   AvatarSizes,
-  AvatarStatus,
+  AvatarIndicators,
+  AvatarProfilePhotoExample,
+  AvatarTypes,
 } from "@/components/docs/avatar/avatar-demos";
 import { AvatarPropsTable } from "@/components/docs/avatar/avatar-props-table";
 import {
@@ -404,7 +406,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     AvatarLabelGroupExample,
     AvatarPropsTable,
     AvatarSizes,
-    AvatarStatus,
+    AvatarIndicators,
+    AvatarProfilePhotoExample,
+    AvatarTypes,
 
     // Button
     ButtonHero,

@@ -3,6 +3,7 @@ import type {
   AvatarAddButtonProps,
   AvatarGroupProps,
   AvatarLabelGroupProps,
+  AvatarProfilePhotoProps,
   AvatarProps,
 } from "@paubha/registry/ui/avatar";
 import { PropsTable } from "../_shared/props-table";
@@ -12,7 +13,7 @@ const avatarProps = definePropDefs<AvatarProps>()([
     name: "src",
     type: "string",
     description:
-      "Image URL. Falls back to initials if missing or it fails to load.",
+      "Image URL. Falls back to initials, then the user icon, if missing or it fails to load.",
   },
   {
     name: "alt",
@@ -27,16 +28,48 @@ const avatarProps = definePropDefs<AvatarProps>()([
       "Fallback letters on `bg-brand-subtle` / `fg-brand`. Max two characters.",
   },
   {
+    name: "type",
+    type: '"image" | "initials" | "icon"',
+    description:
+      "What to render. Defaults to `image` when `src` is set, else `initials` when letters can be derived, else `icon` (Lucide `User`).",
+  },
+  {
     name: "size",
     type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
     defaultValue: '"md"',
     description: "Diameter: 24 / 32 / 40 / 48 / 64 / 80px.",
   },
   {
-    name: "status",
-    type: '"online" | "offline"',
+    name: "indicator",
+    type: '"none" | "online" | "offline" | "company" | "verified"',
+    defaultValue: '"none"',
     description:
-      "Optional presence dot. Online uses success-500; offline uses gray-300.",
+      "Bottom-right marker. Online = `bg-success-solid` dot, offline = `fg-disabled` dot, company/verified = Lucide `Building2`/`BadgeCheck` in `fg-brand`. Appended to the accessible name.",
+  },
+]);
+
+const profilePhotoProps = definePropDefs<AvatarProfilePhotoProps>()([
+  { name: "src", type: "string", description: "Same as Avatar." },
+  { name: "alt", type: "string", description: "Same as Avatar." },
+  { name: "initials", type: "string", description: "Same as Avatar." },
+  {
+    name: "type",
+    type: '"image" | "initials" | "icon"',
+    description: "Same as Avatar.",
+  },
+  {
+    name: "size",
+    type: '"sm" | "md" | "lg"',
+    defaultValue: '"md"',
+    description:
+      "Diameter: 72 / 96 / 160px, with a 4px `bg-primary` ring and `shadow-md`.",
+  },
+  {
+    name: "verified",
+    type: "boolean",
+    defaultValue: "false",
+    description:
+      'Shows a `BadgeCheck` badge and appends ", verified" to the accessible name.',
   },
 ]);
 
@@ -84,19 +117,18 @@ const labelGroupProps = definePropDefs<AvatarLabelGroupProps>()([
   {
     name: "name",
     type: "ReactNode",
-    description: "Primary line: `text-ui-sm` / `fg-primary`.",
+    description: "Primary line, `fg-primary`; type scales with `size`.",
   },
   {
     name: "secondaryText",
     type: "ReactNode",
-    description:
-      "Optional supporting line (email, role): `text-ui-xs` / `fg-secondary`.",
+    description: "Optional supporting line (email, role), `fg-secondary`.",
   },
   {
     name: "size",
-    type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+    type: '"sm" | "md" | "lg" | "xl"',
     defaultValue: '"md"',
-    description: "Passed through to the avatar.",
+    description: "Avatar 32 / 40 / 48 / 64px; name 13 / 14 / 16 / 18px.",
   },
 ]);
 
@@ -105,6 +137,8 @@ export function AvatarPropsTable() {
     <>
       <h3 className="text-[1.25em] font-semibold">Avatar</h3>
       <PropsTable rows={[...avatarProps]} />
+      <h3 className="text-[1.25em] font-semibold">AvatarProfilePhoto</h3>
+      <PropsTable rows={[...profilePhotoProps]} />
       <h3 className="text-[1.25em] font-semibold">AvatarGroup</h3>
       <PropsTable rows={[...groupProps]} />
       <h3 className="text-[1.25em] font-semibold">AvatarAddButton</h3>

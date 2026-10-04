@@ -5,6 +5,7 @@ import {
   AvatarAddButton,
   AvatarGroup,
   AvatarLabelGroup,
+  AvatarProfilePhoto,
 } from "@paubha/registry/ui/avatar";
 import { ComponentPlayground } from "../_shared/component-playground";
 
@@ -26,11 +27,11 @@ export function AvatarHero() {
     <ComponentPlayground
       code={`<Avatar src="/maya.jpg" alt="Maya Chen" />
 <Avatar initials="MC" alt="Maya Chen" />
-<Avatar src="/maya.jpg" alt="Maya Chen" status="online" />`}
+<Avatar src="/maya.jpg" alt="Maya Chen" indicator="online" />`}
     >
       <Avatar src={maya} alt="Maya Chen" />
       <Avatar initials="MC" alt="Maya Chen" />
-      <Avatar src={maya} alt="Maya Chen" status="online" />
+      <Avatar src={maya} alt="Maya Chen" indicator="online" />
     </ComponentPlayground>
   );
 }
@@ -65,16 +66,65 @@ export function AvatarImageFallback() {
   );
 }
 
-export function AvatarStatus() {
+const indicators = ["online", "offline", "company", "verified"] as const;
+const profileSizes = ["sm", "md", "lg"] as const;
+const labelGroupSizes = ["sm", "md", "lg", "xl"] as const;
+
+export function AvatarTypes() {
   return (
     <ComponentPlayground
-      code={`<Avatar src="/maya.jpg" alt="Online" status="online" />
-<Avatar src="/maya.jpg" alt="Offline" status="offline" />
-<Avatar initials="MC" alt="No status" />`}
+      code={`<Avatar type="image" src="/maya.jpg" alt="Maya Chen" />
+<Avatar type="initials" alt="Maya Chen" />
+<Avatar type="icon" alt="Unknown user" />`}
     >
-      <Avatar src={maya} alt="Online" status="online" />
-      <Avatar src={maya} alt="Offline" status="offline" />
-      <Avatar initials="MC" alt="No status" />
+      <Avatar type="image" src={maya} alt="Maya Chen" />
+      <Avatar type="initials" alt="Maya Chen" />
+      <Avatar type="icon" alt="Unknown user" />
+    </ComponentPlayground>
+  );
+}
+
+export function AvatarIndicators() {
+  return (
+    <ComponentPlayground
+      code={indicators
+        .map(
+          (indicator) =>
+            `<Avatar src="/maya.jpg" alt="Maya Chen" indicator="${indicator}" />`,
+        )
+        .join("\n")}
+    >
+      {indicators.map((indicator) => (
+        <Avatar
+          key={indicator}
+          src={maya}
+          alt="Maya Chen"
+          indicator={indicator}
+        />
+      ))}
+    </ComponentPlayground>
+  );
+}
+
+export function AvatarProfilePhotoExample() {
+  return (
+    <ComponentPlayground
+      code={`<AvatarProfilePhoto size="sm" alt="Maya Chen" verified />
+<AvatarProfilePhoto size="md" src="/maya.jpg" alt="Maya Chen" verified />
+<AvatarProfilePhoto size="lg" type="icon" alt="Unknown user" />`}
+    >
+      <div className="flex items-end gap-4">
+        {profileSizes.map((size) => (
+          <AvatarProfilePhoto
+            key={size}
+            size={size}
+            src={size === "md" ? maya : undefined}
+            type={size === "lg" ? "icon" : undefined}
+            alt={size === "lg" ? "Unknown user" : "Maya Chen"}
+            verified={size !== "lg"}
+          />
+        ))}
+      </div>
     </ComponentPlayground>
   );
 }
@@ -105,16 +155,23 @@ export function AvatarLabelGroupExample() {
   return (
     <ComponentPlayground
       code={`<AvatarLabelGroup
+  size="md"
   avatar={<Avatar src="/maya.jpg" alt="Anastasia Upton" initials="AU" />}
   name="Anastasia Upton"
   secondaryText="anastasia@example.com"
 />`}
     >
-      <AvatarLabelGroup
-        avatar={<Avatar src={maya} alt="Anastasia Upton" initials="AU" />}
-        name="Anastasia Upton"
-        secondaryText="anastasia@example.com"
-      />
+      <div className="flex flex-col gap-4">
+        {labelGroupSizes.map((size) => (
+          <AvatarLabelGroup
+            key={size}
+            size={size}
+            avatar={<Avatar src={maya} alt="Anastasia Upton" initials="AU" />}
+            name="Anastasia Upton"
+            secondaryText="anastasia@example.com"
+          />
+        ))}
+      </div>
     </ComponentPlayground>
   );
 }

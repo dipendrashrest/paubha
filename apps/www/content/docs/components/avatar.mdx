@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: User portrait with an image, initials fallback, optional status, stacked groups, and an add-member button.
+description: User portrait with an image, initials or icon, presence/company/verified indicators, a large profile photo, stacked groups, and an add-member button.
 ---
 
 <AvatarHero />
@@ -12,10 +12,11 @@ description: User portrait with an image, initials fallback, optional status, st
 ## Usage
 
 ```tsx
-import { Avatar, AvatarAddButton, AvatarGroup } from "@/components/ui/avatar";
+import { Avatar, AvatarAddButton, AvatarGroup, AvatarProfilePhoto } from "@/components/ui/avatar";
 
 <Avatar src="/maya.jpg" alt="Maya Chen" />
-<Avatar initials="MC" alt="Maya Chen" status="online" />
+<Avatar initials="MC" alt="Maya Chen" indicator="online" />
+<AvatarProfilePhoto src="/maya.jpg" alt="Maya Chen" verified />
 
 <AvatarGroup max={3}>
   <Avatar src="/maya.jpg" alt="Maya Chen" />
@@ -33,17 +34,29 @@ xs 24px · sm 32px · md 40px · lg 48px · xl 64px · 2xl 80px.
 
 <AvatarSizes />
 
+### Type
+
+`type` picks `image`, `initials` (`bg-brand-subtle` / `fg-brand`), or `icon` (Lucide `User`). When omitted it's inferred from what you pass.
+
+<AvatarTypes />
+
 ### Image and fallback
 
-A missing or failing `src` falls back to initials on `bg-brand-subtle` with `fg-brand` text. If neither `src` nor `initials`/`alt` can produce letters, the avatar shows `?`.
+A missing or failing `src` falls back to initials; if neither `initials` nor `alt` can produce letters, the avatar shows the user icon.
 
 <AvatarImageFallback />
 
-### Status
+### Indicator
 
-Optional presence dot. Online uses `success-500`; offline uses `gray-300`. The cutout ring is `bg-primary` so it punches through the portrait.
+`online` (`bg-success-solid`) and `offline` (`fg-disabled`) render a presence dot with a `bg-primary` cutout; `company` and `verified` render a `Building2` / `BadgeCheck` badge in `fg-brand`. The indicator is also written into the accessible name — keep a visible text label too when presence or verification affects a decision.
 
-<AvatarStatus />
+<AvatarIndicators />
+
+### Profile photo
+
+`AvatarProfilePhoto` is the large profile identity: sm 72px · md 96px · lg 160px, with a 4px `bg-primary` ring, `shadow-md`, and an optional `verified` badge.
+
+<AvatarProfilePhotoExample />
 
 ### Avatar group
 
@@ -53,7 +66,7 @@ Stacked, overlapping avatars with a `+N` overflow chip (`bg-secondary` / `fg-sec
 
 ### Label group
 
-Pairs an avatar with a name and optional secondary text (email, role), for lists, comment authors, and member rows.
+Pairs an avatar with a name and optional secondary text (email, role). `size` sm/md/lg/xl sets the avatar (32–64px) and the label type scale together.
 
 <AvatarLabelGroupExample />
 
@@ -69,7 +82,7 @@ Composed after an `AvatarGroup`:
 
 ## API reference
 
-Prop names and types are taken from `AvatarProps` / `AvatarGroupProps` in the registry source.
+Prop names and types are taken from the `*Props` interfaces in the registry source.
 
 <AvatarPropsTable />
 
@@ -79,9 +92,10 @@ Prop names and types are taken from `AvatarProps` / `AvatarGroupProps` in the re
   <ul>
     <li>
       <strong>Role.</strong> Each avatar is <code>role=&quot;img&quot;</code> with an{" "}
-      <code>aria-label</code> from <code>alt</code> (or <code>initials</code>). Status is
-      appended to that name, e.g. <code>Maya Chen, online</code>, not a nested labelled
-      node. The inner <code>&lt;img&gt;</code> uses <code>alt=&quot;&quot;</code> so it
+      <code>aria-label</code> from <code>alt</code> (or <code>initials</code>). The indicator is
+      appended to that name, e.g. <code>Maya Chen, online</code> or{" "}
+      <code>Maya Chen, verified</code>, not a nested labelled node. Indicator glyphs are{" "}
+      <code>aria-hidden</code>. The inner <code>&lt;img&gt;</code> uses <code>alt=&quot;&quot;</code> so it
       isn't announced twice.
     </li>
     <li>

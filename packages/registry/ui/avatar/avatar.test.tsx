@@ -7,16 +7,17 @@ import {
   AvatarAddButton,
   AvatarGroup,
   AvatarLabelGroup,
+  AvatarProfilePhoto,
 } from "./avatar";
 
 describe("Avatar", () => {
-  it("uses alt text as the accessible name when no status is set", () => {
+  it("uses alt text as the accessible name when no indicator is set", () => {
     render(<Avatar alt="Jane Doe" />);
     expect(screen.getByRole("img", { name: "Jane Doe" })).toBeInTheDocument();
   });
 
-  it("suffixes the accessible name with status when present", () => {
-    render(<Avatar alt="Jane Doe" status="online" />);
+  it("suffixes the accessible name with the indicator when present", () => {
+    render(<Avatar alt="Jane Doe" indicator="online" />);
     expect(
       screen.getByRole("img", { name: "Jane Doe, online" }),
     ).toBeInTheDocument();
@@ -55,7 +56,7 @@ describe("Avatar", () => {
     const { container, rerender } = render(<Avatar alt="Jane Doe" />);
     expect(await axe(container)).toHaveNoViolations();
 
-    rerender(<Avatar alt="Jane Doe" status="online" />);
+    rerender(<Avatar alt="Jane Doe" indicator="online" />);
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<Avatar src="https://example.com/jane.png" alt="Jane Doe" />);
@@ -186,5 +187,88 @@ describe("AvatarLabelGroup", () => {
       />,
     );
     expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe("Avatar type and indicator", () => {
+  it("falls back to the icon type when there is no name or image", () => {
+    render(<Avatar />);
+    expect(screen.getByRole("img", { name: "Avatar" })).toHaveAttribute(
+      "data-type",
+      "icon",
+    );
+  });
+
+  it("honours an explicit type", () => {
+    render(
+      <Avatar src="https://example.com/j.png" alt="Jane Doe" type="initials" />,
+    );
+    expect(screen.getByText("JD")).toBeInTheDocument();
+    expect(document.querySelector("img")).toBeNull();
+  });
+
+  it.each([
+    ["offline", "Jane Doe, offline"],
+    ["company", "Jane Doe, company account"],
+    ["verified", "Jane Doe, verified"],
+  ] as const)("labels the %s indicator", (indicator, name) => {
+    render(<Avatar alt="Jane Doe" indicator={indicator} />);
+    expect(screen.getByRole("img", { name })).toBeInTheDocument();
+  });
+
+  it("has no axe violations across types and indicators", async () => {
+    const { container, rerender } = render(<Avatar type="icon" alt="Jane" />);
+    for (const type of ["image", "initials", "icon"] as const) {
+      for (const indicator of [
+        "none",
+        "online",
+        "offline",
+        "company",
+        "verified",
+      ] as const) {
+        rerender(
+          <Avatar
+            src="https://example.com/j.png"
+            alt="Jane Doe"
+            type={type}
+            indicator={indicator}
+          />,
+        );
+        expect(await axe(container)).toHaveNoViolations();
+      }
+    }
+  });
+});
+
+describe("AvatarProfilePhoto", () => {
+  it("suffixes the name when verified", () => {
+    render(<AvatarProfilePhoto alt="Jane Doe" verified />);
+    expect(
+      screen.getByRole("img", { name: "Jane Doe, verified" }),
+    ).toBeInTheDocument();
+  });
+
+  it("forwards a ref", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    render(<AvatarProfilePhoto ref={ref} alt="Jane" />);
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
+  });
+
+  it("has no axe violations across sizes, types and verified", async () => {
+    const { container, rerender } = render(<AvatarProfilePhoto alt="Jane" />);
+    for (const size of ["sm", "md", "lg"] as const) {
+      for (const type of ["image", "initials", "icon"] as const) {
+        rerender(
+          <AvatarProfilePhoto
+            src="https://example.com/j.png"
+            alt="Jane Doe"
+            size={size}
+            type={type}
+            verified
+          />,
+        );
+        expect(await axe(container)).toHaveNoViolations();
+      }
+    }
   });
 });
