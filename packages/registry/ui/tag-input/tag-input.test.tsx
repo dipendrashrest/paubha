@@ -193,3 +193,42 @@ describe("TagInputV2", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 });
+
+describe("TagInput Figma sync", () => {
+  it.each([
+    ["sm", "px-1.5", "text-ui-xs"],
+    ["md", "px-2", "text-body-sm"],
+    ["lg", "px-3", "text-body-md"],
+  ] as const)(
+    "size %s scales tag chip and input text",
+    async (size, tagPad, inputText) => {
+      const { container } = render(
+        <TagInput
+          aria-label="Tags"
+          size={size}
+          tags={["React"]}
+          onTagsChange={() => {}}
+        />,
+      );
+      expect(screen.getByText("React")).toHaveClass(tagPad);
+      expect(screen.getByRole("textbox")).toHaveClass(inputText);
+      expect(await axe(container)).toHaveNoViolations();
+    },
+  );
+
+  it("uses 1px error border and hover treatment from Figma", () => {
+    const { rerender } = render(
+      <TagInput aria-label="Tags" tags={[]} onTagsChange={() => {}} />,
+    );
+    const group = screen.getByRole("group");
+    expect(group).toHaveClass(
+      "hover:border-border-strong",
+      "hover:bg-bg-secondary",
+    );
+    rerender(
+      <TagInput aria-label="Tags" tags={[]} onTagsChange={() => {}} error />,
+    );
+    expect(group).toHaveClass("border-border-error");
+    expect(group).not.toHaveClass("border-2");
+  });
+});

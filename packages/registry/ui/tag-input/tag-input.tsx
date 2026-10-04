@@ -5,19 +5,51 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
 
+// Figma "↳ Tag Input" (6318:9269): container px-3 py-2 gap-2, radius-sm, 1px border;
+// height hugs content (sm 38 · md 42 · lg 44).
 const containerVariants = cva(
-  "flex flex-wrap items-center gap-1.5 rounded-sm border bg-bg-primary px-3 outline-none",
+  "flex flex-wrap items-center gap-2 rounded-sm border bg-bg-primary px-3 py-2 outline-none",
   {
     variants: {
       size: {
-        sm: "min-h-8",
-        md: "min-h-10",
-        lg: "min-h-12",
+        sm: "",
+        md: "",
+        lg: "",
       },
     },
     defaultVariants: {
       size: "md",
     },
+  },
+);
+
+const tagVariants = cva(
+  "flex shrink-0 items-center gap-1 rounded-sm bg-bg-secondary font-medium text-fg-primary",
+  {
+    variants: {
+      size: {
+        sm: "px-1.5 py-0.5 text-[11px] leading-4",
+        md: "px-2 py-1 text-ui-xs",
+        lg: "px-3 py-1 text-ui-sm",
+      },
+    },
+    defaultVariants: { size: "md" },
+  },
+);
+
+const tagIconSize = { sm: "size-2.5", md: "size-3", lg: "size-3.5" } as const;
+
+const inputTextVariants = cva(
+  "min-w-24 flex-1 bg-transparent text-fg-primary outline-none placeholder:text-fg-tertiary disabled:cursor-not-allowed",
+  {
+    variants: {
+      size: {
+        sm: "text-ui-xs",
+        md: "text-body-sm",
+        lg: "text-body-md",
+      },
+    },
+    defaultVariants: { size: "md" },
   },
 );
 
@@ -38,8 +70,12 @@ export interface TagInputProps
  * Enter or Comma creates a tag from the current input text · Backspace on an empty input
  * removes the last tag · disabled state uses aria-disabled · focus ring visible via
  * shadow-glow-focus, or shadow-glow-focus-error when focused while `error` is set,
- * matching Input/Select/Slider's established error-focus pattern (audit fix: the focus
- * ring previously stayed brand-tinted even while `error` was true).
+ * matching Input/Select/Slider's established error-focus pattern.
+ *
+ * Synced to Figma "↳ Tag Input" (6318:9269): Size sm/md/lg × State default/hover/focus/
+ * error/disabled. Hover = bg-secondary + border-strong; focus = 2px border-brand; error =
+ * 1px border-error. Tag chip and input text scale per size. Figma's disabled variant is
+ * drawn identical to default, so the existing disabled treatment is kept.
  */
 export function TagInput({
   ref,
@@ -95,7 +131,10 @@ export function TagInput({
       aria-disabled={disabled || undefined}
       className={cn(
         containerVariants({ size }),
-        error ? "border-2 border-border-error" : "border-border-default",
+        error ? "border-border-error" : "border-border-default",
+        !disabled &&
+          !error &&
+          "hover:border-border-strong hover:bg-bg-secondary has-[input:focus-visible]:bg-bg-primary",
         error
           ? "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-error has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]"
           : "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-brand has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
@@ -106,10 +145,7 @@ export function TagInput({
       {...props}
     >
       {tags.map((tag, index) => (
-        <span
-          key={tag}
-          className="flex shrink-0 items-center gap-1 rounded-sm bg-bg-secondary px-2 py-1 text-ui-xs font-medium text-fg-primary"
-        >
+        <span key={tag} className={tagVariants({ size })}>
           {tag}
           <button
             type="button"
@@ -121,7 +157,7 @@ export function TagInput({
             }}
             className="flex shrink-0 items-center justify-center text-fg-tertiary outline-none hover:text-fg-primary focus-visible:shadow-[var(--shadow-glow-focus)] disabled:pointer-events-none"
           >
-            <X className="size-3" />
+            <X className={tagIconSize[size ?? "md"]} />
           </button>
         </span>
       ))}
@@ -133,7 +169,7 @@ export function TagInput({
         placeholder={placeholder}
         onChange={(event) => setInputValue(event.target.value)}
         onKeyDown={handleKeyDown}
-        className="min-w-24 flex-1 bg-transparent text-body-sm text-fg-primary outline-none placeholder:text-fg-tertiary disabled:cursor-not-allowed"
+        className={inputTextVariants({ size })}
       />
     </div>
   );
@@ -233,8 +269,10 @@ export function TagInputV2({
       className={cn(
         containerVariants({ size }),
         "transition-colors",
-        error ? "border-2 border-border-error" : "border-border-default",
-        !disabled && !error && "hover:border-border-strong",
+        error ? "border-border-error" : "border-border-default",
+        !disabled &&
+          !error &&
+          "hover:border-border-strong hover:bg-bg-secondary has-[input:focus-visible]:bg-bg-primary",
         error
           ? "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-error has-[input:focus-visible]:shadow-[var(--shadow-glow-focus-error)]"
           : "has-[input:focus-visible]:border-2 has-[input:focus-visible]:border-border-brand has-[input:focus-visible]:shadow-[var(--shadow-glow-focus)]",
@@ -245,10 +283,7 @@ export function TagInputV2({
       {...props}
     >
       {tags.map((tag, index) => (
-        <span
-          key={tag}
-          className="flex shrink-0 items-center gap-1 rounded-sm bg-bg-secondary px-2 py-1 text-ui-xs font-medium text-fg-primary"
-        >
+        <span key={tag} className={tagVariants({ size })}>
           {tag}
           <button
             type="button"
@@ -260,7 +295,7 @@ export function TagInputV2({
             }}
             className="flex shrink-0 items-center justify-center text-fg-tertiary outline-none hover:text-fg-primary focus-visible:shadow-[var(--shadow-glow-focus)] disabled:pointer-events-none"
           >
-            <X className="size-3" />
+            <X className={tagIconSize[size ?? "md"]} />
           </button>
         </span>
       ))}
@@ -272,7 +307,7 @@ export function TagInputV2({
         placeholder={placeholder}
         onChange={(event) => setInputValue(event.target.value)}
         onKeyDown={handleKeyDown}
-        className="min-w-24 flex-1 bg-transparent text-body-sm text-fg-primary outline-none placeholder:text-fg-tertiary disabled:cursor-not-allowed"
+        className={inputTextVariants({ size })}
       />
     </div>
   );
