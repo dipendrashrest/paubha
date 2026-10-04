@@ -133,4 +133,76 @@ describe("DropdownMenu", () => {
       "active:text-fg-error",
     );
   });
+
+  it("layers the portalled panel on --z-popover so it sits above dialogs", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    expect(await screen.findByRole("menu")).toHaveClass("z-(--z-popover)");
+  });
+
+  it("uses the Figma 13/18 ui-sm label and focus treatment on items", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    const item = await screen.findByRole("menuitem", { name: "Edit" });
+    expect(item).toHaveClass(
+      "text-ui-sm",
+      "data-[highlighted]:bg-bg-secondary-hover",
+      "data-[highlighted]:focus-visible:bg-bg-secondary",
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("swaps every fill to error-tinted for destructive items", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    await user.click(screen.getByRole("button", { name: "Open menu" }));
+    const item = await screen.findByRole("menuitem", { name: "Delete" });
+    expect(item).toHaveClass(
+      "data-[highlighted]:focus-visible:bg-bg-error-subtle",
+      "data-[highlighted]:active:bg-bg-error-subtle",
+    );
+    expect(item).not.toHaveClass(
+      "data-[highlighted]:focus-visible:bg-bg-secondary",
+      "data-[highlighted]:active:bg-bg-brand-subtle",
+    );
+  });
+
+  it("moves the highlight with arrow keys and skips disabled items", async () => {
+    const user = userEvent.setup();
+    render(<BasicMenu />);
+    screen.getByRole("button", { name: "Open menu" }).focus();
+    await user.keyboard("{Enter}");
+    const edit = await screen.findByRole("menuitem", { name: "Edit" });
+    await waitFor(() => expect(edit).toHaveFocus());
+    await user.keyboard("{ArrowDown}");
+    expect(screen.getByRole("menuitem", { name: "Delete" })).toHaveFocus();
+  });
+
+  it("renders the shortcut in the tertiary ui-xs style", async () => {
+    render(
+      <DropdownMenu open>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem shortcut="⌘K">Edit file</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>,
+    );
+    expect(await screen.findByText("⌘K")).toHaveClass(
+      "text-ui-xs",
+      "font-medium",
+      "text-fg-tertiary",
+    );
+  });
+
+  it("has no axe violations with a destructive item highlighted via keyboard", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<BasicMenu />);
+    screen.getByRole("button", { name: "Open menu" }).focus();
+    await user.keyboard("{Enter}");
+    await screen.findByRole("menu");
+    await user.keyboard("{ArrowDown}");
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });

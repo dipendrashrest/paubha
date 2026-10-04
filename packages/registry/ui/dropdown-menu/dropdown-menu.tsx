@@ -12,18 +12,18 @@ export interface DropdownMenuContentProps
   extends React.ComponentPropsWithRef<typeof DropdownMenuPrimitive.Content> {}
 
 /**
- * role=menu · items role=menuitem · arrow keys navigate · Enter/Space selects · Esc
- * closes · focus is trapped within the open menu
+ * role=menu · items role=menuitem · ↑/↓ move highlight, Home/End jump, typeahead ·
+ * Enter/Space selects · Esc closes and returns focus to the trigger · focus ring visible
+ * on keyboard focus · disabled items are skipped
  *
- * Real spec confirmed via `get_metadata`/`get_design_context` on node `2120:17` (file
- * `CDgfoMkj7lP3pXWJ3aOgkH`, node id recovered from the "add Dropdown Menu" build commit's
- * own recorded id (`BUILD_LOG.md`), the same trick that resolved Toast/Popover in earlier
- * units). Published panel symbol (`2121:15472`): `bg/elevated`, `border/default`,
- * `p/xs`+`gap/xs` (4px), `shadow/lg` (already correctly bound; this project's `shadow-lg`
- * utility is remapped in `theme.css` to the brand-tinted token, not raw Tailwind). Panel
- * radius is `radius/md` (12px), re-confirmed 2026-09-11 after Figma's duplicate "Radius"
- * variable collections were consolidated; the earlier `rounded-md` → `rounded-lg` change
- * was based on the since-deleted, orphaned collection and has been reverted.
+ * Spec: Figma `7JhwsjEdCg2grQsRnK24NF`, page "↳ Dropdown Menu" (`2120:17`), panel symbol
+ * `2121:15472`: `bg/elevated`, `border/default`, `space/xs` padding + gap (4px),
+ * `radius/md` (12px), `shadow/lg` (brand-tinted via `theme.css`).
+ *
+ * Layer: `--z-popover` (50), not `--z-dropdown` (10). The panel is portalled to `<body>`,
+ * so it stacks against the Dialog/Modal overlay (`--z-overlay` 30) and panel (`--z-modal`
+ * 40); `--z-dropdown` would put a menu opened inside a dialog underneath it. Same layer
+ * Popover uses, below Toast (60) and Tooltip (70).
  */
 export function DropdownMenuContent({
   ref,
@@ -38,7 +38,7 @@ export function DropdownMenuContent({
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 flex min-w-32 flex-col gap-1 rounded-md border border-border-default bg-bg-elevated p-1 shadow-lg",
+          "z-(--z-popover) flex min-w-32 flex-col gap-1 rounded-md border border-border-default bg-bg-elevated p-1 shadow-lg",
           className,
         )}
         {...props}
@@ -64,24 +64,17 @@ export interface DropdownMenuItemProps
 }
 
 /**
- * Real per-state spec confirmed via `get_design_context` on the "_Menu Item" base
- * component (`2121:15471`, sibling to the panel above, same node-id-from-commit-message
- * recovery): 5 published states. Default (`fg-primary`, no fill), hover
- * (`bg-secondary-hover`), focus (`bg-secondary` + `shadow-glow-focus`), active
- * (`bg-brand-subtle` fill + `fg-brand` text, a real, distinct pressed state Figma
- * publishes that the code had NO treatment for at all before this fix), disabled
- * (`fg-disabled`, no fill change). Radix's single-moving-highlight menu architecture
- * (`data-highlighted` fires for both pointer hover and keyboard arrow-nav) still means
- * hover/focus share one background via `data-[highlighted]:bg-bg-secondary-hover` plus a
- * separate `focus-visible:shadow-glow-focus` ring for real keyboard focus, an
- * already-documented, deliberate compromise from this component's original build (see
- * `BUILD_LOG.md`), reconfirmed here, not re-litigated. The native `:active` (press) state
- * is a real browser pseudo-class independent of Radix's data attributes, so it maps
- * directly to `active:` with no reinvention needed. `destructive` items now get the same
- * error-tinted treatment across hover/focus (already covered by the shared
- * `data-[highlighted]` rule) AND the new active state; previously `destructive` only
- * recolored the default text and the hover/focus background, leaving a destructive item's
- * pressed state incorrectly falling through to the brand-tinted active styles.
+ * Spec: Figma "Menu item" set `2121:15471` (5 states). Row: `space/md` (8px) x-padding +
+ * gap, `space/sm` (6px) y-padding, `radius/xs`, 30px tall. Label 13/18 Regular
+ * (`ui-sm`); optional 16px leading icon; optional shortcut 12/16 Medium (`ui-xs`,
+ * `fg/tertiary` in every state).
+ * - default: `fg/primary`, no fill
+ * - hover: `bg/secondary-hover` (Radix `data-highlighted`, fired by pointer and arrow keys)
+ * - focus: `bg/secondary` + `shadow/glow-focus` (keyboard focus only, via `focus-visible`)
+ * - active (pressed): `bg/brand-subtle` + `fg/brand`
+ * - disabled: `fg/disabled`, no fill
+ * `destructive` is a code-only extension (Figma has no destructive variant): error-tinted
+ * text and highlight/pressed fills.
  */
 export function DropdownMenuItem({
   ref,
@@ -96,13 +89,16 @@ export function DropdownMenuItem({
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
-        "flex items-center gap-2 rounded-xs px-2 py-1.5 text-ui-md text-fg-primary outline-none",
+        "flex items-center gap-2 rounded-xs px-2 py-1.5 text-ui-sm font-normal text-fg-primary outline-none",
+        // Radix keeps the focused item `data-highlighted`, and Tailwind emits `data-*`
+        // after `:focus-visible`/`:active`, so those two are stacked on the attribute to
+        // win the cascade (otherwise hover's fill masks the focus and pressed fills).
         "data-[highlighted]:bg-bg-secondary-hover",
-        "focus-visible:shadow-[var(--shadow-glow-focus)]",
-        "active:bg-bg-brand-subtle active:text-fg-brand",
+        "focus-visible:shadow-[var(--shadow-glow-focus)] data-[highlighted]:focus-visible:bg-bg-secondary",
+        "active:bg-bg-brand-subtle active:text-fg-brand data-[highlighted]:active:bg-bg-brand-subtle",
         "data-[disabled]:pointer-events-none data-[disabled]:text-fg-disabled",
         destructive &&
-          "text-fg-error data-[highlighted]:bg-bg-error-subtle active:bg-bg-error-subtle active:text-fg-error",
+          "text-fg-error data-[highlighted]:bg-bg-error-subtle data-[highlighted]:focus-visible:bg-bg-error-subtle active:bg-bg-error-subtle active:text-fg-error data-[highlighted]:active:bg-bg-error-subtle",
         className,
       )}
       {...props}

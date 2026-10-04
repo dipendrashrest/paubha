@@ -31,12 +31,14 @@ import {
 </DropdownMenu>
 ```
 
-Hover and keyboard focus share one unified highlighted state
-(`data-[highlighted]:bg-bg-secondary-hover`). Radix moves real DOM focus for
-both, by design, so there's no clean way to give them different backgrounds
-through CSS alone. The `glow-focus` ring is layered on top via
-`focus-visible`, which correctly shows only for real keyboard-driven focus,
-the part that actually matters for accessibility.
+Items have five states: default, hover (`bg-secondary-hover`), keyboard focus
+(`bg-secondary` plus the `glow-focus` ring, via `focus-visible` so it only shows
+for keyboard-driven focus), pressed (`bg-brand-subtle` with `fg-brand` text) and
+disabled (`fg-disabled`). `destructive` swaps every fill and the label to the
+error tint.
+
+The panel is portalled to `<body>` on the `--z-popover` layer, so a menu opened
+from inside a Dialog or Modal renders above it.
 
 ## API reference
 
@@ -51,8 +53,9 @@ the part that actually matters for accessibility.
       <code>role=&quot;menuitem&quot;</code>.
     </li>
     <li>
-      <strong>Keyboard.</strong> Arrow keys navigate, Enter/Space selects, Escape
-      closes.
+      <strong>Keyboard.</strong> Arrow keys navigate (disabled items are
+      skipped), Home/End jump, typing a letter jumps to a matching item,
+      Enter/Space selects, Escape closes and returns focus to the trigger.
     </li>
     <li>
       <strong>Focus.</strong> Trapped within the open menu; a visible{" "}
