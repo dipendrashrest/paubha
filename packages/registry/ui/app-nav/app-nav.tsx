@@ -28,7 +28,7 @@ export function AppNav({
     <header
       ref={ref}
       className={cn(
-        "flex h-14 items-center gap-8 border-b border-border-default bg-bg-primary px-6",
+        "flex h-16 items-center gap-3 border border-border-default bg-bg-primary px-6",
         className,
       )}
       {...props}
@@ -58,7 +58,7 @@ export function AppNavBrand({
   return (
     <div
       ref={ref}
-      className={cn("flex shrink-0 items-center gap-2", className)}
+      className={cn("flex shrink-0 items-center gap-3", className)}
       {...props}
     >
       {children}
@@ -84,7 +84,10 @@ export function AppNavLinks({
     <nav
       ref={ref}
       aria-label={ariaLabel}
-      className={cn("flex h-full items-stretch gap-6", className)}
+      className={cn(
+        "flex h-full flex-1 items-center justify-center gap-8",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -116,11 +119,9 @@ export function AppNavLink({
   ...props
 }: AppNavLinkProps) {
   const styles = cn(
-    "inline-flex h-full items-center border-b-2 text-ui-md outline-none transition-colors",
+    "inline-flex h-full items-center rounded-xs text-ui-sm text-fg-primary outline-none transition-colors",
     "focus-visible:shadow-[var(--shadow-glow-focus)]",
-    active
-      ? "border-fg-primary font-semibold text-fg-primary"
-      : "border-transparent font-medium text-fg-secondary hover:text-fg-primary",
+    active ? "font-semibold" : "font-medium hover:text-fg-secondary",
     className,
   );
 
@@ -180,21 +181,19 @@ export function AppSidebar({
     <aside
       ref={ref}
       className={cn(
-        "flex w-60 flex-col border-r border-border-default bg-bg-primary",
+        "flex w-60 flex-col border border-border-default bg-bg-primary",
         className,
       )}
       {...props}
     >
       {logo ? (
-        <div className="flex h-14 shrink-0 items-center gap-2 border-b border-border-default px-4">
-          {logo}
-        </div>
+        <div className="flex shrink-0 items-center gap-3 px-3 py-2">{logo}</div>
       ) : null}
-      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-3">
+      <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-3">
         {children}
       </div>
       {footer ? (
-        <div className="shrink-0 border-t border-border-default p-3">
+        <div className="mx-3 shrink-0 border-t border-border-default py-4">
           {footer}
         </div>
       ) : null}
@@ -220,9 +219,11 @@ export function AppSidebarSection({
   return (
     <div ref={ref} className={cn("flex flex-col gap-1", className)} {...props}>
       {label ? (
-        <p className="px-2 text-ui-xs font-medium text-fg-tertiary">{label}</p>
+        <p className="px-3 pt-4 pb-1.5 text-[11px] font-semibold uppercase leading-4 text-fg-tertiary">
+          {label}
+        </p>
       ) : null}
-      <div className="flex flex-col gap-0.5">{children}</div>
+      <div className="flex flex-col gap-1">{children}</div>
     </div>
   );
 }
@@ -256,11 +257,11 @@ export function AppSidebarItem({
   ...props
 }: AppSidebarItemProps) {
   const styles = cn(
-    "flex h-[34px] w-full items-center gap-2 rounded-sm px-2 text-ui-sm outline-none transition-colors",
+    "flex w-full items-center gap-3 rounded-sm px-3 py-2 text-ui-sm outline-none transition-colors",
     "focus-visible:shadow-[var(--shadow-glow-focus)]",
     active
-      ? "bg-bg-brand-subtle font-medium text-fg-brand"
-      : "font-medium text-fg-secondary hover:bg-bg-tertiary-hover hover:text-fg-primary",
+      ? "bg-bg-brand-subtle font-semibold text-fg-brand"
+      : "font-normal text-fg-secondary hover:bg-bg-tertiary-hover hover:text-fg-primary",
     className,
   );
 
@@ -268,7 +269,7 @@ export function AppSidebarItem({
     <>
       {icon ? (
         <span
-          className="flex size-4 shrink-0 items-center justify-center [&>svg]:size-4"
+          className="flex size-5 shrink-0 items-center justify-center [&>svg]:size-5"
           aria-hidden="true"
         >
           {icon}
@@ -331,7 +332,7 @@ export function AppIconNav({
       ref={ref}
       aria-label={ariaLabel}
       className={cn(
-        "inline-flex items-center gap-6 rounded-lg border border-border-default bg-bg-primary px-4 py-2",
+        "flex w-full items-center border border-border-default bg-bg-primary px-3 py-1",
         className,
       )}
       {...props}
@@ -368,15 +369,15 @@ export function AppIconNavItem({
       type="button"
       aria-current={active ? "page" : undefined}
       className={cn(
-        "inline-flex flex-col items-center gap-1 rounded-sm outline-none transition-colors",
+        "flex flex-1 flex-col items-center justify-center gap-1 rounded-sm py-1.5 outline-none transition-colors",
         "focus-visible:shadow-[var(--shadow-glow-focus)]",
-        active ? "text-fg-brand" : "text-fg-secondary hover:text-fg-primary",
+        active ? "text-fg-brand" : "text-fg-tertiary hover:text-fg-primary",
         className,
       )}
       {...props}
     >
       <span
-        className="flex size-5 items-center justify-center [&>svg]:size-5"
+        className="flex size-[22px] items-center justify-center [&>svg]:size-[22px]"
         aria-hidden="true"
       >
         {icon}
@@ -406,25 +407,27 @@ export function AppIconNavAction({
   ...props
 }: AppIconNavActionProps) {
   return (
-    <button
-      ref={ref}
-      type="button"
-      className={cn(
-        "inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-bg-brand-solid text-fg-on-brand outline-none transition-colors",
-        "hover:bg-bg-brand-solid-hover",
-        "active:bg-bg-brand-solid-active",
-        "focus-visible:shadow-[var(--shadow-glow-focus)]",
-        className,
-      )}
-      {...props}
-    >
-      <span
-        className="flex size-5 items-center justify-center [&>svg]:size-5"
-        aria-hidden="true"
+    <span className="flex flex-1 items-center justify-center">
+      <button
+        ref={ref}
+        type="button"
+        className={cn(
+          "inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-bg-brand-solid text-fg-on-brand outline-none transition-colors",
+          "hover:bg-bg-brand-solid-hover",
+          "active:bg-bg-brand-solid-active",
+          "focus-visible:shadow-[var(--shadow-glow-focus)]",
+          className,
+        )}
+        {...props}
       >
-        {icon}
-      </span>
-    </button>
+        <span
+          className="flex size-[18px] items-center justify-center [&>svg]:size-[18px]"
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
+      </button>
+    </span>
   );
 }
 
