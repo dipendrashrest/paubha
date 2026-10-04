@@ -334,3 +334,20 @@ OPEN QUESTIONS (batch 2)
 - Several Figma focus frames (Select v2, Tag Input) show no glow — code keeps `glow-focus` per CLAUDE.md.
 - Tag Input: Figma disabled looks identical to default; sm chip uses an 11px size with no type token.
 - Input: Figma notes mention a trailing button (e.g. Search) with no variant; not built.
+
+### Components — batch 3: selection + feedback (2026-10-05)
+- **Checkbox** — **visual change:** checked/indeterminate are now outlined (bg-primary fill, brand border, fg-primary glyph), not solid brand; per-size label type/gap; radius xs (sm) / 6px (md, lg); uncontrolled `defaultChecked="indeterminate"` now shows the minus. **Figma edits:** indeterminate minus rebound `fg/on-brand`→`fg/primary` (was white-on-white) and checked-disabled check `fg/primary`→`fg/disabled` in set 6198:22838.
+- **Radio Group** — label `body-sm`.
+- **Switch** — label `body-sm`; disabled thumb drops its shadow.
+- **Slider** — track `bg-switch-off`; disabled range + thumb border → `border-strong`; single 50% fade.
+- **Alert** — 32px status icon chip; info title → `fg-brand`.
+- **Toast** — icon chip; Escape dismisses; max 2 stacked (Figma note); `--z-toast`.
+- **New tokens:** `bg-{info,success,warning,error}-chip` (light = Figma's `*-100`).
+
+OPEN QUESTIONS (batch 3)
+- 🔴 `bg-*-chip` **dark values are a code-side choice** (500 step @ 24%) — Figma binds the `*-100` primitive with no dark mode. Add a semantic chip variable in Figma to confirm.
+- Checkbox colours in Figma aren't bound to variables (stale raw hex) — mapped to nearest semantics; 6px radius has no token.
+- Radio Group: Selected symbols size the circle to the dot (smaller than Unselected; dot 8–12px varies by state) — code keeps uniform 20px/8px dot.
+- Slider: Figma error state looks identical to default — code keeps error colours.
+- Alert/Toast: per-variant icon colour not verifiable (icons export as images); Toast entry/exit animation (200ms) described in notes but not built.
+- Chart (pattern) still uses primitive vars — fix in patterns phase.
