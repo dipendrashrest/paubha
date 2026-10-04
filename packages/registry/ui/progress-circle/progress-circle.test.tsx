@@ -51,6 +51,36 @@ describe("ProgressCircle", () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
+  it.each([
+    ["sm", 40, "5", "text-ui-xs"],
+    ["md", 48, "6", "text-ui-sm"],
+    ["lg", 64, "8", "text-ui-lg"],
+  ] as const)("renders the Figma %s size spec", (size, px, stroke, text) => {
+    const { container } = render(
+      <ProgressCircle size={size} value={75} aria-label="Upload progress" />,
+    );
+    const progress = screen.getByRole("progressbar");
+    expect(progress).toHaveStyle({ width: `${px}px`, height: `${px}px` });
+    const [track, arc] = container.querySelectorAll("circle");
+    expect(track).toHaveAttribute("stroke-width", stroke);
+    expect(track).toHaveClass("stroke-bg-secondary");
+    expect(arc).toHaveAttribute("stroke-width", stroke);
+    expect(arc).toHaveClass("stroke-bg-brand-solid");
+    expect(arc).not.toHaveAttribute("stroke-linecap");
+    expect(screen.getByText("75%")).toHaveClass(text);
+  });
+
+  it("has no axe violations across sizes and without percentage", async () => {
+    const { container } = render(
+      <>
+        <ProgressCircle size="sm" value={10} aria-label="Small" />
+        <ProgressCircle size="lg" value={90} aria-label="Large" />
+        <ProgressCircle value={0} showPercentage={false} aria-label="Empty" />
+      </>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <ProgressCircle value={50} aria-label="Upload progress" />,

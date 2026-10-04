@@ -7,9 +7,9 @@ const sizeConfig: Record<
   ProgressCircleSize,
   { px: number; strokeWidth: number; textClassName: string }
 > = {
-  sm: { px: 40, strokeWidth: 4, textClassName: "text-ui-xs" },
-  md: { px: 48, strokeWidth: 5, textClassName: "text-ui-sm" },
-  lg: { px: 64, strokeWidth: 6, textClassName: "text-ui-md" },
+  sm: { px: 40, strokeWidth: 5, textClassName: "text-ui-xs" },
+  md: { px: 48, strokeWidth: 6, textClassName: "text-ui-sm" },
+  lg: { px: 64, strokeWidth: 8, textClassName: "text-ui-lg" },
 };
 
 export interface ProgressCircleProps
@@ -25,6 +25,9 @@ export interface ProgressCircleProps
 }
 
 /**
+ * Figma "Progress Circle" (sm 40 / md 48 / lg 64): bg-secondary track, brand-solid
+ * arc starting at 12 o'clock with square ends, optional fg-primary percentage.
+ *
  * role="progressbar" with aria-valuenow/aria-valuemin=0/aria-valuemax=100 · always pass
  * aria-label describing what is loading · the circular rendering itself is decorative,
  * the value is conveyed entirely via ARIA attributes
@@ -72,7 +75,7 @@ export function ProgressCircle({
           r={radius}
           fill="none"
           strokeWidth={strokeWidth}
-          className="stroke-bg-tertiary"
+          className="stroke-bg-secondary"
         />
         <circle
           cx={px / 2}
@@ -80,7 +83,6 @@ export function ProgressCircle({
           r={radius}
           fill="none"
           strokeWidth={strokeWidth}
-          strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           className="stroke-bg-brand-solid transition-[stroke-dashoffset] duration-300"
