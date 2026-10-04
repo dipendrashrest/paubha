@@ -14,8 +14,11 @@ export interface AuthCardProps
 }
 
 /**
- * Auth page card · Card article · title + form slot + footer · interactive
- * fields/buttons inside must carry glow-focus
+ * Figma Auth Card (6684:72): 448px card, 32px padding, 24px section gap,
+ * radius-md, border-default, shadow-sm; title ui-lg semibold, description
+ * body-sm. role=article (presentational) · the form inside owns semantics ·
+ * inputs keep visible labels · submit is a native button · glow-focus on every
+ * field and action inside
  */
 export function AuthCard({
   ref,
@@ -34,8 +37,8 @@ export function AuthCard({
       {...props}
     >
       {mark != null ? <div className="mb-8">{mark}</div> : null}
-      <Card variant="elevated" className="w-full hover:bg-bg-primary">
-        <CardContent className="gap-6 p-6 sm:p-8">
+      <Card className="w-full rounded-md shadow-sm hover:border-border-default hover:bg-bg-primary">
+        <CardContent className="gap-6 p-8">
           {title != null || description != null ? (
             <div className="flex flex-col gap-1">
               {title != null ? (
@@ -49,7 +52,11 @@ export function AuthCard({
             </div>
           ) : null}
           {children}
-          {footer != null ? <div>{footer}</div> : null}
+          {footer != null ? (
+            <div className="flex justify-center gap-1 text-body-sm text-fg-secondary">
+              {footer}
+            </div>
+          ) : null}
         </CardContent>
       </Card>
     </div>

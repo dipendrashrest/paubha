@@ -24,4 +24,23 @@ describe("AuthCard", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders footer and has no axe violations with all slots", async () => {
+    const { container } = render(
+      <AuthCard
+        mark={<span>Logo</span>}
+        title="Sign in"
+        description="Welcome back."
+        footer={<a href="/signup">Create one</a>}
+      >
+        <button type="button" disabled>
+          Continue
+        </button>
+      </AuthCard>,
+    );
+    expect(
+      screen.getByRole("link", { name: "Create one" }),
+    ).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });
