@@ -43,7 +43,10 @@ export interface RadioGroupItemProps
  * color). Figma's focus state additionally tints the circle's own border to
  * brand/100 (#dbe5fe) on top of the glow-focus shadow; there is no semantic token for
  * that primitive alone, so it was deliberately left unbound rather than invented.
- * See SYNC_LOG.md OPEN QUESTIONS.
+ * See SYNC_LOG.md OPEN QUESTIONS. Re-synced 2026-10-05 against Paubha-UI (node
+ * 2121:15180): label uses body/sm (14/22). Figma's Selected symbols hug their dot
+ * (no fixed 20px circle, 1px vs 1.5px border, 12/10/8px dot sizes vary per state) —
+ * treated as a Figma bug; code keeps a uniform 20px circle, 1.5px border, 8px dot.
  */
 export function RadioGroupItem({
   ref,
@@ -77,7 +80,7 @@ export function RadioGroupItem({
         <label
           htmlFor={controlId}
           className={cn(
-            "select-none text-ui-md font-normal text-fg-primary",
+            "select-none text-body-sm font-normal text-fg-primary",
             "peer-disabled:cursor-not-allowed peer-disabled:text-fg-disabled",
           )}
         >
