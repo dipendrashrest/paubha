@@ -5,7 +5,16 @@ import type * as React from "react";
 
 export interface PaginationProps extends React.ComponentPropsWithRef<"nav"> {}
 
-/** nav with aria-label="Pagination"; wrap PaginationContent + PaginationItem children */
+/**
+ * Pagination — synced to Paubha-UI Figma (file `7JhwsjEdCg2grQsRnK24NF`, set `6318:9133`,
+ * Size=sm|md|lg × State=default|focus|disabled|hover).
+ *
+ * Accessibility: nav landmark with aria-label="Pagination" · pages and prev/next are native
+ * buttons (Enter/Space activates, Tab moves between them) · current page announced via
+ * aria-current="page" · prev/next carry aria-labels ("Previous page"/"Next page") · focus ring
+ * (`glow-focus`) visible on Tab · disabled prev/next are removed from interaction · ellipsis
+ * glyph is aria-hidden with sr-only "More pages" text.
+ */
 export function Pagination({
   ref,
   className,
@@ -19,6 +28,12 @@ export function Pagination({
 
 Pagination.displayName = "Pagination";
 
+/**
+ * Item chrome per Figma: `radius/md` (12px), 1px `border/default` on `bg/primary`
+ * (inactive) or `bg/brand-solid` + `fg/on-brand` (active), Inter Medium `ui-xs`/`ui-md`/`ui-lg`.
+ * Square 28/36/44px boxes follow Figma's per-size `min-width`; Figma's auto-layout padding
+ * actually yields 28x30 / 36x38 / 44x42, which reads as a padding artifact, not intent.
+ */
 const itemSizeContext = {
   sm: "size-7 text-ui-xs",
   md: "size-9 text-ui-md",
@@ -28,11 +43,8 @@ const itemSizeContext = {
 export type PaginationSize = keyof typeof itemSizeContext;
 
 /**
- * Audit fix (confirmed via `get_design_context` on Figma nodes `6089:35746`/`35797`/`35848`,
- * the sm/md/lg default symbols on base Pagination `6089:35899`): the row gap scales per
- * size (`space/xs` 4px at sm, `space/sm` 6px at md, `space/md` 8px at lg); it is not
- * a single fixed value. Was previously hardcoded to `gap-1.5` (6px) at every size, which
- * only happened to be correct for `md`.
+ * Row gap scales per size (Figma `6318:8956`/`9020`/`9084`, the sm/md/lg default symbols):
+ * `space/xs` 4px sm, `space/sm` 6px md, `space/md` 8px lg.
  */
 const contentGapContext = {
   sm: "gap-1",
@@ -41,10 +53,8 @@ const contentGapContext = {
 } as const;
 
 /**
- * Audit fix (same Figma nodes as `contentGapContext` above): icon size scales per size too,
- * 12px sm, 14px md, 16px lg, for both the prev/next chevrons and the ellipsis glyph. Was
- * previously hardcoded to `size-3.5` (14px) regardless of `size`, so sm/lg icons rendered at
- * the wrong scale relative to their chrome.
+ * Icon size scales per size (same Figma nodes): 12px sm, 14px md, 16px lg, for the
+ * prev/next chevrons and the ellipsis glyph.
  */
 const iconSizeContext = {
   sm: "size-3",
@@ -226,43 +236,14 @@ export function PaginationEllipsis({
 }
 
 /**
- * PaginationV2, a "restrained" variant (additive only; does not alter `Pagination`/
- * `PaginationContent`/`PaginationItem`/`PaginationLink`/`PaginationPrevious`/
- * `PaginationNext`/`PaginationEllipsis` above).
+ * PaginationV2 — direct re-exports of the parts above (kept so the `pagination-v2` registry
+ * item and its `*V2` names stay stable). Paubha-UI publishes a single Pagination set
+ * (`6318:9133`), so V2 renders identically to Pagination.
  *
- * 🆕 v2 built from a REAL, confirmed "Pagination / v2 - restrained" Figma frame
- * (`6318:9133`, sibling to base Pagination `6089:35899` on canvas `6033:30`, file
- * `CDgfoMkj7lP3pXWJ3aOgkH`): this is the one frame tonight's earlier discovery correctly
- * flagged as genuinely real (and used elsewhere as a stand-in reference for Select's and
- * Accordion's v2, which had no frame of their own).
- *
- * Verified firsthand via `get_design_context` on both nodes, size by size (sm 28px / md
- * 36px / lg 44px), rather than trusting the secondhand screenshot-diff handoff: v2's
- * `_prev`/`_page-N`/`_next` chrome is **token-for-token identical** to v1. Same
- * `bg/primary` + `border/default` (inactive) / `bg/brand-solid` + `fg/on-brand` (active),
- * same `radius/md` squircle, and the same per-size gap scale (`space/xs` 4px sm,
- * `space/sm` 6px md, `space/md` 8px lg). Two claims from the handoff don't survive direct
- * inspection: there is no squircle-vs-pill axis (v1 was never a pill in Figma, both use
- * `radius/md`) and there is no "tighter" v2-only gap scale (v1's real spec already has the
- * same per-size scale; both were audited and fixed together above on `PaginationContent`/
- * `iconSizeContext`).
- *
- * The one real, structural difference: v2's published symbol set adds an explicit `hover`
- * state (sm/md/lg × default/focus/disabled/hover = 12 symbols, vs. v1's 9, confirmed via
- * `get_metadata` + `get_design_context`). But extracting the `hover` symbols directly shows
- * **pixel-identical** fill/border/text bindings to `default` for every size; Figma
- * publishes the state slot but never gave it a distinct color. Rather than invent an
- * unconfirmed hover color for v2 (or silently drop hover feedback for v2 only), this build
- * carries forward the same `hover:bg-secondary-hover` affordance v1's own code already
- * applies to its inactive items/nav buttons, keeping interactive feedback consistent
- * across the whole component family.
- *
- * Net effect: every sub-part below is a real, additive export with its own stable name (and
- * `pagination-v2` gets its own registry entry), but the rendered output is intentionally the
- * same as a correctly-implemented v1; that IS the confirmed real spec here, not an
- * interpretation. Forking the CVA definitions solely to duplicate identical class strings
- * under a new name would just be dead weight, so these are direct re-exports. See
- * SYNC_LOG.md for the full discrepancy note against the secondhand handoff.
+ * Figma's `hover`, `focus` and `disabled` symbols are bound identically to `default` (no
+ * distinct fills/borders/text), so the code keeps its own affordances for those states:
+ * `hover:bg-bg-secondary-hover`, `glow-focus` on focus-visible, `fg-disabled` + not-allowed
+ * cursor on disabled prev/next.
  */
 export const PaginationV2 = Pagination;
 

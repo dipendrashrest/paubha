@@ -151,6 +151,43 @@ describe("Pagination", () => {
     expect(lg.querySelector("ul")).toHaveClass("gap-2");
     expect(lg.querySelector("svg")).toHaveClass("size-4");
   });
+
+  it("binds Figma tokens: radius-md, brand-solid active, bordered inactive", () => {
+    render(<BasicPagination />);
+    const active = screen.getByRole("button", { name: "1" });
+    const inactive = screen.getByRole("button", { name: "2" });
+    expect(active).toHaveClass(
+      "rounded-md",
+      "bg-bg-brand-solid",
+      "text-fg-on-brand",
+    );
+    expect(inactive).toHaveClass(
+      "rounded-md",
+      "border-border-default",
+      "bg-bg-primary",
+      "text-fg-primary",
+      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    );
+  });
+
+  it("has no axe violations with disabled prev/next", async () => {
+    const { container } = render(
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious disabled />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink isActive>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext disabled />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });
 
 function BasicPaginationV2(props: { onPageChange?: (page: number) => void }) {
