@@ -351,3 +351,17 @@ OPEN QUESTIONS (batch 3)
 - Slider: Figma error state looks identical to default — code keeps error colours.
 - Alert/Toast: per-variant icon colour not verifiable (icons export as images); Toast entry/exit animation (200ms) described in notes but not built.
 - Chart (pattern) still uses primitive vars — fix in patterns phase.
+
+### Components — batch 4: feedback + modal (2026-10-05)
+- **Badge** — ⚠️ root is now `<span>` (was `<output role=status>`); pass `role="status"` only for live badges (Figma notes). New `lg` (32px), fixed heights 20/28/32, borderless subtle, `leadingIcon`/`leadingAvatar`/`trailingIcon` slots, `dismissLabel`, icon-only → `role="img"`.
+- **Spinner** — matched; fixed duplicate SVG mask ids (now `useId`).
+- **Skeleton** — text radius-sm, rectangle radius-md + default 120px height, circle default 48px.
+- **Progress Bar** — square-ended fill.
+- **Progress Circle** — strokes 5/6/8, `bg-secondary` track, square arc ends, lg label `ui-lg`.
+- **Modal** — `--z-overlay`/`--z-modal`, 200ms ease-out open fade (reduced-motion aware), header gap 0.
+
+OPEN QUESTIONS (batch 4)
+- Modal sm/md/lg are all 208px wide in Figma (notes say size ≠ width guarantee) — code keeps 400/560/720. Header gap 0 lets a long title touch the close X. No exit fade (needs keyframes).
+- Badge lg Label variant lacks icon/avatar/dot properties in Figma (sm/md have them). Figma "Badge group" set has no code counterpart.
+- Progress Circle: sm label is unbound 11px (code uses ui-xs 12px); track stroke centre-aligned/thinner than arc in Figma (sets 2173:19977/19982/19987); `bg-secondary` track is near-invisible on white.
+- Progress Bar: Figma track doesn't clip the fill — code keeps overflow-hidden.
