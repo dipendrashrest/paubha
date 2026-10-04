@@ -9,6 +9,12 @@ const checkboxProps = definePropDefs<CheckboxProps>()([
     description: "Clickable label, linked to the control via for/id.",
   },
   {
+    name: "size",
+    type: '"sm" | "md" | "lg"',
+    defaultValue: '"md"',
+    description: "Box size (16/20/24px) with matching label type and gap.",
+  },
+  {
     name: "checked",
     type: 'boolean | "indeterminate"',
     description: "Controlled checked state.",

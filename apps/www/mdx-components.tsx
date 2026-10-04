@@ -154,6 +154,7 @@ import {
 } from "@/components/docs/chart/chart-demos";
 import {
   CheckboxHero,
+  CheckboxSizes,
   CheckboxStates,
 } from "@/components/docs/checkbox/checkbox-demos";
 import { CheckboxPropsTable } from "@/components/docs/checkbox/checkbox-props-table";
@@ -463,6 +464,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     CheckboxHero,
     CheckboxInstall,
     CheckboxPropsTable,
+    CheckboxSizes,
     CheckboxStates,
 
     // Radio Group

@@ -96,19 +96,36 @@ describe("Checkbox", () => {
     rerender(<Checkbox label="Accept terms" checked />);
     checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveClass(
-      "data-[state=checked]:border-bg-brand-solid",
+      "bg-bg-primary",
+      "data-[state=checked]:border-border-brand",
       "data-[state=checked]:hover:border-bg-brand-solid-hover",
-      "data-[state=checked]:hover:bg-bg-brand-solid-hover",
       "data-[state=checked]:active:border-bg-brand-solid-active",
-      "data-[state=checked]:active:bg-bg-brand-solid-active",
     );
+    expect(checkbox).not.toHaveClass("data-[state=checked]:bg-bg-brand-solid");
 
     rerender(<Checkbox label="Accept terms" checked={false} disabled />);
     checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveClass(
-      "disabled:border-border-default",
-      "disabled:bg-bg-disabled",
+      "disabled:border-border-disabled",
+      "data-[state=unchecked]:disabled:bg-bg-disabled",
     );
+  });
+
+  it("shows the minus glyph for indeterminate, even when uncontrolled", () => {
+    render(<Checkbox label="Select all" defaultChecked="indeterminate" />);
+    const svgs = screen.getByRole("checkbox").querySelectorAll("svg");
+    expect(svgs[1]).toHaveClass("group-data-[state=indeterminate]:block");
+    expect(svgs[0]).toHaveClass("group-data-[state=indeterminate]:hidden");
+  });
+
+  it.each([
+    ["sm", "size-4", "text-ui-sm"],
+    ["md", "size-5", "text-body-sm"],
+    ["lg", "size-6", "text-body-md"],
+  ] as const)("applies %s box and label sizing", (size, box, text) => {
+    render(<Checkbox label="Accept terms" size={size} />);
+    expect(screen.getByRole("checkbox")).toHaveClass(box);
+    expect(screen.getByText("Accept terms")).toHaveClass(text);
   });
 
   it("has no axe violations across unchecked, checked, indeterminate, and disabled", async () => {
@@ -124,6 +141,9 @@ describe("Checkbox", () => {
     expect(await axe(container)).toHaveNoViolations();
 
     rerender(<Checkbox label="Accept terms" checked={false} disabled />);
+    expect(await axe(container)).toHaveNoViolations();
+
+    rerender(<Checkbox label="Accept terms" checked disabled size="lg" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });
