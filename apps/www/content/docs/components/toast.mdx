@@ -76,7 +76,12 @@ export function App() {
     <li>
       <strong>Dismiss.</strong> The close button has{" "}
       <code>aria-label=&quot;Dismiss&quot;</code> and its own{" "}
-      <code>glow-focus</code> ring.
+      <code>glow-focus</code> ring. Escape dismisses while focus is inside the
+      toast; focus is never moved to it.
+    </li>
+    <li>
+      <strong>Stack.</strong> <code>ToastProvider</code> shows at most two
+      toasts — a third drops the oldest.
     </li>
     <li>
       <strong>Auto-dismiss.</strong> Configurable via <code>duration</code>{" "}

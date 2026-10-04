@@ -5,8 +5,8 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { CircleAlert, CircleCheck, Info, TriangleAlert, X } from "lucide-react";
 import * as React from "react";
 
-// Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle)
-// with a status icon; there is no separate accent bar in the real spec.
+// Figma (node 6089:35745): the whole card is tinted per variant (bg/{variant}-subtle);
+// the status icon sits in a 32px round chip filled with the variant's 100 step.
 const toastVariants = cva(
   "flex w-90 items-start gap-3 rounded-lg p-4 shadow-sm",
   {
@@ -28,6 +28,14 @@ export type ToastVariant = NonNullable<
   VariantProps<typeof toastVariants>["variant"]
 >;
 
+// Figma binds the chip fill to the primitive {variant}/100 — no semantic token exists yet.
+const chipByVariant: Record<ToastVariant, string> = {
+  info: "bg-(--info-100)",
+  success: "bg-(--success-100)",
+  warning: "bg-(--warning-100)",
+  error: "bg-(--error-100)",
+};
+
 // Same per-variant glyph mapping as Alert (Figma ships a distinct status icon per variant).
 const iconByVariant: Record<ToastVariant, typeof Info> = {
   info: Info,
@@ -41,14 +49,15 @@ export interface ToastProps
     VariantProps<typeof toastVariants> {
   title: React.ReactNode;
   description?: React.ReactNode;
-  /** Called when the close button is activated. Omit to hide the close button. */
+  /** Called when the close button is activated or Escape is pressed. Omit to hide the close button. */
   onDismiss?: () => void;
 }
 
 /**
  * role="alert" · aria-live="assertive" for error/warning, "polite" for info/success ·
- * content is announced immediately by screen readers on mount · close button has
- * aria-label="Dismiss" · Escape dismisses when rendered via <Toaster />
+ * announced without moving focus · Tab reaches the dismiss button (aria-label="Dismiss",
+ * glow-focus ring) · Escape dismisses while focus is inside the toast · timeout is
+ * configurable via `duration`
  */
 export function Toast({
   ref,
@@ -57,9 +66,11 @@ export function Toast({
   title,
   description,
   onDismiss,
+  onKeyDown,
   ...props
 }: ToastProps) {
-  const VariantIcon = iconByVariant[variant ?? "info"];
+  const resolved = variant ?? "info";
+  const VariantIcon = iconByVariant[resolved];
   return (
     <div
       ref={ref}
@@ -68,11 +79,24 @@ export function Toast({
         variant === "error" || variant === "warning" ? "assertive" : "polite"
       }
       className={cn(toastVariants({ variant }), className)}
+      onKeyDown={(event) => {
+        onKeyDown?.(event);
+        if (event.key === "Escape" && onDismiss && !event.defaultPrevented) {
+          onDismiss();
+        }
+      }}
       {...props}
     >
-      <VariantIcon aria-hidden="true" className="size-5 shrink-0" />
-      <div className="flex flex-1 items-start justify-between gap-3">
-        <div className="flex flex-col gap-1">
+      <span
+        className={cn(
+          "flex size-8 shrink-0 items-center justify-center rounded-full",
+          chipByVariant[resolved],
+        )}
+      >
+        <VariantIcon aria-hidden="true" className="size-5" />
+      </span>
+      <div className="flex min-w-0 flex-1 items-start justify-between gap-2">
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
           <p className="text-ui-md font-semibold text-fg-primary">{title}</p>
           {description ? (
             <p className="text-ui-sm text-fg-secondary">{description}</p>
@@ -88,7 +112,7 @@ export function Toast({
               "hover:text-fg-secondary focus-visible:shadow-[var(--shadow-glow-focus)]",
             )}
           >
-            <X className="size-4" />
+            <X aria-hidden="true" className="size-4" />
           </button>
         ) : null}
       </div>
@@ -114,6 +138,9 @@ interface ToastContextValue {
   toast: (options: ToastOptions) => void;
 }
 
+/** Figma usage note: never stack three or more toasts — the oldest is dropped. */
+const MAX_VISIBLE_TOASTS = 2;
+
 const ToastContext = React.createContext<ToastContextValue | null>(null);
 
 /** Imperative toast API. Call from inside a <ToastProvider>. */
@@ -129,7 +156,7 @@ let nextToastId = 0;
 
 /**
  * Wrap the app (or a subtree) in <ToastProvider> and call useToast().toast({...}) to
- * show a toast. Renders its own fixed-position stack, no separate <Toaster /> needed.
+ * show a toast. Renders its own fixed-position stack (max 2), no separate <Toaster /> needed.
  */
 export function ToastProvider({
   children,
@@ -147,7 +174,9 @@ export function ToastProvider({
   const toast = React.useCallback(
     ({ duration = defaultDuration, ...options }: ToastOptions) => {
       const id = nextToastId++;
-      setToasts((current) => [...current, { id, duration, ...options }]);
+      setToasts((current) =>
+        [...current, { id, duration, ...options }].slice(-MAX_VISIBLE_TOASTS),
+      );
       if (duration > 0) {
         setTimeout(() => dismiss(id), duration);
       }
@@ -161,7 +190,7 @@ export function ToastProvider({
     <ToastContext.Provider value={value}>
       {children}
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex flex-col items-end gap-3 p-6 sm:inset-x-auto sm:right-0"
+        className="pointer-events-none fixed inset-x-0 bottom-0 z-(--z-toast) flex flex-col items-end gap-3 p-6 sm:inset-x-auto sm:right-0"
         aria-live="off"
       >
         {toasts.map(({ id, ...entry }) => (

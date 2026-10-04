@@ -44,6 +44,16 @@ describe("Toast", () => {
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });
 
+  it("dismisses on Escape while focus is inside", async () => {
+    const user = userEvent.setup();
+    const onDismiss = vi.fn();
+    render(<Toast title="Saved" onDismiss={onDismiss} />);
+    await user.tab();
+    expect(screen.getByRole("button", { name: "Dismiss" })).toHaveFocus();
+    await user.keyboard("{Escape}");
+    expect(onDismiss).toHaveBeenCalledTimes(1);
+  });
+
   it("forwards a ref to the root element", () => {
     const ref = React.createRef<HTMLDivElement>();
     render(<Toast ref={ref} title="Saved" />);
@@ -103,6 +113,20 @@ describe("ToastProvider / useToast", () => {
       () => expect(screen.queryByRole("alert")).not.toBeInTheDocument(),
       { timeout: 1000 },
     );
+  });
+
+  it("never shows more than two toasts at once", async () => {
+    const user = userEvent.setup();
+    render(
+      <ToastProvider duration={0}>
+        <ToastLauncher />
+      </ToastProvider>,
+    );
+    const save = screen.getByRole("button", { name: "Save" });
+    await user.click(save);
+    await user.click(save);
+    await user.click(save);
+    expect(screen.getAllByRole("alert")).toHaveLength(2);
   });
 
   it("does not auto-dismiss when duration is 0", async () => {
