@@ -191,6 +191,13 @@
   --bg-success-subtle: var(--success-50);
   --bg-info-solid: var(--info-600);
   --bg-info-subtle: var(--info-50);
+  /* status icon chips (Alert) — Figma binds the *-100 primitives directly;
+     no semantic exists there yet. Dark values are a code-side choice (the
+     500 step at 24%, one notch above *-subtle) — see SYNC_LOG.md. */
+  --bg-info-chip: var(--info-100);
+  --bg-success-chip: var(--success-100);
+  --bg-warning-chip: var(--warning-100);
+  --bg-error-chip: var(--error-100);
 
   /* short aliases (landing / legacy utilities) */
   --bg-brand: var(--bg-brand-solid);
@@ -294,6 +301,10 @@
     --bg-success-subtle: rgb(18 183 106 / 0.14);
     --bg-info-solid: var(--info-500);
     --bg-info-subtle: rgb(59 104 242 / 0.14);
+    --bg-info-chip: rgb(59 104 242 / 0.24);
+    --bg-success-chip: rgb(18 183 106 / 0.24);
+    --bg-warning-chip: rgb(247 144 9 / 0.24);
+    --bg-error-chip: rgb(240 68 56 / 0.24);
 
     --bg-brand: var(--bg-brand-solid);
     --bg-brand-hover: var(--bg-brand-solid-hover);
@@ -359,6 +370,10 @@
   --bg-success-subtle: rgb(18 183 106 / 0.14);
   --bg-info-solid: var(--info-500);
   --bg-info-subtle: rgb(59 104 242 / 0.14);
+  --bg-info-chip: rgb(59 104 242 / 0.24);
+  --bg-success-chip: rgb(18 183 106 / 0.24);
+  --bg-warning-chip: rgb(247 144 9 / 0.24);
+  --bg-error-chip: rgb(240 68 56 / 0.24);
 
   --bg-brand: var(--bg-brand-solid);
   --bg-brand-hover: var(--bg-brand-solid-hover);

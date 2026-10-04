@@ -23,14 +23,13 @@ const alertVariants = cva(
   },
 );
 
-// Figma `_iconChip`: 32px pill, space/sm (6px) padding, bound to the *-100
-// primitive step — no semantic chip token exists yet, so the primitive var is
-// referenced directly (TODO: replace with a semantic token once one ships).
+// Figma `_iconChip`: 32px pill, space/sm (6px) padding, on the bg-*-chip
+// semantic tokens (Figma binds the *-100 primitive; light mode matches it).
 const chipByVariant = {
-  info: "bg-[var(--info-100)]",
-  success: "bg-[var(--success-100)]",
-  warning: "bg-[var(--warning-100)]",
-  error: "bg-[var(--error-100)]",
+  info: "bg-bg-info-chip",
+  success: "bg-bg-success-chip",
+  warning: "bg-bg-warning-chip",
+  error: "bg-bg-error-chip",
 } as const;
 
 export type AlertVariant = NonNullable<
