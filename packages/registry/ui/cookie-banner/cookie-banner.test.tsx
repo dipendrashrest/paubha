@@ -10,6 +10,13 @@ describe("CookieBanner", () => {
     expect(screen.getByRole("button", { name: "Accept" })).toBeInTheDocument();
   });
 
+  it("is a region labelled by its title", () => {
+    render(<CookieBanner />);
+    expect(
+      screen.getByRole("region", { name: "We use cookies" }),
+    ).toBeInTheDocument();
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <CookieBanner actions={<button type="button">Accept</button>} />,

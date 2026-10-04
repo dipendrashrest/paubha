@@ -1,8 +1,8 @@
 import { cn } from "@paubha/registry/lib/cn";
-import type * as React from "react";
+import * as React from "react";
 
 export interface CookieBannerProps
-  extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
+  extends Omit<React.ComponentPropsWithRef<"section">, "title"> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   /** Accept / decline / settings buttons. */
@@ -10,7 +10,7 @@ export interface CookieBannerProps
 }
 
 /**
- * Cookie / consent bar · role=region · actions carry glow-focus from Button
+ * Cookie / consent bar · <section> labelled by its title = region landmark · Reject has equal weight to Accept · actions are native buttons with glow-focus (from Button) · Tab moves between actions · stacks vertically below sm
  */
 export function CookieBanner({
   ref,
@@ -20,12 +20,12 @@ export function CookieBanner({
   actions,
   ...props
 }: CookieBannerProps) {
-  const titleId = typeof title === "string" ? "cookie-banner-title" : undefined;
+  const uid = React.useId();
+  const titleId = title != null ? `${uid}-title` : undefined;
 
   return (
-    <div
+    <section
       ref={ref}
-      role="region"
       aria-labelledby={titleId}
       className={cn(
         "flex w-full flex-col gap-4 rounded-md border border-border-default bg-bg-elevated p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between",
@@ -48,7 +48,7 @@ export function CookieBanner({
           {actions}
         </div>
       ) : null}
-    </div>
+    </section>
   );
 }
 
