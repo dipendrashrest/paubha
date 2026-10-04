@@ -1,6 +1,6 @@
 ---
 title: Breadcrumbs
-description: Navigation breadcrumb trail showing page hierarchy, composed of breadcrumb items with chevron separators.
+description: Navigation breadcrumb trail showing page hierarchy, composed of breadcrumb items with chevron or slash separators.
 ---
 
 <BreadcrumbsHero />
@@ -23,6 +23,20 @@ import { BreadcrumbItem, Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 `Breadcrumbs` auto-inserts a chevron separator between children. You never
 place separators manually.
+
+## Examples
+
+### Slash separator
+
+<BreadcrumbsSlash />
+
+### Collapsed with leading icon
+
+<BreadcrumbsCollapsed />
+
+### Dropdown current page
+
+<BreadcrumbsDropdownDemo />
 
 ## API reference
 
@@ -47,6 +61,15 @@ place separators manually.
       <strong>Separators.</strong> Each is its own{" "}
       <code>&lt;li role=&quot;presentation&quot; aria-hidden=&quot;true&quot;&gt;</code>,
       which satisfies both the list structure and the hidden-from-AT requirement at once.
+    </li>
+    <li>
+      <strong>Ellipsis.</strong> A <code>button</code> labeled &quot;Show more breadcrumbs&quot;;
+      Enter/Space activates.
+    </li>
+    <li>
+      <strong>Dropdown.</strong> The current page stays <code>aria-current=&quot;page&quot;</code>{" "}
+      on its <code>li</code>; the trigger is a menu button
+      (<code>aria-haspopup=&quot;menu&quot;</code>, Enter/Space/ArrowDown opens, Esc closes).
     </li>
   </ul>
 </A11yCallout>

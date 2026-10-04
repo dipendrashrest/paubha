@@ -117,7 +117,12 @@ import {
 } from "@/components/docs/badge/badge-demos";
 import { BadgePropsTable } from "@/components/docs/badge/badge-props-table";
 import { BlogCardHero } from "@/components/docs/blog-card/blog-card-demos";
-import { BreadcrumbsHero } from "@/components/docs/breadcrumbs/breadcrumbs-demos";
+import {
+  BreadcrumbsCollapsed,
+  BreadcrumbsDropdownDemo,
+  BreadcrumbsHero,
+  BreadcrumbsSlash,
+} from "@/components/docs/breadcrumbs/breadcrumbs-demos";
 import { BreadcrumbsPropsTable } from "@/components/docs/breadcrumbs/breadcrumbs-props-table";
 import {
   ButtonDestructive,
@@ -503,6 +508,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     // Breadcrumbs
     BreadcrumbsHero,
+    BreadcrumbsSlash,
+    BreadcrumbsCollapsed,
+    BreadcrumbsDropdownDemo,
     BreadcrumbsInstall,
     BreadcrumbsPropsTable,
 
