@@ -310,3 +310,14 @@ OPEN QUESTIONS
 - 🔴 `shadow/glow-focus` in Figma binds the opaque `focus/ring` variable → a 100% solid 4px ring. Kept CLAUDE.md's locked 24% alpha. If the solid ring is intended, change `--shadow-glow-focus(-error)` alpha to 1.
 - Figma `easing/*` are enum codes 0–4, not curves — no easing tokens shipped.
 - `bg-preview` has no Figma counterpart (code-only, kept).
+
+### Components — pilots (2026-10-05)
+- **Button** — `ghost`→`tertiary`; `destructive` variant → boolean prop across all 4 hierarchies (error focus ring when destructive); new `2xl` (h64/px32/gap12/icon24); tertiary hover → `bg-tertiary-hover`; link hover underline + brand-800 active removed (Figma: `fg/brand` throughout). All call sites migrated (modal, dialog, confirm-dialog, comment demos, marketing examples).
+- **Avatar** — `status` → `indicator` (none/online/offline/company/verified, folded into the accessible name); new `type` (image/initials/icon, auto-inferred); new `AvatarProfilePhoto` (72/96/160, verified); `AvatarLabelGroup` sizes sm–xl. `AvatarGroup`/`AvatarAddButton` kept public.
+- **Breadcrumbs** — `separator` (chevron/slash), item `icon`, `BreadcrumbEllipsis`, `BreadcrumbDropdown` (on Dropdown Menu).
+
+OPEN QUESTIONS (pilots)
+- 🔴 Breadcrumbs: ellipsis, dropdown, slash separator and leading icon have **no Figma frames** — built from the owner's tests in existing crumb styling. Add frames to Figma or confirm.
+- Breadcrumbs Figma symbols render a doubled separator ("Page > > Page") — likely a Figma bug; code renders one.
+- Button: destructive md instances in Figma use `ui/md` 14px (non-destructive md is `ui/lg` 16px) — code keeps size-driven type. `disabled:shadow-none` on primary is an assumption.
+- Avatar: Icon type has no filled circle in Figma (unlike Initials/Image) — matched literally; Initials+Online variants bind primitive `success/500` instead of `bg/success-solid` (code uses the semantic token); profile-photo initials don't scale (28/32px at all sizes) — matched literally.
