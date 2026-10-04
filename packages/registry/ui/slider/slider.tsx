@@ -8,7 +8,7 @@ import type * as React from "react";
 export type SliderSize = "sm" | "md" | "lg";
 
 const trackVariants = cva(
-  "relative w-full grow overflow-hidden rounded-full bg-bg-tertiary",
+  "relative w-full grow overflow-hidden rounded-full bg-bg-switch-off",
   {
     variants: {
       size: {
@@ -65,7 +65,7 @@ export function Slider({
       <SliderPrimitive.Track className={cn(trackVariants({ size }))}>
         <SliderPrimitive.Range
           className={cn(
-            "absolute h-full rounded-full",
+            "absolute h-full rounded-full data-[disabled]:bg-border-strong",
             error ? "bg-bg-error-solid" : "bg-bg-brand-solid",
           )}
         />
@@ -75,7 +75,7 @@ export function Slider({
         aria-labelledby={ariaLabelledBy}
         className={cn(
           "block shrink-0 rounded-full border-2 bg-bg-primary shadow-sm outline-none transition-[width,height]",
-          "disabled:pointer-events-none disabled:opacity-50",
+          "data-[disabled]:pointer-events-none data-[disabled]:border-border-strong",
           thumbSizeClassName[size ?? "md"],
           error
             ? "border-border-error focus-visible:shadow-[var(--shadow-glow-focus-error)]"

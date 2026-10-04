@@ -58,6 +58,19 @@ describe("Slider", () => {
     expect(screen.getByRole("slider")).toHaveAttribute("data-disabled");
   });
 
+  it("uses Figma tokens for track and disabled thumb/range", () => {
+    const { container } = render(
+      <Slider aria-label="Volume" defaultValue={[40]} disabled />,
+    );
+    expect(container.querySelector(".bg-bg-switch-off")).not.toBeNull();
+    expect(screen.getByRole("slider")).toHaveClass(
+      "data-[disabled]:border-border-strong",
+    );
+    expect(
+      container.querySelector(".data-\\[disabled\\]\\:bg-border-strong"),
+    ).not.toBeNull();
+  });
+
   it("shows the focus-visible glow-focus shadow class on the thumb", () => {
     render(<Slider aria-label="Volume" defaultValue={[40]} />);
     expect(screen.getByRole("slider")).toHaveClass(
