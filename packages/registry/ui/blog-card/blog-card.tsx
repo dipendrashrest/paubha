@@ -36,7 +36,9 @@ export function BlogCard({
         {tag != null ? <div>{tag}</div> : null}
         <p className="text-ui-lg font-semibold text-fg-primary">{title}</p>
         {excerpt != null ? (
-          <CardDescription className="line-clamp-3">{excerpt}</CardDescription>
+          <CardDescription className="line-clamp-3 text-body-sm">
+            {excerpt}
+          </CardDescription>
         ) : null}
         {meta != null ? <div className="mt-auto pt-1">{meta}</div> : null}
       </CardContent>

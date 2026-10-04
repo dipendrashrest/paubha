@@ -1,6 +1,6 @@
 ---
 title: Card
-description: A flexible content container with optional image, title, and description.
+description: A flexible content container with optional image, header, and footer.
 ---
 
 <CardHero />
@@ -12,18 +12,46 @@ description: A flexible content container with optional image, title, and descri
 ## Usage
 
 ```tsx
-import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardEyebrow,
+  CardFooter,
+  CardHeader,
+  CardImage,
+  CardMeta,
+  CardTitle,
+} from "@/components/ui/card";
 
 <Card>
   <CardImage src="/photo.jpg" alt="" />
   <CardContent>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>A brief description of the card content goes here.</CardDescription>
+    <CardHeader>
+      <CardEyebrow>DESIGN GUIDE · 6 MIN READ</CardEyebrow>
+      <CardTitle>Designing for clarity</CardTitle>
+      <CardDescription>Make complex interfaces easier to read, navigate and trust.</CardDescription>
+    </CardHeader>
+    <CardFooter>
+      <CardMeta>Product team · Oct 04, 2026</CardMeta>
+      <Button variant="link" size="sm" trailingIcon={<ArrowRight />}>Read the guide</Button>
+    </CardFooter>
   </CardContent>
 </Card>
 ```
 
+### Anatomy
+
+- `CardImage`: optional 160px media slot.
+- `CardContent`: body region, 32px padding, 16px between blocks.
+- `CardHeader`: groups `CardEyebrow`, `CardTitle` and `CardDescription` (12px apart).
+- `CardFooter`: divider-topped region with a `CardMeta` line and an optional action.
+
 ## Examples
+
+### States
+
+<CardStates />
 
 ### Variants
 
@@ -56,6 +84,14 @@ import { Card, CardContent, CardDescription, CardImage, CardTitle } from "@/comp
     <li>
       <strong>Focus ring.</strong> Visible on Tab via <code>shadow-glow-focus</code>, only
       on interactive cards.
+    </li>
+    <li>
+      <strong>Disabled.</strong> <code>disabled</code> sets <code>aria-disabled</code>,
+      removes an interactive card from the tab order, and blocks activation.
+    </li>
+    <li>
+      <strong>Error.</strong> The error state is never color-only: put the message in
+      <code>CardMeta</code> so it is read as text.
     </li>
     <li>
       <strong>Contrast.</strong> Ensure sufficient color contrast between the card

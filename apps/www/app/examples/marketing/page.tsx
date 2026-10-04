@@ -52,7 +52,7 @@ export default function MarketingExamplesIndexPage() {
           <Link
             key={example.slug}
             href={`/examples/marketing/${example.slug}`}
-            className="group rounded-md focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]"
+            className="group rounded-sm focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]"
           >
             <Card
               variant="outlined"
@@ -60,13 +60,17 @@ export default function MarketingExamplesIndexPage() {
             >
               <CardContent className="gap-3 p-5">
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle>{example.title}</CardTitle>
+                  <CardTitle className="text-body-md">
+                    {example.title}
+                  </CardTitle>
                   <ArrowRight
                     className="size-4 shrink-0 text-fg-tertiary transition-transform group-hover:translate-x-0.5 group-hover:text-fg-brand"
                     aria-hidden="true"
                   />
                 </div>
-                <CardDescription>{example.description}</CardDescription>
+                <CardDescription className="text-body-sm">
+                  {example.description}
+                </CardDescription>
               </CardContent>
             </Card>
           </Link>

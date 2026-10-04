@@ -146,6 +146,7 @@ import {
 import {
   CardHero,
   CardInteractive,
+  CardStates,
   CardVariants,
 } from "@/components/docs/card/card-demos";
 import { CardPropsTable } from "@/components/docs/card/card-props-table";
@@ -598,6 +599,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     CardInstall,
     CardInteractive,
     CardPropsTable,
+    CardStates,
     CardVariants,
 
     // Slider
