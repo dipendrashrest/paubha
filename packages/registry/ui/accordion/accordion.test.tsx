@@ -73,11 +73,28 @@ describe("Accordion", () => {
     ).toBeDisabled();
   });
 
-  it("shows the focus-visible glow-focus shadow class on triggers", () => {
+  it("draws the glow-focus ring on the item when its trigger is focus-visible", () => {
     render(<BasicAccordion />);
-    expect(screen.getByRole("button", { name: "First section" })).toHaveClass(
-      "focus-visible:shadow-[var(--shadow-glow-focus)]",
+    const trigger = screen.getByRole("button", { name: "First section" });
+    const item = trigger.closest("h3")?.parentElement;
+    expect(item).toHaveClass(
+      "has-[>h3>button:focus-visible]:shadow-[var(--shadow-glow-focus)]",
     );
+  });
+
+  it("dims a disabled item to 50% opacity without swapping the title color", () => {
+    render(<BasicAccordion />);
+    const trigger = screen.getByRole("button", { name: "Disabled section" });
+    expect(trigger.closest("h3")?.parentElement).toHaveClass(
+      "data-[disabled]:opacity-50",
+    );
+    expect(trigger).toHaveClass("text-fg-primary");
+    expect(trigger).not.toHaveClass("disabled:text-fg-disabled");
+  });
+
+  it("uses ui-sm for panel body text", () => {
+    render(<BasicAccordion />);
+    expect(screen.getByRole("region")).toHaveClass("text-ui-sm");
   });
 
   it("forwards a ref to the underlying trigger button", () => {
@@ -95,6 +112,18 @@ describe("Accordion", () => {
 
   it("has no axe violations", async () => {
     const { container } = render(<BasicAccordion />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("has no axe violations with every section collapsed", async () => {
+    const { container } = render(
+      <Accordion type="single" collapsible>
+        <AccordionItem value="a">
+          <AccordionTrigger>A</AccordionTrigger>
+          <AccordionContent>A content</AccordionContent>
+        </AccordionItem>
+      </Accordion>,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

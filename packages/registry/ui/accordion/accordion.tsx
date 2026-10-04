@@ -5,6 +5,17 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import type * as React from "react";
 
+/**
+ * Accordion — Figma "↳ Accordion" (6089:35956): one boxed item per section (`bg-primary`,
+ * `border-default`, `radius-md`), 16px header/content padding, `ui-md` medium title,
+ * `ui-sm` body, 24px chevron, 1px `border-default` divider between header and content.
+ * States: collapsed · expanded · focus-collapsed · focus-expanded · disabled (50% opacity).
+ *
+ * Accessibility: header role=button (via Radix) with aria-expanded · content panel role=region
+ * with aria-labelledby pointing at the header · Enter/Space toggles the section · Arrow keys
+ * navigate between headers · Home/End jump to first/last header · disabled items get a native
+ * disabled button (+ data-disabled) · focus ring visible on Tab, drawn around the whole item.
+ */
 export const Accordion = AccordionPrimitive.Root;
 
 export interface AccordionItemProps
@@ -19,7 +30,10 @@ export function AccordionItem({
     <AccordionPrimitive.Item
       ref={ref}
       className={cn(
-        "overflow-hidden rounded-md border border-border-default bg-bg-primary",
+        "overflow-hidden rounded-md border border-border-default bg-bg-primary transition-shadow",
+        // Figma puts glow-focus on the item, not the header — and the item's overflow-hidden
+        // would clip a ring drawn on the trigger anyway.
+        "has-[>h3>button:focus-visible]:shadow-[var(--shadow-glow-focus)]",
         "data-[disabled]:opacity-50",
         className,
       )}
@@ -34,10 +48,9 @@ export interface AccordionTriggerProps
   extends React.ComponentPropsWithRef<typeof AccordionPrimitive.Trigger> {}
 
 /**
- * header role=button (via Radix) with aria-expanded · content panel role=region with
- * aria-labelledby pointing at the header · Enter/Space toggles the section · Arrow keys
- * navigate between headers · Home/End jump to first/last header · disabled items get a
- * native disabled button (+ data-disabled) · focus ring visible on Tab
+ * role=button (via Radix) with aria-expanded · Enter/Space toggles · Arrow/Home/End move
+ * between headers · focus ring visible on Tab (rendered by the parent AccordionItem, which
+ * wraps the whole section per Figma's focus-collapsed/focus-expanded states).
  */
 export function AccordionTrigger({
   ref,
@@ -51,8 +64,8 @@ export function AccordionTrigger({
         ref={ref}
         className={cn(
           "group flex flex-1 items-center justify-between gap-4 p-4 text-left text-ui-md font-medium text-fg-primary outline-none",
-          "focus-visible:shadow-[var(--shadow-glow-focus)]",
-          "disabled:pointer-events-none disabled:text-fg-disabled",
+          // Disabled dimming comes from the item's 50% opacity (Figma keeps fg-primary).
+          "disabled:pointer-events-none",
           className,
         )}
         {...props}
@@ -82,7 +95,7 @@ export function AccordionContent({
     <AccordionPrimitive.Content
       ref={ref}
       className={cn(
-        "overflow-hidden border-t border-border-default text-body-sm text-fg-secondary",
+        "overflow-hidden border-t border-border-default text-ui-sm text-fg-secondary",
         className,
       )}
       {...props}
