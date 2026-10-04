@@ -10,6 +10,12 @@ import { PropsTable } from "../_shared/props-table";
 
 const feedProps = definePropDefs<ActivityFeedProps>()([
   {
+    name: "divided",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Draws a divider between rows.",
+  },
+  {
     name: "className",
     type: "string",
     description: "Merged onto the root list element.",

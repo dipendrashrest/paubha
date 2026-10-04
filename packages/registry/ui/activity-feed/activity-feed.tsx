@@ -7,16 +7,29 @@ import type * as React from "react";
  * Mark all read is a button with shadow-glow-focus · timeline rail is aria-hidden
  */
 
-export interface ActivityFeedProps extends React.ComponentPropsWithRef<"ul"> {}
+export interface ActivityFeedProps extends React.ComponentPropsWithRef<"ul"> {
+  /** Draws a 1px border-default divider between rows (Figma simple/notification lists). */
+  divided?: boolean;
+}
 
 export function ActivityFeed({
   ref,
   className,
+  divided = false,
   children,
   ...props
 }: ActivityFeedProps) {
   return (
-    <ul ref={ref} className={cn("flex flex-col gap-3", className)} {...props}>
+    <ul
+      ref={ref}
+      className={cn(
+        "flex flex-col gap-3",
+        divided &&
+          "[&>li+li]:border-border-default [&>li+li]:border-t [&>li+li]:pt-3",
+        className,
+      )}
+      {...props}
+    >
       {children}
     </ul>
   );
@@ -53,9 +66,9 @@ export function ActivityFeedItem({
     >
       {avatar ? <div className="shrink-0">{avatar}</div> : null}
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-        <div className="text-ui-md text-fg-primary">{title}</div>
+        <div className="text-ui-md font-semibold text-fg-primary">{title}</div>
         {timestamp ? (
-          <div className="text-ui-md text-fg-tertiary">{timestamp}</div>
+          <div className="text-ui-md text-fg-primary">{timestamp}</div>
         ) : null}
       </div>
       {unread ? (
@@ -202,7 +215,7 @@ export function ActivityFeedPanel({
             type="button"
             onClick={onMarkAllRead}
             className={cn(
-              "rounded-xs text-ui-md font-medium text-fg-brand outline-none",
+              "h-8 rounded-sm px-3 py-1.5 text-ui-md font-medium text-fg-brand outline-none",
               "hover:text-fg-brand",
               "focus-visible:shadow-[var(--shadow-glow-focus)]",
             )}

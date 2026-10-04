@@ -14,6 +14,16 @@ import {
 } from "./activity-feed";
 
 describe("ActivityFeed", () => {
+  it("divided has no axe violations", async () => {
+    const { container } = render(
+      <ActivityFeed divided>
+        <ActivityFeedItem title="A" timestamp="1h" />
+        <ActivityFeedItem title="B" timestamp="2h" />
+      </ActivityFeed>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("renders a list with listitems", () => {
     render(
       <ActivityFeed>

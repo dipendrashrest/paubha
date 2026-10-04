@@ -46,7 +46,7 @@ export function ActivityFeedHero() {
 export function ActivityFeedSimple() {
   return (
     <ComponentPlayground
-      code={`<ActivityFeed>
+      code={`<ActivityFeed divided>
   <ActivityFeedItem
     avatar={<Avatar initials="AC" alt="Anna Chen" size="sm" />}
     title={<>
@@ -64,7 +64,7 @@ export function ActivityFeedSimple() {
 </ActivityFeed>`}
     >
       <div className="w-full max-w-md rounded-md border border-border-default bg-bg-primary p-4">
-        <ActivityFeed>
+        <ActivityFeed divided>
           <ActivityFeedItem
             avatar={<Avatar initials="AC" alt="Anna Chen" size="sm" />}
             title={
