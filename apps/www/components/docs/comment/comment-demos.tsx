@@ -1,8 +1,12 @@
 "use client";
 
 import { Avatar } from "@paubha/registry/ui/avatar";
-import { Button } from "@paubha/registry/ui/button";
-import { Comment, CommentList } from "@paubha/registry/ui/comment";
+import {
+  Comment,
+  CommentAction,
+  CommentList,
+} from "@paubha/registry/ui/comment";
+import { Heart, Reply } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function CommentHero() {
@@ -13,7 +17,7 @@ export function CommentHero() {
     avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}
     author="Ava Ruiz"
     timestamp="2h ago"
-    actions={<Button variant="tertiary" size="sm">Reply</Button>}
+    actions={<CommentAction icon={<Reply />}>Reply</CommentAction>}
   >
     Tokens finally match Figma.
   </Comment>
@@ -26,9 +30,10 @@ export function CommentHero() {
             author="Ava Ruiz"
             timestamp="2h ago"
             actions={
-              <Button variant="tertiary" size="sm">
-                Reply
-              </Button>
+              <>
+                <CommentAction icon={<Reply />}>Reply</CommentAction>
+                <CommentAction icon={<Heart />}>Like</CommentAction>
+              </>
             }
           >
             Tokens finally match Figma.
