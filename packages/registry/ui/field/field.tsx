@@ -7,6 +7,7 @@ interface ControllableProps {
   "aria-invalid"?: boolean;
   error?: boolean;
   required?: boolean;
+  disabled?: boolean;
 }
 
 export interface FieldProps
@@ -28,6 +29,12 @@ export interface FieldProps
    * its own message below the control. Ignored while `error` is set.
    */
   success?: React.ReactNode;
+  /**
+   * Disables the field (Figma `disabled` state, node 6391:253): label and helper
+   * text switch to `fg-disabled` and `disabled` is passed to the control. Also
+   * inferred when the child control itself has `disabled` set.
+   */
+  disabled?: boolean;
   /** The form control to wire up (Input, Textarea, Select, ...); receives id, aria-describedby, aria-invalid, error, and required automatically. */
   children: React.ReactElement<ControllableProps>;
 }
@@ -37,7 +44,8 @@ export interface FieldProps
  * error message wired via aria-describedby + aria-invalid on the control · required
  * shows a literal "*" after the label (aria-hidden) and sets the control's native
  * `required` attribute · success shows an fg-success message in place of the helper
- * text (Figma node 2120:5 confirms all 5 states, default/error/disabled/required/success,
+ * text · disabled dims label/helper to fg-disabled and disables the control
+ * (Figma node 2120:5 confirms all 5 states, default/error/disabled/required/success,
  * as real, distinct symbols, not just documentation prose)
  */
 export function Field({
@@ -48,6 +56,7 @@ export function Field({
   error,
   required,
   success,
+  disabled: disabledProp,
   children,
   ...props
 }: FieldProps) {
@@ -56,6 +65,7 @@ export function Field({
   const errorId = `${controlId}-error`;
   const successId = `${controlId}-success`;
   const invalid = Boolean(error);
+  const disabled = Boolean(disabledProp ?? children.props.disabled);
   const showSuccess = Boolean(success) && !invalid;
   const showDescription = Boolean(description) && !showSuccess;
   const describedBy = [
@@ -72,18 +82,23 @@ export function Field({
     "aria-invalid": invalid || undefined,
     error: invalid,
     required: required || undefined,
+    disabled: disabled || undefined,
   });
 
   return (
     <div
       ref={ref}
+      data-disabled={disabled || undefined}
       className={cn("flex w-full flex-col gap-1.5", className)}
       {...props}
     >
       {label ? (
         <label
           htmlFor={controlId}
-          className="text-ui-sm font-medium text-fg-primary"
+          className={cn(
+            "text-ui-sm font-medium",
+            disabled ? "text-fg-disabled" : "text-fg-primary",
+          )}
         >
           {label}
           {required ? <span aria-hidden="true"> *</span> : null}
@@ -93,7 +108,10 @@ export function Field({
       {showDescription ? (
         <p
           id={descriptionId}
-          className="text-ui-xs font-medium text-fg-tertiary"
+          className={cn(
+            "text-ui-xs font-medium",
+            disabled ? "text-fg-disabled" : "text-fg-tertiary",
+          )}
         >
           {description}
         </p>

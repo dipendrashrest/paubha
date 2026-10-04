@@ -32,10 +32,16 @@ const fieldProps = definePropDefs<FieldProps>()([
       "Success message shown in place of the description, in fg-success. Ignored while error is set.",
   },
   {
+    name: "disabled",
+    type: "boolean",
+    description:
+      "Dims the label and description to fg-disabled and passes disabled to the control. Inferred from the child's own disabled prop when omitted.",
+  },
+  {
     name: "children",
     type: "ReactElement",
     description:
-      "A single form control (Input, Textarea, ...). Receives id, aria-describedby, aria-invalid, error, and required automatically via cloneElement.",
+      "A single form control (Input, Textarea, ...). Receives id, aria-describedby, aria-invalid, error, required, and disabled automatically via cloneElement.",
   },
 ]);
 

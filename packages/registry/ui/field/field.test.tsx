@@ -176,4 +176,26 @@ describe("Field", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("disabled dims label/helper and disables the control, axe clean", async () => {
+    const { container } = render(
+      <Field label="Email" description="Helper" disabled>
+        <Input />
+      </Field>,
+    );
+    const input = screen.getByLabelText("Email");
+    expect(input).toBeDisabled();
+    expect(screen.getByText("Email").className).toContain("text-fg-disabled");
+    expect(screen.getByText("Helper").className).toContain("text-fg-disabled");
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("infers disabled from the child control", () => {
+    render(
+      <Field label="Email">
+        <Input disabled />
+      </Field>,
+    );
+    expect(screen.getByText("Email").className).toContain("text-fg-disabled");
+  });
 });

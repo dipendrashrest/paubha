@@ -185,6 +185,7 @@ import { EmptyStateHero } from "@/components/docs/empty-state/empty-state-demos"
 import { FaqHero } from "@/components/docs/faq/faq-demos";
 import { FeatureListHero } from "@/components/docs/feature-list/feature-list-demos";
 import {
+  FieldDisabled,
   FieldError,
   FieldHero,
   FieldWithTextarea,
@@ -443,6 +444,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     InputWithIcons,
 
     // Field
+    FieldDisabled,
     FieldError,
     FieldHero,
     FieldInstall,

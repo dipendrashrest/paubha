@@ -37,6 +37,26 @@ export function FieldError() {
   );
 }
 
+export function FieldDisabled() {
+  return (
+    <ComponentPlayground
+      code={`<Field label="Email" description="Contact support to change this." disabled>
+  <Input placeholder="you@example.com" />
+</Field>`}
+    >
+      <div className="w-full max-w-xs">
+        <Field
+          label="Email"
+          description="Contact support to change this."
+          disabled
+        >
+          <Input placeholder="you@example.com" />
+        </Field>
+      </div>
+    </ComponentPlayground>
+  );
+}
+
 export function FieldWithTextarea() {
   return (
     <ComponentPlayground
