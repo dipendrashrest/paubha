@@ -15,9 +15,10 @@ export interface ToggleGroupProps
 }
 
 /**
- * Built on Radix RadioGroup so it gets the exact ARIA contract a segmented control needs:
- * role="radiogroup" · each item role="radio" with aria-checked · Arrow keys navigate
- * between items · disabled items get a native disabled state · focus ring visible on Tab
+ * Segmented control for 2-4 mutually exclusive options. Built on Radix RadioGroup:
+ * role="radiogroup" · each item role="radio" with aria-checked · Arrow keys move and
+ * select · Tab enters/leaves the group on the checked item · disabled items are native
+ * disabled and skipped · focus ring visible on Tab (shadow-glow-focus)
  */
 export function ToggleGroup({
   ref,
@@ -46,9 +47,9 @@ const toggleGroupItemVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-[22px] px-3 text-ui-xs",
-        md: "h-[30px] px-4 text-ui-md",
-        lg: "h-[38px] px-5 text-ui-lg",
+        sm: "h-6 px-3 text-ui-xs",
+        md: "h-8 px-4 text-ui-md",
+        lg: "h-10 px-5 text-ui-lg",
       },
     },
     defaultVariants: {
@@ -67,16 +68,12 @@ export interface ToggleGroupItemProps
 }
 
 /**
- * No Figma page for Toggle Group was discoverable this session (same dead-end pattern as
- * Card/Select/Progress Circle/Slider: no canvas found by ID-crawl, and the "add Toggle
- * Group" commit (`b83c470`) records no node id to recover it from, unlike Toast/Table/
- * Dialog). Audited against this repo's own cross-component convention instead: unchecked
- * items had no hover/active feedback at all (checked-only styling), unlike every sibling
- * form-control/segmented-control component (RadioGroupItem's unselected hover, Button's
- * ghost/ Tabs pill hover+active pairs), added `data-[state=unchecked]:hover:bg-bg-secondary-hover`
- * / `:active:bg-bg-tertiary-hover`, the same one-step-darker-than-track pairing those
- * components already use. Focus ring (`shadow-glow-focus`) and disabled treatment were
- * already correct and unchanged.
+ * Synced to Figma "Toggle Group" (node 6089:37078): track bg-secondary · 4px padding ·
+ * 2px gap · radius-md; item radius-sm, font-medium. Sizes sm/md/lg = 24/32/40px items
+ * (32/40/48px overall, matching the shared density scale) with 12/16/20px padding and
+ * ui-xs/ui-md/ui-lg type. Checked = bg-primary + fg-primary + shadow-xs; unchecked =
+ * fg-secondary. Figma only draws the resting state; hover/active/disabled/focus are
+ * code-side conventions shared with Tabs and Radio Group.
  */
 
 export function ToggleGroupItem({
