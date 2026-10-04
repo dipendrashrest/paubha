@@ -26,3 +26,7 @@ import { Calendar } from "@/components/ui/calendar";
 ### Range selection
 
 <CalendarRange />
+
+## Accessibility
+
+Follows the WAI-ARIA APG date grid: one Tab stop (roving tabindex), arrow keys move by day/week, Home/End jump to the week start/end, PageUp/PageDown change month, Enter/Space selects. Today carries `aria-current="date"`. `CalendarMini` (`size="sm"`) and `CalendarWeek` share the same tokens.

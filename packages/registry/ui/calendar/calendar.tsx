@@ -5,8 +5,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import * as React from "react";
 
 const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"] as const;
+const WEEKDAYS_SHORT = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+] as const;
 const MONTH_FORMATTER = new Intl.DateTimeFormat("en-US", {
   month: "long",
+  year: "numeric",
+});
+const MINI_MONTH_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "short",
   year: "numeric",
 });
 const DAY_LABEL_FORMATTER = new Intl.DateTimeFormat("en-US", {
@@ -115,9 +128,12 @@ function useControllableDate(
 
 /**
  * Month calendar with prev/next navigation, weekday headers, and day cells ·
- * role="grid" with arrow-key day navigation · Enter/Space selects · nav buttons
- * carry aria-labels and shadow-glow-focus · single mode uses solid brand fill for
- * the selected day · range mode paints from/to solid and in-between brand-subtle ·
+ * APG date grid: <table role="grid"> with roving tabindex on day buttons (one Tab
+ * stop) · Arrows move by day/week, Home/End to week start/end, PageUp/PageDown by
+ * month, Enter/Space selects · nav buttons carry aria-labels and
+ * shadow-glow-focus · today has aria-current="date" · single mode uses solid brand
+ * fill for the selected day · range mode paints from/to solid and in-between
+ * brand-subtle as a continuous strip ·
  * controlled + uncontrolled for month, value, and rangeValue
  */
 export function Calendar({
@@ -231,231 +247,264 @@ export function Calendar({
   }
 
   const isSm = size === "sm";
-  const cellSize = isSm ? "size-8" : "size-9";
-  const navSize = isSm ? "size-6" : "size-7";
+  const gridRef = React.useRef<HTMLTableElement>(null);
+  const shouldFocusRef = React.useRef(false);
+  const today = startOfDay(new Date());
 
-  const moveFocus = (delta: number) => {
-    const next = addDays(focusDay, delta);
+  // Roving tabindex: after a keyboard move, DOM focus follows the focus day.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: re-run when the focus day or month changes
+  React.useEffect(() => {
+    if (!shouldFocusRef.current) return;
+    shouldFocusRef.current = false;
+    gridRef.current
+      ?.querySelector<HTMLButtonElement>('button[tabindex="0"]')
+      ?.focus();
+  }, [focusDay, visibleMonth]);
+
+  const moveFocusTo = (next: Date) => {
+    shouldFocusRef.current = true;
     setFocusDay(next);
     if (!isSameMonth(next, visibleMonth)) {
       setVisibleMonth(startOfMonth(next));
     }
   };
 
-  const onGridKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const shiftMonth = (amount: number) => {
+    const next = addMonths(visibleMonth, amount);
+    const lastDay = new Date(
+      next.getFullYear(),
+      next.getMonth() + 1,
+      0,
+    ).getDate();
+    moveFocusTo(
+      new Date(
+        next.getFullYear(),
+        next.getMonth(),
+        Math.min(focusDay.getDate(), lastDay),
+      ),
+    );
+  };
+
+  const onDayKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "ArrowLeft":
         event.preventDefault();
-        moveFocus(-1);
+        moveFocusTo(addDays(focusDay, -1));
         break;
       case "ArrowRight":
         event.preventDefault();
-        moveFocus(1);
+        moveFocusTo(addDays(focusDay, 1));
         break;
       case "ArrowUp":
         event.preventDefault();
-        moveFocus(-7);
+        moveFocusTo(addDays(focusDay, -7));
         break;
       case "ArrowDown":
         event.preventDefault();
-        moveFocus(7);
+        moveFocusTo(addDays(focusDay, 7));
         break;
       case "Home":
         event.preventDefault();
-        setFocusDay(addDays(focusDay, -focusDay.getDay()));
+        moveFocusTo(addDays(focusDay, -focusDay.getDay()));
         break;
       case "End":
         event.preventDefault();
-        setFocusDay(addDays(focusDay, 6 - focusDay.getDay()));
+        moveFocusTo(addDays(focusDay, 6 - focusDay.getDay()));
         break;
       case "PageUp":
         event.preventDefault();
-        {
-          const next = addMonths(visibleMonth, -1);
-          setVisibleMonth(next);
-          setFocusDay(
-            new Date(
-              next.getFullYear(),
-              next.getMonth(),
-              Math.min(
-                focusDay.getDate(),
-                new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate(),
-              ),
-            ),
-          );
-        }
+        shiftMonth(-1);
         break;
       case "PageDown":
         event.preventDefault();
-        {
-          const next = addMonths(visibleMonth, 1);
-          setVisibleMonth(next);
-          setFocusDay(
-            new Date(
-              next.getFullYear(),
-              next.getMonth(),
-              Math.min(
-                focusDay.getDate(),
-                new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate(),
-              ),
-            ),
-          );
-        }
-        break;
-      case "Enter":
-      case " ":
-        event.preventDefault();
-        handleSelect(focusDay);
+        shiftMonth(1);
         break;
       default:
+        // Enter/Space activate the native button's onClick.
         break;
     }
   };
+
+  const navButton = cn(
+    "inline-flex shrink-0 items-center justify-center rounded-full bg-bg-secondary text-fg-primary outline-none",
+    "hover:bg-bg-secondary-hover",
+    "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
+    isSm ? "size-5" : "size-7",
+  );
+  const navIcon = isSm ? "size-3" : "size-4";
+
+  const prevButton = (
+    <button
+      type="button"
+      aria-label="Previous month"
+      onClick={() => setVisibleMonth(addMonths(visibleMonth, -1))}
+      className={navButton}
+    >
+      <ChevronLeft className={navIcon} aria-hidden />
+    </button>
+  );
+  const nextButton = (
+    <button
+      type="button"
+      aria-label="Next month"
+      onClick={() => setVisibleMonth(addMonths(visibleMonth, 1))}
+      className={navButton}
+    >
+      <ChevronRight className={navIcon} aria-hidden />
+    </button>
+  );
 
   return (
     <div
       ref={ref}
       className={cn(
         "rounded-md border border-border-default bg-bg-primary shadow-sm",
-        isSm ? "w-[268px] p-3" : "w-[312px] p-5",
+        isSm ? "w-[228px] p-4" : "w-[336px] p-5",
         className,
       )}
       {...props}
     >
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <button
-          type="button"
-          aria-label="Previous month"
-          onClick={() => setVisibleMonth(addMonths(visibleMonth, -1))}
-          className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-sm border border-border-default bg-bg-primary text-fg-primary outline-none",
-            "hover:bg-bg-secondary-hover",
-            "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
-            navSize,
-          )}
-        >
-          <ChevronLeft className={isSm ? "size-3.5" : "size-4"} aria-hidden />
-        </button>
-        <p
-          className={cn(
-            "text-ui-md font-semibold text-fg-primary",
-            isSm && "text-ui-sm",
-          )}
-          aria-live="polite"
-        >
-          {MONTH_FORMATTER.format(visibleMonth)}
-        </p>
-        <button
-          type="button"
-          aria-label="Next month"
-          onClick={() => setVisibleMonth(addMonths(visibleMonth, 1))}
-          className={cn(
-            "inline-flex shrink-0 items-center justify-center rounded-sm border border-border-default bg-bg-primary text-fg-primary outline-none",
-            "hover:bg-bg-secondary-hover",
-            "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
-            navSize,
-          )}
-        >
-          <ChevronRight className={isSm ? "size-3.5" : "size-4"} aria-hidden />
-        </button>
-      </div>
+      {isSm ? (
+        <div className="mb-3 flex items-center justify-between">
+          <p className="text-ui-sm text-fg-primary" aria-live="polite">
+            {MINI_MONTH_FORMATTER.format(visibleMonth)}
+          </p>
+          <div className="flex gap-1">
+            {prevButton}
+            {nextButton}
+          </div>
+        </div>
+      ) : (
+        <div className="mb-5 flex items-center justify-between gap-2">
+          {prevButton}
+          <p
+            className="text-ui-md font-semibold text-fg-primary"
+            aria-live="polite"
+          >
+            {MONTH_FORMATTER.format(visibleMonth)}
+          </p>
+          {nextButton}
+        </div>
+      )}
 
-      <div
+      <table
+        ref={gridRef}
+        // biome-ignore lint/a11y/useSemanticElements: APG date picker requires role="grid" (interactive cells + roving tabindex); a native <table> only exposes role="table"
         role="grid"
         aria-label={MONTH_FORMATTER.format(visibleMonth)}
-        tabIndex={0}
-        onKeyDown={onGridKeyDown}
-        className="outline-none focus-visible:shadow-[var(--shadow-glow-focus)]"
+        className="w-full table-fixed border-separate border-spacing-0"
       >
-        <div role="row" className="mb-1 grid grid-cols-7">
-          {WEEKDAYS.map((day) => (
-            <div
-              key={day}
-              role="columnheader"
-              aria-label={day}
-              className={cn(
-                "flex items-center justify-center text-ui-xs text-fg-tertiary",
-                cellSize,
-              )}
-            >
-              {day}
-            </div>
-          ))}
-        </div>
+        <thead>
+          <tr>
+            {WEEKDAYS.map((day) => (
+              <th
+                key={day}
+                scope="col"
+                abbr={day}
+                aria-label={day}
+                className={cn(
+                  "p-0 text-center text-ui-xs font-medium text-fg-tertiary",
+                  isSm ? "pb-1.5" : "pb-2",
+                )}
+              >
+                {isSm ? day[0] : day}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {weeks.map((week) => (
+            <tr key={week[0].toISOString()}>
+              {week.map((day, col) => {
+                const outside = !isSameMonth(day, visibleMonth);
+                const focused = isSameDay(day, focusDay);
+                const isToday = isSameDay(day, today);
+                const isSelectedSingle =
+                  mode === "single" &&
+                  currentSelected != null &&
+                  isSameDay(day, currentSelected);
+                const isRangeStart =
+                  mode === "range" &&
+                  currentRange.from != null &&
+                  isSameDay(day, currentRange.from);
+                const isRangeEnd =
+                  mode === "range" &&
+                  currentRange.to != null &&
+                  isSameDay(day, currentRange.to);
+                const isInRange =
+                  mode === "range" && isDateInRange(day, currentRange);
+                const isRangeEdge = isRangeStart || isRangeEnd;
+                const hasTo = currentRange.to != null;
+                const active = isSelectedSingle || isRangeEdge || isInRange;
+                const strip = isInRange || (isRangeEdge && hasTo);
 
-        {weeks.map((week) => (
-          <div
-            key={week[0].toISOString()}
-            role="row"
-            className="grid grid-cols-7"
-          >
-            {week.map((day) => {
-              const outside = !isSameMonth(day, visibleMonth);
-              const focused = isSameDay(day, focusDay);
-              const isSelectedSingle =
-                mode === "single" &&
-                currentSelected != null &&
-                isSameDay(day, currentSelected);
-              const isRangeStart =
-                mode === "range" &&
-                currentRange.from != null &&
-                isSameDay(day, currentRange.from);
-              const isRangeEnd =
-                mode === "range" &&
-                currentRange.to != null &&
-                isSameDay(day, currentRange.to);
-              const isInRange =
-                mode === "range" && isDateInRange(day, currentRange);
-              const isRangeEdge = isRangeStart || isRangeEnd;
-
-              return (
-                <div
-                  key={day.toISOString()}
-                  role="gridcell"
-                  aria-selected={
-                    mode === "single"
-                      ? isSelectedSingle || undefined
-                      : isRangeEdge || isInRange || undefined
-                  }
-                  className="flex items-center justify-center"
-                >
-                  <button
-                    type="button"
-                    tabIndex={focused ? 0 : -1}
-                    aria-label={DAY_LABEL_FORMATTER.format(day)}
-                    aria-current={focused ? "date" : undefined}
-                    onClick={() => handleSelect(day)}
-                    onFocus={() => setFocusDay(startOfDay(day))}
-                    className={cn(
-                      "inline-flex items-center justify-center rounded-full text-ui-sm font-medium outline-none transition-colors",
-                      "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
-                      cellSize,
-                      outside &&
-                        !isSelectedSingle &&
-                        !isRangeEdge &&
-                        !isInRange &&
-                        "text-fg-tertiary",
-                      !outside &&
-                        !isSelectedSingle &&
-                        !isRangeEdge &&
-                        !isInRange &&
-                        "text-fg-primary hover:bg-bg-secondary-hover",
-                      isInRange &&
-                        "rounded-none bg-bg-brand-subtle text-fg-brand",
-                      (isSelectedSingle || isRangeEdge) &&
-                        "bg-bg-brand-solid text-fg-on-brand hover:bg-bg-brand-solid",
-                      isRangeStart && currentRange.to && "rounded-r-none",
-                      isRangeEnd && currentRange.from && "rounded-l-none",
-                    )}
+                return (
+                  <td
+                    key={day.toISOString()}
+                    aria-selected={
+                      mode === "single"
+                        ? isSelectedSingle || undefined
+                        : isRangeEdge || isInRange || undefined
+                    }
+                    className={cn("p-0 text-center", isSm ? "pt-0.5" : "pt-1")}
                   >
-                    {day.getDate()}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
+                    <button
+                      type="button"
+                      tabIndex={focused ? 0 : -1}
+                      aria-label={DAY_LABEL_FORMATTER.format(day)}
+                      aria-current={isToday ? "date" : undefined}
+                      onClick={() => handleSelect(day)}
+                      onKeyDown={onDayKeyDown}
+                      onFocus={() => setFocusDay(startOfDay(day))}
+                      className={cn(
+                        "relative inline-flex items-center justify-center rounded-full font-medium outline-none transition-colors",
+                        "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
+                        isSm ? "h-6 text-ui-xs" : "h-[34px] text-ui-sm",
+                        strip ? "w-full" : isSm ? "w-6" : "w-9",
+                        outside && !active && "text-fg-tertiary",
+                        !outside && !active && "text-fg-primary",
+                        !active && "hover:bg-bg-secondary-hover",
+                        !active &&
+                          !isSm &&
+                          isToday &&
+                          "bg-bg-brand-subtle text-fg-brand",
+                        isInRange && "bg-bg-brand-subtle text-fg-brand",
+                        (isSelectedSingle || isRangeEdge) &&
+                          "bg-bg-brand-solid text-fg-on-brand hover:bg-bg-brand-solid",
+                        // Continuous range strip: flat inner edges, 18px caps at
+                        // range ends and at week-row boundaries.
+                        strip && "rounded-none",
+                        strip &&
+                          (isRangeStart || (isInRange && col === 0)) &&
+                          "rounded-l-[18px]",
+                        strip &&
+                          (isRangeEnd || (isInRange && col === 6)) &&
+                          "rounded-r-[18px]",
+                        isRangeStart &&
+                          hasTo &&
+                          col === 6 &&
+                          "rounded-r-[18px]",
+                        isRangeEnd && col === 0 && "rounded-l-[18px]",
+                      )}
+                    >
+                      {day.getDate()}
+                      {isSm && isToday && (
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "absolute bottom-0.5 size-1 rounded-full",
+                            active ? "bg-fg-on-brand" : "bg-bg-brand-solid",
+                          )}
+                        />
+                      )}
+                    </button>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -486,7 +535,7 @@ export interface CalendarWeekProps
 
 /**
  * Horizontal strip of 7 day chips for the week containing `weekOf` ·
- * role="group" · selected chip uses solid brand fill · focus-visible uses
+ * role="group" · selected chip uses brand-subtle fill · focus-visible uses
  * shadow-glow-focus · controlled + uncontrolled selection
  */
 export function CalendarWeek({
@@ -521,10 +570,11 @@ export function CalendarWeek({
   return (
     <div
       ref={ref}
+      // biome-ignore lint/a11y/useSemanticElements: <fieldset> is for form controls and brings border/legend styling; this is a plain button group
       role="group"
       aria-label="Week"
       className={cn(
-        "inline-flex items-center gap-1 rounded-md border border-border-default bg-bg-primary p-2 shadow-sm",
+        "flex w-[392px] items-start gap-1.5 rounded-md border border-border-default bg-bg-primary p-3 shadow-sm",
         className,
       )}
       {...props}
@@ -539,20 +589,23 @@ export function CalendarWeek({
             aria-pressed={isSelected}
             onClick={() => select(day)}
             className={cn(
-              "inline-flex size-9 flex-col items-center justify-center rounded-full text-ui-xs font-medium outline-none",
+              "flex min-w-px flex-1 flex-col items-center justify-center gap-2 rounded-full py-3 outline-none",
               "focus-visible:shadow-[var(--shadow-glow-focus)] focus-visible:outline-none",
               isSelected
-                ? "bg-bg-brand-solid text-fg-on-brand"
+                ? "bg-bg-brand-subtle text-fg-brand"
                 : "text-fg-primary hover:bg-bg-secondary-hover",
             )}
           >
             <span
               aria-hidden="true"
-              className="text-ui-xs leading-none text-inherit opacity-70"
+              className={cn(
+                "text-ui-xs font-medium",
+                isSelected ? "text-fg-brand" : "text-fg-tertiary",
+              )}
             >
-              {WEEKDAYS[day.getDay()]}
+              {WEEKDAYS_SHORT[day.getDay()]}
             </span>
-            <span className="text-ui-sm leading-none">{day.getDate()}</span>
+            <span className="text-ui-md font-semibold">{day.getDate()}</span>
           </button>
         );
       })}

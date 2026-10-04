@@ -90,6 +90,38 @@ describe("Calendar", () => {
     expect(last.to.getDate()).toBe(14);
   });
 
+  it("uses a roving tabindex and moves focus with arrow keys", async () => {
+    const user = userEvent.setup();
+    render(
+      <Calendar
+        defaultMonth={new Date(2026, 2, 1)}
+        defaultValue={new Date(2026, 2, 15)}
+      />,
+    );
+    const day15 = screen.getByRole("button", { name: /March 15, 2026/ });
+    expect(day15).toHaveAttribute("tabindex", "0");
+    expect(
+      screen
+        .getAllByRole("button")
+        .filter((b) => b.getAttribute("tabindex") === "0")
+        .filter((b) => /2026/.test(b.getAttribute("aria-label") ?? "")),
+    ).toHaveLength(1);
+    day15.focus();
+    await user.keyboard("{ArrowRight}");
+    expect(
+      screen.getByRole("button", { name: /March 16, 2026/ }),
+    ).toHaveFocus();
+    await user.keyboard("{ArrowDown}");
+    expect(
+      screen.getByRole("button", { name: /March 23, 2026/ }),
+    ).toHaveFocus();
+    await user.keyboard("{PageDown}");
+    expect(screen.getByText("April 2026")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /April 23, 2026/ }),
+    ).toHaveFocus();
+  });
+
   it("forwards a ref to the root", () => {
     const ref = React.createRef<HTMLDivElement>();
     render(<Calendar ref={ref} defaultMonth={new Date(2026, 0, 1)} />);
@@ -124,8 +156,15 @@ describe("Calendar", () => {
 describe("CalendarMini", () => {
   it("renders a compact calendar", () => {
     render(<CalendarMini defaultMonth={new Date(2026, 5, 1)} />);
-    expect(screen.getByText("June 2026")).toBeInTheDocument();
+    expect(screen.getByText("Jun 2026")).toBeInTheDocument();
     expect(screen.getByRole("grid")).toBeInTheDocument();
+  });
+
+  it("has no axe violations", async () => {
+    const { container } = render(
+      <CalendarMini defaultMonth={new Date(2026, 5, 1)} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
 
