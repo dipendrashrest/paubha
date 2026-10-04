@@ -7,7 +7,7 @@ const chipVariants = cva(
   {
     variants: {
       tone: {
-        brand: "bg-bg-brand-subtle text-fg-brand",
+        brand: "bg-bg-brand-chip text-fg-brand",
         error: "bg-bg-error-chip text-fg-error",
       },
     },

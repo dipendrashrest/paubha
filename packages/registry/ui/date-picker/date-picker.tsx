@@ -90,7 +90,7 @@ export function DatePicker({
         <PopoverContent
           align="start"
           aria-label="Choose date"
-          className="w-[336px] overflow-clip rounded-md border border-border-default bg-bg-elevated p-0 shadow-lg"
+          className="w-[336px] overflow-clip rounded-sm border border-border-default bg-bg-elevated p-0 shadow-lg"
         >
           <Calendar
             value={draft}

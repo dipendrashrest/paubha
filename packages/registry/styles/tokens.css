@@ -194,6 +194,7 @@
   /* status icon chips (Alert) — Figma binds the *-100 primitives directly;
      no semantic exists there yet. Dark values are a code-side choice (the
      500 step at 24%, one notch above *-subtle) — see SYNC_LOG.md. */
+  --bg-brand-chip: var(--brand-100);
   --bg-info-chip: var(--info-100);
   --bg-success-chip: var(--success-100);
   --bg-warning-chip: var(--warning-100);
