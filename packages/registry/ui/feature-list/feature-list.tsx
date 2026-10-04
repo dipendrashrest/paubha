@@ -26,7 +26,7 @@ export function FeatureListItem({
     <div
       ref={ref}
       className={cn(
-        "grid gap-4 py-8 sm:gap-8",
+        "grid items-center gap-4 py-8 sm:gap-8",
         hasIcon
           ? "sm:grid-cols-[2.5rem_1fr_1.2fr]"
           : "sm:grid-cols-[1fr_1.2fr]",
@@ -35,7 +35,10 @@ export function FeatureListItem({
       {...props}
     >
       {hasIcon ? (
-        <span className="flex size-10 items-center justify-center rounded-md bg-bg-brand-subtle text-fg-brand [&_svg]:size-5">
+        <span
+          aria-hidden="true"
+          className="flex size-10 items-center justify-center rounded-md bg-bg-brand-subtle text-fg-brand [&_svg]:size-5"
+        >
           {icon}
         </span>
       ) : null}
@@ -69,7 +72,13 @@ export function FeatureList({
   return (
     <div ref={ref} className={cn("flex w-full flex-col", className)} {...props}>
       {items.map((child, i) => (
-        <div key={i}>
+        <div
+          key={
+            React.isValidElement(child) && child.key != null
+              ? child.key
+              : `item-${String(child)}`
+          }
+        >
           {divided && i > 0 ? <Divider className="my-0" /> : null}
           {child}
         </div>
