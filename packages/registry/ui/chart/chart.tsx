@@ -278,6 +278,7 @@ export function LineChart({
             viewBox={`0 0 ${width} ${height}`}
             className="absolute inset-0 h-full w-full overflow-visible"
             preserveAspectRatio="none"
+            aria-hidden="true"
           >
             {showPrevious && data.some((d) => d.previous != null) ? (
               <polyline
@@ -347,10 +348,10 @@ export interface DonutChartProps extends React.ComponentPropsWithRef<"div"> {
 }
 
 const DONUT_COLORS: Record<DonutChartTone, string> = {
-  brand: "var(--brand-600)",
-  success: "var(--success-600)",
-  warning: "var(--warning-600)",
-  gray: "var(--gray-400)",
+  brand: "var(--bg-brand-solid)",
+  success: "var(--fg-success)",
+  warning: "var(--fg-warning)",
+  gray: "var(--fg-tertiary)",
 };
 
 function polarToCartesian(
@@ -505,13 +506,13 @@ export interface AreaChartProps extends React.ComponentPropsWithRef<"div"> {
 }
 
 const AREA_FILL: Record<AreaChartTone, string> = {
-  brand: "color-mix(in srgb, var(--brand-600) 28%, transparent)",
-  gray: "color-mix(in srgb, var(--gray-400) 28%, transparent)",
+  brand: "color-mix(in srgb, var(--bg-brand-solid) 28%, transparent)",
+  gray: "color-mix(in srgb, var(--fg-tertiary) 28%, transparent)",
 };
 
 const AREA_STROKE: Record<AreaChartTone, string> = {
-  brand: "var(--brand-600)",
-  gray: "var(--gray-400)",
+  brand: "var(--bg-brand-solid)",
+  gray: "var(--fg-tertiary)",
 };
 
 function areaPath(
@@ -615,6 +616,7 @@ export function AreaChart({
             viewBox={`0 0 ${width} ${height}`}
             className="absolute inset-0 h-full w-full overflow-visible"
             preserveAspectRatio="none"
+            aria-hidden="true"
           >
             {series.map((s) => {
               const { area, line } = areaPath(
@@ -646,7 +648,7 @@ export function AreaChart({
                 x2={width - padX}
                 y1={refY}
                 y2={refY}
-                stroke="var(--success-600)"
+                stroke="var(--fg-success)"
                 strokeWidth="1.5"
                 strokeDasharray="4 3"
                 vectorEffect="non-scaling-stroke"
