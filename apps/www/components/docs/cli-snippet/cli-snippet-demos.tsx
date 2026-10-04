@@ -7,16 +7,18 @@ export function CliSnippetHero() {
   return (
     <ComponentPlayground
       code={`<CliSnippet
-  label="Quick start"
+  label="npx"
   command="npx paubha@latest add button"
-  description="Tokens, focus rings, and a11y, already baked in."
+  description="Copies button.tsx into components/ui and installs its dependencies."
+  showCopy
 />`}
     >
       <div className="w-full max-w-md">
         <CliSnippet
-          label="Quick start"
+          label="npx"
           command="npx paubha@latest add button"
-          description="Tokens, focus rings, and a11y, already baked in."
+          description="Copies button.tsx into components/ui and installs its dependencies."
+          showCopy
         />
       </div>
     </ComponentPlayground>

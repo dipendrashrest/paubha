@@ -1103,8 +1103,8 @@
       "name": "cli-snippet",
       "type": "registry:ui",
       "title": "CLI Snippet",
-      "description": "Monospace command callout for marketing and docs pages.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "description": "Monospace command callout with optional label, description and copy button.",
+      "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
       "registryDependencies": [],
       "files": [
         { "path": "ui/cli-snippet/cli-snippet.tsx", "type": "registry:ui" },
