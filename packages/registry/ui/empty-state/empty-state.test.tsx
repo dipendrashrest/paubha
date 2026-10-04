@@ -37,4 +37,16 @@ describe("EmptyState", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("has no axe violations for error tone with icon", async () => {
+    const { container } = render(
+      <EmptyState
+        tone="error"
+        icon={<svg aria-hidden="true" />}
+        title="Something went wrong"
+        actions={<button type="button">Try Again</button>}
+      />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });
