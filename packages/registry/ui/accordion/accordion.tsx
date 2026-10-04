@@ -150,7 +150,9 @@ export function AccordionItemV2({
     <AccordionPrimitive.Item
       ref={ref}
       className={cn(
-        "overflow-hidden border-b border-border-default last:border-b-0",
+        // no overflow-hidden here: it clipped the trigger's glow-focus ring
+        // (AccordionContentV2 clips its own open/close animation).
+        "border-b border-border-default last:border-b-0",
         "data-[disabled]:opacity-50",
         className,
       )}
