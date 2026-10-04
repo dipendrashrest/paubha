@@ -394,3 +394,18 @@ OPEN QUESTIONS (batch 6)
 - Dropdown Menu: off-page `_Menu Item` set 6347:28872 (parent null) duplicates 2121:15471; no 13/18 Regular text style exists.
 
 **Base components: all 39 synced.** Remaining lint errors (18) are in application patterns — next phase.
+
+### Components — batch 6: actions, navigation, logo (2026-10-05)
+- **Divider** — matched; CVA orientation; a11y note corrected (`role=separator`; pass `aria-hidden` when decorative).
+- **Kbd** — Inter (`font-sans`) label; "+" separator 11px regular.
+- **Tabs** — 100ms ease-out state transition; 16px icon slot; APG docs.
+- **Toggle Group** — items were 2px short: now 24/32/40 (control 32/40/48).
+- **Dropdown Menu** — item label `ui-sm`; keyboard focus `bg-secondary`; `--z-popover` layer; fixed `data-highlighted` fill masking focus/pressed. Figma edits: bound `showIcon` + `ui/xs` in "Menu item" set 2121:15471.
+- **Pagination** — matched; docs refreshed.
+- **Logo** — real Figma vector mark + wordmark as token-bound inline SVG (stale "A" gone); pixel-named `size` per Figma (call sites pinned to 32).
+
+OPEN QUESTIONS (batch 6)
+- Logo `size` uses Figma's pixel names vs CLAUDE.md sm/md/lg/xl; Logo fills unbound in Figma; `apps/www/public/logo/*.png` now unused.
+- Tabs icon gap is 0 in Figma (code 6px). Kbd: no 11px type token. Dropdown Menu: off-page duplicate set 6347:28872.
+
+**Base components: all 39 synced.**
