@@ -29,8 +29,12 @@ export interface ProgressBarProps
 }
 
 /**
+ * Determinate progress indicator for file uploads, form steps, and task completion.
+ * Track: bg-tertiary, radius-full, 4/8/12px (sm/md/lg). Fill: bg-brand-solid,
+ * square-ended, clipped to the track's rounded ends.
+ *
  * role=progressbar · aria-valuenow/min/max reflect the current value · aria-label
- * describes what is loading
+ * describes what is loading · not focusable (non-interactive)
  */
 export function ProgressBar({
   ref,
@@ -56,7 +60,7 @@ export function ProgressBar({
       {...props}
     >
       <div
-        className="h-full rounded-full bg-bg-brand-solid transition-[width]"
+        className="h-full bg-bg-brand-solid transition-[width] motion-reduce:transition-none"
         style={{ width: `${percentage}%` }}
       />
     </div>

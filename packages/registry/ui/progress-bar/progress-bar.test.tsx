@@ -57,6 +57,28 @@ describe("ProgressBar", () => {
     expect(screen.getByRole("progressbar")).toHaveClass("h-3");
   });
 
+  it.each([
+    ["sm", "h-1"],
+    ["md", "h-2"],
+    ["lg", "h-3"],
+  ] as const)("applies the %s track height (Figma 4/8/12px)", (size, cls) => {
+    render(<ProgressBar size={size} value={50} label="Uploading file" />);
+    const bar = screen.getByRole("progressbar");
+    expect(bar).toHaveClass(cls, "rounded-full", "overflow-hidden");
+  });
+
+  it("defaults to the sm size", () => {
+    render(<ProgressBar value={50} label="Uploading file" />);
+    expect(screen.getByRole("progressbar")).toHaveClass("h-1");
+  });
+
+  it("renders a square-ended brand-solid fill", () => {
+    render(<ProgressBar value={50} label="Uploading file" />);
+    const fill = screen.getByRole("progressbar").firstChild as HTMLElement;
+    expect(fill).toHaveClass("bg-bg-brand-solid");
+    expect(fill).not.toHaveClass("rounded-full");
+  });
+
   it("has no axe violations at 0%, partial, and 100% progress", async () => {
     const { container, rerender } = render(
       <ProgressBar value={0} label="Uploading file" />,
