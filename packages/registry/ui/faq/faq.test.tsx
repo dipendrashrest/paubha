@@ -13,7 +13,9 @@ describe("Faq", () => {
         ]}
       />,
     );
-    expect(screen.getByRole("heading", { name: "FAQ" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Frequently asked questions" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("Is it free?")).toBeInTheDocument();
   });
 

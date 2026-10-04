@@ -1,5 +1,5 @@
 import { cn } from "@paubha/registry/lib/cn";
-import type * as React from "react";
+import * as React from "react";
 import {
   Accordion,
   AccordionContent,
@@ -30,13 +30,14 @@ export interface FaqProps
 export function Faq({
   ref,
   className,
-  title = "FAQ",
+  title = "Frequently asked questions",
   description,
   items,
   type = "single",
   ...props
 }: FaqProps) {
-  const titleId = typeof title === "string" ? "faq-heading" : undefined;
+  const headingId = React.useId();
+  const titleId = title != null ? headingId : undefined;
 
   const accordionClassName = cn("flex flex-col gap-2", title != null && "mt-8");
 
