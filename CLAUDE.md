@@ -17,52 +17,48 @@ Use these exactly — don't guess or reconstruct a repo URL from the package nam
 ## Brand identity — do not deviate without being told
 
 - **Name:** Paubha · **Tagline:** "Open-source components for React & Tailwind"
-- **Brand color:** true blue, `brand-600 = #2E4DD9`. Corrected 2026-09-11 — full ramp re-synced against Figma's current "Brand Palette" frame (Foundations / Colors, node 2066:14533 -> 6180:1277), which now generates the ramp from `brand/500 = #4469E5` as keystone; the prior 2026-08-22 correction to `#2450EA` (from an earlier indigo-leaning `#4658DE`) is superseded — see SYNC_LOG.md Phase 1 entry for verification detail.
+- **Brand color:** true blue, `brand-600 = #2450EA` (keystone `brand-500 = #3B63F5`). Re-synced 2026-10-05 against the Paubha-UI file's Primitives collection; supersedes the 2026-09-11 `#2E4DD9` ramp.
 - **Signature visual language** (what makes this NOT a generic Tailwind kit):
-  1. **Brand-tinted shadows** — shadows use `brand-900` (`#243380`) instead of black, low opacity
+  1. **Brand-tinted shadows** — shadows use `brand-900` (`#1E3485`) instead of black, low opacity
   2. **`glow-focus`** — signature focus ring: 4px spread, `brand-500` @ 24%, zero blur/offset. Every interactive component's focus state uses this. Not a hard 2px outline. This is non-negotiable — it's the whole point of the brand.
-  3. **Squircle-leaning radius** — softer/larger than typical: 6/8/10/14/20px steps
+  3. **Squircle-leaning radius** — softer/larger than typical: 4/8/12/16/20px steps
   4. Role-based type naming: `ui-*`, `body-*`, `display-*` (not generic sm/md/lg for type)
   5. `space-2xs` (2px) micro-spacing tier most systems skip
 
 ## Design tokens — confirmed real values, do not invent or approximate
 
+Re-synced 2026-10-05 against the Paubha-UI file's local variable collections (Primitives, Semantic Light/Dark, Spacing, Grid) and effect styles — every value below is read straight from Figma, not derived. Supersedes all earlier "corrected" values (`#2E4DD9` brand, cool `#101828` gray family).
+
 ```css
-/* Brand — corrected 2026-09-11, see brand color note above */
---brand-50: #F0F4FE;  --brand-100: #DDE5FC; --brand-200: #C2D1F9;
---brand-300: #98B3F4; --brand-400: #678BEC; --brand-500: #4469E5;
---brand-600: #2E4DD9; --brand-700: #273EC7; --brand-800: #2535A2;
---brand-900: #243380; --brand-950: #1A2150;
+--brand-50: #EFF4FF;  --brand-100: #DBE5FE; --brand-200: #BFD0FE;
+--brand-300: #93B0FD; --brand-400: #6187F9; --brand-500: #3B63F5;
+--brand-600: #2450EA; --brand-700: #1C3FD1; --brand-800: #1E37A9;
+--brand-900: #1E3485; --brand-950: #172152;
 
-/* Gray — gray-200 and gray-800 corrected 2026-09-11 against Figma's
-   "Neutral Palette" frame; the other 9 steps already matched exactly. */
---gray-50: #F9FAFB;  --gray-100: #F2F4F7; --gray-200: #EAECF0;
---gray-300: #D0D5DD; --gray-400: #98A2B3; --gray-500: #667085;
---gray-600: #475467; --gray-700: #344054; --gray-800: #182230;
---gray-900: #101828; --gray-950: #0C111D;
+/* Gray — true neutral; 875/925 are elevated dark-surface steps */
+--gray-50: #FAFAFA;  --gray-100: #F5F5F5; --gray-200: #E5E5E5;
+--gray-300: #D4D4D4; --gray-400: #A3A3A3; --gray-500: #737373;
+--gray-600: #525252; --gray-700: #404040; --gray-800: #262626;
+--gray-875: #1C1C1C; --gray-900: #171717; --gray-925: #111111;
+--gray-950: #0A0A0A;
 
-/* Error */
---error-50: #FEF3F2;  --error-600: #D92D20; --error-950: #55160C;
-/* Warning */
---warning-50: #FFFAEB; --warning-600: #DC6803; --warning-950: #4E1D09;
-/* Success — success-600 corrected 2026-09-11 against Figma's "Success
-   Palette" frame; the other 10 steps already matched exactly. */
---success-50: #ECFDF3; --success-600: #058550; --success-950: #053321;
+/* Error / Warning / Success / Info — full 50–950 ramps exist in Figma;
+   see tokens.css. Keys: */
+--error-500: #F04438; --error-600: #D92D20;
+--warning-600: #DC6803; --success-600: #058550; --info-600: #2551E0;
 ```
 
-Full 50–950 steps for error and warning do **not** currently exist in Figma "Foundations / Colors" as a primitive ramp (only Brand, Neutral/Gray, and Success have dedicated ramp frames there as of 2026-09-11) — the only Error/Warning color data in Figma is a single semantic "Status Colors" swatch each (fg/error, fg/warning), which doesn't map cleanly onto any specific ramp step and isn't treated as authoritative for the full scale. Until Figma publishes real Error/Warning primitive ramps, treat the `error-*`/`warning-*` steps above (beyond 50/600/950) as unverified holdovers — pull exact intermediate values from Figma via the MCP connection once a ramp frame exists, and see SYNC_LOG.md OPEN QUESTIONS. **Never approximate a hex value. If it's not confirmed, stop and ask rather than guessing.**
+**Never approximate a hex value. If it's not confirmed in Figma, stop and ask rather than guessing.**
 
 **Semantic tokens (components use ONLY these, never primitives directly):**
-`bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-preview`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-brand`, `fg-error`, `fg-warning`, `fg-success`, `border-default`, `border-strong`, `border-brand`, `border-error`, `border-warning`, `border-success`, `focus-ring`.
+`bg-primary`, `bg-secondary`, `bg-tertiary`, `bg-elevated`, `bg-preview`, `bg-overlay`, `bg-brand-solid`, `bg-brand-solid-hover`, `bg-brand-solid-active`, `bg-brand-subtle`, `bg-disabled`, `bg-secondary-hover`, `bg-tertiary-hover`, `bg-switch-off`, `bg-error-solid`, `bg-error-solid-hover`, `bg-error-solid-active`, `bg-error-subtle`, `bg-warning-solid`, `bg-warning-subtle`, `bg-success-solid`, `bg-success-subtle`, `bg-info-solid`, `bg-info-subtle`, `fg-primary`, `fg-secondary`, `fg-tertiary`, `fg-disabled`, `fg-on-brand`, `fg-on-error`, `fg-on-warning`, `fg-on-success`, `fg-on-info`, `fg-brand`, `fg-link`, `fg-error`, `fg-warning`, `fg-success`, `fg-info`, `border-default`, `border-strong`, `border-disabled`, `border-brand`, `border-error`, `border-warning`, `border-success`, `border-info`, `focus-ring`, `focus-ring-error`.
 
-Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css` — always bind to the semantic layer, never hardcode a primitive hex inside a component.
-
-**Dark-mode `bg-*` overhaul (2026-08-25):** `bg-primary`/`bg-secondary`/`bg-tertiary`/`bg-elevated` in dark mode moved off the `--gray-950`-`--gray-800` primitive scale to warmer, elevated literal values — `#0A0A0B` / `#111113` / `#18181B` / `#1C1C1F` respectively — so components don't disappear into a flat dark page. A new `bg-preview` semantic token (`#F8F9FB` light / `#16161A` dark) exists specifically for component-preview frames (`ComponentPlayground`'s preview pane) so previewed components stay visually distinct from the page background in both modes. This decouples those four dark `bg-*` tokens from the Gray primitive scale — they're literal values now, not `var(--gray-950)` etc. `--gray-950` itself (`#0C111D`) is unchanged and still used elsewhere (dark `fg-disabled`, `bg-disabled`, etc.).
+Both Light and Dark mode mappings exist in `packages/registry/styles/tokens.css` (edit the `.dark` block, then `pnpm sync:tokens` regenerates the `prefers-color-scheme` copy) — always bind to the semantic layer, never hardcode a primitive hex inside a component. Dark surfaces follow Figma's gray steps (`bg-primary` gray-950 · `bg-secondary` gray-925 · `bg-tertiary` gray-900 · `bg-elevated` gray-875); dark `*-subtle` backgrounds are the 500 step at 14% alpha. `bg-preview` (`#F8F9FB` / `#16161A`) is code-only, for `ComponentPlayground`'s preview pane.
 
 **Spacing:** 4px base scale, `space-0` through `space-10xl`, plus micro tier `space-px` (1px) and `space-2xs` (2px).
 **Radius:** `radius-none` 0 (unused so far) · `radius-xs` 4 (checkboxes, dropdown/menu items, tooltips) · `radius-sm` 8 (buttons, inputs, textareas, select, tag input) · `radius-md` 12 (cards, dialogs, popovers, dropdown/select panels) · `radius-lg` 16 (modals, alerts, toasts) · `radius-xl` 20 (unused so far) · `radius-full` 9999 (pills, avatars, switches, radio/checkbox indicators). Corrected 2026-09-11 — Figma's file had two duplicate "Radius" variable collections with conflicting values; once consolidated (see SYNC_LOG.md), the real bound-variable scale turned out to be `none/xs/sm/md/lg/xl/full = 0/4/8/12/16/20/9999`, not the previous `6/8/10/14/20/9999` guess. `radius-sm` (8) and `radius-xl` (20) were already correct; `xs`, `md`, and `lg` all shifted.
 **Density (form-row components must align):** `sm` = 32px height · `md` = 40px · `lg` = 48px · `xl` = 56px. Button, Textarea (min-height), Select follow this exactly. **Input is the one exception** (corrected 2026-08-25 against the real Figma component set, which publishes its own fixed heights): `sm` = 36px · `md` = 40px · `lg` = 44px · `xl` = 48px — only `md` lines up with the shared scale. Horizontal padding and icon size scale alongside it (`sm`: 12px padding/16px icon · `md`: 12px/20px · `lg`: 14px/20px · `xl`: 16px/20px), all read directly off Figma's published symbols (node `6198:22642`), not derived from the shared density formula.
-**Breakpoints/Grid (added 2026-09-11):** Tailwind v4 `--breakpoint-*` tokens in `theme.css` — `sm` 640 · `md` 768 · `lg` 1024 · `xl` 1280 (byte-identical to Tailwind's own built-in defaults, codified explicitly rather than left implicit). Read from Figma's "Foundations / Grid Layouts" frame (node `2066:16952`) "Container Widths" section — **no `2xl` breakpoint exists in Figma**, so it was not added (see SYNC_LOG.md OPEN QUESTIONS). Same frame's 3 responsive-grid sections give column counts (`--grid-columns-mobile: 4` · `-tablet: 8` · `-desktop: 12`, in `tokens.css`) and mobile/tablet margins (`--grid-margin-mobile: 16px` · `-tablet: 24px`) — desktop's own margin (32px) and all 3 gutters (24/16/12px) are also in Figma but weren't in scope for this pass. No component consumes these grid tokens yet — no grid-layout pattern exists in the registry.
+**Breakpoints/Grid:** Tailwind v4 `--breakpoint-*` tokens in `theme.css` — `sm` 640 · `md` 768 · `lg` 1024 · `xl` 1280 · `2xl` 1536, from Figma's Grid collection (2026-10-05; `2xl` now exists there). Same collection gives columns (`--grid-columns-mobile: 4` · `-tablet: 8` · `-desktop: 12`), margins (16/24/32px) and gutters (12/16/24px) as `--grid-*` in `tokens.css`. No component consumes the grid tokens yet.
 
 ## Component API conventions — locked, follow exactly
 
@@ -123,7 +119,7 @@ shadcn-style copy-paste registry (`npx paubha@latest add button`), NOT an npm-im
 
 **Figma is the single source of truth for every component's variants/states/tokens.** Before building or modifying a component, pull its real spec via the Figma MCP connection (may be rate-limited — check before assuming a spec is complete). Never invent variants, sizes, or states that aren't confirmed in Figma. If Figma access is unavailable, stop and ask rather than guessing — flag exactly what's missing.
 
-**File:** [Dipendra-Testing (Copy) (Copy)](https://www.figma.com/design/CDgfoMkj7lP3pXWJ3aOgkH/Dipendra-Testing--Copy---Copy-) · file key `CDgfoMkj7lP3pXWJ3aOgkH`
+**File:** [Paubha-UI](https://www.figma.com/design/7JhwsjEdCg2grQsRnK24NF/Paubha-UI) · file key `7JhwsjEdCg2grQsRnK24NF` (replaced the old `CDgfoMkj7lP3pXWJ3aOgkH` file on 2026-10-05). Read access is via the `dipendra.shrestha@velorona.com` Figma account.
 
 ## Accessibility — non-negotiable per component
 
@@ -132,8 +128,8 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 ## Current status (update this section as work progresses)
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
-- Figma base components: all 19 free-tier components fully specced and built — Button, Avatar, Badge, Input, Field, Textarea, Checkbox, Radio Group, Switch, Alert, Spinner, Divider, Skeleton, Progress Bar, Breadcrumbs, Tooltip, Dropdown Menu, Modal, Tabs.
-- Code: all 19 components implemented in `packages/registry`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
+- Figma: Paubha-UI has 40 base component pages (Actions & Navigation, Inputs, Selection, Feedback & Status, Overlays & Display) plus ~55 application-pattern pages and 3 marketing pages.
+- Code: 69 registry items in `packages/registry/ui`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style

@@ -14,9 +14,9 @@ type Particle = {
 function readBrand(el: HTMLElement) {
   const styles = getComputedStyle(el);
   return {
-    mid: styles.getPropertyValue("--brand-500").trim() || "#4469E5",
-    deep: styles.getPropertyValue("--brand-600").trim() || "#2E4DD9",
-    ink: styles.getPropertyValue("--brand-900").trim() || "#243380",
+    mid: styles.getPropertyValue("--brand-500").trim() || "#3B63F5",
+    deep: styles.getPropertyValue("--brand-600").trim() || "#2450EA",
+    ink: styles.getPropertyValue("--brand-900").trim() || "#1E3485",
   };
 }
 
