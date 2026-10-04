@@ -979,7 +979,7 @@
       "title": "File Upload",
       "description": "Drag-and-drop upload zone with a file list.",
       "dependencies": ["clsx", "lucide-react", "tailwind-merge"],
-      "registryDependencies": [],
+      "registryDependencies": ["button", "progress-bar"],
       "files": [
         { "path": "ui/file-upload/file-upload.tsx", "type": "registry:ui" },
         { "path": "lib/cn.ts", "type": "registry:lib" }

@@ -4,6 +4,8 @@ import { cn } from "@paubha/registry/lib/cn";
 import { FileIcon, Upload, X } from "lucide-react";
 import type * as React from "react";
 import { useId, useRef, useState } from "react";
+import { Button } from "../button/button";
+import { ProgressBar } from "../progress-bar/progress-bar";
 
 export interface FileUploadProps
   extends Omit<React.ComponentPropsWithRef<"div">, "onChange"> {
@@ -13,14 +15,17 @@ export interface FileUploadProps
   disabled?: boolean;
   /** Hint under the drop label. */
   description?: React.ReactNode;
+  /** Zone title. */
   label?: React.ReactNode;
+  /** Browse button text. */
+  browseLabel?: React.ReactNode;
   onFilesChange?: (files: File[]) => void;
 }
 
 /**
- * Drag-and-drop upload zone · native file input · focus-visible glow on
- * browse control · aria-disabled when disabled · drop target is decorative
- * relative to the labelled input
+ * Drag-and-drop upload zone · the Browse button (glow-focus, Enter/Space) opens
+ * the native file picker, so the drop target stays a decorative convenience ·
+ * the hidden input is removed from the tab order · disabled disables the button
  */
 export function FileUpload({
   ref,
@@ -28,8 +33,9 @@ export function FileUpload({
   accept,
   multiple = false,
   disabled = false,
-  description = "SVG, PNG, JPG or GIF (max. 10MB)",
-  label = "Click to upload or drag and drop",
+  description = "Accepts PNG, JPG, PDF up to 10MB",
+  label = "Drag & drop files here",
+  browseLabel = "Browse Files",
   onFilesChange,
   ...props
 }: FileUploadProps) {
@@ -46,10 +52,10 @@ export function FileUpload({
     <div
       ref={ref}
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-3 rounded-md border border-dashed px-6 py-10 text-center transition-colors",
+        "flex w-full flex-col items-center justify-center gap-4 rounded-md border bg-bg-primary p-8 text-center transition-colors",
         dragging
           ? "border-border-brand bg-bg-brand-subtle"
-          : "border-border-default bg-bg-secondary",
+          : "border-border-default",
         disabled && "pointer-events-none opacity-60",
         className,
       )}
@@ -71,33 +77,36 @@ export function FileUpload({
       }}
       {...props}
     >
-      <div className="flex size-10 items-center justify-center rounded-full bg-bg-primary text-fg-tertiary shadow-xs">
-        <Upload aria-hidden="true" className="size-5" />
+      <div className="flex items-center justify-center rounded-full bg-bg-brand-subtle p-2 text-fg-brand">
+        <Upload aria-hidden="true" className="size-6" />
       </div>
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor={inputId}
-          className={cn(
-            "cursor-pointer text-ui-md font-medium text-fg-brand",
-            "rounded-sm focus-within:outline-none",
-          )}
-        >
-          {label}
-          <input
-            ref={inputRef}
-            id={inputId}
-            type="file"
-            accept={accept}
-            multiple={multiple}
-            disabled={disabled}
-            className="sr-only focus-visible:outline-none"
-            onChange={(e) => emitFiles(e.target.files)}
-          />
-        </label>
-        {description != null ? (
-          <p className="text-body-sm text-fg-tertiary">{description}</p>
-        ) : null}
+      <div className="flex w-full flex-col items-center gap-1">
+        <p className="text-ui-md font-semibold text-fg-primary">{label}</p>
+        <p className="text-ui-sm text-fg-tertiary">or</p>
       </div>
+      {description != null ? (
+        <p className="text-ui-sm text-fg-tertiary">{description}</p>
+      ) : null}
+      <input
+        ref={inputRef}
+        id={inputId}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        disabled={disabled}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="sr-only"
+        onChange={(e) => emitFiles(e.target.files)}
+      />
+      <Button
+        type="button"
+        size="sm"
+        disabled={disabled}
+        onClick={() => inputRef.current?.click()}
+      >
+        {browseLabel}
+      </Button>
     </div>
   );
 }
@@ -111,6 +120,8 @@ export interface FileUploadItemProps
   /** 0–100 progress. Omit when complete. */
   progress?: number;
   onRemove?: () => void;
+  /** Row state. Defaults to uploading while `progress` < 100, else completed. */
+  status?: "uploading" | "completed" | "error";
 }
 
 /**
@@ -123,20 +134,32 @@ export function FileUploadItem({
   size,
   progress,
   onRemove,
+  status,
   ...props
 }: FileUploadItemProps) {
-  const showProgress = typeof progress === "number" && progress < 100;
+  const showProgress =
+    status !== "error" &&
+    typeof progress === "number" &&
+    progress < 100 &&
+    status !== "completed";
+  const isError = status === "error";
 
   return (
     <div
       ref={ref}
       className={cn(
-        "flex w-full items-start gap-3 rounded-md border border-border-default bg-bg-primary p-4",
+        "flex w-full items-start gap-3 rounded-sm border border-border-default p-3",
+        showProgress ? "bg-bg-secondary" : "bg-bg-primary",
         className,
       )}
       {...props}
     >
-      <div className="flex size-10 shrink-0 items-center justify-center rounded-sm border border-border-default bg-bg-secondary text-fg-tertiary">
+      <div
+        className={cn(
+          "flex size-8 shrink-0 items-center justify-center rounded-sm p-1 text-fg-primary",
+          isError ? "bg-bg-error-subtle text-fg-error" : "bg-bg-brand-subtle",
+        )}
+      >
         <FileIcon aria-hidden="true" className="size-5" />
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-1">
@@ -146,7 +169,14 @@ export function FileUploadItem({
               {name}
             </p>
             {size != null ? (
-              <p className="text-ui-sm text-fg-tertiary">{size}</p>
+              <p
+                className={cn(
+                  "text-ui-sm",
+                  isError ? "text-fg-secondary" : "text-fg-tertiary",
+                )}
+              >
+                {size}
+              </p>
             ) : null}
           </div>
           {onRemove != null ? (
@@ -161,18 +191,11 @@ export function FileUploadItem({
           ) : null}
         </div>
         {showProgress ? (
-          <div
-            role="progressbar"
-            aria-valuenow={progress}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            className="h-1.5 w-full overflow-hidden rounded-full bg-bg-tertiary"
-          >
-            <div
-              className="h-full rounded-full bg-bg-brand-solid transition-[width]"
-              style={{ width: `${Math.max(0, Math.min(100, progress ?? 0))}%` }}
-            />
-          </div>
+          <ProgressBar
+            size="md"
+            value={progress ?? 0}
+            label={`Uploading ${typeof name === "string" ? name : "file"}`}
+          />
         ) : null}
       </div>
     </div>

@@ -7,13 +7,17 @@ import { FileUpload, FileUploadItem, FileUploadList } from "./file-upload";
 describe("FileUpload", () => {
   it("renders the drop zone label", () => {
     render(<FileUpload />);
-    expect(
-      screen.getByText("Click to upload or drag and drop"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Drag & drop files here")).toBeInTheDocument();
   });
 
   it("has no axe violations", async () => {
     const { container } = render(<FileUpload />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("has no axe violations when disabled", async () => {
+    const { container } = render(<FileUpload disabled />);
+    expect(screen.getByRole("button", { name: "Browse Files" })).toBeDisabled();
     expect(await axe(container)).toHaveNoViolations();
   });
 });
@@ -29,6 +33,14 @@ describe("FileUploadItem", () => {
       "aria-valuenow",
       "40",
     );
+  });
+
+  it("has no axe violations in error state", async () => {
+    const { container } = render(
+      <FileUploadItem name="big.xlsx" size="Too large" status="error" />,
+    );
+    expect(screen.queryByRole("progressbar")).toBeNull();
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it("has no axe violations", async () => {
