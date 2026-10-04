@@ -30,6 +30,18 @@ describe("AnnouncementBar", () => {
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });
 
+  it("is a labelled region with no axe violations when dismissible", async () => {
+    const { container } = render(
+      <AnnouncementBar dismissible badge={<span>New</span>}>
+        Hello
+      </AnnouncementBar>,
+    );
+    expect(
+      screen.getByRole("region", { name: "Announcement" }),
+    ).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <AnnouncementBar badge={<span>New</span>}>Launch week</AnnouncementBar>,

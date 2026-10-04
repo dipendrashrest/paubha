@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import type * as React from "react";
 
 export interface AnnouncementBarProps
-  extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
+  extends Omit<React.ComponentPropsWithRef<"section">, "title"> {
   /** Leading badge / pill slot. */
   badge?: React.ReactNode;
   /** Primary message. */
@@ -15,7 +15,7 @@ export interface AnnouncementBarProps
 }
 
 /**
- * Site-wide top announcement · role=region · dismiss aria-label="Dismiss" ·
+ * Site-wide top announcement · section aria-label="Announcement" (region) · Enter/Space dismisses · dismiss aria-label="Dismiss" ·
  * focus-visible:shadow-[var(--shadow-glow-focus)] on dismiss
  */
 export function AnnouncementBar({
@@ -29,17 +29,16 @@ export function AnnouncementBar({
   ...props
 }: AnnouncementBarProps) {
   return (
-    <div
+    <section
       ref={ref}
-      role="region"
       aria-label="Announcement"
       className={cn(
-        "flex w-full items-center justify-center gap-3 border-b border-border-brand bg-bg-brand-subtle px-4 py-2.5",
+        "flex w-full items-center justify-center gap-3 border-b border-border-brand bg-bg-brand-subtle px-4 py-3",
         className,
       )}
       {...props}
     >
-      <div className="flex min-w-0 flex-wrap items-center justify-center gap-2 text-center text-ui-sm text-fg-primary">
+      <div className="flex min-w-0 flex-wrap items-center justify-center gap-2 text-center text-ui-sm font-medium text-fg-primary">
         {badge != null ? <span className="shrink-0">{badge}</span> : null}
         <span className="min-w-0">{children}</span>
         {action != null ? <span className="shrink-0">{action}</span> : null}
@@ -54,7 +53,7 @@ export function AnnouncementBar({
           <X aria-hidden="true" className="size-3.5" />
         </button>
       ) : null}
-    </div>
+    </section>
   );
 }
 
