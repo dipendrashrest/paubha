@@ -1,150 +1,192 @@
 "use client";
 
-import { BrandField, BrandOrbit } from "@/components/motion/brand-field";
 import { Reveal } from "@/components/motion/reveal";
 import { Avatar } from "@paubha/registry/ui/avatar";
-import { Badge } from "@paubha/registry/ui/badge";
 import { buttonVariants } from "@paubha/registry/ui/button";
-import { InlineCta } from "@paubha/registry/ui/inline-cta";
-import { TeamCard } from "@paubha/registry/ui/team-card";
 import { Testimonial } from "@paubha/registry/ui/testimonial";
 import Link from "next/link";
+import { Photo, type PhotoName } from "./photo";
 import { MarketingShell } from "./shell";
 
-const CREW = [
-  { initials: "AR", name: "Ava Ruiz", role: "Systems" },
-  { initials: "JK", name: "Jules Kim", role: "Type and color" },
-  { initials: "SL", name: "Sam Lee", role: "Product" },
-  { initials: "MN", name: "Mina Ortiz", role: "Motion" },
-] as const;
+const WORK: {
+  photo: PhotoName;
+  name: string;
+  line: string;
+  span: string;
+  ratio: string;
+  sizes: string;
+}[] = [
+  {
+    photo: "skyscrapers",
+    name: "Calder Estates",
+    line: "A property search for a commercial landlord, with saved filters and a tenant portal.",
+    span: "md:col-span-7",
+    ratio: "aspect-[4/3]",
+    sizes: "(min-width: 768px) 58vw, 100vw",
+  },
+  {
+    photo: "desk-topdown",
+    name: "Fieldnote",
+    line: "Offline-first notes for field researchers, built in six weeks.",
+    span: "md:col-span-5",
+    ratio: "aspect-[4/3] md:aspect-[4/5]",
+    sizes: "(min-width: 768px) 42vw, 100vw",
+  },
+  {
+    photo: "office-corridor",
+    name: "Harbourline",
+    line: "Desk and room booking for a company with four floors and one calendar.",
+    span: "md:col-span-5",
+    ratio: "aspect-[4/3] md:aspect-[4/5]",
+    sizes: "(min-width: 768px) 42vw, 100vw",
+  },
+  {
+    photo: "team-laptops",
+    name: "Tidewater Credit Union",
+    line: "A member dashboard and a design system the in-house team now maintains.",
+    span: "md:col-span-7",
+    ratio: "aspect-[4/3]",
+    sizes: "(min-width: 768px) 58vw, 100vw",
+  },
+];
 
-const DECISIONS = [
+const PROCESS = [
   {
-    title: "glow-focus",
-    body: "4px brand spread, zero blur. Every interactive piece. If it ships without this, it is incomplete.",
+    verb: "Listen",
+    body: "We sit with your users and your support inbox before we open Figma.",
   },
   {
-    title: "Semantic tokens only",
-    body: "Components bind to fg-primary and bg-brand-solid, never a guessed hex. Dark mode is a remap.",
+    verb: "Sketch",
+    body: "Flows first, then screens. You see rough work early and often.",
   },
   {
-    title: "Figma is the source",
-    body: "Variants and density come from the file. We do not invent a size because the CSS felt empty.",
+    verb: "Build",
+    body: "Screens become React and Tailwind on Paubha components, reviewed in the open.",
+  },
+  {
+    verb: "Hand over",
+    body: "You get the repo, the Figma file and a walkthrough. No lock-in, no retainer.",
   },
 ] as const;
 
 export function StudioMarketingPage() {
   return (
     <MarketingShell>
-      <section className="relative min-h-[100dvh] overflow-hidden border-b border-border-default">
-        <BrandField />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pt-16 pb-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pt-20">
+      <section className="border-b border-border-default">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pt-16 pb-16 lg:grid-cols-[0.85fr_1.15fr] lg:pt-20">
           <div className="pb-enter">
-            <Badge variant="gray" fill="subtle" size="md">
-              Studio
-            </Badge>
-            <h1 className="mt-5 max-w-xl text-balance text-display-md font-semibold tracking-[-0.045em] text-fg-primary lg:text-display-lg">
-              A system with a point of view.
+            <h1 className="max-w-md text-balance text-display-md font-semibold tracking-[-0.045em] text-fg-primary lg:text-display-lg">
+              We design and build product interfaces.
             </h1>
             <p className="mt-4 max-w-md text-body-lg text-fg-secondary">
-              Brand-tinted shadows. glow-focus instead of a gray ring. This is
-              not another indigo kit.
+              A six-person studio. Everything we ship is built on Paubha, so you
+              can read and change it.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/docs/foundations"
-                className={`${buttonVariants({ variant: "primary", size: "lg" })} pb-press`}
+                href="/examples/marketing/contact"
+                className={`${buttonVariants({ variant: "primary", size: "lg" })} pb-press whitespace-nowrap`}
               >
-                Read foundations
+                Start a project
               </Link>
               <Link
-                href="/docs/figma"
-                className={`${buttonVariants({ variant: "secondary", size: "lg" })} pb-press`}
+                href="#work"
+                className={`${buttonVariants({ variant: "secondary", size: "lg" })} pb-press whitespace-nowrap`}
               >
-                Figma notes
+                See our work
               </Link>
             </div>
           </div>
-          <div className="pb-enter-late">
-            <BrandOrbit />
-          </div>
+          <Photo
+            name="ux-wall"
+            priority
+            sizes="(min-width: 1024px) 60vw, 100vw"
+            className="pb-enter-late aspect-[4/3] rounded-lg"
+          />
         </div>
       </section>
 
-      <Reveal className="border-b border-border-default">
-        <div className="mx-auto max-w-3xl px-6 py-20">
-          <Testimonial
-            className="bg-bg-secondary"
-            quote="We stopped arguing about the focus ring. Paubha already decided, and it looks like a brand."
-            author="Mira Chen"
-            role="Creative director, Helix"
-            avatar={<Avatar initials="MC" alt="Mira Chen" size="sm" />}
-          />
+      <section id="work" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-20">
+        <h2 className="text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+          Selected work
+        </h2>
+        <div className="mt-10 grid gap-x-6 gap-y-12 md:grid-cols-12">
+          {WORK.map((w, i) => (
+            <Reveal key={w.name} delay={(i % 2) * 70} className={w.span}>
+              <Photo
+                name={w.photo}
+                sizes={w.sizes}
+                className={`${w.ratio} rounded-lg`}
+              />
+              <h3 className="mt-4 text-ui-lg font-semibold text-fg-primary">
+                {w.name}
+              </h3>
+              <p className="mt-1 max-w-[52ch] text-body-md text-fg-secondary">
+                {w.line}
+              </p>
+            </Reveal>
+          ))}
         </div>
-      </Reveal>
+      </section>
 
-      <section className="border-b border-border-default bg-bg-secondary">
-        <div className="mx-auto max-w-3xl px-6 py-20">
-          <h2 className="text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
-            Three decisions we will not reverse
+      <Photo
+        name="meeting-bw"
+        sizes="100vw"
+        className="aspect-[16/9] max-h-[480px] w-full"
+      />
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <h2 className="max-w-xs text-balance text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+            How a project goes
           </h2>
-          <ol className="mt-10 flex flex-col gap-10">
-            {DECISIONS.map((item, i) => (
-              <li key={item.title}>
-                <Reveal delay={i * 70}>
-                  <p className="text-display-xs font-semibold tracking-[-0.03em] text-fg-brand">
-                    {item.title}
-                  </p>
-                  <p className="mt-2 max-w-[52ch] text-body-md text-fg-secondary">
-                    {item.body}
-                  </p>
-                </Reveal>
+          <ol className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
+            {PROCESS.map((p) => (
+              <li key={p.verb}>
+                <p className="text-display-xs font-semibold tracking-[-0.03em] text-fg-brand">
+                  {p.verb}
+                </p>
+                <p className="mt-2 max-w-[34ch] text-body-md text-fg-secondary">
+                  {p.body}
+                </p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <Reveal>
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="text-display-xs font-semibold text-fg-primary">
-            A small studio
-          </h2>
-          <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
-            {CREW.map((member) => (
-              <TeamCard
-                key={member.initials}
-                className="min-w-[220px] snap-start md:min-w-0"
-                avatar={
-                  <Avatar
-                    initials={member.initials}
-                    alt={member.name}
-                    size="md"
-                  />
-                }
-                name={member.name}
-                role={member.role}
+      <section className="border-y border-border-default bg-bg-secondary">
+        <div className="mx-auto max-w-3xl px-6 py-20">
+          <Testimonial
+            className="bg-bg-primary"
+            quote="They handed us a repo our own engineers could change on day one. That is rare for an agency."
+            author="Ingrid Solheim"
+            role="Head of Design Systems, Harbourline"
+            avatar={
+              <Avatar
+                src="/examples/photos/person-5.jpg"
+                alt="Ingrid Solheim"
+                size="sm"
               />
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      <section className="border-t border-border-default bg-bg-secondary">
-        <div className="mx-auto max-w-3xl px-6 py-16">
-          <InlineCta
-            variant="card"
-            title="Commission a review"
-            description="Team plan exists for design-system critiques, not for unlocking components."
-            actions={
-              <Link
-                href="/examples/marketing/pricing"
-                className={buttonVariants({ variant: "primary", size: "sm" })}
-              >
-                See Team
-              </Link>
             }
           />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="max-w-xl">
+          <h2 className="text-balance text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+            Tell us what you are building.
+          </h2>
+          <p className="mt-3 max-w-md text-body-md text-fg-secondary">
+            A paragraph is enough. We reply within two working days.
+          </p>
+          <Link
+            href="/examples/marketing/contact"
+            className={`${buttonVariants({ variant: "primary", size: "lg" })} pb-press mt-6 whitespace-nowrap`}
+          >
+            Start a project
+          </Link>
         </div>
       </section>
     </MarketingShell>

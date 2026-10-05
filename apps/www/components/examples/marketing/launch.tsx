@@ -1,8 +1,6 @@
 "use client";
 
-import { BrandField } from "@/components/motion/brand-field";
 import { Reveal } from "@/components/motion/reveal";
-import { TokenMarquee } from "@/components/motion/token-marquee";
 import { AnnouncementBar } from "@paubha/registry/ui/announcement-bar";
 import {
   AppNav,
@@ -21,6 +19,7 @@ import { DropdownMenuItem } from "@paubha/registry/ui/dropdown-menu";
 import { FilterChip } from "@paubha/registry/ui/filter";
 import { Logo } from "@paubha/registry/ui/logo";
 import { Metric, MetricGroup } from "@paubha/registry/ui/metric";
+import { Newsletter } from "@paubha/registry/ui/newsletter";
 import { SearchField } from "@paubha/registry/ui/search-field";
 import {
   Table,
@@ -31,9 +30,9 @@ import {
   TableRow,
 } from "@paubha/registry/ui/table";
 import { UserMenu } from "@paubha/registry/ui/user-menu";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import * as React from "react";
+import type * as React from "react";
+import { Photo } from "./photo";
 import { MarketingShell } from "./shell";
 
 function ProductCanvas() {
@@ -56,7 +55,13 @@ function ProductCanvas() {
               className="hidden w-52 sm:flex"
             />
             <UserMenu
-              avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}
+              avatar={
+                <Avatar
+                  src="/examples/photos/person-1.jpg"
+                  alt="Maren Holloway"
+                  size="sm"
+                />
+              }
             >
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
@@ -72,7 +77,7 @@ function ProductCanvas() {
         </AppNavLinks>
       </AppNav>
 
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-4 p-4 text-left">
         <DataToolbar
           search={<SearchField placeholder="Filter components" size="sm" />}
           filters={
@@ -84,8 +89,8 @@ function ProductCanvas() {
           actions={<DatePicker placeholder="This week" />}
         />
         <MetricGroup>
-          <Metric compact label="Components" value="74" trend="up" delta="9" />
-          <Metric compact label="Axe" value="0" description="violations" />
+          <Metric compact label="Components" value="60" />
+          <Metric compact label="Axe violations" value="0" />
           <Metric compact label="License" value="MIT" />
         </MetricGroup>
         <Table variant="bordered">
@@ -102,7 +107,7 @@ function ProductCanvas() {
               <TableCell>Pattern</TableCell>
               <TableCell>
                 <Badge variant="success" fill="subtle" size="sm">
-                  Live
+                  Released
                 </Badge>
               </TableCell>
             </TableRow>
@@ -111,7 +116,7 @@ function ProductCanvas() {
               <TableCell>Pattern</TableCell>
               <TableCell>
                 <Badge variant="success" fill="subtle" size="sm">
-                  Live
+                  Released
                 </Badge>
               </TableCell>
             </TableRow>
@@ -131,18 +136,50 @@ function ProductCanvas() {
   );
 }
 
-export function LaunchMarketingPage() {
-  const [cookies, setCookies] = React.useState(true);
+function Chunk({
+  title,
+  items,
+  demo,
+  flip = false,
+}: {
+  title: string;
+  items: readonly { name: string; body: string }[];
+  demo: React.ReactNode;
+  flip?: boolean;
+}) {
+  return (
+    <div className="grid items-center gap-8 md:grid-cols-12 md:gap-12">
+      <div className={`md:col-span-5 ${flip ? "md:order-2" : ""}`}>
+        <h3 className="text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+          {title}
+        </h3>
+        <ul className="mt-5 flex flex-col gap-4">
+          {items.map((it) => (
+            <li key={it.name}>
+              <p className="text-ui-md font-semibold text-fg-primary">
+                {it.name}
+              </p>
+              <p className="mt-0.5 max-w-[44ch] text-body-sm text-fg-secondary">
+                {it.body}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div
+        className={`min-w-0 rounded-lg bg-bg-secondary p-5 md:col-span-7 md:p-8 ${flip ? "md:order-1" : ""}`}
+      >
+        {demo}
+      </div>
+    </div>
+  );
+}
 
+export function LaunchMarketingPage() {
   return (
     <MarketingShell
       announcement={
         <AnnouncementBar
-          badge={
-            <Badge variant="brand" fill="solid" size="sm">
-              Drop
-            </Badge>
-          }
           action={
             <Link
               href="/docs/application-patterns"
@@ -152,89 +189,200 @@ export function LaunchMarketingPage() {
             </Link>
           }
         >
-          Nine new patterns just landed. The catalog is still free.
+          New application patterns are in the registry.
         </AnnouncementBar>
       }
     >
-      <section className="relative min-h-[100dvh] overflow-hidden border-b border-border-default">
-        <BrandField />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 pt-16 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-20">
-          <div className="pb-enter">
-            <Badge variant="brand" fill="subtle" size="md">
-              Launch
-            </Badge>
-            <h1 className="mt-5 max-w-xl text-balance text-display-md font-semibold tracking-[-0.04em] text-fg-primary lg:text-display-lg">
-              The landing is the product.
-            </h1>
-            <p className="mt-4 max-w-md text-balance text-body-lg text-fg-secondary">
-              Live Paubha in the hero. Nav, search, table, glow-focus. Copy it.
-              Own it.
-            </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link
-                href="/docs"
-                className={`${buttonVariants({ variant: "primary", size: "lg" })} pb-press`}
-              >
-                Get the kit
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/examples/marketing"
-                className={`${buttonVariants({ variant: "secondary", size: "lg" })} pb-press`}
-              >
-                More pages
-              </Link>
-            </div>
+      <section className="border-b border-border-default">
+        <div className="mx-auto max-w-5xl px-6 pt-16 pb-16 text-center lg:pt-20">
+          <h1 className="pb-enter mx-auto max-w-3xl text-balance text-display-md font-semibold tracking-[-0.04em] text-fg-primary lg:text-display-lg">
+            Application patterns, ready to copy into your app.
+          </h1>
+          <p className="pb-enter mx-auto mt-4 max-w-lg text-balance text-body-lg text-fg-secondary">
+            Tables, menus, pickers and navigation built from the base
+            components. Free and MIT licensed.
+          </p>
+          <div className="pb-enter mt-7 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/docs/application-patterns"
+              className={`${buttonVariants({ variant: "primary", size: "lg" })} pb-press whitespace-nowrap`}
+            >
+              Browse the patterns
+            </Link>
+            <Link
+              href="/examples/marketing/changelog"
+              className={`${buttonVariants({ variant: "secondary", size: "lg" })} pb-press whitespace-nowrap`}
+            >
+              Read the changelog
+            </Link>
           </div>
-          <div className="pb-enter-late min-w-0">
+          <div className="pb-enter-late mt-12 min-w-0">
             <ProductCanvas />
           </div>
         </div>
       </section>
 
-      <TokenMarquee />
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="grid grid-cols-5 gap-4 lg:col-span-8">
+            <Photo
+              name="laptop-code"
+              priority
+              sizes="(min-width: 1024px) 40vw, 60vw"
+              className="col-span-3 aspect-[4/5] rounded-lg"
+            />
+            <Photo
+              name="code-closeup"
+              sizes="(min-width: 1024px) 26vw, 40vw"
+              className="col-span-2 mt-10 aspect-[4/5] rounded-lg"
+            />
+          </div>
+          <div className="lg:col-span-4">
+            <h2 className="text-balance text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+              It is your code now.
+            </h2>
+            <p className="mt-3 text-body-md text-fg-secondary">
+              Each pattern lands in your repo as a plain file. Read it, rename
+              the props, delete what you do not need.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <Reveal className="border-b border-border-default bg-bg-secondary">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="border-t border-border-default">
+        <div className="mx-auto flex max-w-6xl flex-col gap-20 px-6 py-20">
+          <h2 className="max-w-md text-balance text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+            What is new
+          </h2>
+          <Reveal>
+            <Chunk
+              title="Find and filter"
+              items={[
+                {
+                  name: "Data toolbar",
+                  body: "Search, filter chips and actions in one responsive row.",
+                },
+                {
+                  name: "Date picker",
+                  body: "A calendar in a popover with full keyboard support.",
+                },
+                {
+                  name: "Search field",
+                  body: "Clear button, loading state and an Escape shortcut.",
+                },
+              ]}
+              demo={
+                <div className="flex flex-col gap-4">
+                  <DataToolbar
+                    search={<SearchField placeholder="Search" size="sm" />}
+                    filters={
+                      <>
+                        <FilterChip label="Active" selected />
+                        <FilterChip label="Archived" />
+                      </>
+                    }
+                    actions={<DatePicker placeholder="Pick a date" />}
+                  />
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal>
+            <Chunk
+              flip
+              title="Account and navigation"
+              items={[
+                {
+                  name: "App nav",
+                  body: "Logo, links and actions that collapse on small screens.",
+                },
+                {
+                  name: "User menu",
+                  body: "An avatar trigger with a dropdown, built on the menu primitive.",
+                },
+              ]}
+              demo={
+                <div className="flex items-center justify-between gap-4 rounded-md bg-bg-primary p-4">
+                  <div className="flex items-center gap-2">
+                    <Logo variant="icon" size={32} />
+                    <span className="text-ui-md font-semibold text-fg-primary">
+                      Workspace
+                    </span>
+                  </div>
+                  <UserMenu
+                    avatar={
+                      <Avatar
+                        src="/examples/photos/person-4.jpg"
+                        alt="Tomás Aguilar"
+                        size="sm"
+                      />
+                    }
+                  >
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem destructive>Sign out</DropdownMenuItem>
+                  </UserMenu>
+                </div>
+              }
+            />
+          </Reveal>
+          <Reveal>
+            <Chunk
+              title="Consent and messaging"
+              items={[
+                {
+                  name: "Cookie banner",
+                  body: "Title, description and actions, with no tracking built in.",
+                },
+                {
+                  name: "Announcement bar",
+                  body: "A single line with a link, like the one at the top of this page.",
+                },
+              ]}
+              demo={
+                <CookieBanner
+                  title="We keep cookies minimal."
+                  description="Only what the site needs to work. Nothing is sent to ad networks."
+                  actions={
+                    <>
+                      <Button variant="secondary" size="sm">
+                        Decline
+                      </Button>
+                      <Button size="sm">Accept</Button>
+                    </>
+                  }
+                />
+              }
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-y border-border-default bg-bg-secondary">
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <h2 className="text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
+            <h2 className="text-balance text-display-xs font-semibold tracking-[-0.03em] text-fg-primary">
               Install one piece. Keep the rest.
             </h2>
             <p className="mt-3 max-w-md text-body-md text-fg-secondary">
-              The file lands in your repo. Theme it with semantic tokens. Never
-              wait on a vendor upgrade.
+              The CLI copies each file and its dependencies into your project.
             </p>
           </div>
           <CliSnippet
-            label="Ship tonight"
             command="npx paubha@latest add date-picker user-menu search-field"
-            description="Walks registryDependencies. Button, Calendar, Popover, Input come along."
+            description="Button, Calendar, Popover and Input come along."
+            showCopy
           />
         </div>
-      </Reveal>
+      </section>
 
-      {cookies ? (
-        <div className="sticky bottom-4 z-40 mx-auto w-full max-w-6xl px-6 pb-6">
-          <CookieBanner
-            title="This page is the demo."
-            description="No analytics cookies. The banner is a Paubha pattern. Accept just dismisses it."
-            actions={
-              <>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => setCookies(false)}
-                >
-                  Decline
-                </Button>
-                <Button size="sm" onClick={() => setCookies(false)}>
-                  Accept
-                </Button>
-              </>
-            }
-          />
-        </div>
-      ) : null}
+      <section className="mx-auto max-w-3xl px-6 py-20">
+        <Newsletter
+          title="Get the next release by email"
+          description="One short email when new components ship. Unsubscribe any time."
+          submitLabel="Subscribe"
+        />
+      </section>
     </MarketingShell>
   );
 }

@@ -1,61 +1,45 @@
 "use client";
 
+import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@paubha/registry/ui/badge";
 import { buttonVariants } from "@paubha/registry/ui/button";
 import { Faq } from "@paubha/registry/ui/faq";
 import { PricingCard, PricingCardGrid } from "@paubha/registry/ui/pricing-card";
-import { ToggleGroup, ToggleGroupItem } from "@paubha/registry/ui/toggle-group";
+import { Check, Minus } from "lucide-react";
 import Link from "next/link";
-import * as React from "react";
+import { Photo } from "./photo";
 import { MarketingShell } from "./shell";
 
-const PLANS = [
+const COMPARISON = [
   {
-    name: "Free",
-    monthly: 0,
-    yearly: 0,
-    blurb: "The full open-source registry, forever.",
-    features: [
-      "All base components",
-      "Application patterns",
-      "MIT license",
-      "Community Discord",
-    ],
-    cta: "Get started",
-    href: "/docs",
-    featured: false,
+    label: "Price",
+    paubha: "$0, no seats",
+    kits: "Per seat, per year",
   },
   {
-    name: "Team",
-    monthly: 49,
-    yearly: 39,
-    blurb: "Design-system reviews and priority answers.",
-    features: [
-      "Everything in Free",
-      "Priority email support",
-      "Figma file access notes",
-      "Private Slack channel",
-      "Token / theming review",
-    ],
-    cta: "Start Team trial",
-    href: "/examples/marketing/auth",
-    featured: true,
+    label: "License",
+    paubha: "MIT",
+    kits: "Commercial, per project",
   },
   {
-    name: "Enterprise",
-    monthly: 199,
-    yearly: 159,
-    blurb: "Dedicated help for large design systems.",
-    features: [
-      "Everything in Team",
-      "Custom component work",
-      "SLA + onboarding",
-      "Security questionnaire",
-      "Named design partner",
-    ],
-    cta: "Talk to us",
-    href: "/examples/marketing/contact",
-    featured: false,
+    label: "Where the code lives",
+    paubha: "In your repo",
+    kits: "In node_modules",
+  },
+  {
+    label: "Changing a component",
+    paubha: "Edit the file",
+    kits: "Override or fork",
+  },
+  {
+    label: "Accessibility tests",
+    paubha: true,
+    kits: false,
+  },
+  {
+    label: "Light and dark tokens",
+    paubha: true,
+    kits: false,
   },
 ] as const;
 
@@ -63,98 +47,227 @@ const FAQS = [
   {
     question: "Is Paubha really free?",
     answer:
-      "Yes. The entire component catalog ships under the MIT license. Copy what you need with npx paubha; no paid tier gates the registry.",
+      "Yes. The whole catalog ships under the MIT license. Copy what you need with npx paubha@latest add, and nothing is gated behind an account.",
   },
   {
-    question: "What’s the difference between Free and Team?",
+    question: "Can we use it in a commercial product?",
     answer:
-      "Free is the full open-source kit. Team adds priority support, design-system reviews, and a private channel when you want humans in the loop.",
+      "Yes. MIT lets you use, modify and ship Paubha components in commercial products without royalties. Keep the license notice in the repo.",
   },
   {
-    question: "Can we use Paubha commercially?",
+    question: "How is this different from an npm UI library?",
     answer:
-      "Yes. MIT lets you use, modify, and ship Paubha components in commercial products without royalties.",
+      "The CLI copies source files into your project. You review them in pull requests, change them freely, and upgrade by choice rather than by version bump.",
   },
   {
-    question: "How do I get help?",
+    question: "Where do I get help?",
     answer:
-      "Email hello@paubha.tech or open a GitHub issue. Team and Enterprise get faster turnaround and optional Slack.",
+      "Start with the docs, then open a GitHub issue or ask in Discussions. If your team wants a hand adopting it, write to us and we can set up a workshop.",
+  },
+  {
+    question: "Will a paid tier appear later?",
+    answer:
+      "No plans for one. The registry stays free and MIT. If that ever changed, what you have already copied would still be yours.",
   },
 ] as const;
 
 export function PricingMarketingPage() {
-  const [billing, setBilling] = React.useState("yearly");
-
   return (
     <MarketingShell>
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-10 text-center">
-        <Badge variant="gray" fill="subtle" size="md">
-          Pricing
-        </Badge>
-        <h1 className="mt-4 text-display-sm font-semibold tracking-[-0.03em] text-fg-primary">
-          Free open source. Support when you need it.
-        </h1>
-        <p className="mx-auto mt-3 max-w-lg text-body-md text-fg-secondary">
-          Every component is MIT. Optional Team and Enterprise plans exist for
-          support, not for unlocking the kit.
-        </p>
-        <div className="mt-8 flex justify-center">
-          <ToggleGroup
-            value={billing}
-            onValueChange={(v) => {
-              if (v) setBilling(v);
-            }}
-            size="sm"
-            aria-label="Billing period"
-          >
-            <ToggleGroupItem value="monthly">Monthly</ToggleGroupItem>
-            <ToggleGroupItem value="yearly">
-              Yearly
-              <span className="ml-1 text-fg-brand">−20%</span>
-            </ToggleGroupItem>
-          </ToggleGroup>
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pt-16 pb-16 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+        <div className="pb-enter">
+          <h1 className="text-balance text-display-md font-semibold tracking-[-0.03em] text-fg-primary lg:text-display-lg">
+            Free and MIT, with nothing held back.
+          </h1>
+          <p className="mt-4 max-w-md text-body-lg text-fg-secondary">
+            Paubha is free and MIT licensed. Copy the code, own it, and ship it.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/docs"
+              className={buttonVariants({ variant: "primary", size: "lg" })}
+            >
+              Get started
+            </Link>
+            <Link
+              href="https://github.com/dipendrashrest/paubha"
+              className={buttonVariants({ variant: "secondary", size: "lg" })}
+            >
+              View on GitHub
+            </Link>
+          </div>
         </div>
+        <Photo
+          name="team-laptops"
+          priority
+          className="aspect-[4/3] rounded-lg"
+          sizes="(min-width: 1024px) 560px, 100vw"
+        />
       </section>
 
-      <PricingCardGrid className="mx-auto max-w-6xl px-6 pb-16">
-        {PLANS.map((plan) => {
-          const price = billing === "yearly" ? plan.yearly : plan.monthly;
-          return (
+      <section className="border-y border-border-default bg-bg-secondary">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <h2 className="max-w-xl text-display-xs font-semibold text-fg-primary">
+            Two ways to use it
+          </h2>
+          <p className="mt-2 max-w-xl text-body-md text-fg-secondary">
+            Both cost the same. Pick the one that matches how your team works.
+          </p>
+          <PricingCardGrid className="mt-8 lg:grid-cols-2">
             <PricingCard
-              key={plan.name}
-              name={plan.name}
-              description={plan.blurb}
-              price={`$${price}`}
-              featured={plan.featured}
+              name="Self-serve"
+              description="Read the docs, run the CLI, ship."
+              price="$0"
+              period="forever"
+              featured
               badge={
-                plan.featured ? (
-                  <Badge variant="brand" fill="subtle" size="sm">
-                    Popular
-                  </Badge>
-                ) : undefined
+                <Badge variant="brand" fill="subtle" size="sm">
+                  Most teams
+                </Badge>
               }
-              features={[...plan.features]}
+              features={[
+                "33 base components and 27 patterns",
+                "Light and dark tokens included",
+                "Accessibility tests with every component",
+                "MIT license, commercial use allowed",
+              ]}
               action={
                 <Link
-                  href={plan.href}
-                  className={buttonVariants({
-                    variant: plan.featured ? "primary" : "secondary",
-                    size: "md",
-                  })}
+                  href="/docs"
+                  className={buttonVariants({ variant: "primary", size: "md" })}
                 >
-                  {plan.cta}
+                  Get started
                 </Link>
               }
             />
-          );
-        })}
-      </PricingCardGrid>
+            <PricingCard
+              name="With a little help"
+              description="Same code, plus people to ask."
+              price="$0"
+              period="forever"
+              features={[
+                "Everything in Self-serve",
+                "GitHub issues and Discussions",
+                "Migration notes for existing Tailwind apps",
+                "Workshops for teams, by request",
+              ]}
+              action={
+                <Link
+                  href="/examples/marketing/contact"
+                  className={buttonVariants({
+                    variant: "secondary",
+                    size: "md",
+                  })}
+                >
+                  Contact us
+                </Link>
+              }
+            />
+          </PricingCardGrid>
+        </div>
+      </section>
 
-      <section className="border-t border-border-default bg-bg-secondary">
+      <Reveal>
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <h2 className="text-balance text-display-xs font-semibold text-fg-primary">
+                Compared with a rented UI kit
+              </h2>
+              <p className="mt-2 max-w-sm text-body-md text-fg-secondary">
+                A kit you rent keeps the source on its side. Paubha hands it to
+                you on day one.
+              </p>
+            </div>
+            <div className="overflow-x-auto rounded-md border border-border-default">
+              <table className="w-full min-w-[480px] text-left text-body-sm">
+                <caption className="sr-only">
+                  Paubha compared with a rented UI kit
+                </caption>
+                <thead className="bg-bg-secondary text-ui-sm text-fg-tertiary">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-medium" />
+                    <th
+                      scope="col"
+                      className="px-4 py-3 font-medium text-fg-brand"
+                    >
+                      Paubha
+                    </th>
+                    <th scope="col" className="px-4 py-3 font-medium">
+                      Rented kit
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON.map((row) => (
+                    <tr
+                      key={row.label}
+                      className="border-t border-border-default"
+                    >
+                      <th
+                        scope="row"
+                        className="px-4 py-3 font-medium text-fg-primary"
+                      >
+                        {row.label}
+                      </th>
+                      <td className="px-4 py-3 text-fg-primary">
+                        <Cell value={row.paubha} yes />
+                      </td>
+                      <td className="px-4 py-3 text-fg-secondary">
+                        <Cell value={row.kits} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <section className="relative">
+        <Photo
+          name="desk-topdown"
+          className="h-[360px] md:h-[440px]"
+          sizes="100vw"
+          alt="Overhead view of a shared desk covered in laptops, notebooks and phones"
+        />
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="-mt-20 max-w-md rounded-lg border border-border-default bg-bg-primary p-6 md:-mt-28">
+            <h2 className="text-display-xs font-semibold text-fg-primary">
+              Built by people who ship product
+            </h2>
+            <p className="mt-2 text-body-md text-fg-secondary">
+              Every component came out of real app work, then got tests, docs
+              and a Figma spec.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-16 border-t border-border-default bg-bg-secondary">
         <div className="mx-auto max-w-3xl px-6 py-16">
+          <h2 className="mb-6 text-display-xs font-semibold text-fg-primary">
+            Questions people ask
+          </h2>
           <Faq items={[...FAQS]} />
         </div>
       </section>
     </MarketingShell>
+  );
+}
+
+function Cell({ value, yes }: { value: string | boolean; yes?: boolean }) {
+  if (typeof value === "string") return <>{value}</>;
+  return value ? (
+    <span className="inline-flex items-center gap-1.5">
+      <Check className="size-4 text-fg-success" aria-hidden="true" />
+      Included
+    </span>
+  ) : (
+    <span className="inline-flex items-center gap-1.5">
+      <Minus className="size-4 text-fg-tertiary" aria-hidden="true" />
+      {yes ? "Included" : "Varies"}
+    </span>
   );
 }
