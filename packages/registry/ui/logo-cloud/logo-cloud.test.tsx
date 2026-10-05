@@ -16,6 +16,15 @@ describe("LogoCloud", () => {
     expect(screen.getByRole("img", { name: "Northwind" })).toBeInTheDocument();
   });
 
+  it("renders a decorative mark without changing the accessible name", () => {
+    render(<LogoCloudItem name="Orbit" mark={<svg data-testid="mark" />} />);
+    expect(screen.getByRole("img", { name: "Orbit" })).toBeInTheDocument();
+    expect(screen.getByTestId("mark").parentElement).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <LogoCloud label="Customers">
