@@ -17,6 +17,11 @@ describe("Testimonial", () => {
     expect(screen.getByText("Ava Ruiz")).toBeInTheDocument();
   });
 
+  it("renders the author in medium weight", () => {
+    render(<Testimonial quote="Great" author="Sofia Lindqvist" />);
+    expect(screen.getByText("Sofia Lindqvist")).toHaveClass("font-medium");
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <TestimonialGrid>

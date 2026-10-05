@@ -29,7 +29,7 @@ export function Testimonial({
     <figure
       ref={ref}
       className={cn(
-        "flex flex-col gap-5 rounded-md border border-border-default bg-bg-primary p-6",
+        "flex flex-col gap-3 rounded-md border border-border-default bg-bg-primary p-6",
         className,
       )}
       {...props}
@@ -37,10 +37,10 @@ export function Testimonial({
       <blockquote className="text-body-lg text-fg-primary">
         &ldquo;{quote}&rdquo;
       </blockquote>
-      <figcaption className="flex items-center gap-3">
+      <figcaption className="mt-[17px] flex items-center gap-3">
         {avatar != null ? <div className="shrink-0">{avatar}</div> : null}
-        <div className="min-w-0">
-          <p className="text-ui-md font-semibold text-fg-primary">{author}</p>
+        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <p className="text-ui-md font-medium text-fg-primary">{author}</p>
           {role != null ? (
             <p className="text-ui-sm text-fg-tertiary">{role}</p>
           ) : null}
