@@ -101,4 +101,27 @@ describe("SectionHeader", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("uses the larger title size and tertiary description when tabs are present", () => {
+    render(
+      <SectionHeader
+        title="Analytics"
+        description="Monitor metrics."
+        tabs={<div role="tablist" />}
+      />,
+    );
+    expect(screen.getByRole("heading", { name: "Analytics" })).toHaveClass(
+      "text-[22px]",
+    );
+    expect(screen.getByText("Monitor metrics.")).toHaveClass(
+      "text-fg-tertiary",
+    );
+  });
+
+  it("uses the 18px title without tabs", () => {
+    render(<SectionHeader title="Projects" />);
+    expect(screen.getByRole("heading", { name: "Projects" })).toHaveClass(
+      "text-body-lg",
+    );
+  });
 });
