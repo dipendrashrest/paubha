@@ -121,7 +121,7 @@ describe("MetricGroup", () => {
     expect(screen.getByText("Users")).toBeInTheDocument();
     expect(screen.getByText("12.4K")).toBeInTheDocument();
     expect(screen.getByText("Revenue")).toBeInTheDocument();
-    expect(container.querySelectorAll('[role="separator"]')).toHaveLength(2);
+    expect(container.querySelectorAll("[aria-hidden=true]")).toHaveLength(2);
   });
 
   it("has no axe violations", async () => {

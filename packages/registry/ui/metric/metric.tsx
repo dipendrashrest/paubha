@@ -241,8 +241,6 @@ export function MetricGroup({
         <React.Fragment key={React.isValidElement(child) ? child.key : index}>
           {index > 0 ? (
             <div
-              role="separator"
-              aria-orientation="vertical"
               aria-hidden="true"
               className="mx-2 h-8 w-px shrink-0 bg-border-default"
             />
