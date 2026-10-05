@@ -13,7 +13,7 @@ export function PageHeaderHero() {
   actions={<Button variant="secondary" size="sm">Save</Button>}
 />`}
     >
-      <div className="w-full max-w-xl rounded-md border border-border-default bg-bg-primary p-4">
+      <div className="w-full max-w-xl">
         <PageHeader
           title="Settings"
           description="Manage your account preferences."
@@ -42,7 +42,7 @@ export function PageHeaderWithBreadcrumb() {
   actions={<Button variant="secondary" size="sm">Edit</Button>}
 />`}
     >
-      <div className="w-full max-w-xl rounded-md border border-border-default bg-bg-primary p-4">
+      <div className="w-full max-w-xl">
         <PageHeader
           breadcrumb={
             <p className="text-ui-sm text-fg-tertiary">

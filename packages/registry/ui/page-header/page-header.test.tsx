@@ -27,6 +27,11 @@ describe("PageHeader", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders a badge next to the title", () => {
+    render(<PageHeader title="Team members" badge={<span>12 members</span>} />);
+    expect(screen.getByText("12 members")).toBeInTheDocument();
+  });
+
   it("renders breadcrumb above the title", () => {
     render(
       <PageHeader
