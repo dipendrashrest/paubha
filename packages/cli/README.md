@@ -72,6 +72,11 @@ npx paubha@latest add button --force
 }
 ```
 
+In a project with a `src/` folder, `init` writes everything under `src/` (for
+example `src/components/ui`, `src/lib`, `src/styles`) so it sits inside the `@/*`
+alias. If tsconfig maps `@/*` to the project root, it keeps root paths. `add` and
+`init` warn when `components.json` points outside the alias.
+
 Override the registry per-command:
 
 ```bash

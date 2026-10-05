@@ -8,7 +8,7 @@ license: MIT
 
 React components, styled with Tailwind, shipped shadcn-style: `npx paubha add <name>` copies real source into your project. No package to update, no version to fight, nothing you can't just open and change.
 
-Docs: https://paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT · CLI: `paubha@0.5.0` · Design source: the Paubha-UI Figma file (v1). Components, tokens and states match it.
+Docs: https://paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT · CLI: `paubha@0.5.1` · Design source: the Paubha-UI Figma file (v1). Components, tokens and states match it.
 
 ## When to use this
 

@@ -2,8 +2,9 @@ import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
-  DEFAULT_CONFIG,
   type PaubhaConfig,
+  aliasMismatch,
+  detectConfig,
   readConfig,
   writeConfig,
 } from "../utils/config.js";
@@ -42,7 +43,7 @@ export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   }
 
   const existing = readConfig(cwd);
-  const config = existing ?? DEFAULT_CONFIG;
+  const config = existing ?? detectConfig(cwd);
 
   if (!existing) {
     writeConfig(cwd, config);
@@ -50,6 +51,9 @@ export async function runInit({ cwd, force }: InitOptions): Promise<void> {
   } else {
     console.log("• components.json already exists, reusing its paths");
   }
+
+  const mismatch = aliasMismatch(cwd, config);
+  if (mismatch) console.warn(`\n⚠ ${mismatch}\n`);
 
   const base = getRegistryBase(config.registry);
   console.log(`Fetching styles from ${base}...`);

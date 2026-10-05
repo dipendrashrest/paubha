@@ -3,6 +3,19 @@ title: Changelog
 description: Notable changes to Paubha's components, CLI, and docs site.
 ---
 
+## 2026-10-05 (CLI 0.5.1)
+
+### `init` respects `src/` projects
+
+**Release:** `paubha` CLI 0.5.1.
+
+- `init` detects a `src/` folder and the tsconfig `@/*` alias, and writes
+  components, `lib/cn.ts` and the token CSS under `src/` so imports resolve.
+- `add` prints the import path relative to the alias (`@/components/ui/button`).
+- `init` and `add` warn when `components.json` points outside the alias. Projects
+  initialised with an earlier version need to move those folders under `src/` and
+  update `aliases` and `tailwind` in `components.json`.
+
 ## 2026-10-05
 
 ### Every component and pattern synced to Paubha-UI

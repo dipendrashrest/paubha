@@ -1,6 +1,6 @@
 import { execSync } from "node:child_process";
 import { basename, dirname, join } from "node:path";
-import { readConfig } from "../utils/config.js";
+import { aliasMismatch, readConfig, stripSrc } from "../utils/config.js";
 import {
   detectPackageManager,
   installCommand,
@@ -53,7 +53,7 @@ function importPathFor(
   );
   if (!file) return null;
   const folder = dirname(componentRelPath(file.path));
-  return `@/${componentsAlias}/${folder}`;
+  return `@/${stripSrc(componentsAlias)}/${folder}`;
 }
 
 export async function runAdd(
@@ -71,6 +71,9 @@ export async function runAdd(
     process.exitCode = 1;
     return;
   }
+
+  const mismatch = aliasMismatch(cwd, config);
+  if (mismatch) console.warn(`\n⚠ ${mismatch}\n`);
 
   const base = getRegistryBase(config.registry);
   console.log(`Fetching from ${base}...`);

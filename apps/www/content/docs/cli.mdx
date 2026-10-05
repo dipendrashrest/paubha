@@ -157,6 +157,11 @@ npx paubha@latest add button --cwd ./apps/web
 | `tailwind.tokens` / `tailwind.theme` | Paths `init` uses for the CSS files |
 | `tailwind.css` | Global stylesheet `init` adds the token `@import`s to (auto-detected, then saved) |
 
+In a project with a `src/` folder, `init` writes everything under `src/` (for
+example `src/components/ui`, `src/lib`, `src/styles`) so it sits inside the `@/*`
+alias. If tsconfig maps `@/*` to the project root, it keeps root paths. `add` and
+`init` warn when `components.json` points outside the alias.
+
 Override the registry for a single command without editing the file:
 
 ```bash
