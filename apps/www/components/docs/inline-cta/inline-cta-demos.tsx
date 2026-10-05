@@ -2,6 +2,7 @@
 
 import { Button } from "@paubha/registry/ui/button";
 import { InlineCta } from "@paubha/registry/ui/inline-cta";
+import { Sparkles } from "lucide-react";
 import { ComponentPlayground } from "../_shared/component-playground";
 
 export function InlineCtaHero() {
@@ -46,6 +47,44 @@ export function InlineCtaCard() {
           actions={<Button size="sm">Invite</Button>}
         />
       </div>
+    </ComponentPlayground>
+  );
+}
+
+export function InlineCtaLink() {
+  return (
+    <ComponentPlayground
+      code={`<InlineCta
+  variant="link"
+  description="Need help setting up?"
+  actions={<a href="/docs">Check out our getting started guide →</a>}
+/>`}
+    >
+      <div className="w-full max-w-xl">
+        <InlineCta
+          variant="link"
+          description="Need help setting up?"
+          actions={<a href="/docs">Check out our getting started guide →</a>}
+        />
+      </div>
+    </ComponentPlayground>
+  );
+}
+
+export function InlineCtaFloating() {
+  return (
+    <ComponentPlayground
+      code={`<InlineCta
+  variant="floating"
+  icon={<Sparkles />}
+  title="New: AI-powered insights"
+/>`}
+    >
+      <InlineCta
+        variant="floating"
+        icon={<Sparkles />}
+        title="New: AI-powered insights"
+      />
     </ComponentPlayground>
   );
 }

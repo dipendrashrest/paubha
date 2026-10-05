@@ -1,5 +1,5 @@
 import { cn } from "@paubha/registry/lib/cn";
-import { X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import type * as React from "react";
 
 export type InlineCtaVariant = "banner" | "card" | "link" | "floating";
@@ -44,29 +44,56 @@ export function InlineCta({
       className={cn(
         "relative flex w-full gap-3",
         isCard &&
-          "flex-col rounded-md border border-border-default bg-bg-primary p-5 shadow-xs",
-        (variant === "banner" || isFloating) &&
+          "flex-col gap-5 rounded-md border border-border-default bg-bg-primary p-6",
+        variant === "banner" &&
           "items-center rounded-md border border-border-brand bg-bg-brand-subtle px-4 py-3",
-        isLink && "items-center border-b border-border-default py-3",
-        isFloating && "w-auto shadow-sm",
+        isLink &&
+          "items-center gap-1 rounded-sm border border-border-default bg-bg-brand-subtle px-4 py-3",
+        isFloating &&
+          "w-auto items-center rounded-full border border-border-default bg-bg-elevated py-1.5 pr-4 pl-1.5 shadow-sm",
         className,
       )}
       {...props}
     >
       {icon != null ? (
-        <div className="shrink-0 text-fg-brand [&_svg]:size-5">{icon}</div>
+        <div
+          className={cn(
+            "shrink-0 text-fg-brand [&_svg]:size-5",
+            isFloating &&
+              "flex size-[34px] items-center justify-center rounded-full bg-bg-brand-subtle",
+          )}
+        >
+          {icon}
+        </div>
       ) : null}
       <div
         className={cn(
           "flex min-w-0 flex-1",
           isCard
-            ? "flex-col gap-1"
-            : "flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3",
+            ? "flex-col gap-5"
+            : isLink
+              ? "flex-wrap items-center gap-1"
+              : "flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-3",
         )}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <div
+          className={cn(
+            "flex min-w-0 flex-col",
+            isCard ? "gap-1.5" : "gap-0.5",
+            !isCard && !isLink && "flex-1",
+          )}
+        >
           {title != null ? (
-            <p className="text-ui-md font-semibold text-fg-primary">{title}</p>
+            <p
+              className={cn(
+                "text-fg-primary",
+                isCard
+                  ? "text-display-xs font-semibold"
+                  : "text-ui-md font-medium",
+              )}
+            >
+              {title}
+            </p>
           ) : null}
           {description != null ? (
             <p className="text-body-sm text-fg-secondary">{description}</p>
@@ -74,9 +101,22 @@ export function InlineCta({
           {children}
         </div>
         {actions != null ? (
-          <div className="flex shrink-0 items-center gap-2">{actions}</div>
+          <div
+            className={cn(
+              "flex shrink-0 items-center",
+              isLink ? "gap-1 text-ui-md font-medium text-fg-link" : "gap-3",
+            )}
+          >
+            {actions}
+          </div>
         ) : null}
       </div>
+      {isFloating && !dismissible ? (
+        <ArrowRight
+          aria-hidden="true"
+          className="size-4 shrink-0 text-fg-tertiary"
+        />
+      ) : null}
       {dismissible ? (
         <button
           type="button"

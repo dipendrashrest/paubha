@@ -212,6 +212,8 @@ import {
 } from "@/components/docs/icons/icons-showcase";
 import {
   InlineCtaCard,
+  InlineCtaFloating,
+  InlineCtaLink,
   InlineCtaHero,
 } from "@/components/docs/inline-cta/inline-cta-demos";
 import {
@@ -714,6 +716,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     // Inline CTA (application pattern)
     InlineCtaCard,
+    InlineCtaFloating,
+    InlineCtaLink,
     InlineCtaHero,
 
     // Filter (application pattern)

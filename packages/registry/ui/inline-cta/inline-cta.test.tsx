@@ -38,4 +38,19 @@ describe("InlineCta", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("renders link and floating variants without axe violations", async () => {
+    const { container } = render(
+      <>
+        <InlineCta
+          variant="link"
+          description="Need help setting up?"
+          actions={<a href="/docs">Check out our guide →</a>}
+        />
+        <InlineCta variant="floating" title="New: AI-powered insights" />
+      </>,
+    );
+    expect(screen.getByText("Need help setting up?")).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });
