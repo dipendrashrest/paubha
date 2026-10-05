@@ -48,7 +48,7 @@ export function MarketingHero({
       >
         <div className="flex flex-col gap-6">
           {eyebrow != null ? <div>{eyebrow}</div> : null}
-          <h1 className="max-w-xl text-balance text-display-lg font-semibold tracking-[-0.04em] text-fg-primary">
+          <h1 className="max-w-xl text-balance text-display-lg font-semibold text-fg-primary">
             {title}
           </h1>
           {description != null ? (
