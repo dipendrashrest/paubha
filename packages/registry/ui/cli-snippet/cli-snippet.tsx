@@ -5,7 +5,7 @@ import { Check, Copy } from "lucide-react";
 import * as React from "react";
 
 export interface CliSnippetProps
-  extends Omit<React.ComponentPropsWithRef<"div">, "title"> {
+  extends Omit<React.ComponentPropsWithRef<"div">, "title" | "onCopy"> {
   /** Optional eyebrow label above the command. */
   label?: React.ReactNode;
   /** The command string shown in mono. */
