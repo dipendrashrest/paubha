@@ -48,7 +48,7 @@ export function PricingCard({
       )}
       {...props}
     >
-      <CardContent className="flex h-full flex-col gap-5 p-6">
+      <CardContent className="flex h-full flex-col gap-5">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
             <p className="text-ui-lg font-semibold text-fg-primary">{name}</p>
