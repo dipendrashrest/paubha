@@ -2,9 +2,11 @@
 
 import { cn } from "@paubha/registry/lib/cn";
 import type * as React from "react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Button } from "../button/button";
 import { Input } from "../input/input";
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export interface NewsletterProps
   extends Omit<React.ComponentPropsWithRef<"form">, "title" | "onSubmit"> {
@@ -13,14 +15,17 @@ export interface NewsletterProps
   /** Submit button label. @default "Subscribe" */
   submitLabel?: React.ReactNode;
   placeholder?: string;
+  /** Shown under the form when the email is invalid. @default "Enter a valid email address." */
+  errorMessage?: React.ReactNode;
   onSubscribe?: (email: string) => void;
   /** Shown after a successful submit. Can be a node or a function of the email. */
   successMessage?: React.ReactNode | ((email: string) => React.ReactNode);
 }
 
 /**
- * Email capture form · native form · input labelled via aria-label ·
- * submit button carries glow-focus from Button
+ * Email capture form · native form (noValidate, own email check) · input labelled via
+ * aria-label · invalid email sets aria-invalid + aria-describedby to the error text ·
+ * input and submit button carry glow-focus
  */
 export function Newsletter({
   ref,
@@ -29,12 +34,15 @@ export function Newsletter({
   description = "New components and patterns, one email a month.",
   submitLabel = "Subscribe",
   placeholder = "you@company.com",
+  errorMessage = "Enter a valid email address.",
   onSubscribe,
   successMessage = "You’re subscribed.",
   ...props
 }: NewsletterProps) {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const errorId = useId();
 
   if (done) {
     const message =
@@ -63,9 +71,14 @@ export function Newsletter({
         "flex w-full flex-col gap-4 rounded-md border border-border-default bg-bg-primary p-6",
         className,
       )}
+      noValidate
       onSubmit={(e) => {
         e.preventDefault();
-        if (!email.trim()) return;
+        if (!EMAIL_PATTERN.test(email.trim())) {
+          setInvalid(true);
+          return;
+        }
+        setInvalid(false);
         onSubscribe?.(email.trim());
         setDone(true);
       }}
@@ -84,7 +97,12 @@ export function Newsletter({
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (invalid) setInvalid(false);
+          }}
+          error={invalid}
+          aria-describedby={invalid ? errorId : undefined}
           placeholder={placeholder}
           aria-label="Email"
           className="flex-1"
@@ -93,6 +111,11 @@ export function Newsletter({
           {submitLabel}
         </Button>
       </div>
+      {invalid && errorMessage != null ? (
+        <p id={errorId} className="text-ui-xs text-fg-error">
+          {errorMessage}
+        </p>
+      ) : null}
     </form>
   );
 }
