@@ -24,14 +24,16 @@ export function TeamCard({
   return (
     <Card
       ref={ref}
-      variant="outlined"
-      className={cn("hover:bg-bg-primary", className)}
+      className={cn(
+        "hover:border-border-default hover:bg-bg-primary",
+        className,
+      )}
       {...props}
     >
       <CardContent className="flex flex-row items-center gap-3 p-4">
         {avatar != null ? <div className="shrink-0">{avatar}</div> : null}
-        <div className="min-w-0">
-          <p className="text-ui-md font-semibold text-fg-primary">{name}</p>
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <p className="text-ui-md font-medium text-fg-primary">{name}</p>
           {role != null ? (
             <p className="text-body-sm text-fg-secondary">{role}</p>
           ) : null}

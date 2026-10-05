@@ -16,6 +16,12 @@ describe("TeamCard", () => {
     expect(screen.getByText("Design systems")).toBeInTheDocument();
   });
 
+  it("uses the default Card border and a medium-weight name", () => {
+    render(<TeamCard name="Ava Ruiz" role="Design" />);
+    expect(screen.getByText("Ava Ruiz")).toHaveClass("font-medium");
+    expect(screen.getByRole("article")).toHaveClass("border-border-default");
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <TeamCardGrid>
