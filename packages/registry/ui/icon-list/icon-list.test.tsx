@@ -19,6 +19,16 @@ describe("IconList", () => {
     expect(screen.getByText("hello@paubha.tech")).toBeInTheDocument();
   });
 
+  it("renders without icon or description", async () => {
+    const { container } = render(
+      <IconList>
+        <IconListItem title="Only title" />
+      </IconList>,
+    );
+    expect(screen.getByText("Only title")).toBeInTheDocument();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it("has no axe violations", async () => {
     const { container } = render(
       <IconList>

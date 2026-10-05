@@ -20,13 +20,17 @@ export function IconListItem({
   ...props
 }: IconListItemProps) {
   return (
-    <li ref={ref} className={cn("flex gap-3", className)} {...props}>
+    <li
+      ref={ref}
+      className={cn("flex items-center gap-4", className)}
+      {...props}
+    >
       {icon != null ? (
         <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-bg-secondary text-fg-brand [&_svg]:size-5">
           {icon}
         </span>
       ) : null}
-      <div className="min-w-0">
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
         <p className="text-ui-md font-semibold text-fg-primary">{title}</p>
         {description != null ? (
           <p className="text-body-sm text-fg-secondary">{description}</p>
