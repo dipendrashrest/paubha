@@ -8,7 +8,7 @@ license: MIT
 
 React components, styled with Tailwind, shipped shadcn-style: `npx paubha add <name>` copies real source into your project. No package to update, no version to fight, nothing you can't just open and change.
 
-Docs: https://paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT
+Docs: https://paubha.tech · Repo: https://github.com/dipendrashrest/paubha · License: MIT · CLI: `paubha@0.5.0` · Design source: the Paubha-UI Figma file (v1). Components, tokens and states match it.
 
 ## When to use this
 
@@ -46,23 +46,23 @@ https://paubha.tech/r/registry.json
 
 Every entry has `name` (what `add` takes), `title`, `description`, real `files`. Want to eyeball a component's actual source before installing it? `https://paubha.tech/r/<name>.json`.
 
-Snapshot as of this write-up: base components (Button, Input, Field, Textarea, Checkbox, Radio Group, Switch, Select, Avatar, Badge, Alert, Toast, Modal, Dialog, Dropdown Menu, Popover, Tooltip, Tabs, Accordion, Card, Table, Pagination, Progress Bar, Progress Circle, Slider, Spinner, Skeleton, Divider, Breadcrumbs, Kbd, Tag Input, Toggle Group, Verification Code Input, Logo) plus application patterns (Activity Feed, Chart, Calendar, App Nav, Page Header, Section Header, Metric, Progress Steps, Empty State, Inline CTA, Filter, File Upload, Announcement Bar, Logo Cloud, Site Footer, Testimonial, Newsletter, Marketing Hero, Card Header). Some base components ship a `-v2` sibling too (`select-v2`, `popover-v2`, `accordion-v2`, `pagination-v2`, `tag-input-v2`). These are real, separately maintained, restrained variants, not stale duplicates.
+Snapshot (registry v0.5.0, 74 items): base components (Button, Input, Field, Textarea, Checkbox, Radio Group, Switch, Select, Avatar, Badge, Alert, Toast, Modal, Dialog, Dropdown Menu, Popover, Tooltip, Tabs, Accordion, Card, Table, Pagination, Progress Bar, Progress Circle, Slider, Spinner, Skeleton, Divider, Breadcrumbs, Kbd, Tag Input, Toggle Group, Verification Code Input, Logo) plus application patterns built from them (Activity Feed, Announcement Bar, App Nav, Auth Card, Blog Card, Calendar, Card Header, Chart, CLI Snippet, Comment, Confirm Dialog, Cookie Banner, Data Toolbar, Date Picker, Empty State, FAQ, Feature List, File Upload, Filter, Icon List, Inline CTA, Logo Cloud, Marketing Hero, Metric, Newsletter, Page Header, Pricing Card, Progress Steps, Search Field, Section Header, Settings Row, Site Footer, Team Card, Testimonial, User Menu). Some base components ship a `-v2` sibling too (`select-v2`, `popover-v2`, `accordion-v2`, `pagination-v2`, `tag-input-v2`). These are real, separately maintained, restrained variants, not stale duplicates. Patterns compose base components: install one and the CLI pulls in what it needs.
 
 ## Design tokens: bind to these, never to primitives
 
 Every component reaches for a semantic class, never a raw hex or an arbitrary value that "looks right." Do the same in anything you write around these components. This is the only reason dark mode and re-theming stay a token remap instead of a find-and-replace across every file.
 
-**Backgrounds:** `bg-primary` `bg-secondary` `bg-tertiary` `bg-elevated` `bg-preview` `bg-overlay` `bg-disabled` `bg-secondary-hover` `bg-tertiary-hover` `bg-switch-off` · brand: `bg-brand-solid` `bg-brand-solid-hover` `bg-brand-solid-active` `bg-brand-subtle` · status (error/warning/success/info all follow `-solid` / `-solid-hover` / `-subtle`): `bg-error-solid` `bg-error-solid-hover` `bg-error-subtle` `bg-warning-solid` `bg-warning-subtle` `bg-success-solid` `bg-success-subtle` `bg-info-solid` `bg-info-subtle`
+**Backgrounds:** `bg-primary` `bg-secondary` `bg-tertiary` `bg-elevated` `bg-preview` `bg-overlay` `bg-disabled` `bg-secondary-hover` `bg-tertiary-hover` `bg-switch-off` · chips (badge-style fills): `bg-brand-chip` `bg-info-chip` `bg-success-chip` `bg-warning-chip` `bg-error-chip` · brand: `bg-brand-solid` `bg-brand-solid-hover` `bg-brand-solid-active` `bg-brand-subtle` · status (error/warning/success/info all follow `-solid` / `-solid-hover` / `-subtle`): `bg-error-solid` `bg-error-solid-hover` `bg-error-solid-active` `bg-error-subtle` `bg-warning-solid` `bg-warning-subtle` `bg-success-solid` `bg-success-subtle` `bg-info-solid` `bg-info-subtle`
 
-**Foreground:** `fg-primary` `fg-secondary` `fg-tertiary` `fg-disabled` `fg-brand` · on-solid: `fg-on-brand` `fg-on-error` `fg-on-warning` `fg-on-success` `fg-on-info` · status: `fg-error` `fg-warning` `fg-success` `fg-info`
+**Foreground:** `fg-primary` `fg-secondary` `fg-tertiary` `fg-disabled` `fg-brand` · on-solid: `fg-on-brand` `fg-on-error` `fg-on-warning` `fg-on-success` `fg-on-info` · links: `fg-link` · status: `fg-error` `fg-warning` `fg-success` `fg-info`
 
-**Borders:** `border-default` `border-strong` `border-brand` `border-error` `border-warning` `border-success` `border-info`
+**Borders:** `border-default` `border-strong` `border-disabled` `border-brand` `border-error` `border-warning` `border-success` `border-info`
 
-**Focus:** `shadow-[var(--shadow-glow-focus)]` on every interactive component's focus-visible state: a 4px brand-tinted glow, not a hard outline. Non-negotiable brand signature. Hand-rolling something interactive? Match it. Don't fall back to the browser default.
+**Focus:** `shadow-[var(--shadow-glow-focus)]` on every interactive component's focus-visible state: a 4px brand-tinted glow, not a hard outline. Destructive and invalid states use the error variant (`focus-ring-error`). Non-negotiable brand signature. Hand-rolling something interactive? Match it. Don't fall back to the browser default.
 
 Light/dark mappings exist for all of the above already. You never write a `dark:` variant for color on top of a semantic token; the token itself already flips per mode.
 
-**Also available the same way:** spacing (`space-0`…`space-10xl`, plus a `space-2xs` 2px micro tier), radius (`radius-none/xs/sm/md/lg/xl/full` = 0/4/8/12/16/20/9999px), type scale (`text-ui-*` `text-body-*` `text-display-*`, role-based, not generic `sm`/`md`/`lg`).
+**Also available the same way:** spacing (`space-0`…`space-10xl`, plus a `space-2xs` 2px micro tier), radius (`radius-none/xs/sm/md/lg/xl/full` = 0/4/8/12/16/20/9999px), type scale (`text-ui-*` `text-body-*` `text-display-*`, role-based, not generic `sm`/`md`/`lg`), plus layering (`--z-*`) and motion (`--duration-*`) variables.
 
 ## Component API: the shape you can rely on
 
@@ -70,11 +70,12 @@ These hold across the catalog, but **the installed file's own prop types are the
 
 - Native props extended, refs forwarded: `React.ComponentPropsWithRef<"button">` etc.
 - CVA (`class-variance-authority`) + a shared `cn()` for variants. Your `className` always wins.
-- `variant` is a lowercase string in code (`variant="primary"`). `size` is `sm`/`md`/`lg`/`xl`. Booleans are camelCase (`showIcon`, `dismissible`). Instance-swap slots are camelCase (`leadingIcon`, `avatar`).
+- `variant` is a lowercase string in code (`variant="primary"`). `size` is `sm`/`md`/`lg`/`xl`, and form-row components (Button, Input, Select) also take `2xl`. They share one height scale: 32 / 40 / 48 / 56 / 64px. Booleans are camelCase (`showIcon`, `dismissible`). Instance-swap slots are camelCase (`leadingIcon`, `avatar`).
 - Multi-part components compose: `<Dialog><DialogTrigger/><DialogContent/></Dialog>`, not one component drowning in fifteen props.
 - Controlled/uncontrolled both work where it makes sense: `value` / `defaultValue` / `onValueChange`.
 - Overlay/interaction components (Select, Dialog, Dropdown Menu, Tooltip, Popover, Accordion, Switch, Checkbox, Slider, Toast, Tabs) sit on Radix primitives. Expect real Radix behavior (focus trapping, typeahead, positioning) even where the wrapper hides it.
 - **`asChild` is not everywhere.** It's real on `Select` (comes from the underlying Radix primitive). `Button` has no `asChild` at all. Need a button-styled link? Import `buttonVariants()` and slap the classes on a real `<a>`/`<Link>`. Don't assume `asChild` exists just because you've seen it on other component libraries.
+- **Things that changed in the v1 sync, so stale code may be wrong:** Button variants are `primary` / `secondary` / `tertiary` / `link` (`ghost` is gone) and `destructive` is a boolean prop, not a variant. Avatar uses `indicator` (not `status`) and a `type` prop. Badge's root is a plain `<span>` with no default `role="status"`. Card radius is 8px. Checkbox's checked state is outlined, not solid. Date Picker stages a picked day and only commits (and closes) on Apply. Logo takes a pixel `size`.
 - Lucide (`lucide-react`) only. Matches the Figma file 1:1. Don't mix in a second icon set next to these components.
 
 ## Known gotchas: don't rediscover these

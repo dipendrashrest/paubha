@@ -1,5 +1,5 @@
 import { Alert } from "@paubha/registry/ui/alert";
-import Link from "fumadocs-core/link";
+import { buttonVariants } from "@paubha/registry/ui/button";
 
 export function IntroPositioningAlert() {
   return (
@@ -28,16 +28,31 @@ export function IntroPositioningAlert() {
 
 export function SkillMdCard() {
   return (
-    <div className="not-prose rounded-sm border border-border-default bg-bg-secondary p-4">
-      <p className="text-ui-md font-semibold text-fg-primary">skill.md</p>
-      <p className="mt-1 text-ui-sm text-fg-secondary">
-        A machine-readable description of Paubha&apos;s component conventions,
-        token structure, and composition patterns. Available on our{" "}
-        <Link href="/" className="font-medium text-fg-brand hover:underline">
-          landing page
-        </Link>
-        .
-      </p>
+    <div className="not-prose flex flex-col gap-4 rounded-sm border border-border-default bg-bg-secondary p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p className="text-ui-md font-semibold text-fg-primary">skill.md</p>
+        <p className="mt-1 text-ui-sm text-fg-secondary">
+          Conventions, tokens and install steps for AI tools. Plain Markdown,
+          always in sync with the registry.
+        </p>
+      </div>
+      <div className="flex shrink-0 gap-2">
+        <a
+          href="/skill.md"
+          target="_blank"
+          rel="noreferrer"
+          className={buttonVariants({ variant: "secondary", size: "sm" })}
+        >
+          View
+        </a>
+        <a
+          href="/skill.md"
+          download="skill.md"
+          className={buttonVariants({ variant: "primary", size: "sm" })}
+        >
+          Download
+        </a>
+      </div>
     </div>
   );
 }
