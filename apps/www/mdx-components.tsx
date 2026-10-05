@@ -282,6 +282,7 @@ import {
 import { ProgressCirclePropsTable } from "@/components/docs/progress-circle/progress-circle-props-table";
 import {
   ProgressStepsHero,
+  ProgressStepsVariants,
   ProgressStepsVertical,
 } from "@/components/docs/progress-steps/progress-steps-demos";
 import {
@@ -696,7 +697,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     // Progress Steps (application pattern)
     ProgressStepsHero,
-    ProgressStepsVertical,
+    ProgressStepsVariants,
+  ProgressStepsVertical,
 
     // Empty State (application pattern)
     EmptyStateHero,

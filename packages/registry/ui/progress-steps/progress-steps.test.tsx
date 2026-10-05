@@ -118,4 +118,53 @@ describe("ProgressSteps", () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it.each(["horizontal", "vertical", "numbered", "description"] as const)(
+    "renders the %s variant with no axe violations",
+    async (variant) => {
+      const { container } = render(
+        <ProgressSteps variant={variant}>
+          <ProgressStep status="complete" label="One" description="Done" />
+          <ProgressStep status="current" label="Two" description="Now" />
+          <ProgressStep status="upcoming" label="Three" description="Next" />
+        </ProgressSteps>,
+      );
+      expect(screen.getAllByRole("listitem")).toHaveLength(3);
+      expect(screen.getByText("Two").closest("li")).toHaveAttribute(
+        "aria-current",
+        "step",
+      );
+      expect(await axe(container)).toHaveNoViolations();
+    },
+  );
+
+  it("uses a brand top rule on the current description step", () => {
+    render(
+      <ProgressSteps variant="description">
+        <ProgressStep status="current" label="Now" />
+        <ProgressStep status="upcoming" label="Next" />
+      </ProgressSteps>,
+    );
+    expect(screen.getByText("Now").closest("li")).toHaveClass(
+      "border-border-brand",
+    );
+    expect(screen.getByText("Next").closest("li")).toHaveClass(
+      "border-border-default",
+    );
+  });
+
+  it("shows step numbers only in the numbered variant", () => {
+    const { rerender } = render(
+      <ProgressSteps variant="numbered">
+        <ProgressStep status="current" label="Pay" />
+      </ProgressSteps>,
+    );
+    expect(screen.getByText("1")).toBeInTheDocument();
+    rerender(
+      <ProgressSteps variant="horizontal">
+        <ProgressStep status="current" label="Pay" />
+      </ProgressSteps>,
+    );
+    expect(screen.queryByText("1")).not.toBeInTheDocument();
+  });
 });

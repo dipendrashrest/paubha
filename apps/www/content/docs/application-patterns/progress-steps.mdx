@@ -1,6 +1,6 @@
 ---
 title: Progress Steps
-description: Horizontal or vertical multi-step progress indicator.
+description: Multi-step progress indicator in four layouts.
 ---
 
 <ProgressStepsHero />
@@ -26,3 +26,16 @@ import { ProgressStep, ProgressSteps } from "@/components/ui/progress-steps";
 ### Vertical
 
 <ProgressStepsVertical />
+
+### Horizontal and description
+
+<ProgressStepsVariants />
+
+## Props
+
+### ProgressSteps
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `variant` | `"horizontal" \| "vertical" \| "numbered" \| "description"` | from `orientation` |
+| `orientation` | `"horizontal" \| "vertical"` (shorthand for `numbered` / `vertical`) | `"horizontal"` |
