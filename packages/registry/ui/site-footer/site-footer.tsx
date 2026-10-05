@@ -39,7 +39,9 @@ export function SiteFooter({
           <div className="flex max-w-xs flex-col gap-3">
             {brand}
             {description != null ? (
-              <p className="text-body-sm text-fg-tertiary">{description}</p>
+              <p className="max-w-[280px] text-body-sm text-fg-tertiary">
+                {description}
+              </p>
             ) : null}
           </div>
         )}
@@ -51,7 +53,7 @@ export function SiteFooter({
       </div>
       {bottom != null ? (
         <div className="border-t border-border-default">
-          <div className="mx-auto max-w-6xl px-6 py-4 text-ui-xs text-fg-tertiary">
+          <div className="mx-auto flex max-w-6xl items-start justify-between px-6 py-4 text-ui-xs text-fg-tertiary">
             {bottom}
           </div>
         </div>
@@ -75,7 +77,7 @@ export function SiteFooterColumn({
   ...props
 }: SiteFooterColumnProps) {
   return (
-    <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
+    <div ref={ref} className={cn("flex flex-col gap-3", className)} {...props}>
       <p className="text-ui-sm font-semibold text-fg-primary">{title}</p>
       <nav
         aria-label={typeof title === "string" ? title : "Footer"}
@@ -100,7 +102,7 @@ export function SiteFooterLink({
     <a
       ref={ref}
       className={cn(
-        "text-ui-sm text-fg-tertiary transition-colors hover:text-fg-primary",
+        "rounded-xs text-ui-sm text-fg-tertiary transition-colors hover:text-fg-primary",
         "focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]",
         className,
       )}
