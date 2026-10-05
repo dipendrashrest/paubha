@@ -14,18 +14,28 @@ export interface UserMenuProps
   avatar: React.ReactNode;
   /** Accessible name for the trigger. */
   label?: string;
+  /** Account name shown in the menu header. */
+  name?: React.ReactNode;
+  /** Account email shown under the name. */
+  email?: React.ReactNode;
+  /** Disables the trigger (avatar dims to 35%). */
+  disabled?: boolean;
   children?: React.ReactNode;
 }
 
 /**
- * Account menu · DropdownMenu + Avatar trigger · trigger carries glow-focus ·
- * items inherit menu keyboard / ARIA from DropdownMenuItem
+ * Account menu · DropdownMenu + Avatar trigger · Enter/Space/ArrowDown opens,
+ * Esc closes, arrows move between items · trigger carries glow-focus · disabled
+ * trigger is inert · items inherit menu keyboard / ARIA from DropdownMenuItem
  */
 export function UserMenu({
   ref,
   className,
   avatar,
   label = "Account menu",
+  name,
+  email,
+  disabled,
   children,
   ...props
 }: UserMenuProps) {
@@ -36,12 +46,36 @@ export function UserMenu({
           <button
             type="button"
             aria-label={label}
-            className="rounded-full outline-none focus-visible:shadow-[var(--shadow-glow-focus)]"
+            disabled={disabled}
+            className={cn(
+              "inline-flex size-12 items-center justify-center rounded-full border border-border-default bg-bg-primary p-1 outline-none transition-colors",
+              "hover:bg-bg-secondary-hover focus-visible:shadow-[var(--shadow-glow-focus)]",
+              "disabled:cursor-not-allowed disabled:border-border-disabled disabled:bg-bg-disabled disabled:hover:bg-bg-disabled disabled:[&>*]:opacity-35",
+            )}
           >
             {avatar}
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="min-w-44">
+          {name != null || email != null ? (
+            <>
+              <div
+                role="presentation"
+                className="flex flex-col gap-0.5 px-3 py-2 font-medium"
+              >
+                {name != null ? (
+                  <p className="text-ui-md text-fg-primary">{name}</p>
+                ) : null}
+                {email != null ? (
+                  <p className="text-ui-sm text-fg-secondary">{email}</p>
+                ) : null}
+              </div>
+              <div
+                aria-hidden="true"
+                className="h-px w-full bg-border-default"
+              />
+            </>
+          ) : null}
           {children}
         </DropdownMenuContent>
       </DropdownMenu>

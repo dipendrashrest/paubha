@@ -16,8 +16,22 @@ import { UserMenu } from "@/components/ui/user-menu";
 import { Avatar } from "@/components/ui/avatar";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
-<UserMenu avatar={<Avatar initials="AR" alt="Ava Ruiz" size="sm" />}>
+<UserMenu
+  avatar={<Avatar initials="AR" alt="Ava Ruiz" size="md" />}
+  name="Ava Ruiz"
+  email="ava@example.com"
+>
   <DropdownMenuItem>Profile</DropdownMenuItem>
   <DropdownMenuItem>Sign out</DropdownMenuItem>
 </UserMenu>
 ```
+
+## Props
+
+| Prop       | Type        | Description                                  |
+| ---------- | ----------- | -------------------------------------------- |
+| `avatar`   | `ReactNode` | Avatar shown in the 48px trigger.            |
+| `label`    | `string`    | Accessible name for the trigger.             |
+| `name`     | `ReactNode` | Account name in the menu header.             |
+| `email`    | `ReactNode` | Email under the name.                        |
+| `disabled` | `boolean`   | Disables the trigger; avatar dims to 35%.    |
