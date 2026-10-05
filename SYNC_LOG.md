@@ -433,3 +433,20 @@ OPEN QUESTIONS (patterns group 2)
 - Empty State: four Figma presets (No Data / No Search / First Time / Error) differ only in content + error chip colour — only `tone` added.
 - FAQ: Figma sample copy says "50 application patterns" (CLAUDE.md says 27).
 - Cookie Banner: Figma shows three buttons (Customize/Reject/Accept) — supplied by callers via `actions`.
+
+### Patterns — group 3 (2026-10-05)
+Filter (bordered bar/chips/active-filters; chips compose Badge; new `FilterPanel*` parts; ⚠️ `ActiveFilters` default `clearLabel` → "Clear all filters"), Inline CTA (banner/card/link/floating visuals; no prop changes), Logo Cloud (`mark` slot, medium fg-tertiary labels), Metric (p-4 cards, flush dividers, trend delta `text-fg-success`), Marketing Hero (dropped hardcoded tracking), Newsletter (new `errorMessage`, inline email validation replaces the native bubble), Page Header (⚠️ **visual:** root now carries border/bg/padding; new `badge` slot), Pricing Card (inherits Card padding), Progress Steps (new `variant`: horizontal/vertical/numbered/description; `orientation` kept), Search Field and Settings Row (verified, no edits), Section Header (type/gap sync), Site Footer, Team Card, Testimonial (spacing/weight sync), User Menu (new `name`, `email`, `disabled`; 48px circle trigger).
+No new tokens (all TOKEN NEEDED items resolved with existing ones).
+
+OPEN QUESTIONS (patterns group 3)
+- Radius: Figma Pricing Card, Team Card and Progress Steps (vertical) use `radius/md` 12 while Card is 8 — not overridden locally; designer decision needed. Filter container's hardcoded 10px mapped to radius-md 12.
+- Section Header: 22/30 semibold title (with tabs) has no type token; code uses `text-[22px] leading-[30px]`.
+- Hardcoded Figma colours: Metric trend `#12b76a`, Inline CTA link `#244feb`, Filter Panel checkbox `#e4e7ec`, Page Header breadcrumb `#244feb`/`#99a6b2`, Newsletter error text bound to stray `sds-color-text-danger-on-danger-secondary`. Code uses semantic tokens. Inline CTA floating shadow is black, not brand-tinted (used `shadow-sm`).
+- Focus: User Menu / Site Footer links use a 2px ring or 0-blur drop-shadow in Figma; code keeps `shadow-glow-focus`.
+- User Menu: Figma rows are px-3/py-2 ui-md, p-2 panel, 264px wide vs published DropdownMenu p-1, px-2/py-1.5 ui-sm, min-w-44 — base not overridden. Open variants show no pressed trigger style.
+- Page Header: Figma "with Description" puts the description full-width under the title/actions row; code keeps it under the title.
+- Settings Row: Figma says control is `aria-labelledby` the title; not wired (would override a Button's name). Callers pass labels.
+- Marketing Hero description says `-0.04em` but bound `display/lg` is -1px. Search Field description still lists old 36/40/44/48 sizes. Site Footer description says max-w-xs (320) but frame is 280. Progress Steps has odd 19px/13px icon sizes; Section Header Search variant is a raw input with no icon.
+- Newsletter/Progress Steps responsive and error states are code-only where Figma shows one layout.
+
+**Patterns: all synced to Paubha-UI.**

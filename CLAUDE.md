@@ -128,8 +128,8 @@ Every interactive component needs: correct ARIA role, documented keyboard behavi
 ## Current status (update this section as work progresses)
 
 - Figma foundations: done (Colors, Typography & Spacing, Depth & Shape, Icons, Grid Layouts)
-- Figma: Paubha-UI has 40 base component pages (Actions & Navigation, Inputs, Selection, Feedback & Status, Overlays & Display) plus ~55 application-pattern pages and 3 marketing pages.
-- Code: 69 registry items in `packages/registry/ui`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
+- Figma: Paubha-UI has 40 base component pages (Actions & Navigation, Inputs, Selection, Feedback & Status, Overlays & Display) plus ~55 application-pattern pages and 3 marketing pages. **All 39 base components + all patterns are synced to Paubha-UI** (see SYNC_LOG.md for API changes and open questions).
+- Code: 74 registry items in `packages/registry/ui`, each with a vitest-axe test file and a `registry.json` entry. Tokens live in `packages/registry/styles/`. `pnpm build:registry` emits shadcn-format JSON to `apps/www/public/r/`. CLI (`packages/cli`) has working `init` and `add` that **fetch** from the registry URL (default `https://paubha.tech/r`; override with `PAUBHA_REGISTRY_URL` or `components.json` `registry`).
 - Docs site: Introduction/Installation/Theming/CLI pages exist; component-doc-page template proven on Avatar. Not yet wired to the real components built above — `apps/www/content/docs/components/*.mdx` still predates them and needs a pass to hook up live previews/prop tables (tracked as the next phase).
 
 ## Working style
