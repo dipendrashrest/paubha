@@ -133,8 +133,12 @@ export function Metric({
     <div
       ref={ref}
       className={cn(
-        "flex flex-col rounded-md border border-border-default bg-bg-primary p-5",
-        hasSparkline ? "gap-3 overflow-hidden" : hasTrend ? "gap-1.5" : "gap-2",
+        "flex flex-col rounded-md border border-border-default bg-bg-primary p-4",
+        hasSparkline
+          ? "gap-3 overflow-hidden pb-0"
+          : hasTrend
+            ? "gap-1.5"
+            : "gap-2",
         className,
       )}
       {...props}
@@ -242,7 +246,7 @@ export function MetricGroup({
           {index > 0 ? (
             <div
               aria-hidden="true"
-              className="mx-2 h-8 w-px shrink-0 bg-border-default"
+              className="mr-2 h-8 w-px shrink-0 bg-border-default"
             />
           ) : null}
           {child}
