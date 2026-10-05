@@ -3,6 +3,38 @@ title: Changelog
 description: Notable changes to Paubha's components, CLI, and docs site.
 ---
 
+## 2026-10-05
+
+### Every component and pattern synced to Paubha-UI
+
+All 39 base components and every application pattern now match the
+Paubha-UI Figma file. Highlights, with the changes that can affect existing
+code:
+
+- **Button:** `ghost` is now `tertiary`, `destructive` is a boolean, and a
+  `2xl` size exists.
+- **Avatar:** `status` is now `indicator`, and there is a new `type`.
+- **Badge:** the root is a `<span>` with no default `role="status"`.
+- **Card:** radius is 8px (was 12px) and there are new parts.
+- **Checkbox:** the checked state is outlined, not solid.
+- **Input:** shared 32/40/48/56px heights and a new `2xl` size.
+- **Date Picker:** picking a day stages it, and the popover closes on Apply.
+- **Logo:** inline SVG with a pixel `size` prop.
+- **Filter:** new `FilterPanel` parts; `ActiveFilters` defaults to "Clear all filters".
+- **Page Header:** the root now carries its own border, background and padding.
+- **Progress Steps:** new `variant` (`horizontal`, `vertical`, `numbered`, `description`); markers match Figma.
+- **User Menu:** 264px panel with an account header, icon rows and a new `UserMenuDivider`.
+
+Brand and gray palette values were re-synced to the Figma Primitives
+collection. Full per-batch notes and open questions live in `SYNC_LOG.md`.
+
+### Marketing examples rebuilt with real photography
+
+All 13 marketing example pages were redesigned around local photos
+(Unsplash, downloaded into `apps/www/public/examples`) and live registry
+components instead of placeholder blocks. The Marketing Hero docs page was
+removed; the `marketing-hero` registry item is still published.
+
 ## 2026-08-22
 
 ### Docs site wired to the real components

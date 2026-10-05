@@ -95,8 +95,11 @@ export function BrandField({ className }: { className?: string }) {
       ctx.globalAlpha = 0.08;
       ctx.lineWidth = 1;
       for (let i = 0; i < particles.length; i += 7) {
-        const a = project(particles[i]!);
-        const b = project(particles[(i + 11) % particles.length]!);
+        const from = particles[i];
+        const to = particles[(i + 11) % particles.length];
+        if (!from || !to) continue;
+        const a = project(from);
+        const b = project(to);
         ctx.beginPath();
         ctx.moveTo(a.sx, a.sy);
         ctx.lineTo(b.sx, b.sy);

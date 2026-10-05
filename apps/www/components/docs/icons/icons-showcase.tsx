@@ -257,7 +257,9 @@ export function IconsHero() {
 export function IconsShowcase() {
   const [query, setQuery] = React.useState("");
   const [category, setCategory] = React.useState<Category>("All");
-  const [selected, setSelected] = React.useState<CatalogItem>(CATALOG[0]!);
+  const [selected, setSelected] = React.useState<CatalogItem>(
+    CATALOG[0] as CatalogItem,
+  );
   const [size, setSize] = React.useState(24);
   const [stroke, setStroke] = React.useState(1.75);
   const [copied, setCopied] = React.useState<"name" | "import" | null>(null);
@@ -269,6 +271,7 @@ export function IconsShowcase() {
     return () => window.clearTimeout(resetRef.current);
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `selected.name` replays the draw-in animation whenever the selection changes
   React.useEffect(() => {
     if (reduce) {
       setDrawn(true);

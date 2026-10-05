@@ -450,3 +450,16 @@ OPEN QUESTIONS (patterns group 3)
 - Newsletter/Progress Steps responsive and error states are code-only where Figma shows one layout.
 
 **Patterns: all synced to Paubha-UI.**
+
+### Follow-up fixes and docs (2026-10-05)
+- Filter barrel `index.ts` now re-exports `FilterPanel`, `FilterPanelTitle`, `FilterPanelGroup`, `FilterPanelFooter` and their prop types (the docs page crashed without them).
+- Progress Steps: non-numbered markers match Figma (current = brand ring + dot, upcoming = black outline). Docs now show one demo per Figma frame (horizontal, vertical, numbered, description).
+- User Menu synced to Figma node 6781:34381: 264px panel, p-2, rows px-3 py-2 ui-md Medium, new `UserMenuDivider`. Trigger focus stays `shadow-glow-focus` (Figma draws a 2px ring).
+- Blog Card demo no longer wraps a single card in `BlogCardGrid`.
+- Marketing Hero docs page removed (component and registry item kept; four example pages use it).
+- Marketing examples rebuilt with local Unsplash photos and live registry components (`photo.tsx` helper, `public/examples/photos`). `TokenMarquee` deleted (unused). Docs sidebar no longer lists Marketing Examples twice.
+- `pnpm check` (consistency + whole-repo Biome) is green again.
+
+OPEN QUESTIONS (follow-up)
+- User Menu focus: Figma uses a 2px solid ring; code keeps glow-focus per CLAUDE.md.
+- Marketing example photos are generic stock; replace with brand photography before using the pages in production.
