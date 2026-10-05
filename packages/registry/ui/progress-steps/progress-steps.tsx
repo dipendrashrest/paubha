@@ -140,9 +140,9 @@ const MARKER_ICON: Record<ProgressStepsVariant, string> = {
 
 /**
  * listitem in a ProgressSteps ol · aria-current="step" when status=current ·
- * complete = success solid + Check · current = brand solid + CircleDot
- * (number in the numbered variant) · upcoming = bare Circle (bordered number
- * in the numbered variant) · connector color follows prior complete
+ * complete = success solid + Check · current = brand ring + dot (solid brand
+ * number in the numbered variant) · upcoming = outlined circle (bordered
+ * number in the numbered variant) · connector color follows prior complete
  */
 export function ProgressStep({
   ref,
@@ -164,11 +164,12 @@ export function ProgressStep({
         "inline-flex shrink-0 items-center justify-center rounded-full",
         MARKER_SIZE[variant],
         status === "complete" && "bg-bg-success-solid text-fg-on-success",
-        status === "current" && "bg-bg-brand-solid text-fg-on-brand",
+        status === "current" &&
+          (numbered ? "bg-bg-brand-solid text-fg-on-brand" : "text-fg-brand"),
         status === "upcoming" &&
           (numbered
             ? "border-[1.5px] border-border-strong bg-bg-primary text-fg-secondary"
-            : "text-fg-tertiary"),
+            : "text-fg-primary"),
         numbered && "text-ui-md font-semibold",
       )}
       aria-hidden="true"

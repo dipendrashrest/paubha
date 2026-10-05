@@ -56,7 +56,15 @@ export function UserMenu({
             {avatar}
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="min-w-44">
+        <DropdownMenuContent
+          align="end"
+          className={cn(
+            // Figma "User Menu" panel: 264px, 8px padding, 8px rhythm around dividers,
+            // rows px-3 py-2 ui-md Medium (heavier than the base Dropdown Menu rows).
+            "w-[264px] p-2",
+            "[&_[role=menuitem]]:px-3 [&_[role=menuitem]]:py-2 [&_[role=menuitem]]:text-ui-md [&_[role=menuitem]]:font-medium",
+          )}
+        >
           {name != null || email != null ? (
             <>
               <div
@@ -70,10 +78,7 @@ export function UserMenu({
                   <p className="text-ui-sm text-fg-secondary">{email}</p>
                 ) : null}
               </div>
-              <div
-                aria-hidden="true"
-                className="h-px w-full bg-border-default"
-              />
+              <UserMenuDivider />
             </>
           ) : null}
           {children}
@@ -84,3 +89,19 @@ export function UserMenu({
 }
 
 UserMenu.displayName = "UserMenu";
+
+/** Decorative divider between menu groups (8px above and below, per Figma). */
+export function UserMenuDivider({
+  className,
+  ...props
+}: React.ComponentPropsWithRef<"div">) {
+  return (
+    <div
+      aria-hidden="true"
+      className={cn("my-1 h-px w-full bg-border-default", className)}
+      {...props}
+    />
+  );
+}
+
+UserMenuDivider.displayName = "UserMenuDivider";

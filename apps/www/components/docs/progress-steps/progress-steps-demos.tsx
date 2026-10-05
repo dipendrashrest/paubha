@@ -6,20 +6,24 @@ import {
 } from "@paubha/registry/ui/progress-steps";
 import { ComponentPlayground } from "../_shared/component-playground";
 
+const card = "w-full rounded-md border border-border-default bg-bg-primary p-6";
+
 export function ProgressStepsHero() {
   return (
     <ComponentPlayground
-      code={`<ProgressSteps>
+      code={`<ProgressSteps variant="horizontal">
   <ProgressStep status="complete" label="Account" />
   <ProgressStep status="current" label="Profile" />
-  <ProgressStep status="upcoming" label="Done" />
+  <ProgressStep status="upcoming" label="Settings" />
+  <ProgressStep status="upcoming" label="Review" />
 </ProgressSteps>`}
     >
-      <div className="w-full max-w-lg rounded-md border border-border-default bg-bg-primary p-4">
-        <ProgressSteps>
+      <div className={`${card} max-w-xl`}>
+        <ProgressSteps variant="horizontal">
           <ProgressStep status="complete" label="Account" />
           <ProgressStep status="current" label="Profile" />
-          <ProgressStep status="upcoming" label="Done" />
+          <ProgressStep status="upcoming" label="Settings" />
+          <ProgressStep status="upcoming" label="Review" />
         </ProgressSteps>
       </div>
     </ComponentPlayground>
@@ -29,40 +33,50 @@ export function ProgressStepsHero() {
 export function ProgressStepsVertical() {
   return (
     <ComponentPlayground
-      code={`<ProgressSteps orientation="vertical">
+      code={`<ProgressSteps variant="vertical">
   <ProgressStep
     status="complete"
-    label="Account details"
-    description="Name and email"
+    label="Create account"
+    description="Account created successfully with verified email address."
   />
   <ProgressStep
     status="current"
-    label="Profile"
-    description="Avatar and bio"
+    label="Add details"
+    description="Enter your personal information and set up profile preferences."
   />
   <ProgressStep
     status="upcoming"
-    label="Review"
-    description="Confirm and submit"
+    label="Configure"
+    description="Adjust privacy and notification settings."
+  />
+  <ProgressStep
+    status="upcoming"
+    label="Launch"
+    description="Finalize setup and deploy your workspace."
   />
 </ProgressSteps>`}
     >
-      <div className="w-full max-w-sm rounded-md border border-border-default bg-bg-primary p-4">
-        <ProgressSteps orientation="vertical">
+      <div className={`${card} max-w-lg`}>
+        <ProgressSteps variant="vertical">
           <ProgressStep
             status="complete"
-            label="Account details"
-            description="Name and email"
+            label="Create account"
+            description="Account created successfully with verified email address."
           />
           <ProgressStep
             status="current"
-            label="Profile"
-            description="Avatar and bio"
+            label="Add details"
+            description="Enter your personal information and set up profile preferences."
           />
           <ProgressStep
             status="upcoming"
-            label="Review"
-            description="Confirm and submit"
+            label="Configure"
+            description="Adjust privacy and notification settings."
+          />
+          <ProgressStep
+            status="upcoming"
+            label="Launch"
+            description="Finalize setup and deploy your workspace."
           />
         </ProgressSteps>
       </div>
@@ -70,18 +84,48 @@ export function ProgressStepsVertical() {
   );
 }
 
-export function ProgressStepsVariants() {
+export function ProgressStepsNumbered() {
   return (
     <ComponentPlayground
-      code={`<ProgressSteps variant="horizontal">…</ProgressSteps>
-<ProgressSteps variant="description">…</ProgressSteps>`}
+      code={`<ProgressSteps variant="numbered">
+  <ProgressStep status="complete" label="Shipping" />
+  <ProgressStep status="current" label="Payment" />
+  <ProgressStep status="upcoming" label="Confirmation" />
+</ProgressSteps>`}
     >
-      <div className="flex w-full max-w-lg flex-col gap-6 rounded-md border border-border-default bg-bg-primary p-4">
-        <ProgressSteps variant="horizontal">
-          <ProgressStep status="complete" label="Account" />
-          <ProgressStep status="current" label="Profile" />
-          <ProgressStep status="upcoming" label="Review" />
+      <div className={`${card} max-w-xl`}>
+        <ProgressSteps variant="numbered">
+          <ProgressStep status="complete" label="Shipping" />
+          <ProgressStep status="current" label="Payment" />
+          <ProgressStep status="upcoming" label="Confirmation" />
         </ProgressSteps>
+      </div>
+    </ComponentPlayground>
+  );
+}
+
+export function ProgressStepsDescription() {
+  return (
+    <ComponentPlayground
+      code={`<ProgressSteps variant="description">
+  <ProgressStep
+    status="complete"
+    label="Personal"
+    description="Set up primary login"
+  />
+  <ProgressStep
+    status="current"
+    label="Preferences"
+    description="Choose theme and time zone"
+  />
+  <ProgressStep
+    status="upcoming"
+    label="Submit"
+    description="Review and launch"
+  />
+</ProgressSteps>`}
+    >
+      <div className={`${card} max-w-xl`}>
         <ProgressSteps variant="description">
           <ProgressStep
             status="complete"

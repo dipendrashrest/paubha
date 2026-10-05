@@ -349,7 +349,7 @@ export function AvatarGroup({
       {visible.map((child, index) => (
         <span
           key={child.key ?? index}
-          className={cn("relative", index > 0 && "-ml-2")}
+          className={cn("relative flex shrink-0", index > 0 && "-ml-2")}
           style={{ zIndex: visible.length - index }}
         >
           {React.cloneElement(child, {
@@ -365,7 +365,7 @@ export function AvatarGroup({
         <span
           className={cn(
             avatarVariants({ size }),
-            "-ml-2 border border-border-default bg-bg-secondary font-medium text-fg-secondary ring-2 ring-bg-primary",
+            "-ml-2 shrink-0 border border-border-default bg-bg-secondary font-medium text-fg-secondary ring-2 ring-bg-primary",
           )}
           style={{ zIndex: 0 }}
           role="img"
@@ -381,13 +381,13 @@ export function AvatarGroup({
 AvatarGroup.displayName = "AvatarGroup";
 
 const avatarAddButtonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center rounded-full border-[1.5px] border-dashed border-border-strong bg-bg-secondary text-fg-secondary transition-colors focus-visible:outline-none hover:border-border-brand hover:shadow-[var(--shadow-glow-focus)] focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
+  "inline-flex shrink-0 items-center justify-center rounded-full border-[1.5px] border-dashed border-border-strong bg-bg-secondary text-fg-secondary transition-colors focus-visible:outline-none focus-visible:border-border-brand focus-visible:shadow-[var(--shadow-glow-focus)]",
   {
     variants: {
       size: {
-        md: "size-10 text-base leading-4",
-        lg: "size-12 text-xl leading-5",
-        xl: "size-16 text-2xl leading-6",
+        md: "size-10 text-base leading-4 hover:border-fg-secondary hover:shadow-[0_0_0_4px_rgba(71,84,103,0.24)]",
+        lg: "size-12 text-xl leading-5 hover:border-border-brand hover:shadow-[var(--shadow-glow-focus)]",
+        xl: "size-16 text-2xl leading-6 hover:border-border-brand hover:shadow-[var(--shadow-glow-focus)]",
       },
     },
     defaultVariants: {

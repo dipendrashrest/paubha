@@ -14,7 +14,7 @@ description: Multi-step progress indicator in four layouts.
 ```tsx
 import { ProgressStep, ProgressSteps } from "@/components/ui/progress-steps";
 
-<ProgressSteps>
+<ProgressSteps variant="horizontal">
   <ProgressStep status="complete" label="Account" />
   <ProgressStep status="current" label="Profile" />
   <ProgressStep status="upcoming" label="Done" />
@@ -27,9 +27,13 @@ import { ProgressStep, ProgressSteps } from "@/components/ui/progress-steps";
 
 <ProgressStepsVertical />
 
-### Horizontal and description
+### Numbered
 
-<ProgressStepsVariants />
+<ProgressStepsNumbered />
+
+### With description
+
+<ProgressStepsDescription />
 
 ## Props
 
@@ -39,3 +43,12 @@ import { ProgressStep, ProgressSteps } from "@/components/ui/progress-steps";
 | --- | --- | --- |
 | `variant` | `"horizontal" \| "vertical" \| "numbered" \| "description"` | from `orientation` |
 | `orientation` | `"horizontal" \| "vertical"` (shorthand for `numbered` / `vertical`) | `"horizontal"` |
+
+### ProgressStep
+
+| Prop | Type | Default |
+| --- | --- | --- |
+| `status` | `"complete" \| "current" \| "upcoming"` | required |
+| `label` | `ReactNode` | required |
+| `description` | `ReactNode` (vertical, numbered, description) | none |
+| `stepNumber` | `number` (numbered) | index + 1 |

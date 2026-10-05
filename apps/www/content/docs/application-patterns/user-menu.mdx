@@ -12,17 +12,20 @@ description: Account dropdown built from Avatar and Dropdown Menu.
 ## Usage
 
 ```tsx
-import { UserMenu } from "@/components/ui/user-menu";
+import { UserMenu, UserMenuDivider } from "@/components/ui/user-menu";
 import { Avatar } from "@/components/ui/avatar";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { LogOut, Settings, User } from "lucide-react";
 
 <UserMenu
-  avatar={<Avatar initials="AR" alt="Ava Ruiz" size="md" />}
-  name="Ava Ruiz"
-  email="ava@example.com"
+  avatar={<Avatar initials="SL" alt="Sofia Lindqvist" size="md" />}
+  name="Sofia Lindqvist"
+  email="sofia@example.com"
 >
-  <DropdownMenuItem>Profile</DropdownMenuItem>
-  <DropdownMenuItem>Sign out</DropdownMenuItem>
+  <DropdownMenuItem leadingIcon={<User />}>Profile</DropdownMenuItem>
+  <DropdownMenuItem leadingIcon={<Settings />}>Settings</DropdownMenuItem>
+  <UserMenuDivider />
+  <DropdownMenuItem leadingIcon={<LogOut />}>Sign out</DropdownMenuItem>
 </UserMenu>
 ```
 

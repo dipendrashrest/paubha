@@ -240,7 +240,6 @@ import {
 } from "@/components/docs/kbd/kbd-props-table";
 import { LogoCloudHero } from "@/components/docs/logo-cloud/logo-cloud-demos";
 import { MarketingExamplePreview } from "@/components/docs/marketing-examples/marketing-preview";
-import { MarketingHeroDemo } from "@/components/docs/marketing-hero/marketing-hero-demos";
 import {
   MetricGroupDemo,
   MetricHero,
@@ -281,8 +280,9 @@ import {
 } from "@/components/docs/progress-circle/progress-circle-demos";
 import { ProgressCirclePropsTable } from "@/components/docs/progress-circle/progress-circle-props-table";
 import {
+  ProgressStepsDescription,
   ProgressStepsHero,
-  ProgressStepsVariants,
+  ProgressStepsNumbered,
   ProgressStepsVertical,
 } from "@/components/docs/progress-steps/progress-steps-demos";
 import {
@@ -696,9 +696,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     MetricSparkline,
 
     // Progress Steps (application pattern)
+    ProgressStepsDescription,
     ProgressStepsHero,
-    ProgressStepsVariants,
-  ProgressStepsVertical,
+    ProgressStepsNumbered,
+    ProgressStepsVertical,
 
     // Empty State (application pattern)
     EmptyStateHero,
@@ -738,7 +739,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     TestimonialHero,
     TestimonialGridDemo,
     NewsletterHero,
-    MarketingHeroDemo,
     PricingCardHero,
     PricingCardFeatured,
     FaqHero,

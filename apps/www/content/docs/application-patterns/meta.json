@@ -1,8 +1,7 @@
 {
-  "title": "Application Pattern",
+  "title": "Application Patterns",
   "defaultOpen": true,
   "pages": [
-    "index",
     "activity-feed",
     "announcement-bar",
     "app-nav",
@@ -25,7 +24,6 @@
     "icon-list",
     "inline-cta",
     "logo-cloud",
-    "marketing-hero",
     "metric",
     "newsletter",
     "page-header",
