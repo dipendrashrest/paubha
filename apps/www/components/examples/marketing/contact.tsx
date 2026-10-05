@@ -100,7 +100,7 @@ export function ContactMarketingPage() {
           </ul>
 
           <Photo
-            name="office-corridor"
+            name="window-desk"
             priority
             sizes="(min-width: 1024px) 500px, 100vw"
             className="mt-10 aspect-[16/10] rounded-lg"

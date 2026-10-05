@@ -121,7 +121,7 @@ export function CustomersMarketingPage() {
         />
         <div className="mx-auto max-w-6xl px-6">
           <Testimonial
-            className="-mt-24 max-w-lg md:-mt-36 md:ml-auto"
+            className="relative -mt-24 max-w-lg md:-mt-36 md:ml-auto"
             quote="We showed the diff at all-hands. Nobody asked what library it was, they asked when their screen was next."
             author="Walter Brandt"
             role="VP Engineering, Summit"

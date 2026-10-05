@@ -98,7 +98,7 @@ export function PricingMarketingPage() {
           </div>
         </div>
         <Photo
-          name="team-laptops"
+          name="cafe-laughing"
           priority
           className="aspect-[4/3] rounded-lg"
           sizes="(min-width: 1024px) 560px, 100vw"
@@ -233,7 +233,7 @@ export function PricingMarketingPage() {
           alt="Overhead view of a shared desk covered in laptops, notebooks and phones"
         />
         <div className="mx-auto max-w-6xl px-6">
-          <div className="-mt-20 max-w-md rounded-lg border border-border-default bg-bg-primary p-6 md:-mt-28">
+          <div className="relative -mt-20 max-w-md rounded-lg border border-border-default bg-bg-primary p-6 md:-mt-28">
             <h2 className="text-display-xs font-semibold text-fg-primary">
               Built by people who ship product
             </h2>
@@ -247,10 +247,7 @@ export function PricingMarketingPage() {
 
       <section className="mt-16 border-t border-border-default bg-bg-secondary">
         <div className="mx-auto max-w-3xl px-6 py-16">
-          <h2 className="mb-6 text-display-xs font-semibold text-fg-primary">
-            Questions people ask
-          </h2>
-          <Faq items={[...FAQS]} />
+          <Faq title="Questions people ask" items={[...FAQS]} />
         </div>
       </section>
     </MarketingShell>

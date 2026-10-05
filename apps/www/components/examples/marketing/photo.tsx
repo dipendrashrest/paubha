@@ -58,6 +58,56 @@ export const PHOTOS = {
     h: 935,
     alt: "Close-up of syntax-highlighted code on a screen",
   },
+  "pair-programming": {
+    w: 1400,
+    h: 933,
+    alt: "Two developers working side by side at a bright desk",
+  },
+  "pair-review": {
+    w: 1400,
+    h: 933,
+    alt: "Colleagues reviewing code together on a laptop",
+  },
+  "open-office": {
+    w: 1400,
+    h: 933,
+    alt: "A large open-plan office with rows of people at laptops",
+  },
+  "window-desk": {
+    w: 1400,
+    h: 933,
+    alt: "A laptop on a long desk beside a tall window and a plant",
+  },
+  "cafe-laughing": {
+    w: 1400,
+    h: 933,
+    alt: "Three colleagues laughing together over laptops at a wooden table",
+  },
+  "server-aisle": {
+    w: 1400,
+    h: 935,
+    alt: "An engineer with a tablet beside a glass wall of server racks",
+  },
+  "wireframe-sketch": {
+    w: 1400,
+    h: 933,
+    alt: "A hand sketching app wireframes on paper",
+  },
+  "analytics-laptop": {
+    w: 1400,
+    h: 933,
+    alt: "Hands typing on a laptop showing an analytics dashboard",
+  },
+  "notes-table": {
+    w: 1400,
+    h: 933,
+    alt: "Hands taking notes at a long wooden meeting table",
+  },
+  "sticky-notes": {
+    w: 1400,
+    h: 933,
+    alt: "A teammate presenting sticky notes on a whiteboard to a workshop",
+  },
 } as const;
 
 export type PhotoName = keyof typeof PHOTOS;

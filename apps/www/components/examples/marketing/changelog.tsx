@@ -189,7 +189,7 @@ export function ChangelogMarketingPage() {
           </a>
         </div>
         <Photo
-          name="team-laptops"
+          name="analytics-laptop"
           priority
           sizes="(min-width: 1024px) 560px, 100vw"
           className="aspect-[4/3] rounded-lg"

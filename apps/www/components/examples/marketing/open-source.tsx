@@ -65,7 +65,7 @@ export function OpenSourceMarketingPage() {
           </div>
         </div>
         <Photo
-          name="team-laptops"
+          name="pair-programming"
           priority
           sizes="(min-width: 1024px) 560px, 100vw"
           className="pb-enter-late aspect-[4/3] rounded-md border border-border-default"
@@ -82,7 +82,7 @@ export function OpenSourceMarketingPage() {
                 className="col-span-3 aspect-[3/4] rounded-md"
               />
               <Photo
-                name="discussion"
+                name="notes-table"
                 sizes="(min-width: 1024px) 200px, 40vw"
                 className="col-span-2 mt-10 aspect-[2/3] rounded-md"
               />

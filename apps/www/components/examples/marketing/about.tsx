@@ -66,7 +66,7 @@ export function AboutMarketingPage() {
           </div>
         </div>
         <Photo
-          name="office-corridor"
+          name="open-office"
           priority
           className="aspect-[4/3] rounded-lg"
           sizes="(min-width: 1024px) 580px, 100vw"
@@ -95,7 +95,7 @@ export function AboutMarketingPage() {
             sizes="(min-width: 768px) 25vw, 100vw"
           />
           <Photo
-            name="team-laptops"
+            name="sticky-notes"
             className="aspect-[4/5] rounded-lg md:col-span-4"
             sizes="(min-width: 768px) 33vw, 100vw"
           />

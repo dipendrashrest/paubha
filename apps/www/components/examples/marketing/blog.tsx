@@ -41,7 +41,7 @@ const LATEST: Post[] = [
       "Owning the source means you can theme it, fork it and ship without waiting on a maintainer.",
     author: 4,
     date: "Sep 22, 2026",
-    photo: "team-laptops",
+    photo: "cafe-laughing",
   },
   {
     tag: "Design",
@@ -78,7 +78,7 @@ const ALL: Post[] = [
       "A short lint rule and a naming convention caught most of it. Review caught the rest.",
     author: 4,
     date: "Aug 20, 2026",
-    photo: "desk-topdown",
+    photo: "window-desk",
   },
   {
     tag: "Engineering",
@@ -128,9 +128,11 @@ function Author({ post, className }: { post: Post; className?: string }) {
 
 function TagBadge({ children }: { children: React.ReactNode }) {
   return (
-    <Badge variant="gray" fill="subtle" size="sm">
-      {children}
-    </Badge>
+    <span className="inline-flex self-start">
+      <Badge variant="gray" fill="subtle" size="sm">
+        {children}
+      </Badge>
+    </span>
   );
 }
 

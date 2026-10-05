@@ -25,7 +25,7 @@ const WORK: {
     sizes: "(min-width: 768px) 58vw, 100vw",
   },
   {
-    photo: "desk-topdown",
+    photo: "wireframe-sketch",
     name: "Fieldnote",
     line: "Offline-first notes for field researchers, built in six weeks.",
     span: "md:col-span-5",
@@ -41,7 +41,7 @@ const WORK: {
     sizes: "(min-width: 768px) 42vw, 100vw",
   },
   {
-    photo: "team-laptops",
+    photo: "pair-review",
     name: "Tidewater Credit Union",
     line: "A member dashboard and a design system the in-house team now maintains.",
     span: "md:col-span-7",
