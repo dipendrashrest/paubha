@@ -10,7 +10,7 @@ import { ComponentPlayground } from "../_shared/component-playground";
 export function FileUploadHero() {
   return (
     <ComponentPlayground
-      code={`<FileUpload onFilesChange={(files) => console.log(files)} />`}
+      code={"<FileUpload onFilesChange={(files) => console.log(files)} />"}
     >
       <div className="w-full max-w-md">
         <FileUpload onFilesChange={() => {}} />

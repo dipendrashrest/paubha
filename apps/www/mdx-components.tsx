@@ -101,10 +101,10 @@ import {
   AvatarGroupExample,
   AvatarHero,
   AvatarImageFallback,
-  AvatarLabelGroupExample,
-  AvatarSizes,
   AvatarIndicators,
+  AvatarLabelGroupExample,
   AvatarProfilePhotoExample,
+  AvatarSizes,
   AvatarTypes,
 } from "@/components/docs/avatar/avatar-demos";
 import { AvatarPropsTable } from "@/components/docs/avatar/avatar-props-table";
@@ -201,8 +201,8 @@ import {
 } from "@/components/docs/file-upload/file-upload-demos";
 import {
   FilterActive,
-  FilterPanelDemo,
   FilterHero,
+  FilterPanelDemo,
 } from "@/components/docs/filter/filter-demos";
 import { IconListHero } from "@/components/docs/icon-list/icon-list-demos";
 import {
@@ -213,8 +213,8 @@ import {
 import {
   InlineCtaCard,
   InlineCtaFloating,
-  InlineCtaLink,
   InlineCtaHero,
+  InlineCtaLink,
 } from "@/components/docs/inline-cta/inline-cta-demos";
 import {
   InputAddons,
