@@ -201,6 +201,7 @@ import {
 } from "@/components/docs/file-upload/file-upload-demos";
 import {
   FilterActive,
+  FilterPanelDemo,
   FilterHero,
 } from "@/components/docs/filter/filter-demos";
 import { IconListHero } from "@/components/docs/icon-list/icon-list-demos";
@@ -717,6 +718,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     // Filter (application pattern)
     FilterActive,
+    FilterPanelDemo,
     FilterHero,
 
     // File Upload (application pattern)

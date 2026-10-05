@@ -1,21 +1,24 @@
 import { cn } from "@paubha/registry/lib/cn";
-import { X } from "lucide-react";
 import type * as React from "react";
+import { Badge } from "../badge/badge";
+import { Button } from "../button/button";
+import { Divider } from "../divider/divider";
+
+// Figma container radius is a hardcoded 10px (no token) -> closest, radius-md.
+const containerClassName =
+  "flex w-full flex-wrap items-center rounded-md border border-border-default bg-bg-primary px-4 py-3";
 
 export interface FilterBarProps extends React.ComponentPropsWithRef<"div"> {}
 
 /**
- * Horizontal filter toolbar shell · layout only · put Selects / chip triggers
- * as children · focusable controls must carry shadow-glow-focus themselves
+ * Bordered filter toolbar shell · layout only · put Input / Select controls and
+ * a link Button as children · focusable controls carry shadow-glow-focus themselves
  */
 export function FilterBar({ ref, className, ...props }: FilterBarProps) {
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex w-full flex-wrap items-center gap-2 border-b border-border-default px-4 py-3",
-        className,
-      )}
+      className={cn(containerClassName, "gap-2", className)}
       {...props}
     />
   );
@@ -31,8 +34,9 @@ export interface FilterChipProps
 }
 
 /**
- * Toggleable filter chip · role=button · aria-pressed · Enter/Space ·
- * focus-visible:shadow-glow-focus · optional sibling remove button
+ * Toggleable filter chip (Badge, gray subtle / brand when selected) · role=button ·
+ * aria-pressed · Enter/Space · focus-visible:shadow-glow-focus · optional Badge
+ * dismiss button labelled "Remove <label>"
  */
 export function FilterChip({
   ref,
@@ -47,44 +51,26 @@ export function FilterChip({
     typeof label === "string" ? `Remove ${label}` : "Remove filter";
 
   return (
-    <div className={cn("inline-flex items-stretch", className)}>
+    <Badge
+      variant={selected ? "brand" : "gray"}
+      fill="subtle"
+      size="sm"
+      dismissible={onRemove != null && !disabled}
+      onDismiss={onRemove}
+      dismissLabel={removeLabel}
+      className={cn(disabled && "text-fg-disabled", className)}
+    >
       <button
         ref={ref}
         type="button"
         aria-pressed={selected}
         disabled={disabled}
-        className={cn(
-          "inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-ui-sm font-medium transition-colors",
-          "focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]",
-          "disabled:pointer-events-none disabled:text-fg-disabled",
-          onRemove != null && "rounded-r-none border-r-0",
-          selected
-            ? "border-border-brand bg-bg-brand-subtle text-fg-brand"
-            : "border-border-default bg-bg-primary text-fg-primary hover:bg-bg-secondary-hover",
-        )}
+        className="rounded-full focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)] disabled:pointer-events-none"
         {...props}
       >
         {label}
       </button>
-      {onRemove != null ? (
-        <button
-          type="button"
-          aria-label={removeLabel}
-          disabled={disabled}
-          onClick={onRemove}
-          className={cn(
-            "inline-flex h-8 items-center rounded-r-full border border-l-0 pr-2.5 pl-1 text-ui-sm transition-colors",
-            "focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]",
-            "disabled:pointer-events-none disabled:text-fg-disabled",
-            selected
-              ? "border-border-brand bg-bg-brand-subtle text-fg-brand hover:bg-bg-brand-subtle"
-              : "border-border-default bg-bg-primary text-fg-tertiary hover:bg-bg-secondary-hover",
-          )}
-        >
-          <X aria-hidden="true" className="size-3.5" />
-        </button>
-      ) : null}
-    </div>
+    </Badge>
   );
 }
 
@@ -96,7 +82,7 @@ export function FilterChips({ ref, className, ...props }: FilterChipsProps) {
   return (
     <div
       ref={ref}
-      className={cn("flex flex-wrap items-center gap-2", className)}
+      className={cn(containerClassName, "gap-2", className)}
       {...props}
     />
   );
@@ -105,45 +91,154 @@ export function FilterChips({ ref, className, ...props }: FilterChipsProps) {
 FilterChips.displayName = "FilterChips";
 
 export interface ActiveFiltersProps extends React.ComponentPropsWithRef<"div"> {
-  /** Clear-all control label. @default "Clear all" */
+  /** Clear-all control label. @default "Clear all filters" */
   clearLabel?: React.ReactNode;
   onClear?: () => void;
 }
 
 /**
- * Active filter summary row · clear-all button has glow-focus · chips as children
+ * Active filter summary row · chips as children · clear-all is a link Button
+ * (glow-focus built in)
  */
 export function ActiveFilters({
   ref,
   className,
   children,
-  clearLabel = "Clear all",
+  clearLabel = "Clear all filters",
   onClear,
   ...props
 }: ActiveFiltersProps) {
   return (
     <div
       ref={ref}
-      className={cn(
-        "flex w-full flex-wrap items-center gap-2 px-4 py-2",
-        className,
-      )}
+      className={cn(containerClassName, "gap-3", className)}
       {...props}
     >
-      <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
-        {children}
-      </div>
+      {children}
       {onClear != null ? (
-        <button
-          type="button"
-          onClick={onClear}
-          className="shrink-0 rounded-sm px-2 py-1 text-ui-sm font-medium text-fg-brand transition-colors hover:underline focus-visible:outline-none focus-visible:shadow-[var(--shadow-glow-focus)]"
-        >
+        <Button variant="link" size="sm" onClick={onClear}>
           {clearLabel}
-        </button>
+        </Button>
       ) : null}
     </div>
   );
 }
 
 ActiveFilters.displayName = "ActiveFilters";
+
+export interface FilterPanelProps extends React.ComponentPropsWithRef<"div"> {}
+
+/**
+ * Dropdown filter panel shell · compose FilterPanelTitle, FilterPanelGroup
+ * (Checkbox / Input children) and FilterPanelFooter · role=group, name it with
+ * aria-label or aria-labelledby
+ */
+export function FilterPanel({ ref, className, ...props }: FilterPanelProps) {
+  return (
+    <div
+      ref={ref}
+      role="group"
+      className={cn(
+        "flex w-full flex-col gap-5 rounded-md border border-border-default bg-bg-elevated p-5",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+FilterPanel.displayName = "FilterPanel";
+
+export interface FilterPanelTitleProps
+  extends React.ComponentPropsWithRef<"div"> {}
+
+/** Panel heading with the divider below it. */
+export function FilterPanelTitle({
+  ref,
+  className,
+  children,
+  ...props
+}: FilterPanelTitleProps) {
+  return (
+    <>
+      <div
+        ref={ref}
+        className={cn("text-body-lg font-semibold text-fg-primary", className)}
+        {...props}
+      >
+        {children}
+      </div>
+      <Divider />
+    </>
+  );
+}
+
+FilterPanelTitle.displayName = "FilterPanelTitle";
+
+export interface FilterPanelGroupProps
+  extends React.ComponentPropsWithRef<"div"> {
+  label: React.ReactNode;
+}
+
+/** Labelled column of controls (e.g. Status checkboxes, Date Range inputs). */
+export function FilterPanelGroup({
+  ref,
+  className,
+  label,
+  children,
+  ...props
+}: FilterPanelGroupProps) {
+  return (
+    <div
+      ref={ref}
+      className={cn("flex flex-col items-start gap-3", className)}
+      {...props}
+    >
+      <span className="text-ui-md font-medium text-fg-primary">{label}</span>
+      {children}
+    </div>
+  );
+}
+
+FilterPanelGroup.displayName = "FilterPanelGroup";
+
+export interface FilterPanelFooterProps
+  extends React.ComponentPropsWithRef<"div"> {
+  /** @default "Clear all" */
+  clearLabel?: React.ReactNode;
+  /** @default "Apply Filters" */
+  applyLabel?: React.ReactNode;
+  onClear?: () => void;
+  onApply?: () => void;
+}
+
+/** Divider + Clear all (tertiary) / Apply (primary) actions. */
+export function FilterPanelFooter({
+  ref,
+  className,
+  clearLabel = "Clear all",
+  applyLabel = "Apply Filters",
+  onClear,
+  onApply,
+  ...props
+}: FilterPanelFooterProps) {
+  return (
+    <>
+      <Divider />
+      <div
+        ref={ref}
+        className={cn("flex w-full items-center justify-between", className)}
+        {...props}
+      >
+        <Button variant="tertiary" size="sm" onClick={onClear}>
+          {clearLabel}
+        </Button>
+        <Button variant="primary" size="sm" onClick={onApply}>
+          {applyLabel}
+        </Button>
+      </div>
+    </>
+  );
+}
+
+FilterPanelFooter.displayName = "FilterPanelFooter";
